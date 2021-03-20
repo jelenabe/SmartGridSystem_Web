@@ -41,9 +41,10 @@ import { AllCrewsComponent } from './allCrews/allCrews.component';
 import { NewCrewComponent } from './newCrew/newCrew.component';
 import { ConsumersComponent } from './consumers/consumers.component';
 import { NewConsumerComponent } from './newConsumer/newConsumer.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
-  declarations: [																																						
+  declarations: [																																							
     AppComponent,
     HomeComponent,
       LoginComponent,
@@ -81,7 +82,8 @@ import { NewConsumerComponent } from './newConsumer/newConsumer.component';
       AllCrewsComponent,
       NewCrewComponent,
       ConsumersComponent,
-      NewConsumerComponent
+      NewConsumerComponent,
+      ProfileComponent
    ],
   imports: [
     BrowserModule,

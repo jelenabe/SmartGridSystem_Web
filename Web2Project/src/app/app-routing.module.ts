@@ -18,6 +18,7 @@ import { NewPlanComponent } from './newPlan/newPlan.component';
 import { NewSafetyDocComponent } from './newSafetyDoc/newSafetyDoc.component';
 import { NewWorkOrderComponent } from './newWorkOrder/newWorkOrder.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { ReportOutageComponent } from './reportOutage/reportOutage.component';
 import { SafetyDocsComponent } from './safetyDocs/safetyDocs.component';
@@ -80,7 +81,7 @@ const routes: Routes = [
   },
   {
     path:'changeProfile',
-    component: RegisterComponent
+    component: ProfileComponent
   },
   {
     path:'changePassword',
