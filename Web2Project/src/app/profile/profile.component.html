@@ -1,68 +1,125 @@
-
-
-<form action="action_page.php">
+<form (ngSubmit)="applyChanges()" ngNativeValidate>
   <div class="container">
     <h1>User Profile</h1>
-    <hr>
+    <hr />
 
-    <label for="username"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="username" id="username" required>
+    <div>
+      <label for="username"><b>Username</b></label>
+      <input
+        type="text"
+        placeholder="Enter Username"
+        name="username"
+        id="username"
+        [(ngModel)]="model.username"
+        required
+      />
+    </div>
 
-    <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" id="email" required>
+    <div>
+      <label for="email"><b>Email</b></label>
+      <input
+        type="text"
+        placeholder="Enter Email"
+        name="email"
+        id="email"
+        [(ngModel)]="model.email"
+        required
+      />
+    </div>
 
-    <label for="name"><b>Name</b></label>
-    <input type="text" placeholder="Enter Name" name="name" id="name" required>
+    <div>
+      <label for="name"><b>Name</b></label>
+      <input
+        type="text"
+        placeholder="Enter Name"
+        name="name"
+        id="name"
+        [(ngModel)]="model.name"
+        required
+      />
+    </div>
 
-    <label for="lastname"><b>Lastname</b></label>
-    <input type="text" placeholder="Enter Lastname" name="lastname" id="lastname" required>
+    <div>
+      <label for="lastname"><b>Lastname</b></label>
+      <input
+        type="text"
+        placeholder="Enter Lastname"
+        name="lastname"
+        id="lastname"
+        [(ngModel)]="model.lastname"
+        required
+      />
+    </div>
 
-    <label for="birthday"><b>Birthday</b></label>
-    <br>
-    <input type="date" name="birthday" id="birthday" required>
-    <br>
-    <br>
+    <div>
+      <label for="birthday"><b>Birthday</b></label>
+      <br />
+      <input
+        type="date"
+        name="birthday"
+        id="birthday"
+        [(ngModel)]="model.birthday"
+        required
+      />
+    </div>
 
-    <label for="address"><b>Address</b></label>
-    <input type="text" placeholder="Enter Address" name="address" id="address" required>
+    <div>
+      <label for="address"><b>Address</b></label>
+      <input
+        type="text"
+        placeholder="Enter Address"
+        name="address"
+        id="address"
+        [(ngModel)]="model.address"
+        required
+      />
+    </div>
 
-    <label for="role"><b>Role</b></label>
-    <select name="role" id="role">
-      <option value="Crow Member">Crow Member</option>
-      <option value="Dispatch">Dispatch</option>
-      <option value="Worker">Worker</option>
-    </select>  
-    <br>
-    <br>
-
-    <div *ngIf="show">
-      <label  for="crows"><b>Crows</b></label>
-      <select name="crows" id="crows">
+    <div>
+      <label for="role"><b>Role</b></label>
+      <select name="role" id="role" [(ngModel)]="model.role">
         <option value="Crow Member">Crow Member</option>
         <option value="Dispatch">Dispatch</option>
         <option value="Worker">Worker</option>
-      </select>  
+      </select>
     </div>
-    <br>
 
-    <label for="profilePicture"><b>Profile Picture</b></label>
+    <div *ngIf="show">
+      <label for="crows"><b>Crows</b></label>
+      <select name="crows" id="crows" [(ngModel)]="model.crows">
+        <option value="Crow Member">Crow Member</option>
+        <option value="Dispatch">Dispatch</option>
+        <option value="Worker">Worker</option>
+      </select>
+    </div>
 
+    <div>
+      <label for="profilePicture"><b>Profile Picture</b></label>
+    </div>
     <div class="fadeIn first">
-      <img width="300" height="300" src="assets/blank-profile.png" id="picture" alt="picture" />
+      <img
+        width="300"
+        height="300"
+        src="assets/blank-profile.png"
+        id="picture"
+        alt="picture"
+      />
     </div>
 
-    
-    <br>
-    <input type="file" name="profilePicture" id="profilePicture">
-    <br>
+    <div>
+      <input
+        type="file"
+        name="profilePicture"
+        id="profilePicture"
+        [(ngModel)]="model.profilePicture"
+      />
+    </div>
 
-    <hr>
+    <hr />
 
     <button type="submit" class="registerbtn">Apply changes</button>
   </div>
-
-
-  <p>
-    <a href="/changePassword" routerLinkActive="active" >Change Password</a>
-  </p>
 </form>
+<p>
+  <a href="/changePassword" routerLinkActive="active">Change Password</a>
+</p>

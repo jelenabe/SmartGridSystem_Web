@@ -1,3 +1,88 @@
-<p>
-  basicInformation works!
-</p>
+<html>
+  <body>
+    <form (ngSubmit)="save()">
+      <div>
+        <label>Type</label>
+        <select name="type" id="type" [(ngModel)]="model.Type">
+          <option value="Planed_work">Planed work</option>
+          <option value="Not_planed_work">Not planed work</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Work request</label>
+        <label>Nesto</label>
+        <button>Open work request</button>
+      </div>
+
+      <div>
+        <label>Status</label>
+        <label>Nesto</label>
+      </div>
+
+      <div>
+        <label>Incident</label>
+        <label>Nesto</label>
+        <button>Open incident</button>
+      </div>
+
+      <div>
+        <label>Street</label>
+        <input name="street" type="text" [ngModel]="model.Street" />
+      </div>
+
+      <div>
+        <label>Start date/time</label>
+        <input type="date" name="startDateTime" [ngModel]="model.StartDateTime" />
+      </div>
+
+      <div>
+        <label>End date/time</label>
+        <input type="date" name="endDateTime" [ngModel]="model.EndDateTime" />
+      </div>
+
+      <div>
+        <label>Field crew</label>
+        <label>Ekipa</label>
+        <select [(ngModel)]="model.FieldCrew" name="fieldCrew">
+          <option value="" disabled selected>select an option</option>
+          <option *ngFor="let crew of crews" [value]="crew">
+           {{crew}}
+          </option>
+        </select>
+      </div>
+
+      <div>
+        <label>Created by</label>
+        <label></label>
+      </div>
+
+      <div>
+        <label>Purpose</label>
+        <input type="text" name="purpose" [(ngModel)]="model.Purpose" />
+      </div>
+
+      <div>
+        <label>Notes</label>
+        <input type="text" name="notes" [(ngModel)]="model.Notes" />
+      </div>
+
+      <div>
+        <label>Company</label>
+        <input type="text" name="company" [(ngModel)]="model.Company" />
+      </div>
+
+      <div>
+        <label>Phone number</label>
+        <input type="tel" name="phoneNumber" [(ngModel)]="model.PhoneNumber" />
+      </div>
+
+      <div>
+        <label>Date/time created</label> <div>{{this.currentDate}}</div>
+      </div>
+
+      <button type="submit">Save</button>
+    </form>
+    <button>Cancel</button>
+  </body>
+</html>

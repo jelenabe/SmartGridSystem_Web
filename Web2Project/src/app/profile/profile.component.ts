@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  show : boolean = true
-  constructor() { }
+  show = true;
+  model: any = {};
+
+  constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
   }
 
+  applyChanges(){
+    console.log(this.model);
+    this.profileService.applyChanges(this.model).subscribe(()=>{
+      console.log("Applay changes successfull");
+    })
+  }
 }
