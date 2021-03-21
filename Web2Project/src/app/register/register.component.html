@@ -1,61 +1,59 @@
-\
-<form action="action_page.php" (ngSubmit)="register()">
+
+<form (ngSubmit)="register()" ngNativeValidate>
   <div class="container">
     <h1>Register</h1>
     <p>Please fill in this form to create an account.</p>
     <hr>
 
-    <div>
-      <label for="username"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="username" id="username" [(ngModel)]="model.Username" required>
-    </div>
+    <label for="username"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="username" id="username" [ngModel]="model.Username" required>
 
     <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" id="email" [(ngModel)]="model.Email" required>
+    <input type="text" placeholder="Enter Email" name="email" id="email" [ngModel]="model.Email" required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" id="psw" [(ngModel)]="model.Password" required>
+    <input type="password" placeholder="Enter Password" name="psw" id="psw" [ngModel]="model.Password" required>
 
     <label for="psw-repeat"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="psw_repeat" id="psw-repeat" [(ngModel)]="model.PasswordRepete" required>
+    <input type="password" placeholder="Repeat Password" name="psw_repeat" id="psw-repeat" [ngModel]="model.PasswordRepete" required>
 
     <div style="color: red;" *ngIf="!checkPasswords()">Password and Confirm Password must be match.</div>
 
     <label for="name"><b>Name</b></label>
-    <input type="text" placeholder="Enter Name" name="name" id="name" [(ngModel)]="model.Name" required>
+    <input type="text" placeholder="Enter Name" name="name" id="name" [ngModel]="model.Name" required>
 
     <label for="lastname"><b>Lastname</b></label>
-    <input type="text" placeholder="Enter Lastname" name="lastname" id="lastname" [(ngModel)]="model.Lastname" required>
+    <input type="text" placeholder="Enter Lastname" name="lastname" id="lastname" [ngModel]="model.Lastname" required>
 
     <label for="birthday"><b>Birthday</b></label>
     <br>
-    <input type="date" name="birthday" id="birthday" [(ngModel)]="model.Birthday" required>
+    <input type="date" name="birthday" id="birthday" [ngModel]="model.Birthday" required>
     <br>
     <br>
 
     <label for="address"><b>Address</b></label>
-    <input type="text" placeholder="Enter Address" name="address" id="address" [(ngModel)]="model.Address" required>
+    <input type="text" placeholder="Enter Address" name="address" id="address" [ngModel]="model.Address" required>
 
     <label for="role"><b>Role</b></label>
-    <select name="role" id="role" [(ngModel)]="model.Role">
+    <select name="role" id="role" [ngModel]="model.Role">
       <option value="Crow Member">Crow Member</option>
       <option value="Dispatch">Dispatch</option>
       <option value="Worker">Worker</option>
-    </select>  
+    </select>
     <br>
     <br>
 
     <div *ngIf="show">
-      <label  for="crows"><b>Crows</b></label>
-      <select name="crows" id="crows" [(ngModel)]="model.Crows">
+      <label for="crows"><b>Crows</b></label>
+      <select name="crows" id="crows" [ngModel]="model.Crows">
         <option value="Crow Member">Crow Member</option>
         <option value="Dispatch">Dispatch</option>
         <option value="Worker">Worker</option>
-      </select>  
+      </select>
     </div>
     <br>
 
-    <input type="checkbox" name="checkemail" id="checkemail" [(ngModel)]="model.Email">
+    <input type="checkbox" name="checkemail" id="checkemail" [ngModel]="model.Email">
     <label for="checkemail"><b>Send Email</b></label>
     <br>
     <br>
@@ -66,7 +64,7 @@
       <img width="300" height="300" src="assets/blank-profile.png" id="picture" alt="picture" />
     </div>
 
-    
+
     <br>
     <input type="file" name="profilePicture" id="profilePicture" [(ngModel)]="model.ProfilePicture">
     <br>
@@ -77,8 +75,8 @@
 
     <button type="submit" class="registerbtn">Register</button>
   </div>
+</form>
 
   <div class="container signin">
     <p>Already have an account? <a href="#">Sign in</a>.</p>
   </div>
-</form>
