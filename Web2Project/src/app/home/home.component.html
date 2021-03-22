@@ -1,10 +1,13 @@
-
 <body>
   <app-login></app-login>
   <section class="buttons">
     <div class="container" style="position:absolute; top: 80%">
-      <a href="/reportOutage"> 
-        <button  class="btnfos btnfos-5">Report Outage</button>
+      <a [routerLink]="['/reportOutage']"  class="animated-button1">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <mat-icon class="phone_icon white-icon">phone</mat-icon> Report Outage
       </a>
     </div>
   </section>

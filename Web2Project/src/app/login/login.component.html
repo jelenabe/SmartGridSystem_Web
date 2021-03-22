@@ -1,64 +1,65 @@
 <div class="wrapper fadeInDown">
-  <div id="formContent">
-    <div class="row">
-
-      <div class="col">
-        <!-- Header -->
-        <h1>Naslov</h1>
-
-        <!-- Tabs Titles -->
-        <h2 class="active"> Sign In </h2>
-        <a href="/register">
-          <h2 class="inactive underlineHover">Sign Up </h2>
-        </a>
-
-        <!-- Icon -->
-        <div class="fadeIn first">
-          <img src="assets/icon.png" id="icon" alt="User Icon" />
-        </div>
-
-        <!-- Login Form -->
-        <form (ngSubmit)="login()">
-          <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" >
-          <input type="text" id="password" class="fadeIn third" name="login" placeholder="password" >
-          <input type="submit" class="fadeIn fourth" value="Log In">
-        </form>
-
-      </div>
-
-      <div class="col" style="margin-top: 250px" >
-        <div class="container">
-          <form action="/action_page.php">
-            <div class="row">
-              <div>
-                <a href="#" class="fb btn">
-                  Login with Facebook
-                </a>
-                <a href="#" class="twitter btn">
-                  Login with Twitter
-                </a>
-                <a href="#" class="google btn">
-                  Login with Google+
-                </a>
-                <a href="#" class="github btn">
-                  Login with GitHub
-                </a>
-                <a href="#" class="linkedin btn">
-                  Login with LinkedIn
-                </a>
-              </div>
-            </div>
+    <div id="formContent">
+      <div class="row">
+  
+        <div class="col">
+          <!-- Header -->
+          <h1>Naslov</h1>
+  
+          <!-- Tabs Titles -->
+          <h2 class="active"> Sign In </h2>
+          <a href="/register">
+            <h2 class="inactive underlineHover">Sign Up </h2>
+          </a>
+  
+          <!-- Icon -->
+          <div class="fadeIn first">
+            <img src="assets/icon.png" id="icon" alt="User Icon" />
+          </div>
+  
+          <!-- Login Form -->
+          <form (ngSubmit)="login()">
+            <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" >
+            <input type="text" id="password" class="fadeIn third" name="login" placeholder="password" >
+            <input type="submit" class="fadeIn fourth" value="Log In">
           </form>
+  
         </div>
+  
+        <div class="col" style="margin-top: 250px" >
+          <div class="container">
+            <form action="/action_page.php">
+              <div class="row">
+                <div>
+                  <a href="#" class="fb btn">
+                    Login with Facebook
+                  </a>
+                  <a href="#" class="twitter btn">
+                    Login with Twitter
+                  </a>
+                  <a href="#" class="google btn">
+                    Login with Google+
+                  </a>
+                  <a href="#" class="github btn">
+                    Login with GitHub
+                  </a>
+                  <a href="#" class="linkedin btn">
+                    Login with LinkedIn
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+  
       </div>
-
+  
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Forgot Password?</a>
+      </div>
+  
     </div>
-
-
-    <!-- Remind Passowrd -->
-    <div id="formFooter">
-      <a class="underlineHover" href="#">Forgot Password?</a>
-    </div>
-
   </div>
-</div>
+  
