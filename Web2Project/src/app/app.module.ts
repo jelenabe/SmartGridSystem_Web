@@ -43,9 +43,11 @@ import { ProfileComponent } from './profile/profile.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {MatIconModule} from '@angular/material/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ActivateProfileComponent } from './activateProfile/activateProfile.component';
 
 @NgModule({
-  declarations: [																																							
+  declarations: [																																								
     AppComponent,
     HomeComponent,
       LoginComponent,
@@ -84,14 +86,16 @@ import {MatIconModule} from '@angular/material/icon';
       NewCrewComponent,
       ConsumersComponent,
       NewConsumerComponent,
-      ProfileComponent
+      ProfileComponent,
+      ActivateProfileComponent
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    MatIconModule
+    MatIconModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

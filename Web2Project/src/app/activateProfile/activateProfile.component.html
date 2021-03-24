@@ -1,0 +1,22 @@
+<div *ngIf="inactiveProfiles.length > 0">
+  <br/>
+  <h3>Activate profile: </h3>
+  <br/>
+  <ul class="list-group" *ngFor="let profile of inactiveProfiles; let i = index">
+    <li class="list-group-item" >
+      <b>{{profile.Username}}</b>
+      <p>{{profile.Type}}<br>
+         Name: {{profile.Name}}<br>
+         Lastname: {{profile.Lastname}}<br>
+         Email {{profile.Email}} din<br>
+         Address: {{profile.Address}}<br>
+      </p>
+      <span>
+        <button type="button" class="btn btn-primary" (click)="activateProfile(profile.id, i)">Activate Profile</button>
+        &nbsp;
+        <button type="button" class="btn btn-danger" (click)="deleteProfile(profile.id,1)">Delete Profile</button>
+      </span>
+    </li>
+  </ul>
+  <br/>
+</div>

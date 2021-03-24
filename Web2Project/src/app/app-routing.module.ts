@@ -1,5 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ActivateProfileComponent } from './activateProfile/activateProfile.component';
 import { AllCrewsComponent } from './allCrews/allCrews.component';
 import { AllDevicesComponent } from './allDevices/allDevices.component';
 import { ChangePasswordComponent } from './changePassword/changePassword.component';
@@ -122,6 +123,10 @@ const routes: Routes = [
   {
     path: 'newConsumer',
     component:NewConsumerComponent
+  },
+  {
+    path: 'activateProfile',
+    component:ActivateProfileComponent
   },
 
 ]
