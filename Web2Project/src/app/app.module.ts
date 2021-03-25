@@ -45,9 +45,18 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatIconModule} from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivateProfileComponent } from './activateProfile/activateProfile.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatSortModule} from '@angular/material/sort';
+import { MatButtonModule } from '@angular/material/button';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-  declarations: [																																								
+  declarations: [
     AppComponent,
     HomeComponent,
       LoginComponent,
@@ -95,7 +104,42 @@ import { ActivateProfileComponent } from './activateProfile/activateProfile.comp
     FormsModule,
     HttpClientModule,
     MatIconModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSortModule,
+    MatTableModule,
+    // MatNativeDateModule,
+    // MatRippleModule,
+    // MatSortModule,
+    // MatPaginatorModule,
+    // MatTableModule,
+    // MatButtonModule,
+    // MatIconModule,
+    // MatNativeDateModule,
+    // MatRippleModule,
+    // MatSelectModule,
+    // BrowserModule,
+    // FormsModule,
+    // BrowserAnimationsModule,
+    // MatFormFieldModule,
+    // MatInputModule
+  ],
+  exports: [
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSortModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
