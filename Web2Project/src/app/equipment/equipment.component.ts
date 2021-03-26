@@ -12,4 +12,6 @@ export class EquipmentComponent implements OnInit {
   ngOnInit() {
   }
 
+
+
 }
