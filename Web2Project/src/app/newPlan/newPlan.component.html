@@ -1,26 +1,52 @@
-
-<div class="myDiv" >
-  <button (click)="changeView(1)" class="button">Basic Information</button><br>
-  <button (click)="changeView(2)" class="button">History of state changes</button><br>
-  <button (click)="changeView(3)" class="button">Multimedia attachments</button><br>
-  <button (click)="changeView(4)" class="button">Equipment</button><br>
-  <button (click)="changeView(5)" class="button">Switching instruction</button><br>
-</div>
-
-<div [ngSwitch]="this.buttonClicked">
-  <div *ngSwitchCase = 1>
-    <app-basicInformation></app-basicInformation>
+<div class="form-row">
+  <div class="list-group" style="width: 20%">
+    <button
+      type="button"
+      class="list-group-item list-group-item-action"
+      (click)="changeView(1)">
+      Basic Information
+    </button>
+    <button
+      type="button"
+      class="list-group-item list-group-item-action"
+      (click)="changeView(2)">
+      History of state changes
+    </button>
+    <button
+      type="button"
+      class="list-group-item list-group-item-action"
+      (click)="changeView(3)">
+      Multimedia attachments
+    </button>
+    <button
+      type="button"
+      class="list-group-item list-group-item-action"
+      (click)="changeView(4)">
+      Equipment
+    </button>
+    <button
+      type="button"
+      class="list-group-item list-group-item-action"
+      (click)="changeView(5)">
+      Switching instruction
+    </button>
   </div>
-  <div *ngSwitchCase = 2>
-    <app-historyOfStateChanges></app-historyOfStateChanges>
-  </div>
-  <div *ngSwitchCase = 3>
-    <app-multimediaAttachments></app-multimediaAttachments>
-  </div>
-  <div *ngSwitchCase = 4>
-    <app-equipment></app-equipment>
-  </div>
-  <div *ngSwitchCase = 5>
-    <app-switchingInstructions></app-switchingInstructions>
+  
+  <div [ngSwitch]="this.buttonClicked">
+    <div *ngSwitchCase="1">
+      <app-basicInformation></app-basicInformation>
+    </div>
+    <div *ngSwitchCase="2">
+      <app-historyOfStateChanges></app-historyOfStateChanges>
+    </div>
+    <div *ngSwitchCase="3">
+      <app-multimediaAttachments></app-multimediaAttachments>
+    </div>
+    <div *ngSwitchCase="4">
+      <app-equipment></app-equipment>
+    </div>
+    <div *ngSwitchCase="5">
+      <app-switchingInstructions></app-switchingInstructions>
+    </div>
   </div>
 </div>

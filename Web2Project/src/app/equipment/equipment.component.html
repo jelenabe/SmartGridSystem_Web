@@ -1,0 +1,18 @@
+<div class="container" style="width: 200%;">
+    <h2>Equipment</h2>
+    <label class="input-group-text" for="inputGroupSelect01">Choose equipment:</label>
+
+    <form>
+
+    <mat-select-trigger>
+        <mat-option *ngFor="let shoe of typesOfShoes">
+            {{shoe}}
+        </mat-option>
+    </mat-select-trigger>
+    <div class="input-group-prepend">
+        <button class="btn btn-outline-primary" type="button">
+          Add
+        </button>
+      </div>
+</form>
+</div>

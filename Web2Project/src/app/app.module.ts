@@ -54,8 +54,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
+  schemas : [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
     HomeComponent,
@@ -114,6 +116,8 @@ import { CommonModule } from '@angular/common';
     MatSelectModule,
     MatSortModule,
     MatTableModule,
+    MatFormFieldModule,
+    MatInputModule
     // MatNativeDateModule,
     // MatRippleModule,
     // MatSortModule,
