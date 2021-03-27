@@ -24,6 +24,7 @@ export const EQUIPMENTS: Equipment[] = [
   styleUrls: ['./equipment.component.css']
 })
 export class EquipmentComponent implements OnInit {
+  
   typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
 
   equipments: any[];

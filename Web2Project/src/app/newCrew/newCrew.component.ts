@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewCrewComponent implements OnInit {
 
-  constructor() { }
+  Members: string[] = ['Mika ', 'Pera', 'Laza', 'Cvetašin', 'Radovan', 'Srboljub'];
+
+  constructor() { 
+    
+  }
 
   ngOnInit() {
   }

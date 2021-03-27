@@ -50,11 +50,11 @@ export class WorkOrdersComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-
-  applyFilter(event: Event): void {
+ applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+ 
 
 }
