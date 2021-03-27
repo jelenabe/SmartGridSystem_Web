@@ -1,18 +1,36 @@
-<div class="container" style="width: 200%;">
-    <h2>Equipment</h2>
-    <label class="input-group-text" for="inputGroupSelect01">Choose equipment:</label>
+<div class="container" style="width: 700px;">
+ <h2>Equipment</h2>
 
-    <form>
+ <mat-selection-list #shoes>
+  <mat-list-option *ngFor="let shoe of typesOfShoes">
+    {{shoe}}
+  </mat-list-option>
+</mat-selection-list>
 
-    <mat-select-trigger>
-        <mat-option *ngFor="let shoe of typesOfShoes">
-            {{shoe}}
-        </mat-option>
-    </mat-select-trigger>
-    <div class="input-group-prepend">
+<p>
+  Options selected: {{shoes.selectedOptions.selected.length}}
+</p>
+<div class="form-row">
+  <div class="form-group col-md-3">
+    <div class="input-group mb-2">
+    </div>
+  </div>
+  <div class="form-group col-md-3">
+    <div class="input-group mb-2">
+    </div>
+  </div>
+  <div class="form-group col-md-3">
+    <div class="input-group mb-2">
+    </div>
+  </div>
+  <div class="form-group col-md-3">
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
         <button class="btn btn-outline-primary" type="button">
-          Add
+          <mat-icon>save</mat-icon>
+          Save
         </button>
       </div>
-</form>
+    </div>
+    </div>
 </div>

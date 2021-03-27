@@ -55,6 +55,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   schemas : [CUSTOM_ELEMENTS_SCHEMA],
@@ -117,7 +118,9 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     MatSortModule,
     MatTableModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatListModule
+
     // MatNativeDateModule,
     // MatRippleModule,
     // MatSortModule,
