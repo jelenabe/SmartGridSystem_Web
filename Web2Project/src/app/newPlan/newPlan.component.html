@@ -1,5 +1,7 @@
-<div class="form-row">
-  <div class="list-group" style="width: 20%">
+<div class="form-row" >
+  <div class="form-group col-md-3">
+    <div class="input-group mb-3">
+  <div class="list-group" style="width:300px">
     <button
       type="button"
       class="list-group-item list-group-item-action"
@@ -31,7 +33,10 @@
       Switching instruction
     </button>
   </div>
-  
+    </div>
+  </div>
+  <div class="form-group col-md-8">
+    <div class="input-group mb-3">
   <div [ngSwitch]="this.buttonClicked">
     <div *ngSwitchCase="1">
       <app-basicInformation></app-basicInformation>
@@ -50,3 +55,6 @@
     </div>
   </div>
 </div>
+</div>
+</div>
+

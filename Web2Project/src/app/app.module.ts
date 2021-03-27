@@ -56,10 +56,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {MatListModule} from '@angular/material/list';
+import { NavBarTopComponent } from './navBarTop/navBarTop.component';
 
 @NgModule({
   schemas : [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [
+  declarations: [	
     AppComponent,
     HomeComponent,
       LoginComponent,
@@ -99,7 +100,8 @@ import {MatListModule} from '@angular/material/list';
       ConsumersComponent,
       NewConsumerComponent,
       ProfileComponent,
-      ActivateProfileComponent
+      ActivateProfileComponent,
+      NavBarTopComponent
    ],
   imports: [
     BrowserModule,
