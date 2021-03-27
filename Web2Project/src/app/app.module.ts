@@ -40,7 +40,7 @@ import { NewCrewComponent } from './newCrew/newCrew.component';
 import { ConsumersComponent } from './consumers/consumers.component';
 import { NewConsumerComponent } from './newConsumer/newConsumer.component';
 import { ProfileComponent } from './profile/profile.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {MatIconModule} from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -119,23 +119,10 @@ import {MatListModule} from '@angular/material/list';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
-    MatListModule
+    MatListModule,
+    ReactiveFormsModule,
+    FormsModule 
 
-    // MatNativeDateModule,
-    // MatRippleModule,
-    // MatSortModule,
-    // MatPaginatorModule,
-    // MatTableModule,
-    // MatButtonModule,
-    // MatIconModule,
-    // MatNativeDateModule,
-    // MatRippleModule,
-    // MatSelectModule,
-    // BrowserModule,
-    // FormsModule,
-    // BrowserAnimationsModule,
-    // MatFormFieldModule,
-    // MatInputModule
   ],
   exports: [
     MatButtonModule,

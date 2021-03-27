@@ -1,33 +1,32 @@
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <button type="button" class="btn btn-outline-secondary">Action</button>
-    <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <span class="sr-only">Toggle Dropdown</span>
-    </button>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
-      <div role="separator" class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Separated link</a>
-    </div>
-  </div>
-  <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
-</div>
+<div class="container" style="width: 1000px;">
 
-<div class="input-group">
-  <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
-  <div class="input-group-append">
-    <button type="button" class="btn btn-outline-secondary">Action</button>
-    <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <span class="sr-only">Toggle Dropdown</span>
-    </button>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
-      <div role="separator" class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Separated link</a>
-    </div>
-  </div>
+  <h1>Switching Instructions</h1>
+
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <table class="table table-bordered" formArrayName="quantities">
+      <tr>
+        <th colspan="2">Add Multiple Instructions:</th>
+        <th width="150px"><button type="button" (click)="addQuantity()" class="btn btn-primary">Add More</button></th>
+      </tr>
+      <tr *ngFor="let quantity of quantities().controls; let i=index" [formGroupName]="i">
+        <td>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input type="checkbox" aria-label="Checkbox for following text input">
+              </div>
+            </div>
+            <input type="text" class="form-control" aria-label="Text input with checkbox">
+          </div>
+          <br>
+        </td>
+        <td>
+          <button (click)="removeQuantity(i)" class="btn btn-danger">Remove</button>
+        </td>
+      </tr>
+    </table>
+
+    <button type="submit" class="btn btn-primary">Add Instructions</button>
+
+  </form>
 </div>
