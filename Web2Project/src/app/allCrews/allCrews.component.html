@@ -5,7 +5,7 @@
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. search" #input>
   </mat-form-field>
 
-  <div class="example-container mat-elevation-z8" style="width: 250%;">
+  <div class="example-container mat-elevation-z8" style="width: 220%;">
 
     <mat-table matSort [dataSource]="dataSource">
 
@@ -43,7 +43,7 @@
       </tr>
     </mat-table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" ></mat-paginator>
 
   </div>
   <br>
