@@ -29,7 +29,7 @@ export class ActivateProfileComponent implements OnInit {
         "Name":"Laza",
         "Username" : "Laki",
         "Type" : "Type3",
-        "Lastname": "Lazic",
+        'Lastname': "Lazic",
         "Email" : "laza.lazic@gmail.com",
         "Address" : "ulica br4"
     },
