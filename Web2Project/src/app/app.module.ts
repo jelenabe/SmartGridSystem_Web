@@ -57,6 +57,7 @@ import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {MatListModule} from '@angular/material/list';
 import { NavBarTopComponent } from './navBarTop/navBarTop.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   schemas : [CUSTOM_ELEMENTS_SCHEMA],
@@ -123,8 +124,11 @@ import { NavBarTopComponent } from './navBarTop/navBarTop.component';
     MatInputModule,
     MatListModule,
     ReactiveFormsModule,
-    FormsModule 
-
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyApcxyVhBRYs-9VqvWcXz0gpPBwmJWAV9o',
+      libraries: ['places']
+    })
   ],
   exports: [
     MatButtonModule,
