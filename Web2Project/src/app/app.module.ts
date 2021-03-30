@@ -58,6 +58,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {MatListModule} from '@angular/material/list';
 import { NavBarTopComponent } from './navBarTop/navBarTop.component';
 import { AgmCoreModule } from '@agm/core';
+import { FrontPageComponent } from './front-page/front-page.component';
 
 @NgModule({
   schemas : [CUSTOM_ELEMENTS_SCHEMA],
@@ -102,7 +103,8 @@ import { AgmCoreModule } from '@agm/core';
       NewConsumerComponent,
       ProfileComponent,
       ActivateProfileComponent,
-      NavBarTopComponent
+      NavBarTopComponent,
+      FrontPageComponent
    ],
   imports: [
     BrowserModule,

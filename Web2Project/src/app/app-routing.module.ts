@@ -6,6 +6,7 @@ import { AllDevicesComponent } from './allDevices/allDevices.component';
 import { ChangePasswordComponent } from './changePassword/changePassword.component';
 import { ConsumersComponent } from './consumers/consumers.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { FrontPageComponent } from './front-page/front-page.component';
 import { HomeComponent } from './home/home.component';
 import { IncidentComponent } from './incident/incident.component';
 import { LoginComponent } from './login/login.component';
@@ -29,7 +30,7 @@ import { WorkPlansComponent } from './workPlans/workPlans.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/front',
     pathMatch: 'full'
   },
   {
@@ -39,6 +40,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: 'dashboard',
@@ -128,6 +133,10 @@ const routes: Routes = [
     path: 'activateProfile',
     component:ActivateProfileComponent
   },
+  {
+    path: 'front',
+    component:FrontPageComponent
+  }
 
 ]
 
