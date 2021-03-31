@@ -1,9 +1,9 @@
-.navbar_li_link {
+.navbar_link_right {
     color: #f2f2f2;
     font-size: 27px;
     font-weight: bold;
     font-family: Georgia, serif;
-    margin-right: 30px;
+    margin-right: 20px;
   }
 
   .title-header{
@@ -83,7 +83,7 @@
   .outage-button{
       position: absolute;
       top: 80%;
-      left: 5%
+      left: 2%
   }
 
   .animated-button1 {

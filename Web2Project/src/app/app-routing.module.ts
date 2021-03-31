@@ -28,114 +28,135 @@ import { WorkOrdersComponent } from './workOrders/workOrders.component';
 import { WorkPlansComponent } from './workPlans/workPlans.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: '/front',
-    pathMatch: 'full'
+  { path: '',
+    component: FrontPageComponent, 
+    pathMatch: "full"
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    outlet: "primary",
+    pathMatch: "full",
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
+    pathMatch: "full"
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    pathMatch: "full"
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    outlet: "primary",
+    pathMatch: "full"
   },
   {
     path: 'workPlans',
-    component: WorkPlansComponent
+    component: WorkPlansComponent,
+    outlet: "primary"
   },
   {
     path: 'safetyDocs',
-    component: SafetyDocsComponent
+    component: SafetyDocsComponent,
+    outlet: "primary"
   },
   {
     path: 'workOrders',
-    component: WorkOrdersComponent
+    component: WorkOrdersComponent,
+    outlet: "primary"
   },
   {
     path: 'incidents',
-    component: IncidentComponent
+    component: IncidentComponent,
+    outlet: "primary"
   },
   {
     path: 'newIncident',
-    component: NewIncidentComponent
+    component: NewIncidentComponent,
+    outlet: "primary"
   },
   {
     path: 'newDevice',
-    component: NewDeviceComponent
+    component: NewDeviceComponent,
+    outlet: "primary"
   },
   {
     path:'newCall',
-    component: NewCallComponent
+    component: NewCallComponent,
+    outlet: "primary"
   },
   {
     path:'reportOutage',
-    component: ReportOutageComponent
+    component: ReportOutageComponent,
   },
   {
     path:'notifications',
-    component: NotificationsComponent
+    component: NotificationsComponent,
+    outlet: "primary"
   },
   {
     path:'changeProfile',
-    component: ProfileComponent
+    component: ProfileComponent,
+    outlet: "primary"
   },
   {
     path:'changePassword',
-    component: ChangePasswordComponent
+    component: ChangePasswordComponent,
+    outlet: "primary"
   },
   {
     path: 'map',
-    component:MapComponent
+    component:MapComponent,
+    outlet: "primary"
   },
   {
     path: 'newWorkOrder',
-    component:NewWorkOrderComponent
+    component:NewWorkOrderComponent,
+    outlet: "primary"
   },
   {
     path: 'newPlan',
-    component:NewPlanComponent
+    component:NewPlanComponent,
+    outlet: "primary"
   },
   {
     path: 'newSafetyDoc',
-    component:NewSafetyDocComponent
+    component:NewSafetyDocComponent,
+    outlet: "primary"
   },
   {
     path: 'allDevices',
-    component:AllDevicesComponent
+    component:AllDevicesComponent,
+    outlet: "primary"
   },
   {
     path: 'allCrews',
-    component:AllCrewsComponent
+    component:AllCrewsComponent,
+    outlet: "primary"
   },
   {
     path: 'newCrew',
-    component:NewCrewComponent
+    component:NewCrewComponent,
+    outlet: "primary"
   },
   {
     path: 'consumers',
-    component:ConsumersComponent
+    component:ConsumersComponent,
+    outlet: "primary"
   },
   {
     path: 'newConsumer',
-    component:NewConsumerComponent
+    component:NewConsumerComponent,
+    outlet: "primary"
   },
   {
     path: 'activateProfile',
-    component:ActivateProfileComponent
-  },
-  {
-    path: 'front',
-    component:FrontPageComponent
+    component:ActivateProfileComponent,
+    outlet: "primary"
   }
 
 ]

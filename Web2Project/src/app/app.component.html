@@ -7,5 +7,20 @@
     <router-outlet></router-outlet>
 </div>
 -->
+<!--<router-outlet name="frontPage"></router-outlet>-->
 
-<router-outlet></router-outlet>
+<ng-container *ngIf="isFrontPage == false">
+  <app-navBarTop></app-navBarTop>
+  <div class="row" style="height: 100%; width: 100%">
+    <div class="col-1">
+      <app-navBar></app-navBar>
+    </div>
+    <div class="col-11">
+      <router-outlet name="primary"></router-outlet>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="isFrontPage">
+  <router-outlet></router-outlet>
+</ng-container>
