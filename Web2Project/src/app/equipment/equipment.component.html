@@ -1,36 +1,36 @@
-<div class="container" style="width: 800px;">
- <h2>Equipment</h2>
-
- <mat-selection-list #shoes>
-  <mat-list-option *ngFor="let shoe of typesOfShoes">
-    {{shoe}}
-  </mat-list-option>
-</mat-selection-list>
-
-<p>
-  Options selected: {{shoes.selectedOptions.selected.length}}
-</p>
-<div class="form-row">
-  <div class="form-group col-md-3">
-    <div class="input-group mb-2">
-    </div>
-  </div>
-  <div class="form-group col-md-3">
-    <div class="input-group mb-2">
-    </div>
-  </div>
-  <div class="form-group col-md-3">
-    <div class="input-group mb-2">
-    </div>
-  </div>
-  <div class="form-group col-md-3">
-    <div class="input-group mb-2">
-      <div class="input-group-prepend">
-        <button class="btn btn-outline-primary" type="button">
-          <mat-icon>save</mat-icon>
-          Save
-        </button>
-      </div>
-    </div>
-    </div>
-</div>
+<div class="container" style="width: 400%; padding-top: 20px;">
+  <h2>Equipment</h2>
+ 
+  <mat-selection-list #shoes>
+   <mat-list-option *ngFor="let shoe of typesOfShoes">
+     {{shoe}}
+   </mat-list-option>
+ </mat-selection-list>
+ 
+ <p>
+   Options selected: {{shoes.selectedOptions.selected.length}}
+ </p>
+ <div class="form-row">
+   <div class="form-group col-md-3">
+     <div class="input-group mb-2">
+     </div>
+   </div>
+   <div class="form-group col-md-3">
+     <div class="input-group mb-2">
+     </div>
+   </div>
+   <div class="form-group col-md-3">
+     <div class="input-group mb-2">
+     </div>
+   </div>
+   <div class="form-group col-md-3">
+     <div class="input-group mb-2">
+       <div class="input-group-prepend">
+         <button class="btn btn-outline-secondary" type="button">
+           <mat-icon>save</mat-icon>
+           Save
+         </button>
+       </div>
+     </div>
+     </div>
+ </div>
