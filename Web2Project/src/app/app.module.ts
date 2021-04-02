@@ -59,6 +59,10 @@ import {MatListModule} from '@angular/material/list';
 import { NavBarTopComponent } from './navBarTop/navBarTop.component';
 import { AgmCoreModule } from '@agm/core';
 import { FrontPageComponent } from './front-page/front-page.component';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
+
 
 @NgModule({
   schemas : [CUSTOM_ELEMENTS_SCHEMA],
@@ -127,6 +131,9 @@ import { FrontPageComponent } from './front-page/front-page.component';
     MatListModule,
     ReactiveFormsModule,
     FormsModule,
+    MatRadioModule,
+    MatButtonToggleModule,
+
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyApcxyVhBRYs-9VqvWcXz0gpPBwmJWAV9o',
       libraries: ['places']

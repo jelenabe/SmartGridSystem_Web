@@ -1,19 +1,3 @@
-<!--
-<div>
-  <mat-radio-group aria-label="Select an option">
-    <mat-radio-button value="all_incidents">All</mat-radio-button>
-    <mat-radio-button value="mine_incidents">Mine</mat-radio-button>
-  </mat-radio-group>
-</div>
-
-<div>
-  <mat-button-toggle-group>
-    <mat-button-toggle value="all_incidents">All</mat-button-toggle>
-    <mat-button-toggle value="mine_incidents">Mine</mat-button-toggle>
-  </mat-button-toggle-group>
-</div>
--->
-
 <div class="mt-2">
   <!--New Incident-->
   <div>
@@ -25,17 +9,15 @@
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
     </mat-form-field>
-  </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span>&nbsp;&nbsp;&nbsp;&nbsp;
 
   <!--All/Mine-->
-  <div class="custom-control custom-radio custom-control-inline">
-    <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-    <label class="custom-control-label" for="customRadioInline1">All</label>
-  </div>
-  <div class="custom-control custom-radio custom-control-inline">
-    <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-    <label class="custom-control-label" for="customRadioInline2">Mine</label>
-  </div>
+  <span>
+    <mat-button-toggle-group>
+      <mat-button-toggle value="all_incidents">All</mat-button-toggle>
+      <mat-button-toggle value="mine_incidents">Mine</mat-button-toggle>
+    </mat-button-toggle-group>
+  </span>
 
   <div class="example-container mat-elevation-z8 mt-0">
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">

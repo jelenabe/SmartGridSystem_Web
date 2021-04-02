@@ -1,55 +1,36 @@
-<div class="bg"></div>
-<div class="bg bg2"></div>
-<div class="bg bg3"></div>
-<div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body form-body">
+          <h5 class="card-title text-center">Sign In</h5>
+          <form class="form-signin">
+            <div class="form-group">
+              <input type="email" id="inputEmail" class="form-control input-style is-valid" placeholder="Email address"
+                required autofocus>
+            </div>
 
-
-  <nav class="navbar navbar-expand-sm">
-    <ul class="navbar-nav navbar-collapse collapse">
-      <li class="nav-item">
-        <a class="nav-link navbar_link_left active" [routerLink]="['']">Home</a>
-      </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li class="nav-item">
-        <a class="nav-link navbar_link_right" [routerLink]="['/register']">Register</a>
-      </li>
-    </ul>
-  </nav>
-
-
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-        <div class="card card-signin my-5">
-          <div class="card-body form-body">
-            <h5 class="card-title text-center">Sign In</h5>
-            <form class="form-signin">
-              <div class="form-group">
-                <input type="email" id="inputEmail" class="form-control input-style is-valid" placeholder="Email address" required autofocus>
+            <div class="form-group">
+              <input type="password" id="inputPassword" class="form-control input-style is-invalid"
+                placeholder="Password" required>
+              <div class="invalid-feedback">
+                Please enter a password!
               </div>
+            </div>
 
-              <div class="form-group">
-                <input type="password" id="inputPassword" class="form-control input-style is-invalid" placeholder="Password" required>
-                <div class="invalid-feedback">
-                  Please enter a password!
-                </div>
-              </div>
-
-              <div class="form-group">
-                <a href="#">Forgot password?</a>
-              </div>
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" [routerLink]="['/dashboard']">Sign in</button>
-              <hr class="my-4">
-              <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i
-                  class="fab fa-google mr-2"></i> Sign in with Google</button>
-              <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i
-                  class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
-            </form>
-          </div>
+            <div class="form-group">
+              <a href="#">Forgot password?</a>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"
+              [routerLink]="['/dashboard']">Sign in</button>
+            <hr class="my-4">
+            <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i
+                class="fab fa-google mr-2"></i> Sign in with Google</button>
+            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i
+                class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
+          </form>
         </div>
       </div>
     </div>
   </div>
-
 </div>

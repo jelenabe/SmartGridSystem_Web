@@ -1,25 +1,31 @@
 <div class="bg"></div>
 <div class="bg bg2"></div>
 <div class="bg bg3"></div>
-<div>
 
+<nav class="navbar navbar-expand-sm">
+  <ul class="navbar-nav navbar-collapse collapse">
+    <li class="nav-item">
+      <a class="nav-link navbar_link_left active" (click)="showComponentFront()">Home</a>
+    </li>
+  </ul>
+  <ul class="nav navbar-nav navbar-right">
+    <li class="nav-item">
+      <a class="nav-link navbar_link_right" (click)="showComponentLogIn()">Login</a>
+    </li>
+  </ul>
+  <ul class="nav navbar-nav navbar-right">
+    <li class="nav-item">
+      <a class="nav-link navbar_link_right" (click)="showComponentRegister()">Register</a>
+    </li>
+  </ul>
+</nav>
 
-
-<nav class="navbar navbar-expand-sm justify-content-end">
-    <ul class="navbar-nav ">
-      <li class="nav-item">
-        <a class="nav-link navbar_link_right" [routerLink]="['/login']">Login</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link navbar_link_right" [routerLink]="['/register']">Register</a>
-      </li>
-    </ul>
-  </nav>
+<ng-container *ngIf="showFront">
   <div class="title-header">
-      NAZIV SAJTA
+    NAZIV SAJTA
   </div>
   <div class="container outage-button">
-    <a [routerLink]="['/reportOutage']"  class="animated-button1">
+    <a [routerLink]="['/reportOutage']" class="animated-button1">
       <span></span>
       <span></span>
       <span></span>
@@ -27,7 +33,12 @@
       <mat-icon class="phone_icon white-icon">phone</mat-icon> Report Outage
     </a>
   </div>
+</ng-container>
 
+<ng-container *ngIf="showLogIn">
+  <app-login></app-login>
+</ng-container>
 
-
-</div>
+<ng-container *ngIf="showRegister">
+  <app-register></app-register>
+</ng-container>

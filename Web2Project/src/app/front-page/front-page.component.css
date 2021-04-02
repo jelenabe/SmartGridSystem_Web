@@ -1,10 +1,20 @@
+/*navbar*/
 .navbar_link_right {
-    color: #f2f2f2;
-    font-size: 27px;
-    font-weight: bold;
-    font-family: Georgia, serif;
-    margin-right: 20px;
-  }
+  color: #f2f2f2;
+  font-size: 27px;
+  font-weight: bold;
+  font-family: Georgia, serif;
+  margin-right: 20px;
+}
+
+.navbar_link_left {
+  color: #d4d4d4;
+  font-size: 27px;
+  font-weight: bold;
+  font-family: Georgia, serif;
+  margin-left: 20px;
+}
+
 
   .title-header{
     color: #d9d9d9;

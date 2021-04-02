@@ -30,29 +30,27 @@ import { WorkPlansComponent } from './workPlans/workPlans.component';
 const routes: Routes = [
   { path: '',
     component: FrontPageComponent, 
-    pathMatch: "full"
+    outlet: "front"
   },
   {
     path: 'home',
     component: HomeComponent,
     outlet: "primary",
-    pathMatch: "full",
   },
   {
     path: 'register',
     component: RegisterComponent,
-    pathMatch: "full"
+    outlet: "front"
   },
   {
     path: 'login',
     component: LoginComponent,
-    pathMatch: "full"
+    outlet: "front"
   },
   {
     path: 'dashboard',
     component: DashboardComponent,
     outlet: "primary",
-    pathMatch: "full"
   },
   {
     path: 'workPlans',
@@ -92,6 +90,8 @@ const routes: Routes = [
   {
     path:'reportOutage',
     component: ReportOutageComponent,
+    outlet: "primary"
+
   },
   {
     path:'notifications',
@@ -162,7 +162,8 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, {enableTracing: true })],
+  exports: [RouterModule],
+  
 })
 export class AppRoutingModule { }
