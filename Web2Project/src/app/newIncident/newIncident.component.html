@@ -1,0 +1,47 @@
+<div class="form-row mt-2">
+
+  <div class="list-group list-design">
+    <button type="button" class="list-group-item list-group-item-action" (click)="changeView(1)">
+      Basic Information
+    </button>
+    <button type="button" class="list-group-item list-group-item-action" (click)="changeView(2)">
+      Devices
+    </button>
+    <button type="button" class="list-group-item list-group-item-action" (click)="changeView(3)">
+      Resolution
+    </button>
+    <button type="button" class="list-group-item list-group-item-action" (click)="changeView(4)">
+      Calls
+    </button>
+    <button type="button" class="list-group-item list-group-item-action" (click)="changeView(5)">
+      Crew
+    </button>
+    <button type="button" class="list-group-item list-group-item-action" (click)="changeView(6)">
+      Multimedia Attachments
+    </button>
+  </div>
+
+  <div [ngSwitch]="this.buttonClicked">
+    <div *ngSwitchCase="1">
+      <app-basic-information-incidents></app-basic-information-incidents>
+    </div>
+    <div *ngSwitchCase="2">
+      <app-devices></app-devices>
+    </div>
+    <div *ngSwitchCase="3">
+      <app-resolution></app-resolution>
+    </div>
+    <div *ngSwitchCase="4">
+      <app-calls></app-calls>
+    </div>
+    <div *ngSwitchCase="5">
+      <app-crew></app-crew>
+    </div>
+    <div *ngSwitchCase="6">
+      <app-multimedia-attachments-incidents></app-multimedia-attachments-incidents>
+    </div>
+  </div>
+
+
+
+</div>

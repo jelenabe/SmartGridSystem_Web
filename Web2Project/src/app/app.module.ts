@@ -61,8 +61,11 @@ import { AgmCoreModule } from '@agm/core';
 import { FrontPageComponent } from './front-page/front-page.component';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-
-
+import { BasicInformationIncidentsComponent } from './basic-information-incidents/basic-information-incidents.component';
+import { MultimediaAttachmentsIncidentsComponent } from './multimedia-attachments-incidents/multimedia-attachments-incidents.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   schemas : [CUSTOM_ELEMENTS_SCHEMA],
@@ -108,7 +111,9 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
       ProfileComponent,
       ActivateProfileComponent,
       NavBarTopComponent,
-      FrontPageComponent
+      FrontPageComponent,
+      BasicInformationIncidentsComponent,
+      MultimediaAttachmentsIncidentsComponent
    ],
   imports: [
     BrowserModule,
@@ -133,7 +138,10 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     FormsModule,
     MatRadioModule,
     MatButtonToggleModule,
-
+    MatSlideToggleModule,
+    MatDatepickerModule,
+    MatCheckboxModule,
+    
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyApcxyVhBRYs-9VqvWcXz0gpPBwmJWAV9o',
       libraries: ['places']
