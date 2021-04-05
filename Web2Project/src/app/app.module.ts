@@ -66,6 +66,8 @@ import { MultimediaAttachmentsIncidentsComponent } from './multimedia-attachment
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DeviceDialogComponent } from './device-dialog/device-dialog.component';
 
 @NgModule({
   schemas : [CUSTOM_ELEMENTS_SCHEMA],
@@ -113,7 +115,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
       NavBarTopComponent,
       FrontPageComponent,
       BasicInformationIncidentsComponent,
-      MultimediaAttachmentsIncidentsComponent
+      MultimediaAttachmentsIncidentsComponent,
+      DeviceDialogComponent
    ],
   imports: [
     BrowserModule,
@@ -141,6 +144,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatSlideToggleModule,
     MatDatepickerModule,
     MatCheckboxModule,
+    MatDialogModule,
     
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyApcxyVhBRYs-9VqvWcXz0gpPBwmJWAV9o',

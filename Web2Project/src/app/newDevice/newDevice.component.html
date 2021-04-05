@@ -1,3 +1,50 @@
-<p>
-  newDevice works!
-</p>
+<div class="ml-5 mt-3">
+  <h2>New Device:</h2>
+  <div class="form-row mt-4">
+    <div class="col-md-6">
+      <mat-form-field appearance="fill">
+        <mat-label>Id</mat-label>
+        <input matInput placeholder="Placeholder" value="1234" readonly>
+        <mat-hint>.</mat-hint>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Type</mat-label>
+        <mat-select>
+          <mat-option value="breaker">Breaker</mat-option>
+          <mat-option value="fuse">Fuse</mat-option>
+          <mat-option value="transformer">Transformer</mat-option>
+          <mat-option value="disconnector">Disconnector</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Placeholder" value="BRE1" readonly>
+        <mat-hint>.</mat-hint>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Address</mat-label>
+        <input matInput placeholder="Placeholder" value="adsress1" readonly>
+        <mat-hint>.</mat-hint>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Coordinates</mat-label>
+        <input matInput placeholder="Placeholder" value="coordinate1" readonly>
+        <mat-hint>.</mat-hint>
+      </mat-form-field>
+
+      <!-- DA LI SE ADRESA I KOORDINATE POPUNJAVAJU AUTOMAATSKI TAKO STO ON NA MAPI ODREDI MESTO ?!?!?!??!?!? -->
+
+      <br>
+      <br>
+      <button class="btn btn-outline-primary" type="button">
+        <mat-icon>save</mat-icon>
+        Save
+      </button>
+
+    </div>
+  </div>
+</div>

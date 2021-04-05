@@ -1,0 +1,87 @@
+.icon-design{
+    font-size: 27px;
+    color: red;
+}
+
+/*da bi buttoni bili postavljeni jedan pored drugog i kada se pojavi vertikalan scrool*/
+th.mat-header-cell:last-of-type{  
+    padding-right: 0px;
+  }
+  td.mat-cell:last-of-type{
+    padding-right: 0px;
+  }
+  td.mat-footer-cell:last-of-type{
+    padding-right: 0px;
+  }
+  td.mat-cell:last-of-type{
+    padding-right: 0px;
+  }
+  td.mat-cell[_ngcontent-odw-c212]:last-of-type{
+    padding-right: 0px;
+  }
+  th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type{
+    padding-right: 0px;
+  }
+
+
+  
+  
+  .th-design{
+    width: 172px;
+  }
+  
+  .th-icon-location-design{
+    width: 30px;
+    padding-right: 0px;
+  }
+
+  .th-icon-remove-design{
+    width: 90px;
+    padding-right: 0px;
+  }
+  
+.td-icon-remove-design{
+    padding-left: 40px;
+    padding-right: 0px;
+}
+
+
+  .mat-radio-button ~ .mat-radio-button {
+      margin-left: 16px;
+    }
+    
+    .mat-button-toggle-group {
+      margin-left: 12px;
+    }
+    
+    th.mat-sort-header-sorted {
+      color: black;
+    }
+      
+      .example-container {
+        max-height: 485px;
+        width: 980px;
+        max-width: 980px;
+        overflow: auto;
+      }
+      
+      table {
+        width: 980px;
+      }
+      
+      td.mat-column-star {
+        width: 20px;
+        padding-right: 8px;
+      }
+      
+      th.mat-column-position, td.mat-column-position {
+        padding-left: 8px;
+      }
+      
+      .mat-table-sticky-border-elem-right {
+        border-left: 1px solid #e0e0e0;
+      }
+      
+      .mat-table-sticky-border-elem-left {
+        border-right: 1px solid #e0e0e0;
+      }
