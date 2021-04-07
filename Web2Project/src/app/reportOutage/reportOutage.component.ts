@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-reportOutage',
@@ -6,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reportOutage.component.css']
 })
 export class ReportOutageComponent implements OnInit {
+  model: any= {};
 
-  constructor() { }
+  constructor(private profileService: ProfileService) { }
 
+  report(){
+    console.log(this.model);
+    this.profileService.applyChanges(this.model).subscribe(()=>{
+      console.log("Applay changes successfull");
+    })
+  }
   ngOnInit() {
   }
 

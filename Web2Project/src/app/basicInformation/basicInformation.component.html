@@ -1,48 +1,49 @@
-<div class="container" style="padding-top: 20px;" >
+<div class="container" style="padding-top: 20px">
   <h2>Basic Information</h2>
-  <form (ngSubmit)="save()">
-
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">Type</label>
-          </div>
-          <select class="custom-select" id="inputGroupSelect01">
-            <option selected>Choose...</option>
-            <option value="1">Type1</option>
-            <option value="2">Type2</option>
-            <option value="3">Type3</option>
-          </select>
+  <!--Type-->
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Type</label>
         </div>
-      </div>
-      
-      <div class="form-group col-md-6">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default"
-              >Company</span
-            >
-          </div>
-          <input
-            type="text"
-            class="form-control"
-            aria-label="Default"
-            aria-describedby="inputGroup-sizing-default"
-          />
-        </div>
+        <select class="custom-select" id="inputGroupSelect01">
+          <option selected>Choose...</option>
+          <option value="1">Type1</option>
+          <option value="2">Type2</option>
+          <option value="3">Type3</option>
+        </select>
       </div>
     </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default">
-                Status
-              </span>
-          </div>
-          <input
+    <!--Company-->
+    <div class="form-group col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default"
+            >Company</span
+          >
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          aria-label="Default"
+          aria-describedby="inputGroup-sizing-default"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!--Staus-->
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">
+            Status
+          </span>
+        </div>
+        <input
           type="text"
           class="form-control"
           aria-label="Default"
@@ -50,179 +51,185 @@
           value="Draft"
           readonly
         />
-        </div>
       </div>
-      <div class="form-group col-md-6">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default"
+    </div>
+
+    <!--Phone number-->
+    <div class="form-group col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default"
             >Phone Number</span
           >
-          </div>
-          <input
+        </div>
+        <input
           type="text"
           class="form-control"
           aria-label="Default"
           aria-describedby="inputGroup-sizing-default"
         />
-        </div>
       </div>
     </div>
+  </div>
 
-
-
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default"
+  <!--Incident-->
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default"
             >Incident</span
           >
-          </div>
-          <input
-        type="text"
-        class="form-control"
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
-        value="Incident1"
-        readonly
-      />
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button">
-          Open Incident
-        </button>
-      </div>
         </div>
-      </div>
-      <div class="form-group col-md-6">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default"
-          >Document created on</span
-        >
-      </div>
-      <input
-        type="date"
-        class="form-control"
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
-      />
+        <input
+          type="text"
+          class="form-control"
+          aria-label="Default"
+          aria-describedby="inputGroup-sizing-default"
+          value="Incident1"
+          readonly
+        />
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button">
+            Open Incident
+          </button>
         </div>
       </div>
     </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default"
+    <!--Document created on-->
+    <div class="form-group col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default"
+            >Document created on</span
+          >
+        </div>
+        <input
+          type="date"
+          class="form-control"
+          aria-label="Default"
+          aria-describedby="inputGroup-sizing-default"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!--Work request-->
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default"
             >Work request:</span
           >
-          </div>
-          <input
-        type="text"
-        class="form-control"
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
-        value="WR150"
-        readonly
-      />
-      <button class="btn btn-outline-secondary" type="button">
-        Open Work request
-      </button>
         </div>
-      </div>
-
-      <div class="form-group col-md-6">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default"
-          >Field crew:</span
-        >
-      </div>
-      <input
-        type="text"
-        class="form-control"
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
-        value="NS Crew"
-        readonly
-      />
-
-      <div class="input-group-append">
+        <input
+          type="text"
+          class="form-control"
+          aria-label="Default"
+          aria-describedby="inputGroup-sizing-default"
+          value="WR150"
+          readonly
+        />
         <button class="btn btn-outline-secondary" type="button">
-          Open field crew
+          Open Work request
         </button>
       </div>
+    </div>
+
+    <!--Field crew-->
+    <div class="form-group col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default"
+            >Field crew:</span
+          >
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          aria-label="Default"
+          aria-describedby="inputGroup-sizing-default"
+          value="NS Crew"
+          readonly
+        />
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button">
+            Open field crew
+          </button>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01"
-          >Type of work</label
-        >
-          </div>
-          <select class="custom-select" id="inputGroupSelect01">
-            <option selected>Choose...</option>
-            <option value="1">Type1</option>
-            <option value="2">Type2</option>
-            <option value="3">Type3</option>
-          </select>
+  <!--Type of work-->
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01"
+            >Type of work</label
+          >
         </div>
+        <select class="custom-select" id="inputGroupSelect01">
+          <option selected>Choose...</option>
+          <option value="1">Type1</option>
+          <option value="2">Type2</option>
+          <option value="3">Type3</option>
+        </select>
       </div>
     </div>
+  </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default"
-          >Start Date</span
-        >
-          </div>
-          <input
-        type="date"
-        class="form-control"
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
-      />
+  <!--Start date-->
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default"
+            >Start Date</span
+          >
         </div>
+        <input
+          type="date"
+          class="form-control"
+          aria-label="Default"
+          aria-describedby="inputGroup-sizing-default"
+        />
       </div>
     </div>
+  </div>
 
-
-
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default"
-          >End Date</span
-        >
-          </div>
-          <input
-        type="date"
-        class="form-control"
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
-      />
+  <!--End date-->
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default"
+            >End Date</span
+          >
         </div>
+        <input
+          type="date"
+          class="form-control"
+          aria-label="Default"
+          aria-describedby="inputGroup-sizing-default"
+        />
       </div>
     </div>
+  </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default"
-          >Created by</span
-        >
-          </div>
-          <input
+  <!--Creatred by-->
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default"
+            >Created by</span
+          >
+        </div>
+        <input
           type="text"
           class="form-control"
           aria-label="Default"
@@ -230,81 +237,63 @@
           value="Milica Simeunovic"
           readonly
         />
-        </div>
       </div>
     </div>
+  </div>
 
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default">Street</span>
-      </div>
-      <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter Street..." >
+  <!--Street-->
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroup-sizing-default"
+        >Street</span
+      >
     </div>
-    
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default"
-          >Purpose</span
-        >
-      </div>
-      <input
-        type="text"
-        class="form-control"
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
-      />
-    </div>
+    <input
+      type="text"
+      class="form-control"
+      aria-label="Default"
+      aria-describedby="inputGroup-sizing-default"
+      placeholder="Enter Street..."
+    />
+  </div>
 
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default"
-          >Details</span
-        >
-      </div>
-      <input
-        type="text"
-        class="form-control"
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
-      />
+  <!--Purpuse-->
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroup-sizing-default"
+        >Purpose</span
+      >
     </div>
+    <input
+      type="text"
+      class="form-control"
+      aria-label="Default"
+      aria-describedby="inputGroup-sizing-default"
+    />
+  </div>
 
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Notes</span>
-      </div>
-      <textarea class="form-control" aria-label="With textarea"></textarea>
+  <!--Deatails-->
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroup-sizing-default"
+        >Details</span
+      >
     </div>
-    <br/>
-    <br/>
+    <input
+      type="text"
+      class="form-control"
+      aria-label="Default"
+      aria-describedby="inputGroup-sizing-default"
+    />
+  </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-3">
-        <div class="input-group mb-2">
-        </div>
-      </div>
-      <div class="form-group col-md-3">
-        <div class="input-group mb-2">
-        </div>
-      </div>
-      <div class="form-group col-md-3">
-        <div class="input-group mb-2">
-        </div>
-      </div>
-      <div class="form-group col-md-3">
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <button class="btn btn-outline-primary" type="button">
-              <mat-icon>save</mat-icon>
-              Save
-            </button>
-          </div>
-          <button class="btn btn-outline-primary" type="button">
-            <mat-icon>cancel</mat-icon>
-            Cancel
-          </button>
-        </div>
-      </div>
+  <!--Notes-->
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Notes</span>
     </div>
-  </form>
+    <textarea class="form-control" aria-label="With textarea"></textarea>
+  </div>
+  <br />
+  <br />
 </div>

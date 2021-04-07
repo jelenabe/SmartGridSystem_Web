@@ -1,71 +1,79 @@
-
 <h2>Work Plan</h2>
-
-<div class="btn-group btn-group-toggle" data-toggle="buttons">
-  
-  <label class="btn btn-secondary active">
-    <input type="radio" name="options" id="option1" autocomplete="off" checked> All
-  </label>
-
-  <label class="btn btn-secondary">
-    <input type="radio" name="options" id="option2" autocomplete="off"> Mine
-  </label>
+<!--New Work Plan-->
+<div>
+    <button type="button" class="btn btn-primary" [routerLink]="['/newPlan']">New Work Plan</button>
 </div>
 
-<mat-form-field>
-<mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. search" #input>
-</mat-form-field>
+<!--Filter-->
+<span class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filer" #input />
+  </mat-form-field> </span
+>&nbsp;&nbsp;&nbsp;&nbsp;
 
-<div class="example-container mat-elevation-z8">
+<!--All/Mine-->
+<span>
+  <mat-button-toggle-group>
+    <mat-button-toggle value="all_incidents" id="option1"
+      >All</mat-button-toggle
+    >
+    <mat-button-toggle value="mine_incidents" id="option2"
+      >Mine</mat-button-toggle
+    >
+  </mat-button-toggle-group>
+</span>
 
-  <mat-table matSort [dataSource]="dataSource" >
-
-    <!-- Position Column -->
+<div class="example-container mat-elevation-z8 mt-0">
+  <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8" >
+    <!-- Id Column -->
     <ng-container matColumnDef="id" >
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Id. </th>
-      <td mat-cell *matCellDef="let element" class="mat-cell"> {{element.id}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: larger;">Id.</th>
+      <td mat-cell *matCellDef="let element" style="font-size: larger;">
+        {{ element.id }}
+      </td>
     </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="startDate">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Start Date </th>
-      <td mat-cell *matCellDef="let element" class="mat-cell"> {{element.startDate | date}} </td>
+    <!-- Start Date Column -->
+    <ng-container matColumnDef="startDate" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: larger;">Start Date</th>
+      <td mat-cell *matCellDef="let element" style="font-size: larger;" >
+        {{ element.startDate | date }}
+      </td>
     </ng-container>
 
-    <!-- Weight Column -->
+    <!-- Phone Column -->
     <ng-container matColumnDef="phone">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone </th>
-      <td mat-cell *matCellDef="let element" class="mat-cell"> {{element.phone}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: larger;">Phone</th>
+      <td mat-cell *matCellDef="let element" style="font-size: larger;">
+        {{ element.phone }}
+      </td>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- Status Column -->
     <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-      <td mat-cell *matCellDef="let element" class="mat-cell"> {{element.status}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: larger;">Status</th>
+      <td mat-cell *matCellDef="let element" style="font-size: larger;">
+        {{ element.status }}
+      </td>
     </ng-container>
 
+    <!-- Address Column -->
     <ng-container matColumnDef="address">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
-      <td mat-cell *matCellDef="let element" class="mat-cell"> {{element.address}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: larger;">Address</th>
+      <td mat-cell *matCellDef="let element" style="font-size: larger;">
+        {{ element.address }}
+      </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
+    <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
     <!-- Row shown when there is no matching data. -->
     <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      <td class="mat-cell" colspan="4">
+        No data matching the filter "{{ input.value }}"
+      </td>
     </tr>
-  </mat-table>
-
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-
+  </table>
 </div>
-<br>
-<div>
- <a href="/newPlan">
-  <button type="button" class="btn btn-primary">New Work Plan</button>
- </a>
-</div>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>

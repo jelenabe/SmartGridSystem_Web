@@ -1,81 +1,157 @@
-<h2>Report Outage</h2>
+<h1 style="margin-left: 40%">Report Outage</h1>
 
-<div class="input-group mb-3" style="width: 700px;">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="inputGroup-sizing-default">Reason</span>
-  </div>
-  <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter Reason..." >
-</div>
-
-<div class="input-group mb-3" style="width: 700px;">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="inputGroup-sizing-default">Comment</span>
-  </div>
-  <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter Comment..." >
-</div>
-<div class="input-group mb-3" style="width: 700px;">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="inputGroup-sizing-default">Hazard</span>
-  </div>
-  <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter Hazard..." >
-</div> 
-<label>Consumer info</label>
-<div class="input-group mb-3" style="width: 700px;">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
-  </div>
-  <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter Name..." >
-</div>
-<div class="input-group mb-3" style="width: 700px;">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="inputGroup-sizing-default">Lastname</span>
-  </div>
-  <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter Lastname..." >
-</div>
-<div class="input-group mb-3" style="width: 700px;">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="inputGroup-sizing-default">Phone number</span>
-  </div>
-  <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter Phone number..." >
-</div>
-<div class="input-group mb-3" style="width: 700px;">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="inputGroup-sizing-default">Location</span>
-  </div>
-  <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter Location..." >
-</div>
-<div class="input-group mb-3" style="width: 700px;">
-  <div class="input-group-prepend">
-      <label class="input-group-text" for="inputGroupSelect01">Type</label>
-    </div>
-    <select class="custom-select" id="inputGroupSelect01">
-      <option selected>Choose...</option>
-      <option value="1">Rezidentalni</option>
-      <option value="2">Komercijalni</option>
-    </select>
-  </div>
-
-<div class="form-row">
-  <div class="form-group col-md-3">
-    <div class="input-group mb-2">
-    </div>
-  </div>
-  <div class="form-group col-md-3">
-    <div class="input-group mb-2">
-    </div>
-  </div>
-  <div class="form-group col-md-3">
-    <div class="input-group mb-2">
-    </div>
-  </div>
-  <div class="form-group col-md-3">
-    <div class="input-group mb-2">
+<div class="container">
+  <form (ngSubmit)="report()" ngNativeValidate>
+    <!--Reason-->
+    <div class="input-group mb-3" style="width: 700px">
       <div class="input-group-prepend">
-        <button class="btn btn-outline-primary" type="button">
-          <mat-icon>save</mat-icon>
-          Report
-        </button>
+        <span class="input-group-text" id="inputGroup-sizing-default"
+          >Reason</span
+        >
       </div>
+      <input
+        name="reason"
+        type="text"
+        class="form-control"
+        aria-label="Default"
+        aria-describedby="inputGroup-sizing-default"
+        placeholder="Enter Reason..."
+        [(ngModel)]="model.reason"
+      />
     </div>
+
+    <!--Comment-->
+    <div class="input-group mb-3" style="width: 700px">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default"
+          >Comment</span
+        >
+      </div>
+      <input
+        name="comment"
+        type="text"
+        class="form-control"
+        aria-label="Default"
+        aria-describedby="inputGroup-sizing-default"
+        placeholder="Enter Comment..."
+        [(ngModel)]="model.comment"
+      />
     </div>
+
+    <!--Hazard-->
+    <div class="input-group mb-3" style="width: 700px">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default"
+          >Hazard</span
+        >
+      </div>
+      <input
+        name="hazard"
+        type="text"
+        class="form-control"
+        aria-label="Default"
+        aria-describedby="inputGroup-sizing-default"
+        placeholder="Enter Hazard..."
+        [(ngModel)]="model.hazard"
+      />
+    </div>
+    <br />
+
+    <h3>Consumer info:</h3>
+
+    <!--Name-->
+    <div class="input-group mb-3" style="width: 700px">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default"
+          >Name</span
+        >
+      </div>
+      <input
+        name="name"
+        type="text"
+        class="form-control"
+        aria-label="Default"
+        aria-describedby="inputGroup-sizing-default"
+        placeholder="Enter Name..."
+        [(ngModel)]="model.name"
+      />
+    </div>
+
+    <!--Lastname-->
+    <div class="input-group mb-3" style="width: 700px">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default"
+          >Lastname</span
+        >
+      </div>
+      <input
+        name="lastname"
+        type="text"
+        class="form-control"
+        aria-label="Default"
+        aria-describedby="inputGroup-sizing-default"
+        placeholder="Enter Lastname..."
+        [(ngModel)]="model.lastname"
+      />
+    </div>
+
+    <!--Phonenumber-->
+    <div class="input-group mb-3" style="width: 700px">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default"
+          >Phone number</span
+        >
+      </div>
+      <input
+        name="phonenumber"
+        type="text"
+        class="form-control"
+        aria-label="Default"
+        aria-describedby="inputGroup-sizing-default"
+        placeholder="Enter Phone number..."
+        [(ngModel)]="model.phonenumber"
+      />
+    </div>
+
+    <!--Location-->
+    <div class="input-group mb-3" style="width: 700px">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default"
+          >Location</span
+        >
+      </div>
+      <input
+        name="location"
+        type="text"
+        class="form-control"
+        aria-label="Default"
+        aria-describedby="inputGroup-sizing-default"
+        placeholder="Enter Location..."
+        [(ngModel)]="model.location"
+      />
+    </div>
+
+    <!--Type of user-->
+    <div class="input-group mb-3" style="width: 700px">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">Type</label>
+      </div>
+      <select
+        class="custom-select"
+        id="inputGroupSelect01"
+        name="type"
+        [(ngModel)]="model.type"
+      >
+        <option selected>Choose...</option>
+        <option value="1">Rezidentalni</option>
+        <option value="2">Komercijalni</option>
+      </select>
+    </div>
+    <br />
+
+    <!--Button Reposrt-->
+    <div class="input-group-prepend">
+      <button class="animated-button1" type="submit">Report</button>
+    </div>
+  </form>
 </div>

@@ -12,7 +12,7 @@ export interface WorkPlans {
   address: string;
 }
 const ELEMENT_DATA: WorkPlans[] = [
-  {id: 1, startDate: new Date('11/12/2010'), phone: 8585747, status: 'Status1', address: 'Addres1'},
+  {id: 1, startDate: new Date('11/12/2010'), phone: 8585747, status: 'Status1', address: 'Podrinjska 44 Bijeljina'},
   {id: 2, startDate: new Date('10/12/2010'), phone: 8585747, status: 'Status2', address: 'Addres2'},
   {id: 3, startDate: new Date('9/12/2010'), phone: 8585747, status: 'Status3', address: 'Addres3'},
   {id: 4, startDate: new Date('8/12/2010'), phone: 8585747, status: 'Status1', address: 'Addres4'},

@@ -1,7 +1,8 @@
 <div class="form-row">
+  <!-- New Plan buttons-->
   <div class="form-group col-md-3">
     <div class="input-group mb-3">
-      <div class="list-group" style="width: 300px; padding-top: 20px;">
+      <div class="list-group" style="width: 300px; padding-top: 20px">
         <button
           type="button"
           class="list-group-item list-group-item-action"
@@ -40,7 +41,8 @@
       </div>
     </div>
   </div>
-  
+
+  <!--Show when button is clicked-->
   <div class="form-group col-md-8">
     <div class="input-group mb-3">
       <div [ngSwitch]="this.buttonClicked">
@@ -59,6 +61,22 @@
         <div *ngSwitchCase="5">
           <app-switchingInstructions></app-switchingInstructions>
         </div>
+      </div>
+    </div>
+
+    <!--Save and Cancel-->
+    <div class="form-group col-md-8">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <button class="btn btn-outline-primary" type="button">
+            <mat-icon>save</mat-icon>
+            Save
+          </button>
+        </div>
+        <button class="btn btn-outline-primary" type="button">
+          <mat-icon>cancel</mat-icon>
+          Cancel
+        </button>
       </div>
     </div>
   </div>
