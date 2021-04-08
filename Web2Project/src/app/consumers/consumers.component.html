@@ -1,45 +1,57 @@
-<h2>All Consumer</h2>
+<h2 style="padding-top: 3%;">All Consumers</h2>
+  <!--New Consumer-->
 <div>
+  <button type="button" class="btn btn-primary" [routerLink]="['/newConsumer']">Add Consumer</button>
+</div>
+
+<!--Filter-->
+<span class="example-header">
   <mat-form-field>
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. search" #input>
-  </mat-form-field>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filer" #input />
+  </mat-form-field> </span
+  >
 
-  <div class="example-container mat-elevation-z8">
+  <!--Table-->
+  <div class="example-container mat-elevation-z8 mt-0">
 
-    <mat-table matSort [dataSource]="dataSource">
+    <table mat-table matSort [dataSource]="dataSource">
 
-      <!-- Position Column -->
+      <!-- Id Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Id. </th>
         <td mat-cell *matCellDef="let element" class="mat-cell"> {{element.id}} </td>
       </ng-container>
 
+       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
         <td mat-cell *matCellDef="let element" class="mat-cell"> {{element.name}} </td>
       </ng-container>
 
+       <!-- Location Column -->
       <ng-container matColumnDef="location">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Location</th>
-        <td mat-cell *matCellDef="let element" class="mat-cell"> {{element.location}} </td>
+        <td mat-cell id='location' *matCellDef="let element" class="mat-cell"> {{element.location}} </td>
       </ng-container>
 
+       <!-- Phone numebr Column -->
       <ng-container matColumnDef="phoneNumber">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone number </th>
         <td mat-cell *matCellDef="let element" class="mat-cell"> {{element.phoneNumber}} </td>
       </ng-container>
 
+       <!-- Type Column -->
       <ng-container matColumnDef="type">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Type </th>
         <td mat-cell *matCellDef="let element" class="mat-cell"> {{element.type}} </td>
       </ng-container>
 
+       <!-- Remove and Edit buttom Column -->
       <ng-container matColumnDef="Buttons">
         <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
-        <td mat-cell *matCellDef="let element" class="mat-cell"> 
-          <button  class="btn btn-danger">Remove</button>
-          <button  class="btn btn-primary" (click)="openEditCrew()">Edit</button>  
+        <td mat-cell *matCellDef="let element; let i" class="mat-cell"> 
+          <button  mat-stroked-button color="primary" (click)="openEditCrew(i)">Edit</button>
+          <button mat-stroked-button color="warn" (click)="deleteRow(i)">Remove</button>  
         </td>
       </ng-container>
 
@@ -51,14 +63,8 @@
       <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
       </tr>
-    </mat-table>
-
+    </table>
+  </div>
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" ></mat-paginator>
 
-  </div>
-  <br>
-
-  <a href="/newConsumer">
-    <button class="btn btn-primary">Add Consumer</button>
-  </a>
-</div>
+  

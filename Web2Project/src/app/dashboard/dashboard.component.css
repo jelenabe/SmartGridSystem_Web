@@ -445,13 +445,13 @@ https://bootstrapious.com/p/bootstrap-4-dashboard
   .statistics div[class*='col-lg-line-chart']{
     padding: 20px;
     margin-bottom: 0;
-    width: 600px;
+    width: 50%;
     height: 100%;
   }
   .statistics div[class*='col-lg-pie-chart']{
     padding: 20px;
     margin-bottom: 0;
-    width: 600px;
+    width: 45%;
     height: 100%;
   }
   

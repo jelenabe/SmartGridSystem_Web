@@ -15,7 +15,7 @@ export interface Consumer {
 }
 
 const ELEMENT_DATA: Consumer[] = [
-  {id: 1, name: 'Milica', lastName: 'Simeunovic', location: 'Bijeljina', phoneNumber: '065713244', type: 'Komercijalni'},
+  {id: 1, name: 'Milica', lastName: 'Simeunovic', location: 'Mucenika Romanovih 44 Bijeljina', phoneNumber: '065713244', type: 'Komercijalni'},
   {id: 2, name: 'Milan', lastName: 'Momcilovic', location: 'Novi Sad', phoneNumber: '065713244', type: 'Komercijalni' },
   {id: 3, name: 'Jelena', lastName: 'Beader', location: 'Beograd', phoneNumber: '065713244', type: 'Komercijalni'},
   {id: 4, name: 'Ivana', lastName: 'Markovic', location: 'Banja Luka', phoneNumber: '065713244', type: 'Komercijalni'},
@@ -55,9 +55,15 @@ export class ConsumersComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  openEditCrew()
+  openEditCrew(index: number)
   {
-    this.router.navigate(['/', 'newConsumer']);
+    //index oznacava koji consumer treba da se prikaze
+    this.router.navigate(['/', 'newConsumer',index]);
+  }
+
+  deleteRow(index: number){
+    this.dataSource.data.splice(index,1);
+    this.dataSource._updateChangeSubscription();
   }
 
 }
