@@ -1,26 +1,98 @@
-.example-container {
-  display: flex;
-  flex-direction: column;
-  min-width: 300px;
+.icon-design{
+  font-size: 27px;
+  color: red;
 }
 
-.example-header {
-  min-height: 64px;
-  padding: 8px 24px 0;
+/*da bi buttoni bili postavljeni jedan pored drugog i kada se pojavi vertikalan scrool*/
+th.mat-header-cell:last-of-type{  
+  padding-right: 0px;
+}
+td.mat-cell:last-of-type{
+  padding-right: 0px;
+}
+td.mat-footer-cell:last-of-type{
+  padding-right: 0px;
+}
+td.mat-cell:last-of-type{
+  padding-right: 0px;
+}
+td.mat-cell[_ngcontent-odw-c212]:last-of-type{
+  padding-right: 0px;
+}
+th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type{
+  padding-right: 0px;
 }
 
-.mat-form-field {
-  font-size: 14px;
-  width: 100%;
+
+
+
+.th-design{
+  width: 172px;
 }
 
-.mat-table {
-  overflow: auto;
-  width: 100%;
-  max-height: 500px;
+.th-icon-location-design{
+  width: 30px;
+  padding-right: 0px;
 }
 
-.mat-cell{
-  overflow: auto;
-  width: 15%;
+.th-icon-remove-design{
+  width: 90px;
+  padding-right: 0px;
 }
+
+.td-icon-remove-design{
+  padding-left: 40px;
+  padding-right: 0px;
+}
+
+
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+  
+  .mat-button-toggle-group {
+    margin-left: 12px;
+  }
+  
+  th.mat-sort-header-sorted {
+    color: black;
+  }
+    
+    .example-container {
+      max-height: 485px;
+      width: 800px;
+      max-width: 800px;
+      overflow:auto;
+    }
+    
+    table {
+        width: 800px;
+      }
+    
+    td.mat-column-star {
+      width: 20px;
+      padding-right: 8px;
+    }
+    
+    th.mat-column-position, td.mat-column-position {
+      padding-left: 8px;
+    }
+    
+    .mat-table-sticky-border-elem-right {
+      border-left: 1px solid #e0e0e0;
+    }
+    
+    .mat-table-sticky-border-elem-left {
+      border-right: 1px solid #e0e0e0;
+    }
+  .mat-paginator{
+    max-width: 800px;
+  }
+  .mat-cell{
+    width: 5%;
+  }
+  th, td{
+    font-size: large;
+  }
+  
+  

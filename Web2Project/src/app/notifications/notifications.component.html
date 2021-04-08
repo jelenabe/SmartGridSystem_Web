@@ -1,7 +1,12 @@
+<h2 style="padding-top: 2%;">Notifications</h2>
 <div class="form-row">
   <div class="form-group col-md-3">
     <div class="input-group mb-3">
+
+      <!--Notificatins buttons-->
       <div class="list-group" style="width: 200px; padding-top: 20px;">
+
+        <!--All notifications-->
         <button
           type="button"
           class="list-group-item list-group-item-action list-group-item-secondary"
@@ -9,12 +14,16 @@
         >
           All notifications
         </button>
+
+        <!--Unread notifications-->
         <button
           type="button"
           class="list-group-item list-group-item-action list-group-item-secondary"
         >
           Unread notifications
         </button>
+
+        <!--Error notifications-->
         <button
           type="button"
           class="list-group-item list-group-item-action list-group-item-danger"
@@ -22,6 +31,8 @@
         >
           Error&nbsp; &nbsp; &nbsp;<mat-icon>clear</mat-icon>
         </button>
+
+        <!--Info notifications-->
         <button
           type="button"
           class="list-group-item list-group-item-action list-group-item-primary"
@@ -29,6 +40,8 @@
         >
           Info&nbsp; &nbsp; &nbsp;<mat-icon>error_outline</mat-icon>
         </button>
+
+        <!--Success notifications-->
         <button
           type="button"
           class="list-group-item list-group-item-action list-group-item-success"
@@ -36,6 +49,8 @@
         >
           Success&nbsp; &nbsp; &nbsp;<mat-icon>done</mat-icon>
         </button>
+
+        <!--Warning notifications-->
         <button
           type="button"
           class="list-group-item list-group-item-action list-group-item-warning"
@@ -46,16 +61,18 @@
       </div>
     </div>
   </div>
+
+  <!--Table-->
   <div class="form-group col-md-9" style="padding-top: 40px;">
     <div class="input-group mb-3">
       <br />
       <div class="example-container mat-elevation-z8 " >
-        <mat-table
+        <table mat-table
           matSort
           [dataSource]="dataSource"
           style="width: 800px; align-content: stretch; "
         >
-          <!-- Position Column -->
+          <!-- Type Column -->
           <ng-container matColumnDef="type">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
             <td mat-cell *matCellDef="let element" class="mat-cell">
@@ -101,6 +118,7 @@
             </td>
           </ng-container>
 
+           <!-- Text Column -->
           <ng-container matColumnDef="text">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Text</th>
             <td
@@ -113,6 +131,7 @@
             </td>
           </ng-container>
 
+           <!-- Date Column -->
           <ng-container matColumnDef="date">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
             <td
@@ -127,13 +146,15 @@
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        </mat-table>
-
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </table>
       </div>
     </div>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <br/>
+    <div style="margin-left: 60%;">
     <button class="btn btn-primary">Mark all as read</button>
     &nbsp;
     <button class="btn btn-primary">Clear All</button>
+  </div>
   </div>
 </div>

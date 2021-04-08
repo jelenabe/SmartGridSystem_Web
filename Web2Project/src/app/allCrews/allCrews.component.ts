@@ -55,9 +55,13 @@ export class AllCrewsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  openEditCrew()
+  openEditCrew(index: number)
   {
-    this.router.navigate(['/', 'newCrew']);
+    this.router.navigate(['/', 'newCrew', index]);
+  }
+  deleteRow(index: number){
+    this.dataSource.data.splice(index,1);
+    this.dataSource._updateChangeSubscription();
   }
 
 

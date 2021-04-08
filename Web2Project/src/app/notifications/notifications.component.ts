@@ -24,6 +24,10 @@ const ELEMENT_DATA: Notification[] = [
   {type: 'success', text: 'Ekipa1', date: new Date('4/5/2010'), read: true},
   {type: 'info', text: 'Ekipa1', date: new Date('10/6/2010'), read: false},
   {type: 'warning', text: 'Ekipa1', date: new Date('8/1/2010'), read: false},
+  {type: 'error', text: 'Ekipa1', date: new Date('8/1/2010'), read: false},
+  {type: 'warning', text: 'Ekipa1', date: new Date('8/1/2010'), read: false},
+  {type: 'info', text: 'Ekipa1', date: new Date('8/1/2010'), read: false},
+  {type: 'warning', text: 'Ekipa1', date: new Date('8/1/2010'), read: false},
 ];
 @Component({
   selector: 'app-notifications',

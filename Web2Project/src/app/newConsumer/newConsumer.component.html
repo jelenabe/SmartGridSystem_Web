@@ -11,11 +11,13 @@
         >
       </div>
       <input
+        name="name"
         type="text"
         class="form-control"
         aria-label="Default"
         aria-describedby="inputGroup-sizing-default"
         placeholder="Enter Name..."
+        [(ngModel)]="model.name"
       />
     </div>
     <!--Label Lastname and input Enter Lastname-->
@@ -26,11 +28,13 @@
         >
       </div>
       <input
+        name="lastname"
         type="text"
         class="form-control"
         aria-label="Default"
         aria-describedby="inputGroup-sizing-default"
         placeholder="Enter Lastname..."
+        [(ngModel)]="model.lastname"
       />
     </div>
 
@@ -42,11 +46,13 @@
         >
       </div>
       <input
+        name="phoneNumber"
         type="text"
         class="form-control"
         aria-label="Default"
         aria-describedby="inputGroup-sizing-default"
         placeholder="Enter Phone number..."
+        [(ngModel)]="model.phoneNumber"
       />
     </div>
 
@@ -58,11 +64,13 @@
         >
       </div>
       <input
+        name="location"
         type="text"
         class="form-control"
         aria-label="Default"
         aria-describedby="inputGroup-sizing-default"
         placeholder="Enter Location..."
+        [(ngModel)]="model.location"
       />
     </div>
 
@@ -71,7 +79,7 @@
       <div class="input-group-prepend">
         <label class="input-group-text" for="inputGroupSelect01">Type</label>
       </div>
-      <select class="custom-select" id="inputGroupSelect01">
+      <select name="type" class="custom-select" id="inputGroupSelect01"  [(ngModel)]="model.type">
         <option selected>Choose...</option>
         <option value="1">Rezidentalni</option>
         <option value="2">Komercijalni</option>
