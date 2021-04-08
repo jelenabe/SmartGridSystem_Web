@@ -69,10 +69,12 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DeviceDialogComponent } from './device-dialog/device-dialog.component';
 import { PieChartComponent } from './pieChart/pieChart.component';
+import { ChartsModule } from 'ng2-charts';
+import { LineChartComponent } from './line-chart/line-chart.component';
 
 @NgModule({
   schemas : [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [					
+  declarations: [							
     AppComponent,
     HomeComponent,
       LoginComponent,
@@ -118,7 +120,8 @@ import { PieChartComponent } from './pieChart/pieChart.component';
       BasicInformationIncidentsComponent,
       MultimediaAttachmentsIncidentsComponent,
       DeviceDialogComponent,
-      PieChartComponent
+      PieChartComponent,
+      LineChartComponent
    ],
   imports: [
     BrowserModule,
@@ -151,7 +154,8 @@ import { PieChartComponent } from './pieChart/pieChart.component';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyApcxyVhBRYs-9VqvWcXz0gpPBwmJWAV9o',
       libraries: ['places']
-    })
+    }),
+    ChartsModule
   ],
   exports: [
     MatButtonModule,

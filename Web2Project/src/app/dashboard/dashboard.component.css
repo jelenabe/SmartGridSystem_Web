@@ -441,6 +441,19 @@ https://bootstrapious.com/p/bootstrap-4-dashboard
     margin-bottom: 0;
     height: 100%;
   }
+
+  .statistics div[class*='col-lg-line-chart']{
+    padding: 20px;
+    margin-bottom: 0;
+    width: 600px;
+    height: 100%;
+  }
+  .statistics div[class*='col-lg-pie-chart']{
+    padding: 20px;
+    margin-bottom: 0;
+    width: 600px;
+    height: 100%;
+  }
   
   .statistics h2 {
     margin-bottom: 20px;
@@ -1793,6 +1806,19 @@ https://bootstrapious.com/p/bootstrap-4-dashboard
 }
 .icon-search:before {
   content: "\7a";
+}
+#WP{
+  color: rgb(128, 130, 103);
+}
+#SD{
+ color: rgb(14, 137, 185)
+}
+#WO{
+  color: rgb(223, 130, 103)
+}
+
+#incidentsChart,#documentsChart{
+  color:rgb(169,169,169)
 }
 
   
