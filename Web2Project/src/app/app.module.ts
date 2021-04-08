@@ -68,10 +68,11 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DeviceDialogComponent } from './device-dialog/device-dialog.component';
+import { PieChartComponent } from './pieChart/pieChart.component';
 
 @NgModule({
   schemas : [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [	
+  declarations: [					
     AppComponent,
     HomeComponent,
       LoginComponent,
@@ -116,7 +117,8 @@ import { DeviceDialogComponent } from './device-dialog/device-dialog.component';
       FrontPageComponent,
       BasicInformationIncidentsComponent,
       MultimediaAttachmentsIncidentsComponent,
-      DeviceDialogComponent
+      DeviceDialogComponent,
+      PieChartComponent
    ],
   imports: [
     BrowserModule,

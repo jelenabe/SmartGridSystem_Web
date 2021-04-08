@@ -43,5 +43,8 @@
     overflow: auto;
     width: 5%;
   }
+  th, td{
+    font-size: large;
+  }
   
   

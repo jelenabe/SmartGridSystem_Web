@@ -10,6 +10,7 @@ export class FrontPageComponent implements OnInit {
   showFront: boolean = true;
   showLogIn: boolean = false;
   showRegister: boolean = false;
+  showReportOutage: boolean = false;
 
 
   constructor() { }
@@ -22,6 +23,7 @@ export class FrontPageComponent implements OnInit {
     this.showFront = true;
     this.showLogIn = false;
     this.showRegister = false;
+    this.showReportOutage = false;
   }
 
   showComponentLogIn(){
@@ -29,6 +31,7 @@ export class FrontPageComponent implements OnInit {
     this.showFront = false;
     this.showLogIn = true;
     this.showRegister = false;
+    this.showReportOutage = false;
   }
 
   showComponentRegister(){
@@ -36,6 +39,16 @@ export class FrontPageComponent implements OnInit {
     this.showFront = false;
     this.showLogIn = false;
     this.showRegister = true;
+    this.showReportOutage = false;
+  }
+
+  showComponentReportOutage(){
+    
+    this.showFront = false;
+    this.showLogIn = false;
+    this.showRegister = false;
+    this.showReportOutage = true;
+
   }
 
 }

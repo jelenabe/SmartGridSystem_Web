@@ -1,7 +1,51 @@
-<a [routerLink]="['/incidents']" routerLinkActive="active">My Incidents</a>
-<br />
-<a href="/workPlans" routerLinkActive="active">My Work Plans</a>
-<br />
-<a href="/safetyDocs" routerLinkActive="active">My Safety Documents</a>
-<br />
-<a href="/workOrders" routerLinkActive="active">My Work Orders</a>
+<!-- Statistics Section-->
+<section class="statistics" style="padding-top: 5%;">
+    <div class="container-fluid">
+      <div class="row d-flex">
+        <div class="col-lg-3">
+          <div class="card data-usage">
+            <h2 class="display h4"><strong><a [routerLink]="['/incidents']" routerLinkActive="active">My Incidents</a></strong></h2>
+            <p>{{modelIncident.drafts}} Drafts</p>
+              <p>{{modelIncident.canceled}} Canceled</p>
+              <p>{{modelIncident.executing}} Executing</p>
+              <p>{{modelIncident.completed}} Completed</p>
+          </div>
+        </div>
+        
+        <div class="col-lg-3" style="margin-left: 10px;">
+          <div class="card data-usage">
+            <h2 class="display h4"><strong><a [routerLink]="['/workPlans']" routerLinkActive="active">My Work Plans</a></strong></h2>
+            <p>{{modelWorkPlans.drafts}} Drafts</p>
+              <p>{{modelWorkPlans.canceled}} Canceled</p>
+              <p>{{modelWorkPlans.executing}} Executing</p>
+              <p>{{modelWorkPlans.completed}} Completed</p>
+          </div>
+        </div>
+        <div class="col-lg-3.5" style="margin-left: 10px;">
+          <div class="card data-usage">
+            <h2 class="display h4"><strong><a [routerLink]="['/safetyDocs']" routerLinkActive="active">My Safety Docs</a></strong></h2>
+            <p>{{modelSafetyDoc.drafts}} Drafts</p>
+              <p>{{modelSafetyDoc.canceled}} Canceled</p>
+              <p>{{modelSafetyDoc.executing}} Executing</p>
+              <p>{{modelSafetyDoc.completed}} Completed</p>
+          </div>
+        </div>
+        <div class="col-lg-3.5" style="margin-left: 30px;">
+            <div class="card data-usage">
+              <h2 class="display h4"><strong><a [routerLink]="['/workOrders']" routerLinkActive="active">My Work Order</a></strong></h2>
+              <p>{{modelWorkOrder.drafts}} Drafts</p>
+                <p>{{modelWorkOrder.canceled}} Canceled</p>
+                <p>{{modelWorkOrder.executing}} Executing</p>
+                <p>{{modelWorkOrder.completed}} Completed</p>
+            </div>
+          </div>
+    </div>
+</div>
+  </section>
+<div style="width: 50px; height: 50px; padding-top: 20px;">
+ <!--
+  <app-pieChart></app-pieChart>
+  -->
+</div>
+
+

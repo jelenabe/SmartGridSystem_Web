@@ -11,8 +11,6 @@ span,input,label,select{
     padding: 20px 40px;
     margin-left: 40%;
     display: inline-block;
-    height: 100px;
-    width: 200px;
     -webkit-transform: translate(0%, 0%);
             transform: translate(0%, 0%);
     overflow: hidden;
@@ -39,6 +37,11 @@ span,input,label,select{
   
   .animated-button1:hover::before {
     opacity: 0.2;
+  }
+  button{
+    height: 60px; 
+    width: 150px; 
+    margin-left: 40%;
   }
   
   

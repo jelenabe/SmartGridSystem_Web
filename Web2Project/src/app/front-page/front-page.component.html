@@ -25,7 +25,7 @@
     NAZIV SAJTA
   </div>
   <div class="container outage-button">
-    <a [routerLink]="['/reportOutage']" class="animated-button1">
+    <a class="animated-button1" (click)="showComponentReportOutage()">
       <span></span>
       <span></span>
       <span></span>
@@ -41,4 +41,8 @@
 
 <ng-container *ngIf="showRegister">
   <app-register></app-register>
+</ng-container>
+
+<ng-container *ngIf="showReportOutage">
+  <app-reportOutage></app-reportOutage>
 </ng-container>
