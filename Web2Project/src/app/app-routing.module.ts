@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ActivateProfileComponent } from './activateProfile/activateProfile.component';
+import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
 import { AllCrewsComponent } from './allCrews/allCrews.component';
 import { AllDevicesComponent } from './allDevices/allDevices.component';
 import { ChangePasswordComponent } from './changePassword/changePassword.component';
@@ -156,6 +157,11 @@ const routes: Routes = [
   {
     path: 'activateProfile',
     component:ActivateProfileComponent,
+    outlet: "primary"
+  },
+  {
+    path: 'adminSettings',
+    component:AdminSettingsComponent,
     outlet: "primary"
   }
 

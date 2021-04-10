@@ -71,10 +71,15 @@ import { DeviceDialogComponent } from './device-dialog/device-dialog.component';
 import { PieChartComponent } from './pieChart/pieChart.component';
 import { ChartsModule } from 'ng2-charts';
 import { LineChartComponent } from './line-chart/line-chart.component';
+import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
+import { NotificationDialogComponent } from './notification-dialog/notification-dialog.component';
+import { IconsDialogComponent } from './icons-dialog/icons-dialog.component';
+import { FieldsDialogComponent } from './fields-dialog/fields-dialog.component';
+import { StreetDialogComponent } from './street-dialog/street-dialog.component';
 
 @NgModule({
   schemas : [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [							
+  declarations: [												
     AppComponent,
     HomeComponent,
       LoginComponent,
@@ -121,7 +126,12 @@ import { LineChartComponent } from './line-chart/line-chart.component';
       MultimediaAttachmentsIncidentsComponent,
       DeviceDialogComponent,
       PieChartComponent,
-      LineChartComponent
+      LineChartComponent,
+      AdminSettingsComponent,
+      NotificationDialogComponent,
+      IconsDialogComponent,
+      FieldsDialogComponent,
+      StreetDialogComponent
    ],
   imports: [
     BrowserModule,
