@@ -1,7 +1,41 @@
-<h1>Angular Google Map Example - ItSolutionStuff.com</h1>
+<main>
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-6">
+              <div class="alert alert-warning alert-dismissible" role="alert" *ngIf="warning">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <strong>Warning!</strong> {{ message }}
+              </div>
 
-<agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-</agm-map>
+              <!--these properties are required: center, zoom-->
+              <agm-map [width]="1000" [height]="1800" [center]="center" [zoom]="zoom" [disableDefaultUI]="disableDefaultUI" [disableDoubleClickZoom]="disableDoubleClickZoom"
+                   [maxZoom]="maxZoom" [minZoom]="minZoom" [styles]="styles">
+                  <!--this property is required: position-->
+                  <!-- <div googleMapMarker [position]="position" [title]="title" [content]="content">
+                  </div> -->
+                  <div>
+                    <!-- <agm-marker [] [title]="title"  [content]="content"></agm-marker> -->
+                    <agm-marker [latitude]="markerLat" [longitude]="markerLng" [markerDraggable]="false"></agm-marker>
+                  </div>
 
+              </agm-map>
 
+              <br>
+
+              <div class="form-group">
+                  <label class="control-label" for="input-search">Address</label>
+                  <div class="input-group">
+                      <input type="text" id="input-search" class="form-control" [(ngModel)]="address" (keyup.enter)="search(address)" placeholder="Address">
+                      <div class="input-group-btn">
+                          <button type="button" class="btn btn-fab btn-fab-mini" title="search" (click)="search(address)">
+                              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                          </button>
+                      </div>
+                  </div>
+              </div>
+
+              <input class="btn btn-default btn-block" type="button" value="Get current position" (click)="getCurrentPosition()">
+          </div>
+      </div>
+  </div>
+</main>

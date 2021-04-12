@@ -71,6 +71,10 @@ import { DeviceDialogComponent } from './device-dialog/device-dialog.component';
 import { PieChartComponent } from './pieChart/pieChart.component';
 import { ChartsModule } from 'ng2-charts';
 import { LineChartComponent } from './line-chart/line-chart.component';
+import { MapService } from './map/map-service/map.service';
+import { GeolocationService } from './map/map-service/geolocation.service';
+import { GeocodingService } from './map/map-service/geocoding.service';
+import { GoogleMapMarkerDirective } from './map/map-service/google-map-marker.directive';
 
 @NgModule({
   schemas : [CUSTOM_ELEMENTS_SCHEMA],
@@ -121,7 +125,8 @@ import { LineChartComponent } from './line-chart/line-chart.component';
       MultimediaAttachmentsIncidentsComponent,
       DeviceDialogComponent,
       PieChartComponent,
-      LineChartComponent
+      LineChartComponent,
+      GoogleMapMarkerDirective,
    ],
   imports: [
     BrowserModule,
@@ -150,7 +155,7 @@ import { LineChartComponent } from './line-chart/line-chart.component';
     MatDatepickerModule,
     MatCheckboxModule,
     MatDialogModule,
-    
+
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyApcxyVhBRYs-9VqvWcXz0gpPBwmJWAV9o',
       libraries: ['places']
@@ -168,7 +173,9 @@ import { LineChartComponent } from './line-chart/line-chart.component';
     MatSortModule,
     MatTableModule,
   ],
-  providers: [],
+  providers: [MapService,
+    GeolocationService,
+    GeocodingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
