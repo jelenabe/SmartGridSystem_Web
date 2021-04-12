@@ -71,14 +71,21 @@ import { DeviceDialogComponent } from './device-dialog/device-dialog.component';
 import { PieChartComponent } from './pieChart/pieChart.component';
 import { ChartsModule } from 'ng2-charts';
 import { LineChartComponent } from './line-chart/line-chart.component';
+import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
+import { NotificationDialogComponent } from './notification-dialog/notification-dialog.component';
+import { IconsDialogComponent } from './icons-dialog/icons-dialog.component';
+import { FieldsDialogComponent } from './fields-dialog/fields-dialog.component';
+import { StreetDialogComponent } from './street-dialog/street-dialog.component';
+
 import { MapService } from './map/map-service/map.service';
 import { GeolocationService } from './map/map-service/geolocation.service';
 import { GeocodingService } from './map/map-service/geocoding.service';
 import { GoogleMapMarkerDirective } from './map/map-service/google-map-marker.directive';
 
+
 @NgModule({
   schemas : [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [							
+  declarations: [
     AppComponent,
     HomeComponent,
       LoginComponent,
@@ -126,6 +133,11 @@ import { GoogleMapMarkerDirective } from './map/map-service/google-map-marker.di
       DeviceDialogComponent,
       PieChartComponent,
       LineChartComponent,
+      AdminSettingsComponent,
+      NotificationDialogComponent,
+      IconsDialogComponent,
+      FieldsDialogComponent,
+      StreetDialogComponent,
       GoogleMapMarkerDirective,
    ],
   imports: [

@@ -1,4 +1,6 @@
 <ul class="nav flex-column navbar-light bg-light nav-bar-design">
+
+  <!--Home-->
   <li class="nav-item">
     <a
       class="nav-link active icon-height"
@@ -8,6 +10,8 @@
       <p>Home</p>
     </a>
   </li>
+
+  <!--Notifications-->
   <li class="nav-item">
     <a
       class="nav-link icon-height"
@@ -17,6 +21,8 @@
       <p>Notifications</p></a
     >
   </li>
+
+  <!--settings-->
   <li class="nav-item">
     <a
       class="nav-link icon-height"
@@ -26,36 +32,59 @@
       <p>Settings</p></a
     >
   </li>
+
+  <!--Admin settings-->
+  <li class="nav-item">
+    <a
+      class="nav-link icon-height"
+      [routerLink]="['/adminSettings']"
+      routerLinkActive="active"
+      ><mat-icon class="icon-design">settings</mat-icon>
+      <p>Admin Settings</p></a
+    >
+  </li>
+  <br/>
+  <!--Map-->
   <li class="nav-item">
     <a class="nav-link icon-height" [routerLink]="['/map']" routerLinkActive="active"
       ><mat-icon class="icon-design"> map</mat-icon>
       <p>Map</p></a
     >
   </li>
+
+  <!--Nesto-->
   <li class="nav-item">
     <a class="nav-link icon-height" [routerLink]="['/#']" routerLinkActive="active"
       ><mat-icon class="icon-design">library_books</mat-icon>
       <p>Nesto </p></a
     >
   </li>
+
+  <!--Crews-->
   <li class="nav-item">
     <a class="nav-link icon-height" [routerLink]="['/allCrews']" routerLinkActive="active"
       ><mat-icon class="icon-design">group_add</mat-icon>
       <p>Crews</p></a
     >
   </li>
+
+  <!--Consumers-->
   <li class="nav-item">
     <a class="nav-link icon-height" [routerLink]="['/consumers']" routerLinkActive="active"
       ><mat-icon class="icon-design">person_add</mat-icon>
       <p>Consumers</p></a
     >
   </li>
+
+  <!--Devices-->
   <li class="nav-item">
     <a class="nav-link icon-height" [routerLink]="['/allDevices']" routerLinkActive="active"
       ><mat-icon class="icon-design">add_to_queue</mat-icon>
       <p>Devices</p></a
     >
   </li>
+
+  <!--Report outage-->
   <li class="nav-item">
     <a class="nav-link icon-height" [routerLink]="['/reportOutage']" routerLinkActive="active"
       ><mat-icon class="icon-design"> phone</mat-icon>
