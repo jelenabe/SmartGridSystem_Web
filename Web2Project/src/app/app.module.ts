@@ -76,11 +76,12 @@ import { NotificationDialogComponent } from './notification-dialog/notification-
 import { IconsDialogComponent } from './icons-dialog/icons-dialog.component';
 import { FieldsDialogComponent } from './fields-dialog/fields-dialog.component';
 import { StreetDialogComponent } from './street-dialog/street-dialog.component';
-
 import { MapService } from './map/map-service/map.service';
 import { GeolocationService } from './map/map-service/geolocation.service';
 import { GeocodingService } from './map/map-service/geocoding.service';
 import { GoogleMapMarkerDirective } from './map/map-service/google-map-marker.directive';
+import { CrewDialogComponent } from './crew-dialog/crew-dialog.component';
+//import { MatFileUploadModule } from 'angular-material-fileupload';
 
 
 @NgModule({
@@ -139,6 +140,7 @@ import { GoogleMapMarkerDirective } from './map/map-service/google-map-marker.di
       FieldsDialogComponent,
       StreetDialogComponent,
       GoogleMapMarkerDirective,
+      CrewDialogComponent
    ],
   imports: [
     BrowserModule,
@@ -167,6 +169,7 @@ import { GoogleMapMarkerDirective } from './map/map-service/google-map-marker.di
     MatDatepickerModule,
     MatCheckboxModule,
     MatDialogModule,
+    //MatFileUploadModule,
 
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyApcxyVhBRYs-9VqvWcXz0gpPBwmJWAV9o',

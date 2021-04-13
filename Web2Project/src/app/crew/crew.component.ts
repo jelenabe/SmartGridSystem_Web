@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { CrewDialogComponent } from '../crew-dialog/crew-dialog.component';
 
 @Component({
   selector: 'app-crew',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrewComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(CrewDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }

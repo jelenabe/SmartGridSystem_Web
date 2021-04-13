@@ -1,3 +1,46 @@
-<p>
-  newCall works!
-</p>
+<div class="ml-5 mt-3">
+  <h2>New Call:</h2>
+  <div class="form-row mt-4">
+    <div class="col-md-6">
+      
+      <mat-form-field appearance="fill">
+        <mat-label>Reason</mat-label>
+        <mat-select>
+          <mat-option value="no_electricity">No electricity</mat-option>
+          <mat-option value="failure">Failure</mat-option>
+          <mat-option value="flickering_light">Flickering light</mat-option>
+          <mat-option value="electricity_back">Electricity is back on</mat-option>
+          <mat-option value="partially_electricity">Partially electricity</mat-option>
+          <mat-option value="problems_voltage">Problems with the voltage</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Hazard - name</mat-label>
+        <input matInput placeholder="Placeholder">
+        <mat-hint>.</mat-hint>
+      </mat-form-field>
+      &nbsp;&nbsp;
+      <mat-form-field appearance="fill">
+        <mat-label>Hazard - priority</mat-label>
+        <input matInput type="number" placeholder="Placeholder" min="1">
+        <mat-hint>.</mat-hint>
+    </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Comment</mat-label>
+        <textarea matInput></textarea>
+      </mat-form-field>
+
+      <!-- DA LI SE ADRESA I KOORDINATE POPUNJAVAJU AUTOMAATSKI TAKO STO ON NA MAPI ODREDI MESTO ?!?!?!??!?!? -->
+
+      <br>
+      <br>
+      <button class="btn btn-outline-primary" type="button">
+        <mat-icon>save</mat-icon>
+        Save
+      </button>
+
+    </div>
+  </div>
+</div>
