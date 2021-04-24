@@ -10,11 +10,13 @@ namespace Web2Project_API.Models
     { 
         [Key]
         public int LocationId { get; set; }
+
         private String city;
         private String street;
         private int postNumber;
         private String lat;
         private String lon;
+
         public ICollection<User> Users { get; set; }
         public ICollection<Consumer> Consumers { get; set; }
         public ICollection<Device> Devices { get; set; }

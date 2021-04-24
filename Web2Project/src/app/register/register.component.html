@@ -11,7 +11,7 @@
         placeholder="Enter Username"
         name="username"
         id="username"
-        [ngModel]="model.Username"
+        [(ngModel)]="model.Username"
         required
       />
     </div>
@@ -23,7 +23,7 @@
         placeholder="Enter Email"
         name="email"
         id="email"
-        [ngModel]="model.Email"
+        [(ngModel)]="model.Email"
         required
       />
     </div>
@@ -35,7 +35,7 @@
         placeholder="Enter Password"
         name="psw"
         id="psw"
-        [ngModel]="model.Password"
+        [(ngModel)]="model.Password"
         required
       />
     </div>
@@ -47,7 +47,7 @@
         placeholder="Repeat Password"
         name="psw_repeat"
         id="psw-repeat"
-        [ngModel]="model.PasswordRepete"
+        [(ngModel)]="model.PasswordRepete"
         required
       />
     </div>
@@ -63,7 +63,7 @@
         placeholder="Enter Name"
         name="name"
         id="name"
-        [ngModel]="model.Name"
+        [(ngModel)]="model.Name"
         required
       />
     </div>
@@ -75,7 +75,7 @@
         placeholder="Enter Lastname"
         name="lastname"
         id="lastname"
-        [ngModel]="model.Lastname"
+        [(ngModel)]="model.Lastname"
         required
       />
     </div>
@@ -89,7 +89,7 @@
         type="date"
         name="birthday"
         id="birthday"
-        [ngModel]="model.Birthday"
+        [(ngModel)]="model.Birthday"
         required
       />
     </div>
@@ -101,14 +101,14 @@
         placeholder="Enter Address"
         name="address"
         id="address"
-        [ngModel]="model.Address"
+        [(ngModel)]="model.Address"
         required
       />
     </div>
 
     <div>
       <label for="role"><b>Role</b></label>
-      <select name="role" id="role" [ngModel]="model.Role">
+      <select name="role" id="role" [(ngModel)]="model.Role">
         <option value="Crow Member">Crow Member</option>
         <option value="Dispatch">Dispatch</option>
         <option value="Worker">Worker</option>
@@ -117,7 +117,7 @@
 
     <div *ngIf="show">
       <label for="crows"><b>Crows</b></label>
-      <select name="crows" id="crows" [ngModel]="model.Crows">
+      <select name="crows" id="crows" [(ngModel)]="model.Crows">
         <option value="Crow Member">Crow Member</option>
         <option value="Dispatch">Dispatch</option>
         <option value="Worker">Worker</option>
@@ -129,7 +129,7 @@
         type="checkbox"
         name="checkemail"
         id="checkemail"
-        [ngModel]="model.Email"
+        [(ngModel)]="model.Email"
       />
       <label for="checkemail"><b>Send Email</b></label>
     </div>

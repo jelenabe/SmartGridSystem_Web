@@ -17,6 +17,7 @@ namespace Web2Project_API.Models
         private String lastname;
         private String email;
         private DateTime birthday;
+
         public int? LocationId { get; set; }
         public Location Location { get; set; }
         public IList<UserCrews> UserCrews { get; set; }

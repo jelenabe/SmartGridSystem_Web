@@ -6,13 +6,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthService {
 
+baseUrl = 'https://localhost:44326/api/auth/';
+
 constructor(private http: HttpClient) { }
 
 // tslint:disable-next-line: typedef
 register(model: any)
 {
-  console.log('method register form auth service called!');
-  return model;
+  return this.http.post(this.baseUrl + 'register', model);
 }
 
 }
