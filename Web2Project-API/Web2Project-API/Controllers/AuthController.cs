@@ -10,7 +10,7 @@ using Web2Project_API.Repository;
 
 namespace Web2Project_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/auth")]
     [ApiController]
     public class AuthController : Controller
     {
@@ -23,7 +23,7 @@ namespace Web2Project_API.Controllers
             this._config = config;
         }
 
-        [HttpPost("register")]
+        [HttpPost]
         public async Task<IActionResult> Register([FromBody]UserForRegisterDTO dto)
         {
             if (!string.IsNullOrEmpty(dto.Username))

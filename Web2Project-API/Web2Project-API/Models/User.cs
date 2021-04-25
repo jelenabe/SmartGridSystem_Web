@@ -17,6 +17,7 @@ namespace Web2Project_API.Models
         private String lastname;
         private String email;
         private DateTime birthday;
+        //private bool checkEmal; // ?!
 
         public int? LocationId { get; set; }
         public Location Location { get; set; }
