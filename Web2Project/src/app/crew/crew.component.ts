@@ -15,7 +15,7 @@ export class CrewComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(CrewDialogComponent);
+    const dialogRef = this.dialog.open(CrewDialogComponent, {width: "70%"});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

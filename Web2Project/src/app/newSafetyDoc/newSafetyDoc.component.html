@@ -1,7 +1,41 @@
-<div class="myDiv" >
-  <button style="width: 160px">Basic Information</button><br>
-  <button style="width: 160px">History of state changes</button><br>
-  <button style="width: 160px" >Multimedia attachments</button><br>
-  <button style="width: 160px" >Equipment</button><br>
-  <button style="width: 160px" >Checklist</button><br>
+<div class="form-row mt-2">
+
+  <div class="list-group list-design">
+    <button type="button" class="list-group-item list-group-item-action" (click)="changeView(1)">
+      Basic Information
+    </button>
+    <button type="button" class="list-group-item list-group-item-action" (click)="changeView(2)">
+      History of state changes
+    </button>
+    <button type="button" class="list-group-item list-group-item-action" (click)="changeView(3)">
+      Multimedia Attachments
+    </button>
+    <button type="button" class="list-group-item list-group-item-action" (click)="changeView(4)">
+      Devices
+    </button>
+    <button type="button" class="list-group-item list-group-item-action" (click)="changeView(5)">
+      Checklist
+    </button>
+  </div>
+
+  <div [ngSwitch]="this.buttonClicked">
+    <div *ngSwitchCase="1">
+      <app-basicInformationSafetyDoc></app-basicInformationSafetyDoc>
+    </div>
+    <div *ngSwitchCase="2">
+      <app-history-safety-document></app-history-safety-document>
+    </div>
+    <div *ngSwitchCase="3">
+      <app-multimedia-safety-document></app-multimedia-safety-document>
+    </div>
+    <div *ngSwitchCase="4">
+      <app-devices-safety-document></app-devices-safety-document>
+    </div>
+    <div *ngSwitchCase="5">
+      <app-checklist></app-checklist>
+    </div>
+  </div>
+
+
+
 </div>

@@ -1,11 +1,7 @@
 <h2 mat-dialog-title>Select Crew</h2>
-<mat-dialog-content class="scrolling-dialog">
+<mat-dialog-content>
 
-  <div class="ml-2">
-    <div class="example-container mat-elevation-z8 mt-2 mb-2">
-      
-
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mt-1 mb-1">
 
             <!-- Checkbox Column -->
             <ng-container matColumnDef="select">
@@ -48,17 +44,6 @@
                 (click)="selection.toggle(row)">
             </tr>
           </table>
-
-
-
-
-
-
-    </div>
-
-
-  </div>
-
 
 </mat-dialog-content>
 

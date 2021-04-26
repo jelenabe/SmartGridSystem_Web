@@ -81,6 +81,9 @@ import { GeolocationService } from './map/map-service/geolocation.service';
 import { GeocodingService } from './map/map-service/geocoding.service';
 import { GoogleMapMarkerDirective } from './map/map-service/google-map-marker.directive';
 import { CrewDialogComponent } from './crew-dialog/crew-dialog.component';
+import { HistorySafetyDocumentComponent } from './history-safety-document/history-safety-document.component';
+import { MultimediaSafetyDocumentComponent } from './multimedia-safety-document/multimedia-safety-document.component';
+import { DevicesSafetyDocumentComponent } from './devices-safety-document/devices-safety-document.component';
 //import { MatFileUploadModule } from 'angular-material-fileupload';
 
 
@@ -140,7 +143,10 @@ import { CrewDialogComponent } from './crew-dialog/crew-dialog.component';
       FieldsDialogComponent,
       StreetDialogComponent,
       GoogleMapMarkerDirective,
-      CrewDialogComponent
+      CrewDialogComponent,
+      HistorySafetyDocumentComponent,
+      MultimediaSafetyDocumentComponent,
+      DevicesSafetyDocumentComponent
    ],
   imports: [
     BrowserModule,

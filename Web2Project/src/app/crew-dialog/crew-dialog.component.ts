@@ -15,7 +15,16 @@ const ELEMENT_DATA: CrewColumns[] = [
   {id: '2', name: 'BRE_15413', members: 'Milan, Jelena'},
   {id: '3', name: 'BRE_15413', members: 'Milica, , Jelena'},
   {id: '4', name: 'BRE_15413', members: 'Milica, Milan, Jelena'},
-  {id: '5', name: 'BRE_15413', members: 'Milan'}
+  {id: '5', name: 'BRE_15413', members: 'Milan'},
+  {id: '6', name: 'BRE_15413', members: 'Milan'},
+  {id: '7', name: 'BRE_15413', members: 'Milan'},
+  {id: '8', name: 'BRE_15413', members: 'Milan'},
+  {id: '9', name: 'BRE_15413', members: 'Milan, Jelena'},
+  {id: '10', name: 'BRE_15413', members: 'Milica, , Jelena'},
+  {id: '11', name: 'BRE_15413', members: 'Milica, Milan, Jelena'},
+  {id: '12', name: 'BRE_15413', members: 'Milan'},
+  {id: '13', name: 'BRE_15413', members: 'Milan'},
+  {id: '14', name: 'BRE_15413', members: 'Milan'},
 ];
 
 @Component({

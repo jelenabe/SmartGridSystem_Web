@@ -1,30 +1,99 @@
+<div class="mt-2">
+  <!--New Incident-->
+  <div>
+    <button type="button" class="btn btn-secondary" [routerLink]="['/newSafetyDoc']">New Safety Document</button>
+  </div>
 
-  <a href="/newSafetyDoc">
-    <button>New</button>
-  </a>
-<br>
-<input type="checkbox"/>
-<label>Mine</label>
-<br>
-<input type="submit" value="Filter" />
+  <!--Filter-->
+  <span class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+    </mat-form-field>
+  </span>&nbsp;&nbsp;&nbsp;&nbsp;
 
-  <table class="table" >
-      <th>
-        Id
-      </th>
-      <th>
-        Start Date
-      </th>
-      <th>
-        Phone Number
-      </th>
-      <th>
-        Status
-      </th>
-      <th>
-        Address
-      </th>
-      <tr>
-        
-      </tr>
-  </table>
+  <!--All/Mine-->
+  <span>
+    <mat-button-toggle-group>
+      <mat-button-toggle value="all_incidents">All</mat-button-toggle>
+      <mat-button-toggle value="mine_incidents">Mine</mat-button-toggle>
+    </mat-button-toggle-group>
+  </span>
+
+  <div class="example-container mat-elevation-z8 mt-0">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="id" sticky>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="type" sticky>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="switching_plan">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Switching Plan </th>
+        <td mat-cell *matCellDef="let element"> {{element.switching_plan}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="safetyDocument_type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Safety Documen Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.safetyDocument_type}} </td>
+      </ng-container>
+
+      <!-- Star Column -->
+      <ng-container matColumnDef="dateTime_created">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date/time Created </th>
+        <td mat-cell *matCellDef="let element"> {{element.dateTime_created}} </td>
+      </ng-container>
+
+      <!-- Star Column -->
+      <ng-container matColumnDef="created_by">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Created by </th>
+        <td mat-cell *matCellDef="let element"> {{element.created_by}} </td>
+      </ng-container>
+
+      <!-- Star Column -->
+      <ng-container matColumnDef="details">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Details </th>
+        <td mat-cell *matCellDef="let element"> {{element.details}} </td>
+      </ng-container>
+
+      <!-- Star Column -->
+      <ng-container matColumnDef="notes">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Notes </th>
+        <td mat-cell *matCellDef="let element"> {{element.notes}} </td>
+      </ng-container>
+
+      <!-- Star Column -->
+      <ng-container matColumnDef="phone_number">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone number </th>
+        <td mat-cell *matCellDef="let element"> {{element.phone_number}} </td>
+      </ng-container>
+
+      <!-- Star Column -->
+      <ng-container matColumnDef="crew">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Crew </th>
+        <td mat-cell *matCellDef="let element"> {{element.crew}} </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  <!--Paginator-->
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

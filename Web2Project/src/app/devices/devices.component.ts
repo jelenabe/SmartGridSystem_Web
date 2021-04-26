@@ -52,7 +52,7 @@ export class DevicesComponent implements OnInit {
 
 
   openDialog() {
-    const dialogRef = this.dialog.open(DeviceDialogComponent);
+    const dialogRef = this.dialog.open(DeviceDialogComponent, {width: "80%"});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
