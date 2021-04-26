@@ -13,9 +13,9 @@ namespace Web2Project_API.DTOs
         public string Username {get; set;}
         public string Email {get; set;}
         public string Password {get; set;}
-        public DateTime BirthDate  {get; set;}
+        public DateTime BirthDay  {get; set;}
         public string Picture { get; set; }
-        public UserType userType { get; set; }
+        public string UserType { get; set; }
         public int crewId { get; set; }
         public string Street { get; set; }
         public string City { get; set; }

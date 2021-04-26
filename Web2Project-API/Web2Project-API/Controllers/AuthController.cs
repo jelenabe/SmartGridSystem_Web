@@ -52,11 +52,21 @@ namespace Web2Project_API.Controllers
             user.Location.Street = "Ulica u Novom Sadu";
             user.Location.PostNumber = 21000;
             user.Picture = dto.Picture;
-            user.UserType = dto.userType;
-            user.Birthday = dto.BirthDate;
-            // user.crewId - treba izmeniti
-
-
+           
+            if(dto.UserType == "Crew Member")
+            {
+                user.UserType = UserType.CREW_MEMBER;
+                // user.crewId - treba izmeniti
+            }
+            else if (dto.UserType == "Dispatcher")
+            {
+                user.UserType = UserType.DISPACHER;
+            }
+            else if (dto.UserType == "Worker")
+            {
+                user.UserType = UserType.WORKER;
+            }
+            user.Birthday = dto.BirthDay;
 
             var createdUser = await _repo.Register(user, dto.Password);
 
