@@ -28,6 +28,7 @@ import { SafetyDocsComponent } from './safetyDocs/safetyDocs.component';
 import { WorkOrdersComponent } from './workOrders/workOrders.component';
 import { WorkPlansComponent } from './workPlans/workPlans.component';
 
+
 const routes: Routes = [
   { path: '',
     component: FrontPageComponent, 

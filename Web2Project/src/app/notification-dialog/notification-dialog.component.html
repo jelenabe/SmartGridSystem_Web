@@ -1,5 +1,4 @@
 <h2 mat-dialog-title>Select which notification will be displayed</h2>
-<mat-dialog-content class="mat-typography">
   <div class="container">
   <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <!-- Checkbox Column -->
@@ -40,9 +39,3 @@
   </tr>
   </mat-table>
 </div>
-</mat-dialog-content>
-
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Apply</button>
-</mat-dialog-actions>

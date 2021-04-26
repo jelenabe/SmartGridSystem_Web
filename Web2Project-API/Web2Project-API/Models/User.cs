@@ -17,11 +17,14 @@ namespace Web2Project_API.Models
         private String lastname;
         private String email;
         private DateTime birthday;
+        private bool approved;
         //private bool checkEmal; // ?!
 
         public int? LocationId { get; set; }
         public Location Location { get; set; }
-        public IList<UserCrews> UserCrews { get; set; }
+
+        public int? CrewId { get; set; }
+        public Crew Crew { get; set; }
         public ICollection<Call> Calls { get; set; }
         public ICollection<WorkPlan> CreatedWorkPlans { get; set; }
         public ICollection<WorkPlan> ChangedWorkPlans { get; set; }
@@ -45,5 +48,6 @@ namespace Web2Project_API.Models
         public DateTime Birthday { get => birthday; set => birthday = value; }
         public string Picture { get => picture; set => picture = value; }
         public UserType UserType { get => userType; set => userType = value; }
+        public bool Approved { get => approved; set => approved = value; }
     }
 }

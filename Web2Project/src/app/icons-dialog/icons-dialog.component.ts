@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-icons-dialog',
@@ -8,14 +7,11 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class IconsDialogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<IconsDialogComponent>) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
   
-  ClickCancel(): void {
-    this.dialogRef.close();
-  }
 
 }

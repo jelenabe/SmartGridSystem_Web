@@ -15,7 +15,6 @@ namespace Web2Project_API.DbConfigurations
         }
         public DbSet<User> Users { get; set; } 
         public DbSet<Crew> Crews { get; set; } 
-        public DbSet<UserCrews> UserCrews { get; set; } 
         public DbSet<Location> Locations { get; set; } 
         public DbSet<Call> Calls { get; set; } 
         public DbSet<Consumer> Consumers { get; set; } 
@@ -30,8 +29,8 @@ namespace Web2Project_API.DbConfigurations
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserCrews>().HasKey(uc => new { uc.UserId, uc.CrewId});
             modelBuilder.Entity<User>().HasOne<Location>(x => x.Location).WithMany(x=>x.Users).HasForeignKey(x => x.LocationId);
+            modelBuilder.Entity<User>().HasOne<Crew>(x => x.Crew).WithMany(x=>x.Users).HasForeignKey(x => x.CrewId);
             modelBuilder.Entity<Consumer>().HasOne<Location>(x => x.Location).WithMany(x => x.Consumers).HasForeignKey(x => x.LocationId);
             modelBuilder.Entity<Call>().HasOne<User>(x => x.User).WithMany(x=> x.Calls).HasForeignKey(x => x.UserId);
             modelBuilder.Entity<Call>().HasOne<Consumer>(x => x.Consumer).WithMany(x=> x.Calls).HasForeignKey(x => x.ConsumerId);

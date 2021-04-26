@@ -1819,5 +1819,8 @@ button{
 button:hover{
   color: #0e30f1;
 }
+.mat-tab-group {
+  margin-bottom: 48px;
+}
 
   

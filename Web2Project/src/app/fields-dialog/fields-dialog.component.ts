@@ -8,12 +8,9 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class FieldsDialogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<FieldsDialogComponent>) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-  ClickCancel(): void {
-    this.dialogRef.close();
   }
 
 }

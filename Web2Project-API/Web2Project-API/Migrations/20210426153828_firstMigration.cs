@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Web2Project_API.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class firstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -106,47 +106,31 @@ namespace Web2Project_API.Migrations
                     PasswordHash = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     LocationId = table.Column<int>(type: "int", nullable: true),
+                    CrewId = table.Column<int>(type: "int", nullable: true),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Lastname = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Picture = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserType = table.Column<int>(type: "int", nullable: false)
+                    UserType = table.Column<int>(type: "int", nullable: false),
+                    Approved = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.UserId);
+                    table.ForeignKey(
+                        name: "FK_Users_Crews_CrewId",
+                        column: x => x.CrewId,
+                        principalTable: "Crews",
+                        principalColumn: "CrewId",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Users_Locations_LocationId",
                         column: x => x.LocationId,
                         principalTable: "Locations",
                         principalColumn: "LocationId",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserCrews",
-                columns: table => new
-                {
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    CrewId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserCrews", x => new { x.UserId, x.CrewId });
-                    table.ForeignKey(
-                        name: "FK_UserCrews_Crews_CrewId",
-                        column: x => x.CrewId,
-                        principalTable: "Crews",
-                        principalColumn: "CrewId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_UserCrews_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -477,8 +461,8 @@ namespace Web2Project_API.Migrations
                 filter: "[WorkPlanId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserCrews_CrewId",
-                table: "UserCrews",
+                name: "IX_Users_CrewId",
+                table: "Users",
                 column: "CrewId");
 
             migrationBuilder.CreateIndex(
@@ -551,9 +535,6 @@ namespace Web2Project_API.Migrations
                 name: "SafetyDocs");
 
             migrationBuilder.DropTable(
-                name: "UserCrews");
-
-            migrationBuilder.DropTable(
                 name: "WorkRequests");
 
             migrationBuilder.DropTable(
@@ -569,10 +550,10 @@ namespace Web2Project_API.Migrations
                 name: "WorkPlans");
 
             migrationBuilder.DropTable(
-                name: "Crews");
+                name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Crews");
 
             migrationBuilder.DropTable(
                 name: "Locations");

@@ -1,80 +1,22 @@
+<mat-tab-group mat-align-tabs="start">
+  <mat-tab label="Activate profile">
+    <app-activateProfile></app-activateProfile>
+  </mat-tab>
+  <mat-tab label="Add street priority">
+    <app-street-dialog></app-street-dialog>
+  </mat-tab>
+  <mat-tab label="Show and change icons">
+    <app-icons-dialog></app-icons-dialog>
+  </mat-tab>
+  <mat-tab label="Notification settings">
+    <app-notification-dialog></app-notification-dialog>
+  </mat-tab>
+  <mat-tab label="Fields settings">
+    <app-fields-dialog></app-fields-dialog>
+  </mat-tab>
+  <mat-tab label="Reset all ">Content 4</mat-tab>
+</mat-tab-group>
+
+<button mat-button mat-dialog-close>Cancel</button>
+<button mat-button [mat-dialog-close]="true" cdkFocusInitial>Apply</button>
  
-<!-- Statistics Section-->
-<section class="statistics" style="padding-top: 5%">
-  <div class="container-fluid">
-    <div class="row d-flex">
-      <div class="col-lg-4">
-        <div class="card data-usage" style="height: 150%;background-image: url('../../assets/street-priority.png');border-radius: 20px">
-          <h2 class="display h4">
-            <strong
-              ><button (click)="openStreetDialog()" routerLinkActive="active" 
-                >Add street priority</button
-              ></strong
-            >
-          </h2>
-        </div>
-      </div>
-
-      <div class="col-lg-4" style="margin-left: 10px">
-        <div class="card data-usage" style="height: 150%;background-image: url('../../assets/rsz_21icons.png');border-radius: 20px">
-          <h2 class="display h4">
-            <strong
-              ><button (click)="openIconsDialog()"  routerLinkActive="active"
-                >Show and change icons</button
-              ></strong
-            >
-          </h2>
-        </div>
-      </div>
-      <div class="col-lg-3.5" style="margin-left: 10px">
-        <div class="card data-usage" style="height: 150%; background-image: url('../../assets/rsz_2notification.png');border-radius: 20px">
-          <h2 class="display h4">
-            <strong
-              ><button (click)="openNotificationDialog()" routerLinkActive="active"
-                >Notification settings</button
-              ></strong
-            >
-          </h2>
-        </div>
-      </div>
-    </div> 
-
-    <br/><br/><br/><br/><br/>
-    <div class="row d-flex">
-      <div class="col-lg-4" style="margin-left: 30px">
-        <div class="card data-usage" style="height: 200%;background-image: url('../../assets/rsz_filed.png') ;border-radius: 20px;">
-          <h2 class="display h4">
-            <strong
-              ><button (click)="openFieldsDialog()" routerLinkActive="active" 
-                >Fields settings</button
-              ></strong
-            >
-          </h2>
-        </div>
-      </div>
-    
-      <div class="col-lg-4" style="margin-left: 30px">
-      <div class="card data-usage" style="height: 200%;background-image: url('../../assets/rsz_3reset.png');border-radius: 20px">
-        <h2 class="display h4">
-          <strong
-            ><button (click)="resetAll()" routerLinkActive="active"
-              >Reset all</button
-            ></strong
-          >
-        </h2>
-      </div>
-    </div>
-    <div class="col-lg-3.5" style="margin-left: 30px">
-      <div class="card data-usage" style="height: 200%;background-image: url('../../assets/rsz_1capture.png');border-radius: 20px">
-        <h2 class="display h4">
-          <strong
-            ><button [routerLink]="['/activateProfile']" routerLinkActive="active"
-              >Activate profile</button
-            ></strong
-          >
-        </h2>
-      </div>
-    </div>
-  </div>
-</div>
-</section>

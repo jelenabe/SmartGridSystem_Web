@@ -21,13 +21,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class NotificationDialogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<NotificationDialogComponent>) { }
+  constructor() { }
 
   ngOnInit() {
   }
-  ClickCancel(): void {
-    this.dialogRef.close();
-  }
+  
   displayedColumns: string[] = ['select', 'position', 'name'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);

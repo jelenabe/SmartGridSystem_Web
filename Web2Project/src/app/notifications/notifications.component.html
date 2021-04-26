@@ -1,11 +1,9 @@
-<h2 style="padding-top: 2%;">Notifications</h2>
+<h2 style="padding-top: 2%">Notifications</h2>
 <div class="form-row">
   <div class="form-group col-md-3">
     <div class="input-group mb-3">
-
       <!--Notificatins buttons-->
-      <div class="list-group" style="width: 200px; padding-top: 20px;">
-
+      <div class="list-group" style="width: 200px; padding-top: 20px">
         <!--All notifications-->
         <button
           type="button"
@@ -14,7 +12,6 @@
         >
           All notifications
         </button>
-
         <!--Unread notifications-->
         <button
           type="button"
@@ -61,100 +58,48 @@
       </div>
     </div>
   </div>
-
-  <!--Table-->
-  <div class="form-group col-md-9" style="padding-top: 40px;">
-    <div class="input-group mb-3">
-      <br />
-      <div class="example-container mat-elevation-z8 " >
-        <table mat-table
-          matSort
-          [dataSource]="dataSource"
-          style="width: 800px; align-content: stretch; "
-        >
-          <!-- Type Column -->
-          <ng-container matColumnDef="type">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
-            <td mat-cell *matCellDef="let element" class="mat-cell">
-              <div [ngSwitch]="this.element.type">
-                <div *ngSwitchCase="'error'">
-                  <mat-icon
-                    class="list-group-item-danger"
-                    style="margin-top: 10px"
-                    >clear</mat-icon
-                  >
-                </div>
-                <div *ngSwitchCase="'info'">
-                  <mat-icon
-                    class="list-group-item-primary"
-                    style="margin-top: 10px"
-                    >error_outline</mat-icon
-                  >
-                  &nbsp; &nbsp; &nbsp;
-                  <a href="/newCrew">
-                    <button
-                      class="btn btn-outline-primary"
-                      style="margin-bottom: 10px"
-                    >
-                      Open
-                    </button>
-                  </a>
-                </div>
-                <div *ngSwitchCase="'success'">
-                  <mat-icon
-                    class="list-group-item-success"
-                    style="margin-top: 10px"
-                    >done</mat-icon
-                  >
-                </div>
-                <div *ngSwitchCase="'warning'">
-                  <mat-icon
-                    class="list-group-item-warning"
-                    style="margin-top: 10px"
-                    >warning</mat-icon
-                  >
-                </div>
-              </div>
-            </td>
-          </ng-container>
-
-           <!-- Text Column -->
-          <ng-container matColumnDef="text">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Text</th>
-            <td
-              mat-cell
-              *matCellDef="let element"
-              class="mat-cell"
-              style="margin-bottom: 20px"
-            >
-              {{ element.text }}
-            </td>
-          </ng-container>
-
-           <!-- Date Column -->
-          <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
-            <td
-              mat-cell
-              *matCellDef="let element"
-              class="mat-cell"
-              style="margin-bottom: 20px"
-            >
-              {{ element.date | date }}
-            </td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        </table>
+  <div class="form-group col-md-9">
+    <div [ngSwitch]="this.selectedType">
+      <div *ngSwitchCase="'error'">
+        <div *ngFor="let profile of dataSource; let i = index">
+          <div class="alert alert-danger not" role="alert">
+            This is a danger alert—check it out!
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'info'">
+        <div *ngFor="let profile of dataSource; let i = index">
+          <div class="alert alert-info not" role="alert">
+            This is a info alert—check it out!
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'success'">
+        <div *ngFor="let profile of dataSource; let i = index">
+          <div class="alert alert-success not" role="alert">
+            This is a success alert—check it out!
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'warning'">
+        <div *ngFor="let profile of dataSource; let i = index">
+          <div class="alert alert-warning not" role="alert">
+            This is a warning alert—check it out!
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="''">
+        <div *ngFor="let profile of dataSource; let i = index">
+          <div class="alert alert-danger not" role="alert">
+            This is a danger alert—check it out!
+          </div>
+        </div>
       </div>
     </div>
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-    <br/>
-    <div style="margin-left: 60%;">
+  </div>
+  <div style="margin-left: 81%">
     <button class="btn btn-primary">Mark all as read</button>
     &nbsp;
     <button class="btn btn-primary">Clear All</button>
-  </div>
   </div>
 </div>

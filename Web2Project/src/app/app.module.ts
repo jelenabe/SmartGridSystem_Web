@@ -85,6 +85,7 @@ import { HistorySafetyDocumentComponent } from './history-safety-document/histor
 import { MultimediaSafetyDocumentComponent } from './multimedia-safety-document/multimedia-safety-document.component';
 import { DevicesSafetyDocumentComponent } from './devices-safety-document/devices-safety-document.component';
 //import { MatFileUploadModule } from 'angular-material-fileupload';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 @NgModule({
@@ -176,6 +177,7 @@ import { DevicesSafetyDocumentComponent } from './devices-safety-document/device
     MatCheckboxModule,
     MatDialogModule,
     //MatFileUploadModule,
+    MatTabsModule,
 
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyApcxyVhBRYs-9VqvWcXz0gpPBwmJWAV9o',

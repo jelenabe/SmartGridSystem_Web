@@ -11,8 +11,8 @@ namespace Web2Project_API.Models
         [Key]
         public int CrewId { get; set; }
         private String name;
-        public IList<UserCrews> UserCrews { get; set; }
         public ICollection<Incident>Incidents { get; set; }
+        public ICollection<User> Users { get; set; }
         public ICollection<WorkPlan>WorkPlans { get; set; }
         public Crew()
         {

@@ -12,7 +12,7 @@ namespace Web2Project_API.Models
         public int NotificationId { get; set; }
         private DateTime date;
         private String details;
-        private bool ready;
+        private bool read;
         private NotificationType type;
 
         public Notification()
@@ -21,7 +21,7 @@ namespace Web2Project_API.Models
 
         public DateTime Date { get => date; set => date = value; }
         public string Details { get => details; set => details = value; }
-        public bool Ready { get => ready; set => ready = value; }
+        public bool Read { get => read; set => read = value; }
         public NotificationType Type { get => type; set => type = value; }
     }
 }

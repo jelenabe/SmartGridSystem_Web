@@ -10,8 +10,8 @@ using Web2Project_API.DbConfigurations;
 namespace Web2Project_API.Migrations
 {
     [DbContext(typeof(ModelDbContext))]
-    [Migration("20210422203431_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20210426153828_firstMigration")]
+    partial class firstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -345,8 +345,14 @@ namespace Web2Project_API.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<bool>("Approved")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("CrewId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -377,24 +383,11 @@ namespace Web2Project_API.Migrations
 
                     b.HasKey("UserId");
 
+                    b.HasIndex("CrewId");
+
                     b.HasIndex("LocationId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Web2Project_API.Models.UserCrews", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CrewId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "CrewId");
-
-                    b.HasIndex("CrewId");
-
-                    b.ToTable("UserCrews");
                 });
 
             modelBuilder.Entity("Web2Project_API.Models.WorkPlan", b =>
@@ -655,30 +648,17 @@ namespace Web2Project_API.Migrations
 
             modelBuilder.Entity("Web2Project_API.Models.User", b =>
                 {
+                    b.HasOne("Web2Project_API.Models.Crew", "Crew")
+                        .WithMany("Users")
+                        .HasForeignKey("CrewId");
+
                     b.HasOne("Web2Project_API.Models.Location", "Location")
                         .WithMany("Users")
                         .HasForeignKey("LocationId");
 
-                    b.Navigation("Location");
-                });
-
-            modelBuilder.Entity("Web2Project_API.Models.UserCrews", b =>
-                {
-                    b.HasOne("Web2Project_API.Models.Crew", "Crew")
-                        .WithMany("UserCrews")
-                        .HasForeignKey("CrewId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Web2Project_API.Models.User", "User")
-                        .WithMany("UserCrews")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Crew");
 
-                    b.Navigation("User");
+                    b.Navigation("Location");
                 });
 
             modelBuilder.Entity("Web2Project_API.Models.WorkPlan", b =>
@@ -750,7 +730,7 @@ namespace Web2Project_API.Migrations
                 {
                     b.Navigation("Incidents");
 
-                    b.Navigation("UserCrews");
+                    b.Navigation("Users");
 
                     b.Navigation("WorkPlans");
                 });
@@ -797,8 +777,6 @@ namespace Web2Project_API.Migrations
                     b.Navigation("CreatedWorkPlans");
 
                     b.Navigation("CreatedWorkRequest");
-
-                    b.Navigation("UserCrews");
                 });
 
             modelBuilder.Entity("Web2Project_API.Models.WorkPlan", b =>
