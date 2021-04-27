@@ -4,13 +4,13 @@
     <div class="col-md-6">
 
       <!-- NE ZNAM DA LI TREBA ID ?!?!??!? -->
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" class="select-style">
         <mat-label>Safety Document ID</mat-label>
         <input matInput placeholder="Placeholder" value="1234" readonly>
         <mat-hint>.</mat-hint>
       </mat-form-field>
       <br>
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" class="select-style">
         <mat-label>Type</mat-label>
         <mat-select>
           <mat-option value="planned_work">Planned Work</mat-option>
@@ -18,13 +18,13 @@
         </mat-select>
       </mat-form-field>
       <br>
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" class="select-style">
         <mat-label>Status</mat-label>
         <input matInput placeholder="Placeholder" value="Draft" readonly>
         <mat-hint>.</mat-hint>
       </mat-form-field>
       <br>
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" class="select-style">
         <mat-label>Safety document type</mat-label>
         <mat-select>
           <mat-option value="clearance">Clearance</mat-option>
@@ -32,14 +32,14 @@
         </mat-select>
       </mat-form-field>
       <br>
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" class="select-style">
         <mat-label>Work Plan</mat-label>
         <mat-select [formControl]="workPlan_FormControl">
           <mat-option *ngFor="let value of workPlans" value="value">{{value}}</mat-option>
         </mat-select>
       </mat-form-field>
       <br>
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" class="select-style">
         <mat-label>Details</mat-label>
         <input matInput placeholder="Placeholder">
         <mat-hint>.</mat-hint>
@@ -48,7 +48,7 @@
     </div>
     <div class="col-md-6">
       
-      <mat-form-field appearance="fill" class="example-form-field">
+      <mat-form-field appearance="fill" class="example-form-field select-style">
         <mat-label>Date/time created</mat-label>
         <input matInput readonly [matDatepicker]="dateTime_created" [value]="date.value" disabled>
         <mat-datepicker-toggle matSuffix [for]="dateTime_created"></mat-datepicker-toggle>
@@ -60,25 +60,25 @@
         </mat-datepicker>
       </mat-form-field>
       <br>
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" class="select-style">
         <mat-label>Created by</mat-label>
         <input matInput placeholder="Placeholder" value="Jelena Beader" readonly>
         <mat-hint>.</mat-hint>
       </mat-form-field>
       <br>
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" class="select-style">
         <mat-label>Phone number</mat-label>
         <input matInput type="number" placeholder="Placeholder" value="123123" readonly>
         <mat-hint>.</mat-hint>
       </mat-form-field>
       <br>
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" class="select-style">
         <mat-label>Crew</mat-label>
         <input matInput placeholder="Placeholder" value="Crew1" readonly>
         <mat-hint>.</mat-hint>
       </mat-form-field>
       <br>
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" class="select-style">
         <mat-label>Notes</mat-label>
         <textarea matInput></textarea>
       </mat-form-field>

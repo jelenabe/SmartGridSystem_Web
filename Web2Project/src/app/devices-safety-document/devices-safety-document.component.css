@@ -59,14 +59,14 @@ th.mat-header-cell:last-of-type{
     }
       
       .example-container {
-        max-height: 485px;
-        width: 980px;
-        max-width: 980px;
+        max-height: 480px;
+        /*width: 980px;
+        max-width: 980px;*/
         overflow: auto;
       }
       
       table {
-        width: 980px;
+        width: 100%;
       }
       
       td.mat-column-star {

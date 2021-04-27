@@ -1,9 +1,9 @@
 <div class="ml-5">
   <h2>Resolution</h2>
   <div class="form-row mt-4">
-    <div class="col-md-6">
+    <div class="col-md-12">
 
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" class="select-style">
         <mat-label>Cause</mat-label>
         <mat-select (selectionChange)="SelectionChangedCause($event)">
           <mat-option value="weather">Weather</mat-option>
@@ -13,7 +13,7 @@
       </mat-form-field>
 
       <div *ngIf="showSubcauses">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="select-style">
           <mat-label>Subcause</mat-label>
           <mat-select [formControl]="resolutionFormControl">
             <mat-option *ngFor="let value of subcauses" value="value">{{value}}</mat-option>
@@ -21,7 +21,7 @@
         </mat-form-field>
       </div>
 
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" class="select-style">
         <mat-label>Construction type</mat-label>
         <mat-select>
           <mat-option value="underground">Underground</mat-option>
@@ -30,7 +30,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" class="select-style">
         <mat-label>Material</mat-label>
         <mat-select>
           <mat-option value="metal">Metal</mat-option>

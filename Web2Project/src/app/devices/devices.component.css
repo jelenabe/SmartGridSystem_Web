@@ -66,7 +66,8 @@ th.mat-header-cell:last-of-type{
       }
       
       table {
-        width: 980px;
+        /*width: 980px;*/
+        width: 100%;
       }
       
       td.mat-column-star {

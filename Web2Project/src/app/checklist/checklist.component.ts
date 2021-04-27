@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChecklistComponent implements OnInit {
 
-  selectedValue: string;
+  selected_operationsCompleted: string;
+  selected_tagsRemoved: string;
+  selected_groundingRemoved: string;
+  selected_readyForService: string;
 
   constructor() { }
 
