@@ -1,8 +1,3 @@
-.icon-design{
-    font-size: 27px;
-    color: red;
-}
-
 /*da bi buttoni bili postavljeni jedan pored drugog i kada se pojavi vertikalan scrool*/
 th.mat-header-cell:last-of-type{  
     padding-right: 0px;
@@ -23,27 +18,13 @@ th.mat-header-cell:last-of-type{
     padding-right: 0px;
   }
 
-
-  
-  
   .th-design{
     width: 172px;
   }
   
   .th-icon-location-design{
-    width: 30px;
-    padding-right: 0px;
+    width: 55px;
   }
-
-  .th-icon-remove-design{
-    width: 90px;
-    padding-right: 0px;
-  }
-  
-.td-icon-remove-design{
-    padding-left: 40px;
-    padding-right: 0px;
-}
 
 
   .mat-radio-button ~ .mat-radio-button {
@@ -58,17 +39,11 @@ th.mat-header-cell:last-of-type{
       color: black;
     }
       
-      .example-container {
-        max-height: 485px;
-        width: 980px;
-        max-width: 980px;
-        overflow: auto;
-      }
-      
-      table {
-        width: 980px;
-      }
-      
+    table {
+      width: 100%;
+      min-width: 600px;
+    }
+
       td.mat-column-star {
         width: 20px;
         padding-right: 8px;

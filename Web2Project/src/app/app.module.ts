@@ -84,6 +84,7 @@ import { CrewDialogComponent } from './crew-dialog/crew-dialog.component';
 import { HistorySafetyDocumentComponent } from './history-safety-document/history-safety-document.component';
 import { MultimediaSafetyDocumentComponent } from './multimedia-safety-document/multimedia-safety-document.component';
 import { DevicesSafetyDocumentComponent } from './devices-safety-document/devices-safety-document.component';
+import { DeviceDialogSafetyDocumentComponent } from './device-dialog-safety-document/device-dialog-safety-document.component';
 //import { MatFileUploadModule } from 'angular-material-fileupload';
 import {MatTabsModule} from '@angular/material/tabs';
 
@@ -147,7 +148,8 @@ import {MatTabsModule} from '@angular/material/tabs';
       CrewDialogComponent,
       HistorySafetyDocumentComponent,
       MultimediaSafetyDocumentComponent,
-      DevicesSafetyDocumentComponent
+      DevicesSafetyDocumentComponent,
+      DeviceDialogSafetyDocumentComponent
    ],
   imports: [
     BrowserModule,

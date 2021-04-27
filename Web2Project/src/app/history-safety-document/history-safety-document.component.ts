@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistorySafetyDocumentComponent implements OnInit {
 
+  typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
+
   constructor() { }
 
   ngOnInit(): void {

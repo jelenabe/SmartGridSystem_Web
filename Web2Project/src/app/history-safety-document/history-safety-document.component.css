@@ -1,0 +1,13 @@
+.mat-icon {
+    vertical-align: middle;
+}
+
+.icon-text {
+    display: flex;
+    align-items: center;
+}
+
+.list-item-style{
+    border-radius: 10px;
+    background-color: orange
+}

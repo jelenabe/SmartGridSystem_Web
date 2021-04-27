@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChecklistComponent implements OnInit {
 
+  selectedValue: string;
+
   constructor() { }
 
   ngOnInit() {

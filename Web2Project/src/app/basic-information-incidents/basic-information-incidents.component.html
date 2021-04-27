@@ -1,7 +1,8 @@
-<div class="ml-5">
+<div class="ml-5" style="width: 900px;">
     <h2>Basic Information</h2>
-    <div class="form-row mt-4" style="width: 900px;">
+    <div class="form-row mt-4">
         <div class="col-md-6">
+            
             <mat-form-field appearance="fill">
                 <mat-label>Incident ID</mat-label>
                 <input matInput placeholder="Placeholder" value="1234" readonly>
@@ -34,9 +35,9 @@
             <br>
             <mat-form-field appearance="fill" class="example-form-field">
                 <mat-label>ETA</mat-label>
-                <input matInput [matDatepicker]="datepicker1">
+                <input matInput [matDatepicker]="datepicker1" disabled>
                 <mat-datepicker-toggle matSuffix [for]="datepicker1"></mat-datepicker-toggle>
-                <mat-datepicker #datepicker1>
+                <mat-datepicker #datepicker1 disabled="false">
                     <mat-datepicker-actions>
                         <button mat-button matDatepickerCancel>Cancel</button>
                         <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
@@ -46,9 +47,9 @@
             <br>
             <mat-form-field appearance="fill" class="example-form-field">
                 <mat-label>ATA</mat-label>
-                <input matInput [matDatepicker]="datepicker2">
+                <input matInput [matDatepicker]="datepicker2" disabled>
                 <mat-datepicker-toggle matSuffix [for]="datepicker2"></mat-datepicker-toggle>
-                <mat-datepicker #datepicker2>
+                <mat-datepicker #datepicker2 disabled="false">
                     <mat-datepicker-actions>
                         <button mat-button matDatepickerCancel>Cancel</button>
                         <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
@@ -59,9 +60,9 @@
         <div class="col-md-6">
             <mat-form-field appearance="fill" class="example-form-field">
                 <mat-label>ETR</mat-label>
-                <input matInput [matDatepicker]="datepicker3">
+                <input matInput [matDatepicker]="datepicker3" disabled>
                 <mat-datepicker-toggle matSuffix [for]="datepicker3"></mat-datepicker-toggle>
-                <mat-datepicker #datepicker3>
+                <mat-datepicker #datepicker3 disabled="false">
                     <mat-datepicker-actions>
                         <button mat-button matDatepickerCancel>Cancel</button>
                         <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
@@ -71,9 +72,9 @@
             <br>
             <mat-form-field appearance="fill" class="example-form-field">
                 <mat-label>Outage Time</mat-label>
-                <input matInput [matDatepicker]="datepicker4">
+                <input matInput [matDatepicker]="datepicker4" disabled>
                 <mat-datepicker-toggle matSuffix [for]="datepicker4"></mat-datepicker-toggle>
-                <mat-datepicker #datepicker4>
+                <mat-datepicker #datepicker4 disabled="false">
                     <mat-datepicker-actions>
                         <button mat-button matDatepickerCancel>Cancel</button>
                         <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
@@ -83,9 +84,9 @@
             <br>
             <mat-form-field appearance="fill" class="example-form-field">
                 <mat-label>Scheduled Time</mat-label>
-                <input matInput [matDatepicker]="datepicker5">
+                <input matInput [matDatepicker]="datepicker5" disabled>
                 <mat-datepicker-toggle matSuffix [for]="datepicker5"></mat-datepicker-toggle>
-                <mat-datepicker #datepicker5>
+                <mat-datepicker #datepicker5 disabled="false">
                     <mat-datepicker-actions>
                         <button mat-button matDatepickerCancel>Cancel</button>
                         <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
