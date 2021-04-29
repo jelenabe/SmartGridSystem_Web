@@ -44,13 +44,13 @@ export class ActivateProfileComponent implements OnInit {
   {
     console.log("Profile activated!");
     this.inactiveProfiles.splice(i,1);
-    
+
   }
-  
-  deleteProfile(id:any,i:any)
+
+  deleteProfile(id:any, i:any)
   {
-    console.log("Profile delited!");
-    this.inactiveProfiles.splice(i,1);
+    console.log('Profile delited!');
+    this.inactiveProfiles.splice(i, 1);
   }
 
 }

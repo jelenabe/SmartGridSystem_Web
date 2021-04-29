@@ -1,42 +1,32 @@
 <h2>New Crew</h2>
-
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
-  </div>
-  <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter Crew Name..." >
-</div>
-
-<mat-selection-list #shoes>
-  <mat-list-option *ngFor="let member of Members">
-    {{member}}
-  </mat-list-option>
-</mat-selection-list>
-
-<p>
-  Options selected: {{shoes.selectedOptions.selected.length}}
-</p>
-<div class="form-row">
-  <div class="form-group col-md-3">
-    <div class="input-group mb-2">
+<form (ngSubmit)="AddCrew()">
+  <div class="input-group mb-3" style="width: 50%;">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
     </div>
+    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter Crew Name..." name="crewName" [(ngModel)]="crewName">
   </div>
-  <div class="form-group col-md-3">
-    <div class="input-group mb-2">
-    </div>
+
+  <div style="width: 50%;">
+    <mat-selection-list #Members [(ngModel)]="selectedMembers" name="selectedMembers">
+      <mat-list-option *ngFor="let member of CrewMembers" [value]="member">
+        {{member.name}}
+      </mat-list-option>
+    </mat-selection-list>
   </div>
-  <div class="form-group col-md-3">
-    <div class="input-group mb-2">
-    </div>
-  </div>
-  <div class="form-group col-md-3">
+
+  <p>
+    Options selected: {{Members.selectedOptions.selected.length}}
+  </p>
+
+ 
     <div class="input-group mb-2">
       <div class="input-group-prepend">
-        <button class="btn btn-outline-primary" type="button">
+        <button class="btn btn-outline-primary" type="submit">
           <mat-icon>save</mat-icon>
           Save
         </button>
       </div>
     </div>
-    </div>
-</div>
+  </form>
+

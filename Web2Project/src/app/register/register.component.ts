@@ -92,8 +92,6 @@ export class RegisterComponent implements OnInit{
   onFileSelected(event: any) {
     this.selectedImage = event.target.files;
   }
-
-
   // tslint:disable-next-line: typedef
   checkPasswords() {
   if (this.model.Password === this.model.PasswordRepete){
@@ -122,10 +120,4 @@ SelectionChangedCause(event: any)
       this.showSubcauses = false;
     }
   }
-
-  // get showSubcauses(): boolean{
-  //   return (this.subcauses.length > 0);
-  // }
-
-
 }
