@@ -36,7 +36,7 @@ export class CallsComponent implements OnInit {
   ngOnInit() {
   }
   
-  displayedColumns = ['id', 'reason', 'hazard', 'comment', 'icon_location'];
+  displayedColumns = ['id', 'reason', 'hazard', 'comment'/*, 'icon_location'*/];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

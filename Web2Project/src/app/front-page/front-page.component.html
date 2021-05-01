@@ -5,27 +5,27 @@
 <nav class="navbar navbar-expand-sm">
   <ul class="navbar-nav navbar-collapse collapse">
     <li class="nav-item">
-      <a class="nav-link navbar_link_left active" (click)="showComponentFront()">Home</a>
+      <a class="nav-link navbar_link_left active user-select-none pointer" (click)="showComponentFront()">Home</a>
     </li>
   </ul>
   <ul class="nav navbar-nav navbar-right">
     <li class="nav-item">
-      <a class="nav-link navbar_link_right" (click)="showComponentLogIn()">Login</a>
+      <a class="nav-link navbar_link_right user-select-none pointer" (click)="showComponentLogIn()">Login</a>
     </li>
   </ul>
   <ul class="nav navbar-nav navbar-right">
     <li class="nav-item">
-      <a class="nav-link navbar_link_right" (click)="showComponentRegister()">Register</a>
+      <a class="nav-link navbar_link_right user-select-none pointer" (click)="showComponentRegister()">Register</a>
     </li>
   </ul>
 </nav>
 
 <ng-container *ngIf="showFront">
-  <div class="title-header">
+  <div class="title-header user-select-none">
     NAZIV SAJTA
   </div>
   <div class="container outage-button">
-    <a class="animated-button1" (click)="showComponentReportOutage()">
+    <a class="animated-button1 pointer" (click)="showComponentReportOutage()">
       <span></span>
       <span></span>
       <span></span>

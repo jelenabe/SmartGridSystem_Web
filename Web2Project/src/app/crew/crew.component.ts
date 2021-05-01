@@ -8,6 +8,7 @@ import { CrewDialogComponent } from '../crew-dialog/crew-dialog.component';
   styleUrls: ['./crew.component.css']
 })
 export class CrewComponent implements OnInit {
+  selected_crew: any = {name: "Crew1", members:"Milica, Milan, Jelena"};
 
   constructor(public dialog: MatDialog) { }
 

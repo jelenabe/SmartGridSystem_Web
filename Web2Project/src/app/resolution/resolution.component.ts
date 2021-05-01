@@ -8,7 +8,7 @@ import { FormControl } from '@angular/forms';
 })
 export class ResolutionComponent implements OnInit {
   subcausesFailure:string[] = ['failure1', 'failure2', 'failure3'];
-  subcausesWeather:string[] = ['Storm', 'Hurricane', 'Wind', 'Snow', 'Lightning'];
+  subcausesWeather:string[] = ['Storm', 'Hurricane', 'Wind', 'Snow', 'Lightning', 'Hail'];
   subcausesHumanFactor:string[] = ['human1', 'human2', 'human3', 'human4'];
   subcauses:string[] = [];
 
