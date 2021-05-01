@@ -12,6 +12,9 @@ namespace Web2Project_API.Models
         private String comment;
         private String hazard;
         private String reason;
+        private String street;
+        private String city;
+        private int postNumber;
 
         public ReportOutage()
         {
@@ -22,5 +25,8 @@ namespace Web2Project_API.Models
         public string Comment { get => comment; set => comment = value; }
         public string Hazard { get => hazard; set => hazard = value; }
         public string Reason { get => reason; set => reason = value; }
+        public string Street { get => street; set => street = value; }
+        public string City { get => city; set => city = value; }
+        public int PostNumber { get => postNumber; set => postNumber = value; }
     }
 }

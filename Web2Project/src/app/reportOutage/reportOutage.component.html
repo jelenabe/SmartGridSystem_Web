@@ -1,157 +1,102 @@
 <h1 style="margin-left: 40%">Report Outage</h1>
 
-<div class="container">
+<div class="container" style="background-color: white; border-radius:3%; width: 50%;">
   <form (ngSubmit)="report()" ngNativeValidate>
     <!--Reason-->
-    <div class="input-group mb-3" style="width: 700px">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default"
-          >Reason</span
-        >
-      </div>
-      <input
-        name="reason"
-        type="text"
-        class="form-control"
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
-        placeholder="Enter Reason..."
-        [(ngModel)]="model.reason"
-      />
-    </div>
+    <mat-form-field class="example-full-width divStyle" >
+      <mat-label>Reason</mat-label>
+      <input type="text" matInput [formControl]="reasonFormControl" [errorStateMatcher]="matcher"  [(ngModel)]="model.reason" name="reason" 
+             placeholder="Reason...">
+      <mat-error *ngIf="reasonFormControl.hasError('required')">
+        Reason is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
 
     <!--Comment-->
-    <div class="input-group mb-3" style="width: 700px">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default"
-          >Comment</span
-        >
-      </div>
-      <input
-        name="comment"
-        type="text"
-        class="form-control"
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
-        placeholder="Enter Comment..."
-        [(ngModel)]="model.comment"
-      />
-    </div>
+    <mat-form-field class="example-full-width divStyle" >
+      <mat-label>Comment</mat-label>
+      <input type="text" matInput [formControl]="commentFormControl" [errorStateMatcher]="matcher" [(ngModel)]="model.comment" name="comment" 
+             placeholder="Comment...">
+      <mat-error *ngIf="commentFormControl.hasError('required')">
+        Comment is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
 
     <!--Hazard-->
-    <div class="input-group mb-3" style="width: 700px">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default"
-          >Hazard</span
-        >
-      </div>
-      <input
-        name="hazard"
-        type="text"
-        class="form-control"
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
-        placeholder="Enter Hazard..."
-        [(ngModel)]="model.hazard"
-      />
-    </div>
-    <br />
+    <mat-form-field class="example-full-width divStyle" style="padding-top: 3%;" >
+      <mat-label>Hazard</mat-label>
+      <input type="text" matInput [formControl]="hazardFormControl" [errorStateMatcher]="matcher"  [(ngModel)]="model.hazard" name="hazard" 
+             placeholder="Hazard...">
+      <mat-error *ngIf="hazardFormControl.hasError('required')">
+        Hazard is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
 
-    <h3>Consumer info:</h3>
+    <h3 style="padding-top: 3%;">Consumer info:</h3>
 
     <!--Name-->
-    <div class="input-group mb-3" style="width: 700px">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default"
-          >Name</span
-        >
-      </div>
-      <input
-        name="name"
-        type="text"
-        class="form-control"
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
-        placeholder="Enter Name..."
-        [(ngModel)]="model.name"
-      />
-    </div>
+    <mat-form-field class="example-full-width divStyle" >
+      <mat-label>Name</mat-label>
+      <input type="text" matInput [errorStateMatcher]="matcher" [(ngModel)]="model.name" name="name" 
+             placeholder="Name...">
+    </mat-form-field>
 
     <!--Lastname-->
-    <div class="input-group mb-3" style="width: 700px">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default"
-          >Lastname</span
-        >
-      </div>
-      <input
-        name="lastname"
-        type="text"
-        class="form-control"
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
-        placeholder="Enter Lastname..."
-        [(ngModel)]="model.lastname"
-      />
-    </div>
+    <mat-form-field class="example-full-width divStyle" >
+      <mat-label>Lastname</mat-label>
+      <input type="text" matInput [errorStateMatcher]="matcher"  [(ngModel)]="model.lastname" name="lastanme" 
+             placeholder="Lastname...">
+    </mat-form-field>
 
     <!--Phonenumber-->
-    <div class="input-group mb-3" style="width: 700px">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default"
-          >Phone number</span
-        >
-      </div>
-      <input
-        name="phonenumber"
-        type="text"
-        class="form-control"
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
-        placeholder="Enter Phone number..."
-        [(ngModel)]="model.phonenumber"
-      />
-    </div>
+    <mat-form-field class="example-full-width divStyle" >
+      <mat-label>Phone number</mat-label>
+      <input type="text" matInput [errorStateMatcher]="matcher" [(ngModel)]="model.phoneNumber" name="phoneNumber" 
+             placeholder="Phone number...">
+    </mat-form-field>
 
-    <!--Location-->
-    <div class="input-group mb-3" style="width: 700px">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default"
-          >Location</span
-        >
-      </div>
-      <input
-        name="location"
-        type="text"
-        class="form-control"
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
-        placeholder="Enter Location..."
-        [(ngModel)]="model.location"
-      />
-    </div>
+    <!--Street-->
+    <mat-form-field class="example-full-width divStyle" >
+      <mat-label>Street</mat-label>
+      <input type="text" matInput  [formControl]="streetFormControl" [errorStateMatcher]="matcher" [(ngModel)]="model.street" name="street" 
+             placeholder="Street...">
+     <mat-error *ngIf="streetFormControl.hasError('required')">
+         Street is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!--City-->
+    <mat-form-field class="example-full-width divStyle" >
+      <mat-label>City</mat-label>
+      <input type="text" matInput  [formControl]="cityFormControl" [errorStateMatcher]="matcher"  [(ngModel)]="model.city" name="city" 
+             placeholder="City...">
+      <mat-error *ngIf="cityFormControl.hasError('required')">
+            City is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+     <!--PostNumber-->
+     <mat-form-field class="example-full-width divStyle" >
+      <mat-label>Post number</mat-label>
+      <input type="text" matInput  [formControl]="postNumberFormControl" [errorStateMatcher]="matcher" [(ngModel)]="model.postNumber" name="postNumber" 
+             placeholder="Post number...">
+      <mat-error *ngIf="postNumberFormControl.hasError('required')">
+            Post number is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
 
     <!--Type of user-->
-    <div class="input-group mb-3" style="width: 700px">
-      <div class="input-group-prepend">
-        <label class="input-group-text" for="inputGroupSelect01">Type</label>
-      </div>
-      <select
-        class="custom-select"
-        id="inputGroupSelect01"
-        name="type"
-        [(ngModel)]="model.type"
-      >
-        <option selected>Choose...</option>
-        <option value="1">Rezidentalni</option>
-        <option value="2">Komercijalni</option>
-      </select>
-    </div>
-    <br />
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Type</mat-label>
+      <mat-select  name="type" [errorStateMatcher]="matcher" [(ngModel)]="model.type">
+        <mat-option value="Crew Member">Residental</mat-option>
+        <mat-option value="Dispatcher">Commercial</mat-option>
+      </mat-select>
+    </mat-form-field>
 
     <!--Button Reposrt-->
     <div class="input-group-prepend">
-    <button class="btn btn-primary" type="submit">Report</button>
+    <button class="btn btn-primary" type="submit" style="margin-left: 80%;">Report</button>
     </div>
   </form>
 </div>

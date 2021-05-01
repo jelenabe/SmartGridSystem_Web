@@ -115,7 +115,7 @@ SelectionChangedCause(event: any)
       this.model.UserType = 'Worker';
       this.showSubcauses = false;
     }
-    else if (event.value === 'Dispetcher'){
+    else if (event.value === 'Dispatcher'){
       this.model.UserType = 'Dispetcher';
       this.showSubcauses = false;
     }

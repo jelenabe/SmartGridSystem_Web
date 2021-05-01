@@ -6,11 +6,12 @@ import { Injectable } from '@angular/core';
 })
 export class ReportOutageService {
 
-constructor(private hhtp: HttpClient) { }
+  baseUrl = 'https://localhost:44326/api/report';
+
+constructor(private http: HttpClient) { }
 
 report(model: any){
-  console.log('Method report from reportOutageService worked!');
-  return model;
+ return this.http.post(this.baseUrl, model);
 }
 
 }

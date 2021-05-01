@@ -43,6 +43,11 @@ span,input,label,select{
     width: 150px; 
     margin-left: 40%;
   }
+
+  .divStyle{
+    width: 110%;
+  }
+
   
   
   

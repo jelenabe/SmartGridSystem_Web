@@ -5,15 +5,19 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ProfileService {
+  baseUrl = 'https://localhost:44326/api/profile';
 
 constructor(private http: HttpClient) { }
 
 applyChanges(model: any)
 {
-  console.log('method applyChanges form profile service called!');
-  return model;
-}
+    return this.http.post(this.baseUrl, model);
+  
 
+}
+ getUser(){
+  return this.http.get(this.baseUrl);
+ }
 getInactiveProfiles()
 {
   console.log("getInactiveEvents method form profile service called")
