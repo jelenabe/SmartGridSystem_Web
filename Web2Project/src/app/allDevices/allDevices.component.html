@@ -1,16 +1,36 @@
-<div class="mt-2">
+<div class="mt-3">
   <!--New Device-->
   <div>
-    <button type="button" class="btn btn-secondary" [routerLink]="['/newDevice']">New Device</button>
+    <button type="button" class="btn btn-secondary" [routerLink]="['/newDevice']">&nbsp;New Device&nbsp;</button>
   </div>
-
+  <mat-form-field appearance="fill" class="select-style mt-3">
+    <mat-label>Property</mat-label>
+    <mat-select>
+      <mat-option value="id">Id</mat-option>
+      <mat-option value="name">Name</mat-option>
+      <mat-option value="address">Address</mat-option>
+      <mat-option value="coordinates">Coordinates</mat-option>
+      <mat-option value="all">All</mat-option>
+    </mat-select>
+  </mat-form-field>
+  &nbsp;
+  <mat-form-field appearance="fill" class="select-style">
+    <mat-label>Type</mat-label>
+    <mat-select>
+      <mat-option value="breaker">Breaker</mat-option>
+      <mat-option value="fuse">Fuse</mat-option>
+      <mat-option value="transformer">Transformer</mat-option>
+      <mat-option value="disconnector">Disconnector</mat-option>
+      <mat-option value="all">All</mat-option>
+    </mat-select>
+  </mat-form-field>
+  &nbsp;
   <!--Filter-->
-  <span class="example-header">
+  <span class="example-header select-style">
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
     </mat-form-field>
   </span>
-
   <div class="example-container mat-elevation-z8 mt-0">
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 

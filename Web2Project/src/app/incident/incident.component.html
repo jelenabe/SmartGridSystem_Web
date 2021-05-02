@@ -6,14 +6,14 @@
 
   <!--Filter-->
   <span class="example-header">
-    <mat-form-field>
+    <mat-form-field class="mt-1">
       <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
     </mat-form-field>
   </span>&nbsp;&nbsp;&nbsp;&nbsp;
 
   <!--All/Mine-->
   <span>
-    <mat-button-toggle-group value="all_incidents" >
+    <mat-button-toggle-group value="all_incidents">
       <mat-button-toggle value="all_incidents">&nbsp;&nbsp;All&nbsp;&nbsp;</mat-button-toggle>
       <mat-button-toggle value="mine_incidents">Mine</mat-button-toggle>
     </mat-button-toggle-group>
