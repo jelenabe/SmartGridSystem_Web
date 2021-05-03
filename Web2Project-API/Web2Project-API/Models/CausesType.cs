@@ -5,11 +5,10 @@ using System.Threading.Tasks;
 
 namespace Web2Project_API.Models
 {
-    public enum DeviceType
+    public enum CausesType
     {
-        POWER_SWITCH,
-        FUSE,
-        TRANSFORMER,
-        DISCONNECTOR
+        FAILURE,
+        WEATHER,
+        HUMAN_FACTOR
     }
 }

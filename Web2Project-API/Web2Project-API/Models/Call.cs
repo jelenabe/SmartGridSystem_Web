@@ -10,16 +10,16 @@ namespace Web2Project_API.Models
     {
         [Key]
         public int CallId { get; set; }
-        private String comment;
+        private String? comment;
         private String hazardName;
-        private int hazardPriority;
-        private String reason;
-        public int? UserId { get; set; }
-        public User User { get; set; }
+        private CallReasons reason;
+        
         public int? ConsumerId { get; set; }
         public Consumer Consumer { get; set; }
         public int? IncidentId { get; set; }
         public  Incident Incident { get; set; }
+        public int LocationId { get; set; }
+        public Location Location { get; set; }
 
         public Call()
         {
@@ -27,7 +27,6 @@ namespace Web2Project_API.Models
         }
         public string Comment { get => comment; set => comment = value; }
         public string HazardName { get => hazardName; set => hazardName = value; }
-        public int HazardPriority { get => hazardPriority; set => hazardPriority = value; }
-        public string Reason { get => reason; set => reason = value; }
+        public CallReasons Reason { get => reason; set => reason = value; }
     }
 }

@@ -10,16 +10,24 @@ namespace Web2Project_API.Models
     {
         [Key]
         public int DeviceId { get; set; }
-        public int? LocationId { get; set; }
+        public string Name { get; set; }
+        public DeviceType Type { get; set; }
+        public int DeviceCounter { get; set; }  // treba mi za name
+
+        public int LocationId { get; set; }
         public Location Location { get; set; }
-        private String name;
-        private DeviceType type;
-        public IList<IncidentDevices> IncidentsDevices { get; set; }
+        public int? IncidentId { get; set; }
+        public Incident Incident { get; set; }
+        public int? SafetyDocumentId { get; set; }
+        public SafetyDocument SafetyDocument { get; set; }
+        public int? WorkPlanId { get; set; }
+        public WorkPlan WorkPlan { get; set; }
+
+
         public Device()
         {
 
         }      
-        public string Name { get => name; set => name = value; }
-        public DeviceType Type { get => type; set => type = value; }
+        
     }
 }

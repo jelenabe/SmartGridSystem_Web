@@ -26,7 +26,10 @@ namespace Web2Project_API.Models
         public int? ChangedByUserId { get; set; }
         public User ChangedByUser { get; set; }
 
-        public SafetyDocs SafetyDoc { get; set; }
+        public SafetyDocument SafetyDoc { get; set; }
+
+        public List<Device> Devices { get; set; }
+
 
         private DateTime startDate; 
         private DateTime endDate;

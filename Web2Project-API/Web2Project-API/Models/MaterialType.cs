@@ -5,11 +5,10 @@ using System.Threading.Tasks;
 
 namespace Web2Project_API.Models
 {
-    public enum DeviceType
+    public enum MaterialType
     {
-        POWER_SWITCH,
-        FUSE,
-        TRANSFORMER,
-        DISCONNECTOR
+        PLASTICS,
+        METAL,
+        CERAMICS
     }
 }

@@ -16,10 +16,12 @@ namespace Web2Project_API.Models
         private int postNumber;
         private String lat;
         private String lon;
+        private int priority;
 
         public ICollection<User> Users { get; set; }
         public ICollection<Consumer> Consumers { get; set; }
         public ICollection<Device> Devices { get; set; }
+        public ICollection<Call> Calls { get; set; }
         public ICollection<WorkPlan> WorkPlans { get; set; }
         public ICollection<WorkRequest> WorkRequests { get; set; }
 
@@ -32,5 +34,6 @@ namespace Web2Project_API.Models
         public int PostNumber { get => postNumber; set => postNumber = value; }
         public string Lat { get => lat; set => lat = value; }
         public string Lon { get => lon; set => lon = value; }
+        public int Priority { get => priority; set => priority = value; }
     }
 }

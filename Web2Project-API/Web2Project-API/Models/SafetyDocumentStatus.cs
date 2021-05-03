@@ -5,11 +5,8 @@ using System.Threading.Tasks;
 
 namespace Web2Project_API.Models
 {
-    public enum DeviceType
+    public enum SafetyDocumentStatus  // proveriti ?!??!?
     {
-        POWER_SWITCH,
-        FUSE,
-        TRANSFORMER,
-        DISCONNECTOR
+        DRFAT
     }
 }

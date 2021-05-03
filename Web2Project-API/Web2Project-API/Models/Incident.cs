@@ -10,57 +10,42 @@ namespace Web2Project_API.Models
     {
         [Key]
         public int IncidentId { get; set; }
-        private String affectedCustomers;
-        private bool assignedToYou;
-        private DateTime ata;
-        private String calls;
-        private bool confirmed;
-        private DateTime eta;
-        private DateTime etr;
-        public int? WorkPlanId { get; set; }
-        public WorkPlan WorkPlan { get; set;}
-        public WorkRequest WorkRequest { get; set; }
+        public IncidentType IncidentType { get; set; }
+        public int? Priority { get; set; }
+        public bool Confirmed { get; set; }
+        public IncidentStatus IncidentStatus { get; set; }
+        public DateTime ETA { get; set; }
+        public DateTime? ATA { get; set; }
+        public DateTime ETR { get; set; }
+        public DateTime? OutageTime { get; set; }
+        public DateTime ScheduedTime { get; set; }
+        public double? VoltageLevel { get; set; }
+        public int? CallNumber { get; set; }  // moze se izvaditi iz liste poziva: Calls.Count
+        public int? AffectedCustomers { get; set; }  // moze se izvaditi iz liste uredjaja-lokacije-potrosaci...
+        public bool? Assigned { get; set; }  // mozda i ne mora
+        public CausesType ResolutionCauses { get; set; }
+        public SubcausesType ResolutionSubcauses { get; set; }
+        public ConstructionTypes ResolutionConstructionTypes { get; set; }
+        public MaterialType ResolutionMaterials { get; set; }
 
-        public Nullable<int> CrewId { get; set; }
+        public int? UserId { get; set; }  // user koji ga je uzeo na resavanje
+        public User User { get; set; }
+        public int CrewId { get; set; }
         public Crew Crew { get; set; }
+        public List<Device> Devices { get; set; }
+        public List<Call> Calls { get; set; }
+        public List<MultimediaAttachmentIncident> MultimediaAttachmentIncidents { get; set; }
 
-        public  Call Call { get; set; }
+        /*-------------------------------------------------*/
+        public WorkRequest WorkRequest { get; set; }
+        public int? WorkPlanId { get; set; }
+        public WorkPlan WorkPlan { get; set; }
+        
 
-        public IList<IncidentDevices> IncidentsDevices { get; set; }
+        /*
+        public int? MultimediaAnchorID { get; set; }
+        public MultimediaAnchor MultimediaAnchor { get; set; }
+        */
 
-        private DateTime outageTime;
-        private String pictures;
-        private int priority;
-        private String resolutionCouse;
-        private String resolutionConstructionType;
-        private DateTime scheduledTime;
-        private String resolutionSubCouse;
-        private String resolutionMaterial;
-        private DocumentType type;
-        private DocumentStatus status;
-        private int lvl;
-
-        public Incident()
-        {
-        }
-
-        public string AffectedCustomers { get => affectedCustomers; set => affectedCustomers = value; }
-        public bool AssignedToYou { get => assignedToYou; set => assignedToYou = value; }
-        public DateTime Ata { get => ata; set => ata = value; }
-        public string Calls { get => calls; set => calls = value; }
-        public bool Confirmed { get => confirmed; set => confirmed = value; }
-        public DateTime Eta { get => eta; set => eta = value; }
-        public DateTime Etr { get => etr; set => etr = value; }
-        public DateTime OutageTime { get => outageTime; set => outageTime = value; }
-        public string Pictures { get => pictures; set => pictures = value; }
-        public int Priority { get => priority; set => priority = value; }
-        public string ResolutionCouse { get => resolutionCouse; set => resolutionCouse = value; }
-        public string ResolutionConstructionType { get => resolutionConstructionType; set => resolutionConstructionType = value; }
-        public DateTime ScheduledTime { get => scheduledTime; set => scheduledTime = value; }
-        public string ResolutionSubCouse { get => resolutionSubCouse; set => resolutionSubCouse = value; }
-        public DocumentType Type { get => type; set => type = value; }
-        public DocumentStatus Status { get => status; set => status = value; }
-        public int Lvl { get => lvl; set => lvl = value; }
-        public string ResolutionMaterial { get => resolutionMaterial; set => resolutionMaterial = value; }
     }
 }

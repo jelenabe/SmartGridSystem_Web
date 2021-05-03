@@ -5,11 +5,9 @@ using System.Threading.Tasks;
 
 namespace Web2Project_API.Models
 {
-    public enum DeviceType
+    public enum ConstructionTypes
     {
-        POWER_SWITCH,
-        FUSE,
-        TRANSFORMER,
-        DISCONNECTOR
+        UNDERGROUND,
+        OVERGROUND
     }
 }

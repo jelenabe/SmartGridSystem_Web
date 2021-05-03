@@ -18,20 +18,21 @@ namespace Web2Project_API.Models
         private String email;
         private DateTime birthday;
         private bool approved;
-        //private bool checkEmal; // ?!
+        //private bool checkEmal; // da li treba na back-u ?!
 
-        public int? LocationId { get; set; }
+        public int LocationId { get; set; }
         public Location Location { get; set; }
-
         public int? CrewId { get; set; }
         public Crew Crew { get; set; }
-        public ICollection<Call> Calls { get; set; }
+        public int ConsumerId { get; set; }
+        public Consumer Consumer { get; set; }
         public ICollection<WorkPlan> CreatedWorkPlans { get; set; }
         public ICollection<WorkPlan> ChangedWorkPlans { get; set; }
-        public ICollection<SafetyDocs> CreatedSafetyDocs { get; set; }
-        public ICollection<SafetyDocs> ChangedSafetyDocs { get; set; }
+        public ICollection<SafetyDocument> SafetyDocuments { get; set; }
+        public ICollection<Incident> Incidents { get; set; }
         public ICollection<WorkRequest> ChangedWorkRequest { get; set; }
         public ICollection<WorkRequest> CreatedWorkRequest { get; set; }
+        public ICollection<HistoryOfStateChanges> HistoryOfStateChanges { get; set; }
 
 
         private String picture;
