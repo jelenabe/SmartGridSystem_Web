@@ -50,7 +50,7 @@ namespace Web2Project_API.Controllers
         }
 
         [HttpGet]
-        [Route("{id:int}")]
+        [Route("{id}")]
         public async Task<ActionResult<IEnumerable<object>>> GetConsumer(int id)
         {
             var Consumer = await _repo.GetConsumer(id);
@@ -68,10 +68,11 @@ namespace Web2Project_API.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult<Consumer>> RemoveConsumer([FromBody] string id)
+        [Route("{id}")]
+        public async Task<ActionResult<Consumer>> RemoveConsumer(int id)
         {
-           // string consumerId = model.Id;
-            await _repo.RemoveConsumer(id);
+            string consumerId = id.ToString();
+            await _repo.RemoveConsumer(consumerId);
 
             return StatusCode(200);
         }

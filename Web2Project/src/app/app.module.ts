@@ -87,11 +87,12 @@ import { DevicesSafetyDocumentComponent } from './devices-safety-document/device
 import { DeviceDialogSafetyDocumentComponent } from './device-dialog-safety-document/device-dialog-safety-document.component';
 //import { MatFileUploadModule } from 'angular-material-fileupload';
 import {MatTabsModule} from '@angular/material/tabs';
+import { SelectConsumerComponent } from './select-consumer/select-consumer.component';
 
 
 @NgModule({
   schemas : [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [
+  declarations: [	
     AppComponent,
     HomeComponent,
       LoginComponent,
@@ -149,7 +150,8 @@ import {MatTabsModule} from '@angular/material/tabs';
       HistorySafetyDocumentComponent,
       MultimediaSafetyDocumentComponent,
       DevicesSafetyDocumentComponent,
-      DeviceDialogSafetyDocumentComponent
+      DeviceDialogSafetyDocumentComponent,
+      SelectConsumerComponent
    ],
   imports: [
     BrowserModule,

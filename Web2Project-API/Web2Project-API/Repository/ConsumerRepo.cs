@@ -81,7 +81,8 @@ namespace Web2Project_API.Repository
         {
             
             var consumer = _context.Consumers.Where(x => x.ConsumerId == Int32.Parse(id)).FirstOrDefault();
-
+            _context.Consumers.Remove(consumer);
+            await _context.SaveChangesAsync();
             return consumer;
 
         }

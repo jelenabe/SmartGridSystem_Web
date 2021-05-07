@@ -39,7 +39,7 @@ export class ConsumersComponent implements OnInit {
       this.Consumers = response;
       console.log(this.Consumers);
       this.Consumers.forEach((element: { consumerId: number; name: string; street: string; city:string; phone:string; type:string  })=> {
-        if(element.type=='1'){
+        if(element.type=='2'){
           element.type='Comercial';
         }else{
           
@@ -78,15 +78,14 @@ export class ConsumersComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  openEditCrew(index: number)
+  openEditCrew(Id: number)
   {
-    //index oznacava koji consumer treba da se prikaze
-    this.router.navigate(['/', 'newConsumer',index]);
+    //id oznacava koji consumer treba da se prikaze
+    this.router.navigate(['/', 'newConsumer',Id]);
   }
 
-  deleteRow(Id: string){
-
-    this.dataSource.data.splice(+Id, 1);
+  deleteRow(Id: number, index:number){
+    this.dataSource.data.splice(index, 1);
     this.dataSource._updateChangeSubscription();
     this.newConsumerService.deleteConsumer(Id).subscribe((response) => {
       console.log('Delete successed!');

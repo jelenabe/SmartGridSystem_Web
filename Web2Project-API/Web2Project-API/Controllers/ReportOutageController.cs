@@ -23,7 +23,7 @@ namespace Web2Project_API.Controllers
             this._config = config;
         }
         [HttpPost]
-        public async Task<IActionResult> Register([FromBody] OutageDTO dto)
+        public async Task<IActionResult> Report([FromBody] OutageDTO dto)
         {
             var reportOutage = new ReportOutage();
             reportOutage.Comment = dto.Comment;

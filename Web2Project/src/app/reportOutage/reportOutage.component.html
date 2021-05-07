@@ -33,27 +33,18 @@
     </mat-form-field>
 
     <h3 style="padding-top: 3%;">Consumer info:</h3>
-
-    <!--Name-->
-    <mat-form-field class="example-full-width divStyle" >
-      <mat-label>Name</mat-label>
-      <input type="text" matInput [errorStateMatcher]="matcher" [(ngModel)]="model.name" name="name" 
-             placeholder="Name...">
-    </mat-form-field>
-
-    <!--Lastname-->
-    <mat-form-field class="example-full-width divStyle" >
-      <mat-label>Lastname</mat-label>
-      <input type="text" matInput [errorStateMatcher]="matcher"  [(ngModel)]="model.lastname" name="lastanme" 
-             placeholder="Lastname...">
-    </mat-form-field>
-
-    <!--Phonenumber-->
-    <mat-form-field class="example-full-width divStyle" >
-      <mat-label>Phone number</mat-label>
-      <input type="text" matInput [errorStateMatcher]="matcher" [(ngModel)]="model.phoneNumber" name="phoneNumber" 
-             placeholder="Phone number...">
-    </mat-form-field>
+    <!--All/Mine-->
+<span>
+  <mat-button-toggle-group>
+    <mat-button-toggle value="all_incidents" id="option1" (click)="buttonClicked(1)" >
+      Anonymous</mat-button-toggle
+    >
+    <mat-button-toggle value="mine_incidents" id="option2" (click)="openDialog()"
+      >Select consumer</mat-button-toggle
+    >
+  </mat-button-toggle-group>
+</span>
+<div *ngIf="anonymous">
 
     <!--Street-->
     <mat-form-field class="example-full-width divStyle" >
@@ -84,15 +75,7 @@
             Post number is <strong>required</strong>
       </mat-error>
     </mat-form-field>
-
-    <!--Type of user-->
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Type</mat-label>
-      <mat-select  name="type" [errorStateMatcher]="matcher" [(ngModel)]="model.type">
-        <mat-option value="Crew Member">Residental</mat-option>
-        <mat-option value="Dispatcher">Commercial</mat-option>
-      </mat-select>
-    </mat-form-field>
+  </div>
 
     <!--Button Reposrt-->
     <div class="input-group-prepend">

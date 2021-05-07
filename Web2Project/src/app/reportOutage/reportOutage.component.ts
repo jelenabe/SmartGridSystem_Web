@@ -1,7 +1,10 @@
+import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y';
 import { Component, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MyErrorStateMatcher } from '../profile/profile.component';
+import { SelectConsumerComponent } from '../select-consumer/select-consumer.component';
 import { ProfileService } from '../services/profile.service';
 
 @Component({
@@ -12,6 +15,7 @@ import { ProfileService } from '../services/profile.service';
 export class ReportOutageComponent implements OnInit {
   model: any= {};
   matcher = new MyErrorStateMatcher();
+  anonymous:boolean= true;
 
   reasonFormControl = new FormControl('', [
     Validators.required,
@@ -32,7 +36,7 @@ export class ReportOutageComponent implements OnInit {
     Validators.required,
   ]);
 
-  constructor(private profileService: ProfileService) { }
+  constructor(private profileService: ProfileService, public dialog: MatDialog) { }
 
   report(){
     console.log(this.model);
@@ -41,6 +45,24 @@ export class ReportOutageComponent implements OnInit {
     })
   }
   ngOnInit() {
+  }
+
+  buttonClicked(options: number){
+    if(options==1){
+
+      this.anonymous=true;      
+    }else{
+      
+      this.anonymous=false;
+    }
+  }
+  openDialog(){
+    this.anonymous=false;
+    const dialogRef = this.dialog.open(SelectConsumerComponent, {width: "80%"});
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }

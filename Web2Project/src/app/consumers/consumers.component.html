@@ -49,9 +49,9 @@
        <!-- Remove and Edit buttom Column -->
       <ng-container matColumnDef="Buttons">
         <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
-        <td mat-cell *matCellDef="let element; let i" class="mat-cell"> 
+        <td mat-cell *matCellDef="let element; let i=index" class="mat-cell"> 
           <button  mat-stroked-button color="primary" (click)="openEditCrew(element.consumerId)">Edit</button>
-          <button mat-stroked-button color="warn" (click)="deleteRow(element.consumerId)">Remove</button>  
+          <button mat-stroked-button color="warn" (click)="deleteRow(element.consumerId,i)">Remove</button>  
         </td>
       </ng-container>
 
