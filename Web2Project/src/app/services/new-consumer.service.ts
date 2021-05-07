@@ -18,8 +18,8 @@ getConsumers(){
   return this.http.get(this.baseUrl);
 }
 
-deleteConsumer(consumerId:any){
-  return this.http.delete(this.baseUrl,consumerId);
+deleteConsumer(id: any){
+  return this.http.delete(this.baseUrl, id);
 }
 
 }

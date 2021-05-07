@@ -28,6 +28,8 @@ export class ConsumersComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'location', 'phoneNumber', 'type', 'Buttons'];
   dataSource: MatTableDataSource<Consumer>;
 
+  model: any = {};
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 
@@ -82,10 +84,11 @@ export class ConsumersComponent implements OnInit {
     this.router.navigate(['/', 'newConsumer',index]);
   }
 
-  deleteRow(consumerId: number){
-    this.dataSource.data.splice(consumerId,1);
+  deleteRow(Id: string){
+
+    this.dataSource.data.splice(+Id, 1);
     this.dataSource._updateChangeSubscription();
-    this.newConsumerService.deleteConsumer(consumerId).subscribe((response)=>{
+    this.newConsumerService.deleteConsumer(Id).subscribe((response) => {
       console.log('Delete successed!');
     })
   } 

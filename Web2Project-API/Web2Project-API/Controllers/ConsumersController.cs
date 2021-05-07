@@ -68,11 +68,12 @@ namespace Web2Project_API.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult<Consumer>> RemoveConsumer(int consumerId)
+        public async Task<ActionResult<Consumer>> RemoveConsumer([FromBody] string id)
         {
-            _repo.RemoveConsumer(consumerId);
+           // string consumerId = model.Id;
+            await _repo.RemoveConsumer(id);
 
-            return Status(200);
+            return StatusCode(200);
         }
 
         [HttpPut]

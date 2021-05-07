@@ -10,8 +10,8 @@ using Web2Project_API.DbConfigurations;
 namespace Web2Project_API.Migrations
 {
     [DbContext(typeof(ModelDbContext))]
-    [Migration("20210503211228_init")]
-    partial class init
+    [Migration("20210507184257_InitMigration")]
+    partial class InitMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
