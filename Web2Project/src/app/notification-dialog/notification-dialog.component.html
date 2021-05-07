@@ -1,6 +1,6 @@
-<h2 mat-dialog-title>Select which notification will be displayed</h2>
+<h2 style="text-align: center;">Select which notification will be displayed</h2>
   <div class="container">
-  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="margin-left: 40%;">
     <!-- Checkbox Column -->
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef>
@@ -29,8 +29,8 @@
       <td mat-cell *matCellDef="let element"style="padding-right: 10px;">{{ element.position }}</td>
     </ng-container>
     <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Notifications</th>
+    <ng-container matColumnDef="name" >
+      <th mat-header-cell *matHeaderCellDef style="padding-top: 10%;">Notifications</th>
       <td mat-cell *matCellDef="let element">{{ element.name }}</td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -43,6 +43,8 @@ namespace Web2Project_API
             services.AddControllers();
             services.AddScoped<IAuthRepo, AuthRepo>();
             services.AddScoped<ICrewRepo, CrewRepo>();
+            services.AddScoped<IOutageRepo, OutageRepo>();
+            services.AddScoped<IConsumerRepo, ConsumerRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -19,7 +19,7 @@
       <!-- Id Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Id. </th>
-        <td mat-cell *matCellDef="let element" class="mat-cell"> {{element.id}} </td>
+        <td mat-cell *matCellDef="let element" class="mat-cell"> {{element.consumerId}} </td>
       </ng-container>
 
        <!-- Name Column -->
@@ -31,13 +31,13 @@
        <!-- Location Column -->
       <ng-container matColumnDef="location">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Location</th>
-        <td mat-cell id='location' *matCellDef="let element" class="mat-cell"> {{element.location}} </td>
+        <td mat-cell id='location' *matCellDef="let element" class="mat-cell"> {{element.street+' '+element.city}} </td>
       </ng-container>
 
        <!-- Phone numebr Column -->
       <ng-container matColumnDef="phoneNumber">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone number </th>
-        <td mat-cell *matCellDef="let element" class="mat-cell"> {{element.phoneNumber}} </td>
+        <td mat-cell *matCellDef="let element" class="mat-cell"> {{element.phone}} </td>
       </ng-container>
 
        <!-- Type Column -->
@@ -50,8 +50,8 @@
       <ng-container matColumnDef="Buttons">
         <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
         <td mat-cell *matCellDef="let element; let i" class="mat-cell"> 
-          <button  mat-stroked-button color="primary" (click)="openEditCrew(i)">Edit</button>
-          <button mat-stroked-button color="warn" (click)="deleteRow(i)">Remove</button>  
+          <button  mat-stroked-button color="primary" (click)="openEditCrew(element.consumerId)">Edit</button>
+          <button mat-stroked-button color="warn" (click)="deleteRow(element.consumerId)">Remove</button>  
         </td>
       </ng-container>
 

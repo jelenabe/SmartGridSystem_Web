@@ -4,50 +4,71 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { NewConsumerService } from '../services/new-consumer.service';
 
 export interface Consumer {
   id: number;
   name: string;
   lastName: string;
-  location: string;
+  street: string;
+  city: string;
   phoneNumber: string;
   type: string;
 }
 
-const ELEMENT_DATA: Consumer[] = [
-  {id: 1, name: 'Milica', lastName: 'Simeunovic', location: 'Mucenika Romanovih 44 Bijeljina', phoneNumber: '065713244', type: 'Komercijalni'},
-  {id: 2, name: 'Milan', lastName: 'Momcilovic', location: 'Novi Sad', phoneNumber: '065713244', type: 'Komercijalni' },
-  {id: 3, name: 'Jelena', lastName: 'Beader', location: 'Beograd', phoneNumber: '065713244', type: 'Komercijalni'},
-  {id: 4, name: 'Ivana', lastName: 'Markovic', location: 'Banja Luka', phoneNumber: '065713244', type: 'Komercijalni'},
-  {id: 5, name: 'Nikola', lastName: 'Nikolic', location: 'Nis', phoneNumber: '065713244', type: 'Komercijalni' },
-  {id: 6, name: 'Simo', lastName: 'Simic', location: 'Bijeljina', phoneNumber: '065713244', type: 'Komercijalni' },
-  {id: 7, name: 'Pera', lastName: 'Peric', location: 'Novi Sad', phoneNumber: '065713244', type: 'Komercijalni' },
-  {id: 8, name: 'Sanja', lastName: 'Simic', location: 'Bijeljina', phoneNumber: '065713244', type: 'Komercijalni' },
-  {id: 9, name: 'Marija', lastName: 'Nikolic', location: 'Bijeljina', phoneNumber: '065713244', type: 'Komercijalni' },
-  {id: 10, name: 'Tamara', lastName: 'Tamaric', location: 'Bijeljina', phoneNumber: '065713244', type: 'Komercijalni'},
-];
+  
 @Component({
   selector: 'app-consumers',
   templateUrl: './consumers.component.html',
   styleUrls: ['./consumers.component.css']
 })
 export class ConsumersComponent implements OnInit {
-
+  ELEMENT_DATA: any[] = [];
+  Consumers: any = [];
   displayedColumns: string[] = ['id', 'name', 'location', 'phoneNumber', 'type', 'Buttons'];
   dataSource: MatTableDataSource<Consumer>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 
-  constructor(private router: Router) {
-    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+  constructor(private router: Router, private newConsumerService: NewConsumerService) {
+    this.newConsumerService.getConsumers().subscribe((response)=>{
+      console.log("Applay changes successfull");
+      this.Consumers = response;
+      console.log(this.Consumers);
+      this.Consumers.forEach((element: { consumerId: number; name: string; street: string; city:string; phone:string; type:string  })=> {
+        if(element.type=='1'){
+          element.type='Comercial';
+        }else{
+          
+          element.type='Residential';
+        }
+        this.ELEMENT_DATA.push(element)
+      });
+      
+    
+    this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    })
    }
 
   ngOnInit() {
+   
+  }
+  getConsumers(){
+  
+    this.newConsumerService.getConsumers().subscribe((response)=>{
+      console.log("Applay changes successfull");
+      this.Consumers = response;
+      console.log(this.Consumers);
+      this.Consumers.forEach((element: { consumerId: number; name: string; location: string; phone:string; type:string  })=> {
+        this.ELEMENT_DATA.push(element)
+      });
+    })
   }
   ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+ 
   }
 
  applyFilter(event: Event): void {
@@ -61,9 +82,11 @@ export class ConsumersComponent implements OnInit {
     this.router.navigate(['/', 'newConsumer',index]);
   }
 
-  deleteRow(index: number){
-    this.dataSource.data.splice(index,1);
+  deleteRow(consumerId: number){
+    this.dataSource.data.splice(consumerId,1);
     this.dataSource._updateChangeSubscription();
-  }
-
+    this.newConsumerService.deleteConsumer(consumerId).subscribe((response)=>{
+      console.log('Delete successed!');
+    })
+  } 
 }

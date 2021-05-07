@@ -1,5 +1,6 @@
 mat-table {
-    height: 300px;
-    width: 500px;
+    height: 100%;
+    width: 20%;
     overflow: auto;
+    font-size: larger;
   }

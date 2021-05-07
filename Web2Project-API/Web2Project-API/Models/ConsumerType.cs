@@ -7,6 +7,8 @@ namespace Web2Project_API.Models
 {
     public enum ConsumerType
     {
-        
+        Commercial,
+        Residential
+
     }
 }

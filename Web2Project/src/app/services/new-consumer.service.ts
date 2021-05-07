@@ -6,11 +6,20 @@ import { Injectable } from '@angular/core';
 })
 export class NewConsumerService {
 
-constructor(private hhtp: HttpClient) { }
+baseUrl = 'https://localhost:44326/api/consumers';
+
+constructor(private http: HttpClient) { }
 
 save(model: any){
   console.log('Method save from new-consumerService worked!');
-  return model;
+  return this.http.post(this.baseUrl, model);
+}
+getConsumers(){
+  return this.http.get(this.baseUrl);
+}
+
+deleteConsumer(consumerId:any){
+  return this.http.delete(this.baseUrl,consumerId);
 }
 
 }

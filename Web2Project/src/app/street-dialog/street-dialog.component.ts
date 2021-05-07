@@ -3,57 +3,47 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Alekse Santica br.54'},
-  {position: 2, name: 'Puskinova br.65'},
-  {position: 3, name: 'Danila Kisa br.16'},
-  {position: 4, name: 'Petrogradska br. 120'},
-  {position: 5, name: 'Moskovska br.60'},
-  {position: 6, name: 'Svetog Save br.13'},
-  {position: 7, name: 'Nikole Teske br.98'},
-];
-
 @Component({
   selector: 'app-street-dialog',
   templateUrl: './street-dialog.component.html',
   styleUrls: ['./street-dialog.component.css']
 })
 export class StreetDialogComponent implements OnInit {
+  Streets: any = [];
+  selectedStreets: any = [];
 
-  constructor() { }
+  model: any =
+  {
+   LocationsIds:[],
+  }
+
+  streets: any[] = ['Alekse Santica br.54', 'Puskinova br.65', 'Svetog Save br.13', 'Moskovska br.60', 'Nikole Teske br.98'];
+  constructor() { 
+    this.getStreets();
+  }
 
   ngOnInit() {
   }
+
+  getStreets(){
+
+    /*this.crewService.getUsers().subscribe((response) =>{
+      this.CrewMembers = response;
+    });*/
+  }
+
+  apply(){
+    this.selectedStreets.forEach((element: { locationId: number; }) => {
+      this.model.LocationsIds.push(element.locationId);
+    });
+
+    // servis za dodjelu prioriteta ulicama
+    /*this.crewService.addCrew(this.model).subscribe((response) =>
+    {
+      console.log('Crew added!');
+    });*/
+  }
   
-  displayedColumns: string[] = ['select', 'position', 'name'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  selection = new SelectionModel<PeriodicElement>(true, []);
 
-  /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
-
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
-  }
-
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: PeriodicElement): string {
-    if (!row) {
-      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-    }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
-  }
 
 }

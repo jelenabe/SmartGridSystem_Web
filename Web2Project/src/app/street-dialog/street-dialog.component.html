@@ -1,5 +1,6 @@
-
-  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<h2 style="text-align: center;">Select which street has priority</h2>
+<!--
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="margin-left: 35%;">
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef>
         <mat-checkbox
@@ -38,4 +39,15 @@
       *matRowDef="let row; columns: displayedColumns"
       (click)="selection.toggle(row)"
     ></tr>
-  </mat-table>
+  </mat-table>-->
+  <div style="width: 50%; margin-left: 25%;">
+    <mat-selection-list #street [(ngModel)]="selectedStreets" name="selectedStreets">
+      <mat-list-option *ngFor="let street of streets" [value]="street">
+        {{street}}
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
+
+  <p style="margin-left: 26%; padding-top: 5%;">
+    Options selected: {{street.selectedOptions.selected.length}}
+  </p>
