@@ -87,6 +87,9 @@ import { DeviceDialogSafetyDocumentComponent } from './device-dialog-safety-docu
 //import { MatFileUploadModule } from 'angular-material-fileupload';
 import {MatTabsModule} from '@angular/material/tabs';
 import { SelectConsumerComponent } from './select-consumer/select-consumer.component';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 
 @NgModule({
@@ -180,6 +183,8 @@ import { SelectConsumerComponent } from './select-consumer/select-consumer.compo
     MatDialogModule,
     //MatFileUploadModule,
     MatTabsModule,
+    MatBadgeModule,
+    MatSnackBarModule,
 
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyApcxyVhBRYs-9VqvWcXz0gpPBwmJWAV9o',

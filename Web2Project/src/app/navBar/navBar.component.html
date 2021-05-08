@@ -12,14 +12,18 @@
   </li>
 
   <!--Notifications-->
-  <li class="nav-item">
+  <li class="nav-item" style="padding-top: 4%;">
     <a
       class="nav-link icon-height"
       [routerLink]="['/notifications']"
       routerLinkActive="active"
-      ><mat-icon class="icon-design">notifications</mat-icon>
+      ><mat-icon class="icon-design" matBadge="15" matBadgeColor="warn">notifications</mat-icon>
       <p>Notifications</p></a
     >
+    <!-- Include text description of the icon's meaning for screen-readers -->
+    <span class="cdk-visually-hidden">
+      Example with a home icon with overlaid badge showing the number 15
+    </span>
   </li>
 
   <!--settings-->
@@ -33,6 +37,7 @@
     >
   </li>
 
+  <div *ngIf="admin">
   <!--Admin settings-->
   <li class="nav-item">
     <a
@@ -43,6 +48,7 @@
       <p>Admin Settings</p></a
     >
   </li>
+  </div>
   <br/>
   <!--Map-->
   <li class="nav-item">
@@ -67,7 +73,7 @@
       <p>Crews</p></a
     >
   </li>
-
+<div *ngIf="admin">
   <!--Consumers-->
   <li class="nav-item">
     <a class="nav-link icon-height" [routerLink]="['/consumers']" routerLinkActive="active"
@@ -75,20 +81,13 @@
       <p>Consumers</p></a
     >
   </li>
+</div>
 
   <!--Devices-->
   <li class="nav-item">
     <a class="nav-link icon-height" [routerLink]="['/allDevices']" routerLinkActive="active"
       ><mat-icon class="icon-design">add_to_queue</mat-icon>
       <p>Devices</p></a
-    >
-  </li>
-
-  <!--Report outage-->
-  <li class="nav-item">
-    <a class="nav-link icon-height" [routerLink]="['/reportOutage']" routerLinkActive="active"
-      ><mat-icon class="icon-design"> phone</mat-icon>
-      <p>Report outage</p></a
     >
   </li>
 </ul>

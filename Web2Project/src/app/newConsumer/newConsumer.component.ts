@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroupDirective, Validators } from '@angular/forms';
+import { FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { NewConsumerService } from '../services/new-consumer.service';
 import {ErrorStateMatcher} from '@angular/material/core';
 import { NgForm } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -23,6 +24,7 @@ export class NewConsumerComponent implements OnInit {
   paramsTwo:string[];
   location:string[];
   edit:boolean=false;
+  contactForm: FormGroup;
 
   nameFormControl = new FormControl('', [
     Validators.required,
@@ -46,12 +48,10 @@ export class NewConsumerComponent implements OnInit {
     Validators.required,
   ]);
   
-
-
   matcher = new MyErrorStateMatcher();
 
 
-  constructor(private newConsumerService: NewConsumerService) { }
+  constructor(private newConsumerService: NewConsumerService,private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     if(this.edit){
@@ -73,5 +73,11 @@ export class NewConsumerComponent implements OnInit {
       console.log("Applay changes successfull");
     })
   }
+  openSnackBar() {
+    this._snackBar.open("Consumer success added" ,'OK', {
+      duration: 3000
+    });
+  }
+  
 
 }
