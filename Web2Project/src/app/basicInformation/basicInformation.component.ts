@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { ProfileService } from '../services/profile.service';
 import { WorkPlanService } from '../services/workPlan.service';
 import { WorkPlansComponent } from '../workPlans/workPlans.component';
@@ -14,6 +15,19 @@ export class BasicInformationComponent implements OnInit {
   crews: any = [];
   currentDate: any;
 
+  
+  typeFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  startDateFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  endDateFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  purposeFormControl = new FormControl('', [
+    Validators.required,
+  ]);
   constructor(private workPlanService: WorkPlanService) {
 
   }
@@ -23,12 +37,13 @@ export class BasicInformationComponent implements OnInit {
     this.crews = ['Ekipa1', 'Ekipa2', 'Ekipa3'];
     this.currentDate = new Date();
   }
-  // tslint:disable-next-line: typedef
-  save(){
-    console.log(this.model);
-    this.workPlanService.save(this.model).subscribe(() => {
-      console.log('Save successfull');
-    });
+  openIncidentDialog(){
+  }
+  openWorkRequestDialog(){
+
+  }
+  openCrewDialog(){
+
   }
 
 }

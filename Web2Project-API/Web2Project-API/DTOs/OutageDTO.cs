@@ -16,5 +16,6 @@ namespace Web2Project_API.DTOs
         public string Street { get; set; }
         public string City { get; set; }
         public int PostNumber { get; set; }
+        public int Type { get; set; }
     }
 }

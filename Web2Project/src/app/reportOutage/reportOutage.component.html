@@ -1,4 +1,4 @@
-<h1 style="margin-left: 40%">Report Outage</h1>
+<h1 style="margin-left: 43%">Report Outage</h1>
 
 <div class="container" style="background-color: white; border-radius:3%; width: 50%;">
   <form (ngSubmit)="report()" ngNativeValidate>
@@ -15,11 +15,8 @@
     <!--Comment-->
     <mat-form-field class="example-full-width divStyle" >
       <mat-label>Comment</mat-label>
-      <input type="text" matInput [formControl]="commentFormControl" [errorStateMatcher]="matcher" [(ngModel)]="model.comment" name="comment" 
+      <input type="text" matInput [(ngModel)]="model.comment" name="comment" 
              placeholder="Comment...">
-      <mat-error *ngIf="commentFormControl.hasError('required')">
-        Comment is <strong>required</strong>
-      </mat-error>
     </mat-form-field>
 
     <!--Hazard-->
@@ -33,7 +30,7 @@
     </mat-form-field>
 
     <h3 style="padding-top: 3%;">Consumer info:</h3>
-    <!--All/Mine-->
+    <!--Anonymous/Consumer-->
 <span>
   <mat-button-toggle-group>
     <mat-button-toggle value="all_incidents" id="option1" (click)="buttonClicked(1)" >
@@ -78,7 +75,7 @@
   </div>
 
     <!--Button Reposrt-->
-    <div class="input-group-prepend">
+    <div class="input-group-prepend" style="padding-bottom: 4%; padding-left: 50%;">
     <button class="btn btn-primary" type="submit" style="margin-left: 80%;">Report</button>
     </div>
   </form>

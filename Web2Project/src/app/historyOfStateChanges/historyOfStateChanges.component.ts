@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./historyOfStateChanges.component.css']
 })
 export class HistoryOfStateChangesComponent implements OnInit {
-
+model:any={}
   constructor() { }
 
   ngOnInit() {

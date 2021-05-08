@@ -16,6 +16,7 @@
         <button
           type="button"
           class="list-group-item list-group-item-action list-group-item-secondary"
+            (click)="applyFilter(6)"
         >
           Unread notifications
         </button>
@@ -61,45 +62,90 @@
   <div class="form-group col-md-9">
     <div [ngSwitch]="this.selectedType">
       <div *ngSwitchCase="'error'">
-        <div *ngFor="let profile of dataSource; let i = index">
-          <div class="alert alert-danger not" role="alert">
-            This is a danger alert—check it out!
+        <div *ngFor="let profile of fillterDataSource; let i = index">
+          <div class="alert alert-danger not" role="alert" (click)="clickedNotification(profile.type)">
+            {{profile.text+' '+ profile.date}}
+
           </div>
         </div>
       </div>
       <div *ngSwitchCase="'info'">
-        <div *ngFor="let profile of dataSource; let i = index">
+        <div *ngFor="let profile of fillterDataSource; let i = index">
           <div class="alert alert-info not" role="alert">
-            This is a info alert—check it out!
+            {{profile.text+' '+ profile.date}}
+
           </div>
         </div>
       </div>
       <div *ngSwitchCase="'success'">
-        <div *ngFor="let profile of dataSource; let i = index">
+        <div *ngFor="let profile of fillterDataSource; let i = index">
           <div class="alert alert-success not" role="alert">
-            This is a success alert—check it out!
+            {{profile.text+' '+ profile.date}}
           </div>
         </div>
       </div>
       <div *ngSwitchCase="'warning'">
-        <div *ngFor="let profile of dataSource; let i = index">
+        <div *ngFor="let profile of fillterDataSource; let i = index">
           <div class="alert alert-warning not" role="alert">
-            This is a warning alert—check it out!
+            {{profile.text+' '+ profile.date}}
+
           </div>
         </div>
       </div>
       <div *ngSwitchCase="''">
         <div *ngFor="let profile of dataSource; let i = index">
+          <div *ngIf="profile.type=='error'">
           <div class="alert alert-danger not" role="alert">
-            This is a danger alert—check it out!
+            {{profile.text+' '+ profile.date}}
+          </div>
+        </div>
+        <div *ngIf="profile.type=='info'">
+          <div class="alert alert-info not" role="alert">
+            {{profile.text+' '+ profile.date}}
+          </div>
+        </div>
+        <div *ngIf="profile.type=='warning'">
+          <div class="alert alert-warning not" role="alert">
+            {{profile.text+' '+ profile.date}}
+          </div>
+        </div>
+        <div *ngIf="profile.type=='success'">
+          <div class="alert alert-success not" role="alert">
+            {{profile.text+' '+ profile.date}}
+          </div>
+        </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'unread'">
+        <div *ngFor="let profile of fillterDataSource; let i = index">
+          <div *ngIf="profile.type=='error'">
+            <div class="alert alert-danger not" role="alert">
+              {{profile.text+' '+ profile.date}}
+            </div>
+          </div>
+          <div *ngIf="profile.type=='info'">
+            <div class="alert alert-info not" role="alert">
+              {{profile.text+' '+ profile.date}}
+            </div>
+          </div>
+          <div *ngIf="profile.type=='warning'">
+            <div class="alert alert-warning not" role="alert">
+              {{profile.text+' '+ profile.date}}
+            </div>
+          </div>
+          <div *ngIf="profile.type=='success'">
+            <div class="alert alert-success not" role="alert" (click)="clickedNotification(profile.type)">
+              {{profile.text+' '+ profile.date}}
+            </div>
           </div>
         </div>
       </div>
     </div>
+
   </div>
   <div style="margin-left: 81%">
-    <button class="btn btn-primary">Mark all as read</button>
+    <button class="btn btn-primary" (click)="markAllAsRead()">Mark all as read</button>
     &nbsp;
-    <button class="btn btn-primary">Clear All</button>
+    <button class="btn btn-primary"(click)="clearAll()">Clear All</button>
   </div>
 </div>

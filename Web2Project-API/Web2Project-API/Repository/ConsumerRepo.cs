@@ -46,6 +46,7 @@ namespace Web2Project_API.Repository
                             {
                                 consumerss.ConsumerId,
                                 consumerss.Name,
+                                consumerss.Lastname,
                                 consumerss.Location.Street,
                                 consumerss.Location.City,
                                 consumerss.Location.PostNumber,

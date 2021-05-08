@@ -29,7 +29,6 @@ import { NewWorkOrderComponent } from './newWorkOrder/newWorkOrder.component';
 import { BasicInformationWorkOrderComponent } from './basicInformationWorkOrder/basicInformationWorkOrder.component';
 import { HistoryOfStateChangesComponent } from './historyOfStateChanges/historyOfStateChanges.component';
 import { NewPlanComponent } from './newPlan/newPlan.component';
-import { BasicInformationWorkPlanComponent } from './basicInformationWorkPlan/basicInformationWorkPlan.component';
 import { SwitchingInstructionsComponent } from './switchingInstructions/switchingInstructions.component';
 import { NewSafetyDocComponent } from './newSafetyDoc/newSafetyDoc.component';
 import { BasicInformationSafetyDocComponent } from './basicInformationSafetyDoc/basicInformationSafetyDoc.component';
@@ -121,7 +120,6 @@ import { SelectConsumerComponent } from './select-consumer/select-consumer.compo
       BasicInformationWorkOrderComponent,
       HistoryOfStateChangesComponent,
       NewPlanComponent,
-      BasicInformationWorkPlanComponent,
       SwitchingInstructionsComponent,
       NewSafetyDocComponent,
       BasicInformationSafetyDocComponent,

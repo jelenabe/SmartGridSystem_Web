@@ -19,7 +19,6 @@ namespace Web2Project_API.Repository
         {
             ReportOutage reportOutage = new ReportOutage();
             Location location = new Location();
-            Consumer consumer = new Consumer();
 
             reportOutage.Comment = outage.Comment;
             reportOutage.Hazard = outage.Hazard;
@@ -28,12 +27,13 @@ namespace Web2Project_API.Repository
             location.Street = outage.Street;
             location.City = outage.City;
             location.PostNumber = outage.PostNumber;
+            //sacuvaj lokaciju u bazu AKO JE ANONIMNI i naglasiti da je to za consumerID NULL
+            //Ako nije anonimni onda na osnovu consumerid nadji njegovu lokaciju
 
-            // Treba popuniti za konsumera.
-            // Da li cemo traziti u bazi consumera pa popuniti ili pravimo novog? Zapisala na papir
-            //consumer.Name
-            consumer.LocationId = location.LocationId;
-            reportOutage.IdConsumer = consumer.ConsumerId;
+            reportOutage.IdConsumer = outage.IdConsumer;
+            reportOutage.Street = location.Street;
+            reportOutage.City = location.City;
+            reportOutage.PostNumber = location.PostNumber;
             /*
              * await _context.Users.AddAsync(registrationUser);
             await _context.SaveChangesAsync();

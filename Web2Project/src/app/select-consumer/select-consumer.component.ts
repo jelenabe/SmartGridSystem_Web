@@ -4,21 +4,20 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { NewConsumerService } from '../services/new-consumer.service';
 
 export interface ConsumersColumns {
-  id: string;
+  id: number;
   name: string;
-  lastname:string;
-  phonenumber:string;
-  address: string;
-  type:string;
+  lastname: string;
+  phoneNumber: string;
+  street: string;
+  city: string;
+  postNumber:number;
+  type: string;
 }
 
-const ELEMENT_DATA: ConsumersColumns[] = [
-  {id: '1', name: 'Milica', lastname:'Simeunovic', phonenumber:'0655555', address: 'Masarikova 2 Novi Sad', type:'Comercial'},
-  {id: '2', name: 'Jelena', lastname:'Beader', phonenumber:'0655555', address: 'Masarikova 2 Novi Sad', type:'Comercial'},
-  {id: '3', name: 'Milan', lastname:'Momcilovic', phonenumber:'0655555', address: 'Masarikova 2 Novi Sad', type:'Comercial'},
-];
+const ELEMENT_DATA: ConsumersColumns[] = [];
 
 @Component({
   selector: 'app-select-consumer',
@@ -26,25 +25,43 @@ const ELEMENT_DATA: ConsumersColumns[] = [
   styleUrls: ['./select-consumer.component.css']
 })
 export class SelectConsumerComponent implements OnInit {
+  ELEMENT_DATA: any[] = [];
+  Consumers: any = [];
+  
+  displayedColumns = ['select', 'id', 'name', 'lastname', 'phoneNumber', 'address', 'type'];
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  selection = new SelectionModel<ConsumersColumns>(true, []);  // checkbox
 
-  constructor(public dialogRef: MatDialogRef<SelectConsumerComponent>) { }
+  constructor(public dialogRef: MatDialogRef<SelectConsumerComponent>,private newConsumerService: NewConsumerService) { 
+
+    this.newConsumerService.getConsumers().subscribe((response)=>{
+      console.log("Applay changes successfull");
+      this.Consumers = response;
+      console.log(this.Consumers);
+      this.Consumers.forEach((element: { consumerId: number; name: string; lastname:string; street: string; city:string; phone:string; postNumber:number; type:string  })=> {
+        if(element.type=='2'){
+          element.type='Comercial';
+        }else{
+          
+          element.type='Residential';
+        }
+        this.ELEMENT_DATA.push(element)
+      });
+      
+    
+    this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+    this.dataSource.paginator = this.paginator;
+    })
+   }
 
   ngOnInit() {
   }
   ClickCancel(): void {
     this.dialogRef.close();
   }
-  displayedColumns = ['select', 'id', 'name', 'lastname', 'phonenumber', 'address', 'type', 'icon_location'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
-  selection = new SelectionModel<ConsumersColumns>(true, []);  // checkbox
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
 
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -77,6 +94,9 @@ masterToggle() {
 
 funkcijica(){
   console.log("caoo");
+}
+displayConsumerInfo(){
+  
 }
 }
 

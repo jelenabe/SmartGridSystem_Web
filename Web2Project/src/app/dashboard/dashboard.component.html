@@ -17,7 +17,21 @@
           <p>{{ modelIncident.completed }} Completed</p>
         </div>
       </div>
-
+      <div class="col-lg-3.5" style="margin-left: 30px">
+        <div class="card data-usage">
+          <h2 class="display h4">
+            <strong
+              ><a id='WO' [routerLink]="['/workOrders']" routerLinkActive="active"
+                >My Work Order</a
+              ></strong
+            >
+          </h2>
+          <p>{{ modelWorkOrder.drafts }} Drafts</p>
+          <p>{{ modelWorkOrder.canceled }} Canceled</p>
+          <p>{{ modelWorkOrder.executing }} Executing</p>
+          <p>{{ modelWorkOrder.completed }} Completed</p>
+        </div>
+      </div>
       <div class="col-lg-3" style="margin-left: 10px">
         <div class="card data-usage">
           <h2 class="display h4">
@@ -48,21 +62,7 @@
           <p>{{ modelSafetyDoc.completed }} Completed</p>
         </div>
       </div>
-      <div class="col-lg-3.5" style="margin-left: 30px">
-        <div class="card data-usage">
-          <h2 class="display h4">
-            <strong
-              ><a id='WO' [routerLink]="['/workOrders']" routerLinkActive="active"
-                >My Work Order</a
-              ></strong
-            >
-          </h2>
-          <p>{{ modelWorkOrder.drafts }} Drafts</p>
-          <p>{{ modelWorkOrder.canceled }} Canceled</p>
-          <p>{{ modelWorkOrder.executing }} Executing</p>
-          <p>{{ modelWorkOrder.completed }} Completed</p>
-        </div>
-      </div>
+     
       
     </div>
     <br/>

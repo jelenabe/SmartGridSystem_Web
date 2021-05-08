@@ -10,9 +10,12 @@
         </div>
         <input
           type="date"
+          name="dateOfChange"
           class="form-control"
           aria-label="Default"
           aria-describedby="inputGroup-sizing-default"
+          readonly
+          [(ngModel)]="model.name"
         />
       </div>
     </div>
@@ -24,11 +27,14 @@
       </div>
       <input
         type="text"
+        name="changedBy"
         class="form-control"
         aria-label="Default"
         aria-describedby="inputGroup-sizing-default"
         readonly
         value="Milan Momcilovic"
+        
+        [(ngModel)]="model.changedBy"
       />
     </div>
 
@@ -36,8 +42,8 @@
       <div class="input-group-prepend">
         <label class="input-group-text" for="inputGroupSelect01">Type</label>
       </div>
-      <select class="custom-select" id="inputGroupSelect01">
-        <option selected>Choose...</option>
+      <select class="custom-select" id="inputGroupSelect01" name="historyType" 
+      [(ngModel)]="model.historyType">
         <option value="1">Aprove</option>
         <option value="2">Deny</option>
         <option value="3">Cancel</option>

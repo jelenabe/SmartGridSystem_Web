@@ -25,14 +25,11 @@ const ELEMENT_DATA: Notification[] = [
 })
 export class NotificationsComponent implements OnInit {
 
-  displayedColumns: string[] = ['type', 'text', 'date'];
   filterValue: string = "";
   dataSource: any=[];
   fillterDataSource: any[];
   selectedType: string= "";
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort = new MatSort();
   constructor() {
     this.dataSource =[
       {
@@ -42,27 +39,27 @@ export class NotificationsComponent implements OnInit {
            "read": "false"},
     {
       "type": "info",
-       "text": "Ekipa1",
+       "text": "Ekipa5",
         "date": "2013-10-21T13:28:06.419Z", 
          "read": "false"},
     {
       "type": "success", 
-      "text": "Ekipa1", 
+      "text": "Ekipa3", 
       "date": "2013-10-21T13:28:06.419Z",
         "read": "true"},
     {
       "type": "warning",
-       "text": "Ekipa1",
+       "text": "Ekipa6",
         "date": "2013-10-21T13:28:06.419Z", 
          "read": "false"},
     {
       "type": "error",
-     "text": "Ekipa1",
+     "text": "Ekipa4",
       "date": "2013-10-21T13:28:06.419Z",  
       "read": "true"},
     {
       "type": "info", 
-    "text": "Ekipa1", 
+    "text": "Ekipa5", 
     "date": "2013-10-21T13:28:06.419Z",
       "read": "false"
     },
@@ -72,23 +69,61 @@ export class NotificationsComponent implements OnInit {
 
   ngOnInit() {
   }
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+
+  clickedNotification(id:string){
+
+  }
+  markAllAsRead(){
+    this.dataSource.forEach((element:{ type: string; text: string; date: string; read:string; }) => {
+      if(element.read == 'false'){
+
+       element.read='true';
+      }
+    });
+  }
+  clearAll(){
+    this.dataSource=[];
+  }
+  filterByType(type:string){
+      this.fillterDataSource=[];
+      if(type=='unread'){
+        this.dataSource.forEach((element:{ type: string; text: string; date: string; read:string; }) => {
+          if(element.read == 'false'){
+    
+            this.fillterDataSource.push(element);
+          }
+        });
+      }else{
+       this.dataSource.forEach((element:{ type: string; text: string; date: string; read:string; }) => {
+        if(element.type == type){
+  
+          this.fillterDataSource.push(element);
+        }
+      });
+    }
   }
 
- applyFilter(event: number): void {
+  applyFilter(event: number): void {
   if(event==1){
     this.selectedType='error';
+    this.filterByType('error');
 
   }else if(event == 2){
     this.selectedType='info';
+    this.filterByType('info');
+
   }else if( event==3){
     this.selectedType='success';
+    this.filterByType('success');
   }else if(event==4){
     this.selectedType='warning';
+    this.filterByType('warning');
+  }else if(event==5){
+    this.selectedType='';
+    this.filterByType('');
   }else{
-    this.selectedType=''
+    this.selectedType='unread';
+    this.filterByType('unread');
   }
      
   }

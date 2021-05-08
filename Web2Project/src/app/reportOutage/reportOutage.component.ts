@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MyErrorStateMatcher } from '../profile/profile.component';
 import { SelectConsumerComponent } from '../select-consumer/select-consumer.component';
 import { ProfileService } from '../services/profile.service';
+import { ReportOutageService } from '../services/reportOutage.service';
 
 @Component({
   selector: 'app-reportOutage',
@@ -18,9 +19,6 @@ export class ReportOutageComponent implements OnInit {
   anonymous:boolean= true;
 
   reasonFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  commentFormControl = new FormControl('', [
     Validators.required,
   ]);
   hazardFormControl = new FormControl('', [
@@ -36,11 +34,11 @@ export class ReportOutageComponent implements OnInit {
     Validators.required,
   ]);
 
-  constructor(private profileService: ProfileService, public dialog: MatDialog) { }
+  constructor(private outageService: ReportOutageService, public dialog: MatDialog) { }
 
   report(){
     console.log(this.model);
-    this.profileService.applyChanges(this.model).subscribe(()=>{
+    this.outageService.report(this.model).subscribe(()=>{
       console.log("Applay changes successfull");
     })
   }
