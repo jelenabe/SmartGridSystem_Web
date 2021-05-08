@@ -3,7 +3,7 @@
 <br />
 
 <div style="margin-left: 25%">
-  <form (ngSubmit)="save()" [formGroup]="contactForm">
+  <form (ngSubmit)="save()" >
     <!--Label Name and input Enter name-->
     
     <div>
@@ -185,7 +185,7 @@
     </div>
     <!--Button Reposrt-->
     <div class="input-group-prepend">
-      <button class="btn btn-primary" type="submit" mat-stroked-button (click)="openSnackBar()"  [disabled]="contactForm.invalid">Save</button>
+      <button class="btn btn-primary" type="submit" mat-stroked-button>Save</button>
     </div>
   </form>
 </div>

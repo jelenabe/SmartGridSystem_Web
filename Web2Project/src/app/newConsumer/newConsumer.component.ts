@@ -5,6 +5,7 @@ import { NewConsumerService } from '../services/new-consumer.service';
 import {ErrorStateMatcher} from '@angular/material/core';
 import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -24,7 +25,6 @@ export class NewConsumerComponent implements OnInit {
   paramsTwo:string[];
   location:string[];
   edit:boolean=false;
-  contactForm: FormGroup;
 
   nameFormControl = new FormControl('', [
     Validators.required,
@@ -51,7 +51,8 @@ export class NewConsumerComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
 
-  constructor(private newConsumerService: NewConsumerService,private _snackBar: MatSnackBar) { }
+  constructor(private newConsumerService: NewConsumerService,private _snackBar: MatSnackBar,
+              private router:Router) { }
 
   ngOnInit() {
     if(this.edit){
@@ -69,9 +70,13 @@ export class NewConsumerComponent implements OnInit {
 
   save(){
     console.log(this.model);
-    this.newConsumerService.save(this.model).subscribe(()=>{
+    this.newConsumerService.save(this.model).subscribe((response)=>{
       console.log("Applay changes successfull");
-    })
+      console.log(response);
+        
+    });
+    this.openSnackBar();
+    this.router.navigate(['/','consumers']);
   }
   openSnackBar() {
     this._snackBar.open("Consumer success added" ,'OK', {
