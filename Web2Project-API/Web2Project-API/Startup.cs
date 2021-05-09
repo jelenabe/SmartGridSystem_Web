@@ -32,6 +32,9 @@ namespace Web2Project_API
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddDbContext<ModelDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddCors(options =>
             {
                 options.AddPolicy(name: _cors, builder => {
@@ -45,6 +48,7 @@ namespace Web2Project_API
             services.AddScoped<ICrewRepo, CrewRepo>();
             services.AddScoped<IOutageRepo, OutageRepo>();
             services.AddScoped<IConsumerRepo, ConsumerRepo>();
+            services.AddScoped<IIncidentRepo, IncidentRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
