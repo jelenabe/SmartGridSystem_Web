@@ -6,12 +6,12 @@
           <h5 class="card-title text-center">Sign In</h5>
           <form class="form-signin">
             <div class="form-group">
-              <input type="email" id="inputEmail" class="form-control input-style is-valid" placeholder="Email address"
+              <input type="email" id="inputEmail" class="form-control input-style is-valid" placeholder="Email address" [(ngModel)]="model.Email"
                 required autofocus>
             </div>
 
             <div class="form-group">
-              <input type="password" id="inputPassword" class="form-control input-style is-invalid"
+              <input type="password" id="inputPassword" class="form-control input-style is-invalid" [(ngModel)]="model.Password"
                 placeholder="Password" required>
               <div class="invalid-feedback">
                 Please enter a password!

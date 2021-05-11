@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 namespace Web2Project_API.DTOs
 {
     public class ConsumerLocationDTO
-    {public string Name { get; set; }
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
         public string Lastname { get; set; }
         public string Phone { get; set; }
         public string Type { get; set; }

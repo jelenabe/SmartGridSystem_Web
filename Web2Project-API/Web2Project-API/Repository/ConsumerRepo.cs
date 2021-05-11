@@ -92,24 +92,22 @@ namespace Web2Project_API.Repository
         public async Task<Consumer> SaveEditConsumer(Consumer consumerparam, int id)
         {
             var consumer = _context.Consumers.Where(x => x.ConsumerId == id).FirstOrDefault();
-            consumer = consumerparam;
-            /*
-            consumer1.Location.Street = consumer.Location.Street;
-            consumer1.Location.City = consumer.Location.City;
-            consumer1.Location.PostNumber = consumer.Location.PostNumber;
 
-            await _context.Locations.AddAsync(consumer1.Location);
+            consumer.Name = consumerparam.Name;
+            consumer.Lastname = consumerparam.Lastname;
+            consumer.Phone = consumerparam.Phone;
+            consumer.Type = consumerparam.Type;
+
+            var location = _context.Locations.Where(x => x.LocationId == consumer.LocationId).FirstOrDefault();
+
+            location.Street = consumerparam.Location.Street;
+            location.City = consumerparam.Location.City;
+            location.PostNumber = consumerparam.Location.PostNumber;
+
+            _context.Entry(location).State = EntityState.Modified;
+            _context.Entry(consumer).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-            consumer1.LocationId = consumer.Location.LocationId;
 
-            consumer1.Name = consumer.Name;
-            consumer1.Lastname = consumer.Lastname;
-            consumer1.Phone = consumer.Phone;
-            consumer1.Type = consumer.Type;
-            await _context.Consumers.AddAsync(consumer1);
-            await _context.SaveChangesAsync();
-
-            return consumer1;*/
             return  consumer;
         }
 
