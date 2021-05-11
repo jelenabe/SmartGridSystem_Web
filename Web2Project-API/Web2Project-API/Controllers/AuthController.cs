@@ -1,8 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using Web2Project_API.DTOs;
 using Web2Project_API.Models;
@@ -24,6 +29,7 @@ namespace Web2Project_API.Controllers
         }
 
         [HttpPost]
+        [EnableCors("AllowOrigin")]
         public async Task<IActionResult> Register([FromBody]UserForRegisterDTO dto)
         {
             if (!string.IsNullOrEmpty(dto.Username))
@@ -71,6 +77,32 @@ namespace Web2Project_API.Controllers
             var createdUser = await _repo.Register(user, dto.Password);
 
             return StatusCode(201);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login([FromBody] UserForLoginDto userForLoginDto)
+        {
+            var userFromRepo = await _repo.Login(userForLoginDto.Email.ToLower(), userForLoginDto.Password);
+            if (userFromRepo == null)
+                return Unauthorized();
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_config.GetSection("AppSettings:Token").Value);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.NameIdentifier,userFromRepo.UserId.ToString()),
+                    new Claim(ClaimTypes.Name, userFromRepo.Username)
+                }),
+                Expires = DateTime.Now.AddDays(1),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
+                SecurityAlgorithms.HmacSha512Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var tokenString = tokenHandler.WriteToken(token);
+
+            return Ok(new { tokenString, userFromRepo.Email, userFromRepo.UserType, userFromRepo.UserId });
         }
     }
 }
