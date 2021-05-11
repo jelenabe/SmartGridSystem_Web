@@ -1,0 +1,9 @@
+span,input,label,select{
+    font-size: larger;
+}
+
+button{
+    height: 60px; 
+    width: 150px; 
+    margin-left: 57%;
+  }

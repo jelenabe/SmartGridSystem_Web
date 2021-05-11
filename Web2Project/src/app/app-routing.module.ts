@@ -7,6 +7,7 @@ import { AllDevicesComponent } from './allDevices/allDevices.component';
 import { ChangePasswordComponent } from './changePassword/changePassword.component';
 import { ConsumersComponent } from './consumers/consumers.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { EditConsumerComponent } from './edit-consumer/edit-consumer.component';
 import { FrontPageComponent } from './front-page/front-page.component';
 import { HomeComponent } from './home/home.component';
 import { IncidentComponent } from './incident/incident.component';
@@ -163,6 +164,11 @@ const routes: Routes = [
   {
     path: 'adminSettings',
     component:AdminSettingsComponent,
+    outlet: "primary"
+  },
+  {
+    path: 'edit-consumer/:id',
+    component:EditConsumerComponent,
     outlet: "primary"
   }
 

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Web2Project_API.Migrations
 {
-    public partial class Init : Migration
+    public partial class InitMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -88,6 +88,7 @@ namespace Web2Project_API.Migrations
                     PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     LocationId = table.Column<int>(type: "int", nullable: false),
                     CrewId = table.Column<int>(type: "int", nullable: true),
+                    ConsumerId = table.Column<int>(type: "int", nullable: true),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Lastname = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -100,6 +101,12 @@ namespace Web2Project_API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.UserId);
+                    table.ForeignKey(
+                        name: "FK_Users_Consumers_ConsumerId",
+                        column: x => x.ConsumerId,
+                        principalTable: "Consumers",
+                        principalColumn: "ConsumerId",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Users_Crews_CrewId",
                         column: x => x.CrewId,
@@ -551,6 +558,13 @@ namespace Web2Project_API.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Users_ConsumerId",
+                table: "Users",
+                column: "ConsumerId",
+                unique: true,
+                filter: "[ConsumerId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Users_CrewId",
                 table: "Users",
                 column: "CrewId");
@@ -634,9 +648,6 @@ namespace Web2Project_API.Migrations
                 name: "WorkRequests");
 
             migrationBuilder.DropTable(
-                name: "Consumers");
-
-            migrationBuilder.DropTable(
                 name: "SafetyDocs");
 
             migrationBuilder.DropTable(
@@ -647,6 +658,9 @@ namespace Web2Project_API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Consumers");
 
             migrationBuilder.DropTable(
                 name: "Crews");

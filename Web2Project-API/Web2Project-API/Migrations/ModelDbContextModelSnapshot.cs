@@ -408,6 +408,9 @@ namespace Web2Project_API.Migrations
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("ConsumerId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("CrewId")
                         .HasColumnType("int");
 
@@ -439,6 +442,10 @@ namespace Web2Project_API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
+
+                    b.HasIndex("ConsumerId")
+                        .IsUnique()
+                        .HasFilter("[ConsumerId] IS NOT NULL");
 
                     b.HasIndex("CrewId");
 
@@ -755,6 +762,10 @@ namespace Web2Project_API.Migrations
 
             modelBuilder.Entity("Web2Project_API.Models.User", b =>
                 {
+                    b.HasOne("Web2Project_API.Models.Consumer", "Consumer")
+                        .WithOne("User")
+                        .HasForeignKey("Web2Project_API.Models.User", "ConsumerId");
+
                     b.HasOne("Web2Project_API.Models.Crew", "Crew")
                         .WithMany("Users")
                         .HasForeignKey("CrewId");
@@ -764,6 +775,8 @@ namespace Web2Project_API.Migrations
                         .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Consumer");
 
                     b.Navigation("Crew");
 
@@ -833,6 +846,8 @@ namespace Web2Project_API.Migrations
             modelBuilder.Entity("Web2Project_API.Models.Consumer", b =>
                 {
                     b.Navigation("Calls");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Web2Project_API.Models.Crew", b =>

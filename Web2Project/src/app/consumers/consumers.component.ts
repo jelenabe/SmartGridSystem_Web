@@ -78,11 +78,6 @@ export class ConsumersComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  openEditCrew(Id: number)
-  {
-    //id oznacava koji consumer treba da se prikaze
-    this.router.navigate(['/', 'newConsumer',Id]);
-  }
 
   deleteRow(Id: number, index:number){
     this.dataSource.data.splice(index, 1);

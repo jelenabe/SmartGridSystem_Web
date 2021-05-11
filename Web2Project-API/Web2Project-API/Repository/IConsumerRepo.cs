@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Web2Project_API.DTOs;
 using Web2Project_API.Models;
 
 namespace Web2Project_API.Repository
@@ -11,7 +12,7 @@ namespace Web2Project_API.Repository
     {
         Task<ActionResult<IEnumerable<object>>> GetAllConsumers();
         Task<Consumer> AddConsumer(Consumer consumer);
-        Task<ActionResult<IEnumerable<object>>> GetConsumer(int id);
+        Task<ActionResult<ConsumerLocationDTO>> GetConsumer(int id);
         Task<Consumer> SaveEditConsumer(Consumer consumer,int id);
         Task<ActionResult<Consumer>> RemoveConsumer(int id);
     }

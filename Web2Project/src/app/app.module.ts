@@ -89,12 +89,13 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { SelectConsumerComponent } from './select-consumer/select-consumer.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { EditConsumerComponent } from './edit-consumer/edit-consumer.component';
 
 
 
 @NgModule({
   schemas : [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [	
+  declarations: [		
     AppComponent,
     HomeComponent,
       LoginComponent,
@@ -152,7 +153,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
       MultimediaSafetyDocumentComponent,
       DevicesSafetyDocumentComponent,
       DeviceDialogSafetyDocumentComponent,
-      SelectConsumerComponent
+      SelectConsumerComponent,
+      EditConsumerComponent
    ],
   imports: [
     BrowserModule,

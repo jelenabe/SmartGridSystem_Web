@@ -14,6 +14,7 @@ save(model: any){
   console.log('Method save from new-consumerService worked!');
   return this.http.post(this.baseUrl, model);
 }
+
 getConsumers(){
   return this.http.get(this.baseUrl);
 }
@@ -21,5 +22,11 @@ getConsumers(){
 deleteConsumer(Id: number){
   return this.http.delete(this.baseUrl+'/'+Id);
 }
+getConsumer(Id: number){
+  return this.http.get(this.baseUrl+'/'+Id);
+}
 
+saveChange(model:any){
+  return this.http.put(this.baseUrl+'/'+model.Id, model);
+}
 }

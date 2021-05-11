@@ -51,7 +51,7 @@ namespace Web2Project_API.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<ActionResult<IEnumerable<object>>> GetConsumer(int id)
+        public async Task<ActionResult<ConsumerLocationDTO>> GetConsumer(int id)
         {
             var Consumer = await _repo.GetConsumer(id);
 
@@ -76,8 +76,8 @@ namespace Web2Project_API.Controllers
             return StatusCode(200);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> SaveEditConsumer([FromBody] ConsumerDTO modelDto)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> SaveEditConsumer([FromRoute] int id, [FromBody] ConsumerDTO modelDto)
         {
             Consumer consumer = new Consumer();
             consumer.Name = modelDto.Name;
@@ -96,7 +96,7 @@ namespace Web2Project_API.Controllers
             consumer.Location.City = modelDto.City;
             consumer.Location.PostNumber = modelDto.PostNumber;
 
-            var createdConsumer = await _repo.SaveEditConsumer(consumer,consumer.ConsumerId);
+            var createdConsumer = await _repo.SaveEditConsumer(consumer, modelDto.Id);
 
             return StatusCode(201);
 
