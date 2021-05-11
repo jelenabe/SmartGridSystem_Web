@@ -26,16 +26,9 @@ namespace Web2Project_API.Repository
             }
         }
 
-        public async Task<User> Login(string email, string password)
+        public Task<User> Login(string username, string password)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
-
-            if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
-            {
-                return null;
-            }
-
-            return user;
+            throw new NotImplementedException();
         }
 
         public async Task<User> Register(User user, string password)
@@ -94,18 +87,7 @@ namespace Web2Project_API.Repository
 
         public bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {
-            using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
-            {
-                var ComputedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-                for (int i = 0; i < ComputedHash.Length; i++)
-                {
-                    if (ComputedHash[i] != passwordHash[i])
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
+            throw new NotImplementedException();
         }
     }
 }

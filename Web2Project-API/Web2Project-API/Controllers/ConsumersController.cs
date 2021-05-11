@@ -77,14 +77,13 @@ namespace Web2Project_API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> SaveEditConsumer([FromRoute] int id, [FromBody] ConsumerLocationDTO modelDto)
+        public async Task<IActionResult> SaveEditConsumer([FromRoute] int id, [FromBody] ConsumerDTO modelDto)
         {
             Consumer consumer = new Consumer();
-            consumer.ConsumerId = id;
             consumer.Name = modelDto.Name;
             consumer.Lastname = modelDto.Lastname;
             consumer.Phone = modelDto.Phone;
-            if (modelDto.Type.Equals("Residential"))
+            if (modelDto.Type.Equals("1"))
             {
                 consumer.Type = ConsumerType.Residential;
             }
@@ -92,11 +91,10 @@ namespace Web2Project_API.Controllers
             {
                 consumer.Type = ConsumerType.Commercial;
             }
-
             consumer.Location = new Location();
             consumer.Location.Street = modelDto.Street;
             consumer.Location.City = modelDto.City;
-            consumer.Location.PostNumber = Int32.Parse(modelDto.PostNumber);
+            consumer.Location.PostNumber = modelDto.PostNumber;
 
             var createdConsumer = await _repo.SaveEditConsumer(consumer, modelDto.Id);
 
