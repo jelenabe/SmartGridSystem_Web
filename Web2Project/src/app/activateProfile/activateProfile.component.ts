@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../services/profile.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-activateProfile',
@@ -8,49 +9,38 @@ import { ProfileService } from '../services/profile.service';
 })
 export class ActivateProfileComponent implements OnInit {
 
-  inactiveProfiles: any = [
-    {
-    "Name":"Milan",
-    "Username" : "Moma",
-    "Type" : "Type1",
-    "Lastname": "Momcilovic",
-    "Email" : "milan.momcilovic582@gmail.com",
-    "Address" : "Dalmatinska 4"
-    },
-    {
-      "Name":"Pera",
-      "Username" : "Perica",
-      "Type" : "Type2",
-      "Lastname": "Peric",
-      "Email" : "pera.peric@gmail.com",
-      "Address" : "ulica br1"
-    },
-    {
-        "Name":"Laza",
-        "Username" : "Laki",
-        "Type" : "Type3",
-        'Lastname': "Lazic",
-        "Email" : "laza.lazic@gmail.com",
-        "Address" : "ulica br4"
-    },
-  ];
+  inactiveProfiles: any = [];
 
-  constructor(private profileService : ProfileService) { }
+  constructor(private userService: UserService) {
+
+    this.userService.getInactiveProfiles().subscribe((response) => {
+      console.log(response);
+      this.inactiveProfiles = response;
+      console.log(this.inactiveProfiles);
+    })
+
+  }
 
   ngOnInit() {
   }
 
   activateProfile(id:any, i:any)
   {
-    console.log("Profile activated!");
-    this.inactiveProfiles.splice(i,1);
+    this.userService.ActivateUser(id).subscribe((response) =>{
+      console.log('Profile activated!');
+      this.inactiveProfiles.splice(i, 1);
+    })
+
 
   }
 
   deleteProfile(id:any, i:any)
   {
-    console.log('Profile delited!');
-    this.inactiveProfiles.splice(i, 1);
+    this.userService.DeleteUser(id).subscribe((response) =>{
+      console.log('Profile delited!');
+      this.inactiveProfiles.splice(i, 1);
+    })
+
   }
 
 }

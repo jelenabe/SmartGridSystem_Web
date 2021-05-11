@@ -10,8 +10,8 @@ using Web2Project_API.DbConfigurations;
 namespace Web2Project_API.Migrations
 {
     [DbContext(typeof(ModelDbContext))]
-    [Migration("20210507184257_InitMigration")]
-    partial class InitMigration
+    [Migration("20210509184442_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -410,9 +410,6 @@ namespace Web2Project_API.Migrations
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ConsumerId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("CrewId")
                         .HasColumnType("int");
 
@@ -444,9 +441,6 @@ namespace Web2Project_API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
-
-                    b.HasIndex("ConsumerId")
-                        .IsUnique();
 
                     b.HasIndex("CrewId");
 
@@ -763,12 +757,6 @@ namespace Web2Project_API.Migrations
 
             modelBuilder.Entity("Web2Project_API.Models.User", b =>
                 {
-                    b.HasOne("Web2Project_API.Models.Consumer", "Consumer")
-                        .WithOne("User")
-                        .HasForeignKey("Web2Project_API.Models.User", "ConsumerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Web2Project_API.Models.Crew", "Crew")
                         .WithMany("Users")
                         .HasForeignKey("CrewId");
@@ -778,8 +766,6 @@ namespace Web2Project_API.Migrations
                         .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("Consumer");
 
                     b.Navigation("Crew");
 
@@ -849,8 +835,6 @@ namespace Web2Project_API.Migrations
             modelBuilder.Entity("Web2Project_API.Models.Consumer", b =>
                 {
                     b.Navigation("Calls");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Web2Project_API.Models.Crew", b =>

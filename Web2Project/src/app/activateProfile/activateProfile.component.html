@@ -4,17 +4,20 @@
   <br/>
   <ul class="list-group" *ngFor="let profile of inactiveProfiles; let i = index">
     <li class="list-group-item" >
-      <b>{{profile.Username}}</b>
-      <p>{{profile.Type}}<br>
-         Name: {{profile.Name}}<br>
-         Lastname: {{profile.Lastname}}<br>
-         Email {{profile.Email}} din<br>
-         Address: {{profile.Address}}<br>
+      <b>{{profile.username}}</b>
+      <p *ngIf = "profile.userType == 0">Type: Crew Member<br>
+      <p *ngIf = "profile.userType == 1">Type: Dispacher<br>
+      <p *ngIf = "profile.userType == 2">Type: Worker<br>
+
+         Name: {{profile.name}}<br>
+         Lastname: {{profile.lastname}}<br>
+         Email: {{profile.email}} din<br>
+         Address: {{profile.street}}<br>
       </p>
       <span>
-        <button type="button" class="btn btn-primary" (click)="activateProfile(profile.id, i)">Activate Profile</button>
+        <button type="button" class="btn btn-primary" (click)="activateProfile(profile.userId, i)">Activate Profile</button>
         &nbsp;
-        <button type="button" class="btn btn-danger" (click)="deleteProfile(profile.id,1)">Delete Profile</button>
+        <button type="button" class="btn btn-danger" (click)="deleteProfile(profile.userId,1)">Delete Profile</button>
       </span>
     </li>
   </ul>

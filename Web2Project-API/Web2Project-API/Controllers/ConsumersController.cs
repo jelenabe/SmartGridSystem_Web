@@ -71,8 +71,7 @@ namespace Web2Project_API.Controllers
         [Route("{id}")]
         public async Task<ActionResult<Consumer>> RemoveConsumer(int id)
         {
-            string consumerId = id.ToString();
-            await _repo.RemoveConsumer(consumerId);
+            await _repo.RemoveConsumer(id);
 
             return StatusCode(200);
         }

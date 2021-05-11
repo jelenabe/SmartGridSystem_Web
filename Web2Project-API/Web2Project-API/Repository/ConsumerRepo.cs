@@ -78,10 +78,10 @@ namespace Web2Project_API.Repository
             return await consumer.ToListAsync();
         }
 
-        public async Task<ActionResult<Consumer>> RemoveConsumer(string id)
+        public async Task<ActionResult<Consumer>> RemoveConsumer(int id)
         {
             
-            var consumer = _context.Consumers.Where(x => x.ConsumerId == Int32.Parse(id)).FirstOrDefault();
+            var consumer = _context.Consumers.Where(x => x.ConsumerId == id).FirstOrDefault();
             _context.Consumers.Remove(consumer);
             await _context.SaveChangesAsync();
             return consumer;

@@ -24,7 +24,7 @@ namespace Web2Project_API.Models
         public Location Location { get; set; }
         public int? CrewId { get; set; }
         public Crew Crew { get; set; }
-        public int ConsumerId { get; set; }
+        public int? ConsumerId { get; set; }
         public Consumer Consumer { get; set; }
         public ICollection<WorkPlan> CreatedWorkPlans { get; set; }
         public ICollection<WorkPlan> ChangedWorkPlans { get; set; }

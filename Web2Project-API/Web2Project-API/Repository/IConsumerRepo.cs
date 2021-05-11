@@ -13,6 +13,6 @@ namespace Web2Project_API.Repository
         Task<Consumer> AddConsumer(Consumer consumer);
         Task<ActionResult<IEnumerable<object>>> GetConsumer(int id);
         Task<Consumer> SaveEditConsumer(Consumer consumer,int id);
-        Task<ActionResult<Consumer>> RemoveConsumer(string id);
+        Task<ActionResult<Consumer>> RemoveConsumer(int id);
     }
 }

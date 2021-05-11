@@ -50,7 +50,7 @@ namespace Web2Project_API.DbConfigurations
             modelBuilder.Entity<Incident>().HasOne<WorkRequest>(x => x.WorkRequest).WithOne(x => x.Incident).HasForeignKey<WorkRequest>(x => x.IncidentId);
 
             modelBuilder.Entity<WorkPlan>().HasOne<SafetyDocument>(x => x.SafetyDoc).WithOne(x => x.WorkPlan).HasForeignKey<SafetyDocument>(x => x.WorkPlanId);
-            modelBuilder.Entity<Consumer>().HasOne<User>(x => x.User).WithOne(x => x.Consumer).HasForeignKey<User>(x => x.ConsumerId);
+            //modelBuilder.Entity<Consumer>().HasOne<User>(x => x.User).WithOne(x => x.Consumer).HasForeignKey<User>(x => x.ConsumerId);
             modelBuilder.Entity<SafetyDocument>().HasOne<User>(x => x.User).WithMany(x => x.SafetyDocuments).HasForeignKey(x => x.UserId);
             modelBuilder.Entity<Incident>().HasOne<User>(x => x.User).WithMany(x => x.Incidents).HasForeignKey(x => x.UserId);
             modelBuilder.Entity<Device>().HasOne<WorkPlan>(x => x.WorkPlan).WithMany(x => x.Devices).HasForeignKey(x => x.WorkPlanId);

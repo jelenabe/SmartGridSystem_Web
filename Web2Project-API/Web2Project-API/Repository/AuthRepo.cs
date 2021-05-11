@@ -65,7 +65,7 @@ namespace Web2Project_API.Repository
             }
 
             registrationUser.Birthday = user.Birthday;
-            registrationUser.Approved = true;
+            registrationUser.Approved = false;
 
             await _context.Users.AddAsync(registrationUser);
             await _context.SaveChangesAsync();
