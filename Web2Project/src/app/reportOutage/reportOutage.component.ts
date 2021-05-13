@@ -1,5 +1,5 @@
 import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -18,21 +18,8 @@ export class ReportOutageComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
   anonymous:boolean= true;
 
-  reasonFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  hazardFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  streetFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  cityFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  postNumberFormControl = new FormControl('', [
-    Validators.required,
-  ]);
+  @ViewChild(SelectConsumerComponent) select : SelectConsumerComponent;
+
 
   constructor(private outageService: ReportOutageService, public dialog: MatDialog) { }
 
@@ -54,12 +41,15 @@ export class ReportOutageComponent implements OnInit {
       this.anonymous=false;
     }
   }
-  openDialog(){
+  openDialog(event: any){
     this.anonymous=false;
     const dialogRef = this.dialog.open(SelectConsumerComponent, {width: "80%"});
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    dialogRef.afterClosed().subscribe(event => {
+      console.log(event);
+      this.model.street=event.street;
+      this.model.city=event.city;
+      this.model.postNumber=event.postNumber;
     });
   }
 

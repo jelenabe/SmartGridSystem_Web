@@ -23,7 +23,7 @@ register(model: any)
 }
 
 login(model: any) {
-  return this.http.post(this.baseUrl + 'login', model).pipe(
+  return this.http.post(this.baseUrl, model).pipe(
     map((response: any) => {
       const user = response;
       console.log(user);

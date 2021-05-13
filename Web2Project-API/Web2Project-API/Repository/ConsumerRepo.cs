@@ -68,6 +68,7 @@ namespace Web2Project_API.Repository
             var location = _context.Locations.Where(x => x.LocationId == consumer.LocationId).FirstOrDefault();
 
             ConsumerLocationDTO returnConsumer = new ConsumerLocationDTO();
+            returnConsumer.Id = consumer.ConsumerId;
             returnConsumer.Name = consumer.Name;
             returnConsumer.Lastname = consumer.Lastname;
             returnConsumer.Phone = consumer.Phone;

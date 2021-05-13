@@ -20,7 +20,7 @@ namespace Web2Project_API.Models
         private bool approved;
         //private bool checkEmal; // da li treba na back-u ?!
 
-        public int LocationId { get; set; }
+        public int? LocationId { get; set; }
         public Location Location { get; set; }
         public int? CrewId { get; set; }
         public Crew Crew { get; set; }

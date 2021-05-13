@@ -4,14 +4,15 @@
       <div class="card card-signin my-5">
         <div class="card-body form-body">
           <h5 class="card-title text-center">Sign In</h5>
-          <form class="form-signin">
+
+          <form class="form-signin" (ngSubmit)="login()">
             <div class="form-group">
-              <input type="email" id="inputEmail" class="form-control input-style is-valid" placeholder="Email address" [(ngModel)]="model.Email"
+              <input type="email" name="email" id="inputEmail" class="form-control input-style is-valid" placeholder="Email address" [(ngModel)]="model.Email"
                 required autofocus>
             </div>
 
             <div class="form-group">
-              <input type="password" id="inputPassword" class="form-control input-style is-invalid" [(ngModel)]="model.Password"
+              <input type="password" name="password" id="inputPassword" class="form-control input-style is-invalid" [(ngModel)]="model.Password"
                 placeholder="Password" required>
               <div class="invalid-feedback">
                 Please enter a password!
@@ -21,8 +22,8 @@
             <div class="form-group">
               <a href="#">Forgot password?</a>
             </div>
-            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"
-              [routerLink]="['/dashboard']">Sign in</button>
+            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+              <!-- [routerLink]="['/dashboard']" -->
             <hr class="my-4">
             <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i
                 class="fab fa-google mr-2"></i> Sign in with Google</button>

@@ -5,28 +5,23 @@
     <!--Reason-->
     <mat-form-field class="example-full-width divStyle" >
       <mat-label>Reason</mat-label>
-      <input type="text" matInput [formControl]="reasonFormControl" [errorStateMatcher]="matcher"  [(ngModel)]="model.reason" name="reason" 
-             placeholder="Reason...">
-      <mat-error *ngIf="reasonFormControl.hasError('required')">
-        Reason is <strong>required</strong>
-      </mat-error>
+      <input type="text" matInput  [(ngModel)]="model.reason" name="reason" 
+             placeholder="Reason..." required>
     </mat-form-field>
 
     <!--Comment-->
     <mat-form-field class="example-full-width divStyle" >
       <mat-label>Comment</mat-label>
       <input type="text" matInput [(ngModel)]="model.comment" name="comment" 
-             placeholder="Comment...">
+             placeholder="Comment..." >
     </mat-form-field>
 
     <!--Hazard-->
     <mat-form-field class="example-full-width divStyle" style="padding-top: 3%;" >
       <mat-label>Hazard</mat-label>
-      <input type="text" matInput [formControl]="hazardFormControl" [errorStateMatcher]="matcher"  [(ngModel)]="model.hazard" name="hazard" 
-             placeholder="Hazard...">
-      <mat-error *ngIf="hazardFormControl.hasError('required')">
-        Hazard is <strong>required</strong>
-      </mat-error>
+      <input type="text" matInput  [(ngModel)]="model.hazard" name="hazard" 
+             placeholder="Hazard..." required>
+     
     </mat-form-field>
 
     <h3 style="padding-top: 3%;">Consumer info:</h3>
@@ -36,43 +31,31 @@
     <mat-button-toggle value="all_incidents" id="option1" (click)="buttonClicked(1)" >
       Anonymous</mat-button-toggle
     >
-    <mat-button-toggle value="mine_incidents" id="option2" (click)="openDialog()"
-      >Select consumer</mat-button-toggle
+    <mat-button-toggle value="mine_incidents" id="option2"  (click)="openDialog($event)"
+    > Select consumer</mat-button-toggle
     >
   </mat-button-toggle-group>
 </span>
-<div *ngIf="anonymous">
-
     <!--Street-->
     <mat-form-field class="example-full-width divStyle" >
       <mat-label>Street</mat-label>
-      <input type="text" matInput  [formControl]="streetFormControl" [errorStateMatcher]="matcher" [(ngModel)]="model.street" name="street" 
-             placeholder="Street...">
-     <mat-error *ngIf="streetFormControl.hasError('required')">
-         Street is <strong>required</strong>
-      </mat-error>
+      <input type="text" matInput [(ngModel)]="model.street" name="street" 
+             placeholder="Street..." required>
     </mat-form-field>
 
     <!--City-->
     <mat-form-field class="example-full-width divStyle" >
       <mat-label>City</mat-label>
-      <input type="text" matInput  [formControl]="cityFormControl" [errorStateMatcher]="matcher"  [(ngModel)]="model.city" name="city" 
-             placeholder="City...">
-      <mat-error *ngIf="cityFormControl.hasError('required')">
-            City is <strong>required</strong>
-      </mat-error>
+      <input type="text" matInput [(ngModel)]="model.city" name="city" 
+             placeholder="City..." required>
     </mat-form-field>
 
      <!--PostNumber-->
      <mat-form-field class="example-full-width divStyle" >
       <mat-label>Post number</mat-label>
-      <input type="text" matInput  [formControl]="postNumberFormControl" [errorStateMatcher]="matcher" [(ngModel)]="model.postNumber" name="postNumber" 
-             placeholder="Post number...">
-      <mat-error *ngIf="postNumberFormControl.hasError('required')">
-            Post number is <strong>required</strong>
-      </mat-error>
+      <input type="text" matInput  [(ngModel)]="model.postNumber" name="postNumber" 
+             placeholder="Post number..." required>
     </mat-form-field>
-  </div>
 
     <!--Button Reposrt-->
     <div class="input-group-prepend" style="padding-bottom: 4%; padding-left: 50%;">

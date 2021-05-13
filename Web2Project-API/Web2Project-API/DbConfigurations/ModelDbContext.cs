@@ -60,7 +60,62 @@ namespace Web2Project_API.DbConfigurations
             modelBuilder.Entity<MultimediaAttachmentIncident>().HasOne<Incident>(x => x.Incident).WithMany(x => x.MultimediaAttachmentIncidents).HasForeignKey(x => x.IncidentId);
             modelBuilder.Entity<MultimediaAttachmentSafetyDocument>().HasOne<SafetyDocument>(x => x.SafetyDocument).WithMany(x => x.MultimediaAttachmentSafetyDocuments).HasForeignKey(x => x.SafetyDocumentId);
 
+            CreatePasswordHash("admin1", out byte[] PasswordHash1, out byte[] PasswordSalt1);
+            CreatePasswordHash("admin2", out byte[] PasswordHash2, out byte[] PasswordSalt2);
+            CreatePasswordHash("admin3", out byte[] PasswordHash3, out byte[] PasswordSalt3);
 
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    UserId = 1,
+                    Username = "Admin1",
+                    PasswordHash = PasswordHash1,
+                    PasswordSalt = PasswordSalt1,
+                    Name = "Milan",
+                    Lastname = "Momcilovic",
+                    Email = "milan.momcilovic582@gmail.com",
+                    LocationId = null,
+                    Birthday = new DateTime(1998, 6, 17),
+                    UserType = UserType.ADMIN
+                    
+                },
+                new User
+                {
+                    UserId = 2,
+                    Username = "Admin1",
+                    PasswordHash = PasswordHash1,
+                    PasswordSalt = PasswordSalt1,
+                    Name = "Milica",
+                    Lastname = "Simeunovic",
+                    Email = "milica.simeunovic97@gmail.com",
+                    LocationId = null,
+                    Birthday = new DateTime(1997, 12, 10),
+                    UserType = UserType.ADMIN
+                },
+                new User
+                {
+                    UserId = 3,
+                    Username = "Admin1",
+                    PasswordHash = PasswordHash1,
+                    PasswordSalt = PasswordSalt1,
+                    Name = "Jelena",
+                    Lastname = "Beader",
+                    Email = "jelena.beader@gmail.com",
+                    LocationId = null,
+                    Birthday = new DateTime(1998, 6, 17),
+                    UserType = UserType.ADMIN
+                }
+            ) ;
+        }
+
+        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            using (var hmac = new System.Security.Cryptography.HMACSHA512())
+            {
+                passwordSalt = hmac.Key;
+                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            }
         }
     }
+    
 }

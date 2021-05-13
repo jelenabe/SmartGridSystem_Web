@@ -1,5 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -27,8 +27,10 @@ const ELEMENT_DATA: ConsumersColumns[] = [];
 export class SelectConsumerComponent implements OnInit {
   ELEMENT_DATA: any[] = [];
   Consumers: any = [];
+  model: any= {};
+  @Output() newItemEvent = new EventEmitter<any>();
   
-  displayedColumns = ['select', 'id', 'name', 'lastname', 'phoneNumber', 'address', 'type'];
+  displayedColumns = [ 'id', 'name', 'lastname', 'phoneNumber', 'address', 'type','buttons'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   selection = new SelectionModel<ConsumersColumns>(true, []);  // checkbox
 
@@ -68,32 +70,11 @@ export class SelectConsumerComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-// checkbox:
-/** Whether the number of selected elements matches the total number of rows. */
-isAllSelected() {
-  const numSelected = this.selection.selected.length;
-  const numRows = this.dataSource.data.length;
-  return numSelected === numRows;
-}
-
-/** Selects all rows if they are not all selected; otherwise clear selection. */
-masterToggle() {
-  this.isAllSelected() ?
-      this.selection.clear() :
-      this.dataSource.data.forEach(row => this.selection.select(row));
-}
-
- /** The label for the checkbox on the passed row */
- checkboxLabel(row?: ConsumersColumns): string {
-  if (!row) {
-    return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-  }
-  return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
-}
-
-
-funkcijica(){
-  console.log("caoo");
+select(consumerId:number,i:number){
+ this.newConsumerService.getConsumer(consumerId).subscribe((response)=>{
+  this.model=response;
+  this.newItemEvent.emit(this.model);
+ })
 }
 displayConsumerInfo(){
   
