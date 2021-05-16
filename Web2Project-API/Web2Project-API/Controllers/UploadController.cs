@@ -15,11 +15,6 @@ namespace Web2Project_API.Controllers
     public class UploadController : Controller
     {
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         [HttpPost, DisableRequestSizeLimit]
         public IActionResult Upload()
         {

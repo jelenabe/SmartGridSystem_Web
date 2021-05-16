@@ -5,7 +5,7 @@
         <div class="card-body form-body">
           <h5 class="card-title text-center">Sign In</h5>
 
-          <form class="form-signin" (ngSubmit)="login()">
+          <form class="form-signin" (ngSubmit)="login()" ngNativeValidate>
             <div class="form-group">
               <input type="email" name="email" id="inputEmail" class="form-control input-style is-valid" placeholder="Email address" [(ngModel)]="model.Email"
                 required autofocus>

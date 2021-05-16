@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   model: any = {};
   usertype: any;
 
-  constructor(private router: Router, private authService: AuthService ) { }
+  constructor(private router: Router, private loginservice: LoginService ) { }
 
   // tslint:disable-next-line: typedef
   ngOnInit() {
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
   // tslint:disable-next-line: typedef
 
   login() {
-    this.authService.login(this.model).subscribe(data => {
+    this.loginservice.login(this.model).subscribe(data => {
       this.usertype = localStorage.getItem('usertype');
       console.log('logged in successfully');
       this.router.navigate(['/', 'dashboard']);
