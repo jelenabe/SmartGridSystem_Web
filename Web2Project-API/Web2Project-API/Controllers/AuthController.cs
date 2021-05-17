@@ -53,8 +53,8 @@ namespace Web2Project_API.Controllers
             user.Lastname = dto.Lastname;
             user.Username = dto.Username;
             user.Email = dto.Email;
-            user.Location.City = "Novi Sad";
-            user.Location.Street = "Ulica u Novom Sadu";
+            user.Location.City = dto.City;
+            user.Location.Street = dto.Street;
             user.Location.PostNumber = 21000;
             user.Picture = dto.Picture;
            
@@ -70,6 +70,10 @@ namespace Web2Project_API.Controllers
             else if (dto.UserType == "Worker")
             {
                 user.UserType = UserType.WORKER;
+            }
+            else if (dto.UserType == "Consumer")
+            {
+                user.UserType = UserType.CONSUMER;
             }
             user.Birthday = dto.BirthDay;
 

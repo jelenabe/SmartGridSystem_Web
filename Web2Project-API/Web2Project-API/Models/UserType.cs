@@ -10,7 +10,8 @@ namespace Web2Project_API.Models
         CREW_MEMBER,
         DISPACHER,
         WORKER,
-        ADMIN
+        ADMIN,
+        CONSUMER
 
     }
 }

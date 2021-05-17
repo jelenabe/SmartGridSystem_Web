@@ -55,10 +55,9 @@ namespace Web2Project_API.Repository
                                 consumerss.Location.PostNumber,
                                 consumerss.Phone,
                                 consumerss.Type,
-                        };
+                            };
 
             return await consumers.ToListAsync();
-
         }
 
         public async Task<ActionResult<ConsumerLocationDTO>> GetConsumer(int id)

@@ -70,6 +70,20 @@ namespace Web2Project_API.Repository
             {
                 //registrationUser.UserCrews = null; //dodati ekipu kojoj pripada
             }
+            else if (registrationUser.UserType == UserType.CONSUMER)
+            {
+                Consumer consumer = new Consumer();
+                consumer.Name = registrationUser.Name;
+                consumer.Lastname = registrationUser.Lastname;
+                consumer.Phone = null;
+                consumer.Type = ConsumerType.Commercial;
+                consumer.LocationId = location.LocationId;
+
+                await _context.Consumers.AddAsync(consumer);
+                await _context.SaveChangesAsync();
+
+                registrationUser.ConsumerId = consumer.ConsumerId;                
+            }
 
             registrationUser.Birthday = user.Birthday;
             registrationUser.Approved = false;

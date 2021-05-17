@@ -46,12 +46,11 @@ export class NewConsumerComponent implements OnInit {
   typeFormControl = new FormControl('', [
     Validators.required,
   ]);
-  
   matcher = new MyErrorStateMatcher();
 
 
-  constructor(private newConsumerService: NewConsumerService,private _snackBar: MatSnackBar,
-              private router:Router) { }
+  constructor(private newConsumerService: NewConsumerService, private snackBar: MatSnackBar,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -59,15 +58,16 @@ export class NewConsumerComponent implements OnInit {
   save(){
     console.log(this.model);
     this.newConsumerService.save(this.model).subscribe((response)=>{
-      console.log("Applay changes successfull");
+      console.log('Applay changes successfull');
       console.log(response);
-        
+      this.openSnackBar();
+      this.router.navigateByUrl('http://localhost:4200/consumers');
     });
-    this.openSnackBar();
-    this.router.navigate(['/','consumers']);
+
   }
+
   openSnackBar() {
-    this._snackBar.open("Consumer success added" ,'OK', {
+    this.snackBar.open('Consumer success added' , 'OK', {
       duration: 3000
     });
   }

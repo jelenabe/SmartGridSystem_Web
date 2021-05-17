@@ -29,7 +29,7 @@
     <div>
       <mat-form-field class="example-full-width">
         <mat-label>Password</mat-label>
-        <input type="password" name="password" matInput [(ngModel)]="model.Password">
+        <input type="password" name="password" matInput [(ngModel)]="model.Password" required>
         
       </mat-form-field>
     </div>
@@ -37,12 +37,12 @@
     <div>
       <mat-form-field class="example-full-width">
         <mat-label>Repete Password</mat-label>
-        <input type="password" name="passwordRepete" matInput [(ngModel)]="model.PasswordRepete">
+        <input type="password" name="passwordRepete" matInput [(ngModel)]="model.PasswordRepete" required>
        
       </mat-form-field>
     </div>
 
-    <div style="color: red; margin-left: 15%;" *ngIf="!checkPasswords()" >
+    <div style="color: red; margin-left: 15%;" *ngIf="!checkPasswords()" required>
       Password and Confirm Password must be match.
     </div>
 
@@ -50,7 +50,7 @@
     <div>
       <mat-form-field class="example-full-width">
         <mat-label>Name</mat-label>
-        <input type="text" matInput name="name" [(ngModel)]="model.Name">
+        <input type="text" matInput name="name" [(ngModel)]="model.Name" required>
        
       </mat-form-field>
     </div>
@@ -59,7 +59,7 @@
     <div>
       <mat-form-field class="example-full-width">
         <mat-label>LastName</mat-label>
-        <input type="text" matInput  name="lastname"  [(ngModel)]="model.Lastname">
+        <input type="text" matInput  name="lastname"  [(ngModel)]="model.Lastname" required>
       
       </mat-form-field>
     </div>
@@ -67,7 +67,7 @@
     <div>
       <mat-form-field class="example-full-width">
         <mat-label>birthday</mat-label>
-        <input type="date" matInput  name="birthday" [(ngModel)]="model.Birthday">
+        <input type="date" matInput  name="birthday" [(ngModel)]="model.Birthday" required>
        
       </mat-form-field>
     </div>
@@ -75,7 +75,7 @@
     <div>
       <mat-form-field class="example-full-width">
         <mat-label>Street</mat-label>
-        <input type="text" matInput  name="street" [(ngModel)]="model.Street" placeholder="Street Number">
+        <input type="text" matInput  name="street" [(ngModel)]="model.Street" placeholder="Street Number" required>
         
       </mat-form-field>
     </div>
@@ -83,7 +83,7 @@
     <div>
       <mat-form-field class="example-full-width">
         <mat-label>City</mat-label>
-        <input type="text" matInput name="city" [(ngModel)]="model.City">
+        <input type="text" matInput name="city" [(ngModel)]="model.City" required>
         
       </mat-form-field>
     </div>
@@ -92,7 +92,7 @@
     <div>
       <mat-form-field class="example-full-width">
         <mat-label>Post Number</mat-label>
-        <input type="number" name="number" matInput [(ngModel)]="model.PostNumber">
+        <input type="number" name="number" matInput [(ngModel)]="model.PostNumber" required>
        
       </mat-form-field>
     </div>
@@ -104,6 +104,7 @@
           <mat-option value="Crew Member">Crew Member</mat-option>
           <mat-option value="Dispatcher">Dispatcher</mat-option>
           <mat-option value="Worker">Worker</mat-option>
+          <mat-option value="Consumer">Consumer</mat-option>
         </mat-select>
       </mat-form-field>
 

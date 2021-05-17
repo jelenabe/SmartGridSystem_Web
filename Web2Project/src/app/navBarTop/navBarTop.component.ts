@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginComponent } from '../login/login.component';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-navBarTop',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarTopComponent implements OnInit {
 
-  constructor() { }
+  constructor(private login: LoginService) { }
 
   ngOnInit() {
+  }
+
+  logout() {
+    this.login.userToken = null;
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    localStorage.removeItem('email');
+    localStorage.removeItem('type');
+
+    console.log('logged out');
   }
 
 }

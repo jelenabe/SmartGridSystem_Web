@@ -4,6 +4,8 @@ import { AuthService } from '../services/auth.service';
 import { UploadFileService } from '../services/upload-file.service';
 import {FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -26,35 +28,6 @@ export class RegisterComponent implements OnInit{
   pathFile: any = {};
   resolutionFormControl = new FormControl();
 
-  usernameFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-  passwordFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  nameFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  lastnameFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  birthdayFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  streetFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  cityFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  postNumberFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-
   matcher = new MyErrorStateMatcher();
 
   showSubcauses: boolean = false;
@@ -62,7 +35,10 @@ export class RegisterComponent implements OnInit{
   subcausCrew: string[] = ['Crew1', 'Crew2', 'Crew3'];
   subcauses: string[] = [];
 
-  constructor(private authService: AuthService, private uploadService: UploadFileService) { }
+  constructor(private authService: AuthService,
+              private uploadService: UploadFileService,
+              private snackBar: MatSnackBar,
+              private router: Router) { }
 
   // tslint:disable-next-line: typedef
   ngOnInit() {
@@ -85,6 +61,8 @@ export class RegisterComponent implements OnInit{
 
       this.authService.register(this.model).subscribe(() => {
         console.log('Registration Successfull!');
+        this.openSnackBar();
+        this.router.navigateByUrl('http://localhost:4200');
       });
     });
   }
@@ -119,5 +97,15 @@ SelectionChangedCause(event: any)
       this.model.UserType = 'Dispatcher';
       this.showSubcauses = false;
     }
+    else if (event.value === 'Consumer'){
+      this.model.UserType = 'Consumer';
+      this.showSubcauses = false;
+    }
+  }
+
+  openSnackBar() {
+    this.snackBar.open('Registration Succesfull!', 'OK', {
+      duration: 3000
+    });
   }
 }
