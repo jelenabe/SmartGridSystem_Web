@@ -106,6 +106,41 @@ namespace Web2Project_API.DbConfigurations
                     UserType = UserType.ADMIN
                 }
             ) ;
+
+            modelBuilder.Entity<Location>().HasData(
+                new Location
+                {
+                    LocationId = 2,
+                    City = "Novi Sad",
+                    Street = "Balzakova 40",
+                    Lat = "122° 36' 52.5\"",
+                    Lon = "100° 26' 30\"",
+                    PostNumber = 21000,
+                    Priority = 1
+                },
+                new Location
+                {
+                    LocationId = 3,
+                    City = "Novi Sad",
+                    Street = "Narodnog Fronta 54",
+                    Lat = "45.238896",
+                    Lon = "19.833034",
+                    PostNumber = 21000,
+                    Priority = 2
+                },
+                new Location
+                {
+                    LocationId = 4,
+                    City = "Beograd",
+                    Street = "Jovana Rajica 7",
+                    Lat = "44.796319",
+                    Lon = "20.486268",
+                    PostNumber = 11118,
+                    Priority = 3
+                }
+            );
+
+
         }
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
