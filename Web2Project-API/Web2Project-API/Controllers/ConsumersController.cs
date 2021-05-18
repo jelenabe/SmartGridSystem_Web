@@ -39,10 +39,7 @@ namespace Web2Project_API.Controllers
                 consumer.Type = ConsumerType.Commercial;
             }
 
-            consumer.Location = new Location();
-            consumer.Location.Street = modelDto.Street;
-            consumer.Location.City = modelDto.City;
-            consumer.Location.PostNumber = modelDto.PostNumber;
+            consumer.LocationId = Int32.Parse(modelDto.LocationId);
 
             var createdConsumer = await _repo.AddConsumer(consumer);
 
@@ -51,7 +48,7 @@ namespace Web2Project_API.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<ActionResult<ConsumerLocationDTO>> GetConsumer(int id)
+        public async Task<ActionResult<ConsumerDTO>> GetConsumer(int id)
         {
             var Consumer = await _repo.GetConsumer(id);
 
@@ -77,7 +74,7 @@ namespace Web2Project_API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> SaveEditConsumer([FromRoute] int id, [FromBody] ConsumerLocationDTO modelDto)
+        public async Task<IActionResult> SaveEditConsumer([FromRoute] int id, [FromBody] ConsumerDTO modelDto)
         {
             Consumer consumer = new Consumer();
             consumer.ConsumerId = id;
@@ -93,12 +90,9 @@ namespace Web2Project_API.Controllers
                 consumer.Type = ConsumerType.Commercial;
             }
 
-            consumer.Location = new Location();
-            consumer.Location.Street = modelDto.Street;
-            consumer.Location.City = modelDto.City;
-            consumer.Location.PostNumber = Int32.Parse(modelDto.PostNumber);
+            consumer.LocationId = Int32.Parse(modelDto.LocationId);
 
-            var createdConsumer = await _repo.SaveEditConsumer(consumer, modelDto.Id);
+            var createdConsumer = await _repo.SaveEditConsumer(consumer, modelDto.ConsumerId);
 
             return StatusCode(201);
 

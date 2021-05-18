@@ -17,10 +17,7 @@ namespace Web2Project_API.DTOs
         public string Picture { get; set; }
         public string UserType { get; set; }
         public int crewId { get; set; }
-        public string Street { get; set; }
-        public string City { get; set; }
-        public int PostNumber { get; set; }
-        //public bool CheckEmail { get; set; } // ?!
+        public string LocationId { get; set; }
 
     }
 }

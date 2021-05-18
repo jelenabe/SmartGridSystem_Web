@@ -52,17 +52,8 @@ namespace Web2Project_API.Repository
             registrationUser.PasswordHash = PasswordHash;
             registrationUser.PasswordSalt = PasswordSalt;
 
-            Location location = new Location();
-            location.City = user.Location.City;
-            location.Street = user.Location.Street;
-            location.PostNumber = user.Location.PostNumber;
-            location.Lat = "0";
-            location.Lon = "0";
 
-            await _context.Locations.AddAsync(location);
-            await _context.SaveChangesAsync();
-
-            registrationUser.LocationId = location.LocationId;
+            registrationUser.LocationId = user.LocationId;
             registrationUser.Picture = user.Picture;
             registrationUser.UserType = user.UserType;
 
@@ -77,7 +68,7 @@ namespace Web2Project_API.Repository
                 consumer.Lastname = registrationUser.Lastname;
                 consumer.Phone = null;
                 consumer.Type = ConsumerType.Commercial;
-                consumer.LocationId = location.LocationId;
+                consumer.LocationId = user.LocationId;
 
                 await _context.Consumers.AddAsync(consumer);
                 await _context.SaveChangesAsync();

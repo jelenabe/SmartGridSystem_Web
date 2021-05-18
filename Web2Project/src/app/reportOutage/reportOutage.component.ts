@@ -7,6 +7,8 @@ import { MyErrorStateMatcher } from '../profile/profile.component';
 import { SelectConsumerComponent } from '../select-consumer/select-consumer.component';
 import { ProfileService } from '../services/profile.service';
 import { ReportOutageService } from '../services/reportOutage.service';
+import { Location } from '../models/location';
+import { LocationService } from '../services/location.service';
 
 @Component({
   selector: 'app-reportOutage',
@@ -17,11 +19,15 @@ export class ReportOutageComponent implements OnInit {
   model: any= {};
   matcher = new MyErrorStateMatcher();
   anonymous:boolean= true;
+  
+  location:string[];
+  locations: Location[] = [];
 
   @ViewChild(SelectConsumerComponent) select : SelectConsumerComponent;
 
 
-  constructor(private outageService: ReportOutageService, public dialog: MatDialog) { }
+  constructor(private outageService: ReportOutageService, public dialog: MatDialog,
+    private locationService: LocationService) { }
 
   report(){
     console.log(this.model);
@@ -30,6 +36,7 @@ export class ReportOutageComponent implements OnInit {
     })
   }
   ngOnInit() {
+    this.getAllLocations();
   }
 
   buttonClicked(options: number){
@@ -51,6 +58,21 @@ export class ReportOutageComponent implements OnInit {
       this.model.city=event.city;
       this.model.postNumber=event.postNumber;
     });
+  }
+  getAllLocations() {
+    this.locationService.getAllLocations().subscribe(
+      data => {
+        this.locations=data;
+        console.log(data);
+        console.log(this.locations)
+      },
+      error => {
+        this.getAllLocations();
+      }
+    )
+  }
+  formatLocation(location: Location) {
+    return `${location.street}, ${location.city}, ${location.postNumber}`;
   }
 
 }

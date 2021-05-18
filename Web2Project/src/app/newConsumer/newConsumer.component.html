@@ -3,14 +3,9 @@
 <br />
 
 <div style="margin-left: 25%">
-  <form (ngSubmit)="save()" >
+  <form (ngSubmit)="save()" ngNativeValidate>
     <!--Label Name and input Enter name-->
-    
-    <div>
-      <mat-error *ngIf="nameFormControl.hasError('required')">
-        Name is <strong>required</strong>
-      </mat-error>
-    </div>
+
     <div class="input-group mb-3" style="width: 700px">
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-default"
@@ -25,17 +20,10 @@
         aria-describedby="inputGroup-sizing-default"
         placeholder="Enter Name..."
         [(ngModel)]="model.name"
-        [formControl]="nameFormControl" 
         required
       />
-      
     </div>
     <!--Label Lastname and input Enter Lastname-->
-    <div>
-      <mat-error *ngIf="lastnameFormControl.hasError('required')">
-        Lastname is <strong>required</strong>
-      </mat-error>
-    </div>
     <div class="input-group mb-3" style="width: 700px">
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-default"
@@ -50,17 +38,12 @@
         aria-describedby="inputGroup-sizing-default"
         placeholder="Enter Lastname..."
         [(ngModel)]="model.lastname"
-        [formControl]="lastnameFormControl" 
         required
       />
     </div>
 
     <!--Label Phone number and input Enter phone nummber-->
-    <div>
-      <mat-error *ngIf="phoneNumberFormControl.hasError('required')">
-        Phone number is <strong>required</strong>
-      </mat-error>
-    </div>
+
     <div class="input-group mb-3" style="width: 700px">
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-default"
@@ -75,96 +58,35 @@
         aria-describedby="inputGroup-sizing-default"
         placeholder="Enter Phone number..."
         [(ngModel)]="model.phone"
-        
-        [formControl]="phoneNumberFormControl" 
         required
       />
     </div>
 
-    <!--Label Street and input Enter street-->
-    <div>
-      <mat-error *ngIf="streetFormControl.hasError('required')">
-        Street is <strong>required</strong>
-      </mat-error>
-    </div>
+    <!--Label Location and select choose-->
+
     <div class="input-group mb-3" style="width: 700px">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default"
-          >Street</span
+        <label class="input-group-text" for="inputGroupSelect01"
+          >Location</label
         >
       </div>
-      <input
-        name="Street"
-        type="text"
-        class="form-control"
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
-        placeholder="Enter Location..."
-        [(ngModel)]="model.street"
-        
-        [formControl]="streetFormControl" 
+      <select
+        name="LocationId"
+        class="custom-select"
+        placeholder="Select location..."
+        [(ngModel)]="model.locationId"
         required
-      />
-    </div>
-
-    <!--Label City and input Enter City-->
-    <div>
-      <mat-error *ngIf="cityFormControl.hasError('required')">
-        City is <strong>required</strong>
-      </mat-error>
-    </div>
-    <div class="input-group mb-3" style="width: 700px">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default"
-          >City</span
+      >
+        <option
+          *ngFor="let location of locations"
+          value="{{ location.locationId }}"
         >
-      </div>
-      <input
-        name="City"
-        type="text"
-        class="form-control"
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
-        placeholder="Enter city..."
-        [(ngModel)]="model.city"
-        
-        [formControl]="cityFormControl" 
-        required
-      />
+          {{ formatLocation(location) }}
+        </option>
+      </select>
     </div>
-
-    <!--Label PostNumber and input Enter PostNumber-->
-    <div>
-      <mat-error *ngIf="postNumberFormControl.hasError('required')">
-        Post number is <strong>required</strong>
-      </mat-error>
-    </div>
-    <div class="input-group mb-3" style="width: 700px">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default"
-          >Post number</span
-        >
-      </div>
-      <input
-        name="PostNumber"
-        type="number"
-        class="form-control"
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
-        placeholder="Enter Post number..."
-        [(ngModel)]="model.postNumber"
-        
-        [formControl]="postNumberFormControl" 
-        required
-      />
-    </div>
-
     <!--Label Type and select choose-->
-    <div>
-      <mat-error *ngIf="typeFormControl.hasError('required')">
-        Type is <strong>required</strong>
-      </mat-error>
-    </div>
+
     <div class="input-group mb-3" style="width: 700px">
       <div class="input-group-prepend">
         <label class="input-group-text" for="inputGroupSelect01">Type</label>
@@ -172,20 +94,20 @@
       <select
         name="Type"
         class="custom-select"
-        id="inputGroupSelect01"
-        [(ngModel)]="model.type"
         
-        [formControl]="typeFormControl" 
+        placeholder="Select type..."
+        [(ngModel)]="model.type"
         required
       >
-        <option selected>Choose...</option>
-        <option value="1">Rezidentalni</option>
-        <option value="2">Komercijalni</option>
+        <option value="Residential">Residential</option>
+        <option value="Commercial">Commercial</option>
       </select>
     </div>
     <!--Button Reposrt-->
     <div class="input-group-prepend">
-      <button class="btn btn-primary" type="submit" mat-stroked-button>Save</button>
+      <button class="btn btn-primary" type="submit" mat-stroked-button>
+        Save
+      </button>
     </div>
   </form>
 </div>

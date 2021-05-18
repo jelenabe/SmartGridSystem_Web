@@ -6,6 +6,8 @@ import {FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Location } from '../models/location';
+import { LocationService } from '../services/location.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -34,14 +36,18 @@ export class RegisterComponent implements OnInit{
 
   subcausCrew: string[] = ['Crew1', 'Crew2', 'Crew3'];
   subcauses: string[] = [];
+  location:string[];
+  locations: Location[] = [];
 
   constructor(private authService: AuthService,
               private uploadService: UploadFileService,
               private snackBar: MatSnackBar,
-              private router: Router) { }
+              private router: Router,
+              private locationService: LocationService) { }
 
   // tslint:disable-next-line: typedef
   ngOnInit() {
+    this.getAllLocations();
   }
 
   // tslint:disable-next-line: typedef
@@ -62,7 +68,7 @@ export class RegisterComponent implements OnInit{
       this.authService.register(this.model).subscribe(() => {
         console.log('Registration Successfull!');
         this.openSnackBar();
-        this.router.navigateByUrl('http://localhost:4200');
+        this.router.navigate(['']);
       });
     });
   }
@@ -107,5 +113,20 @@ SelectionChangedCause(event: any)
     this.snackBar.open('Registration Succesfull!', 'OK', {
       duration: 3000
     });
+  }
+  getAllLocations() {
+    this.locationService.getAllLocations().subscribe(
+      data => {
+        this.locations=data;
+        console.log(data);
+        console.log(this.locations)
+      },
+      error => {
+        this.getAllLocations();
+      }
+    )
+  }
+  formatLocation(location: Location) {
+    return `${location.street}, ${location.city}, ${location.postNumber}`;
   }
 }

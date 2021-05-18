@@ -12,7 +12,7 @@ namespace Web2Project_API.Repository
     {
         Task<ActionResult<IEnumerable<object>>> GetAllConsumers();
         Task<Consumer> AddConsumer(Consumer consumer);
-        Task<ActionResult<ConsumerLocationDTO>> GetConsumer(int id);
+        Task<ActionResult<ConsumerDTO>> GetConsumer(int id);
         Task<Consumer> SaveEditConsumer(Consumer consumer,int id);
         Task<ActionResult<Consumer>> RemoveConsumer(int id);
     }

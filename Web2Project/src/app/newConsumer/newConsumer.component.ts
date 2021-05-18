@@ -6,6 +6,8 @@ import {ErrorStateMatcher} from '@angular/material/core';
 import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Location } from '../models/location';
+import { LocationService } from '../services/location.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -20,48 +22,30 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class NewConsumerComponent implements OnInit {
   model: any= {};
-  queryString: string= "";
-  params:string[];
-  paramsTwo:string[];
   location:string[];
+  locations: Location[] = [];
 
-  nameFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  lastnameFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  streetFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  cityFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  postNumberFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  phoneNumberFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  typeFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  matcher = new MyErrorStateMatcher();
-
-
-  constructor(private newConsumerService: NewConsumerService, private snackBar: MatSnackBar,
-              private router: Router) { }
+  constructor(private newConsumerService: NewConsumerService,
+              private snackBar: MatSnackBar,
+              private router: Router,
+              private locationService: LocationService) { }
 
   ngOnInit() {
+    this.getAllLocations();
   }
 
   save(){
+    this.model.street="";
+    this.model.city="";
+    this.model.postNumber="0";
+    this.model.consumerId=0;
     console.log(this.model);
+   
     this.newConsumerService.save(this.model).subscribe((response)=>{
       console.log('Applay changes successfull');
       console.log(response);
       this.openSnackBar();
-      this.router.navigateByUrl('http://localhost:4200/consumers');
+      this.router.navigate(['consumers']);
     });
 
   }
@@ -70,6 +54,21 @@ export class NewConsumerComponent implements OnInit {
     this.snackBar.open('Consumer success added' , 'OK', {
       duration: 3000
     });
+  }
+  getAllLocations() {
+    this.locationService.getAllLocations().subscribe(
+      data => {
+        this.locations=data;
+        console.log(data);
+        console.log(this.locations)
+      },
+      error => {
+        this.getAllLocations();
+      }
+    )
+  }
+  formatLocation(location: Location) {
+    return `${location.street}, ${location.city}, ${location.postNumber}`;
   }
   
 

@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Web2Project_API.DTOs;
+using Web2Project_API.Models;
 using Web2Project_API.Repository;
 
 namespace Web2Project_API.Controllers
@@ -47,5 +49,34 @@ namespace Web2Project_API.Controllers
 
             return StatusCode(200);
         }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult<User>> GetUserById(int id)
+        {
+            var Consumer = await _repo.GetUserById(id);
+
+            return Consumer;
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> ChangeProfile([FromBody] ChangeProfileDTO dto)
+        {
+            var user = new User();
+            user.LocationId = dto.LocationId;
+
+            user.Name = dto.Name;
+            user.Lastname = dto.Lastname;
+            user.Username = dto.Username;
+            user.Email = dto.Email;
+
+            
+            user.Birthday = dto.Birthday;
+
+            var createdUser = await _repo.ChangeProfile(user, dto.UserId);
+
+            return StatusCode(201);
+        }
+
     }
 }

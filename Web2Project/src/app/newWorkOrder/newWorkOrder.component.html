@@ -6,6 +6,7 @@
             type="button"
             class="list-group-item list-group-item-action"
             (click)="changeView(1)"
+            routerLink="basicInformation"
           >
             Basic Information
           </button>
@@ -13,6 +14,7 @@
             type="button"
             class="list-group-item list-group-item-action"
             (click)="changeView(2)"
+            routerLink="historyOfStateChange"
           >
             History of state changes
           </button>
@@ -20,6 +22,7 @@
             type="button"
             class="list-group-item list-group-item-action"
             (click)="changeView(3)"
+            routerLink="multimediaAttachments"
           >
             Multimedia attachments
           </button>
@@ -27,6 +30,7 @@
             type="button"
             class="list-group-item list-group-item-action"
             (click)="changeView(4)"
+            routerLink="equipment"
           >
             Equipment
           </button>
@@ -36,7 +40,8 @@
 
     <div class="form-group col-md-8">
       <div class="input-group mb-3">
-        <div [ngSwitch]="this.buttonClicked">
+        <router-outlet></router-outlet>
+        <!--<div [ngSwitch]="this.buttonClicked">
           <div *ngSwitchCase="1">
             <app-basicInformationWorkOrder></app-basicInformationWorkOrder>
           </div>
@@ -49,7 +54,7 @@
           <div *ngSwitchCase="4">
             <app-equipment></app-equipment>
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
   </div>

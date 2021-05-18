@@ -90,8 +90,9 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { EditConsumerComponent } from './edit-consumer/edit-consumer.component';
 
-import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import { SocialLoginModule,  SocialAuthServiceConfig, FacebookLoginProvider} from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
+
 
 
 @NgModule({
@@ -218,6 +219,11 @@ import { GoogleLoginProvider } from 'angularx-social-login';
             provider: new GoogleLoginProvider(
               '401457236173-2dtik2sfnj5pg509j0o5h697s5ng6m2m.apps.googleusercontent.com'
             )
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('736454897024067')
+  
           }
         ]
       } as SocialAuthServiceConfig,

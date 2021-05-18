@@ -14,8 +14,6 @@ namespace Web2Project_API.Repository
     {
         private readonly ModelDbContext _context;
 
-        private readonly ILocationRepo _repoLocation;
-
         public ConsumerRepo(ModelDbContext context)
         {
             _context = context;
@@ -23,14 +21,7 @@ namespace Web2Project_API.Repository
         public async Task<Consumer> AddConsumer(Consumer consumer)
         {
             Consumer consumer1 = new Consumer();
-            Location location = new Location();
-            location.Street= consumer.Location.Street;
-            location.City= consumer.Location.City;
-            location.PostNumber = consumer.Location.PostNumber;
-
-            await _context.Locations.AddAsync(location);
-            await _context.SaveChangesAsync();
-            consumer1.LocationId = location.LocationId;
+            consumer1.LocationId = consumer.LocationId;
 
             consumer1.Name = consumer.Name;
             consumer1.Lastname = consumer.Lastname;
@@ -45,29 +36,32 @@ namespace Web2Project_API.Repository
         public async Task<ActionResult<IEnumerable<object>>> GetAllConsumers()
         {
             var consumers = from consumerss in _context.Consumers
+                            join location in _context.Locations on consumerss.LocationId equals location.LocationId
                             select new
                             {
                                 consumerss.ConsumerId,
                                 consumerss.Name,
                                 consumerss.Lastname,
-                                consumerss.Location.Street,
-                                consumerss.Location.City,
-                                consumerss.Location.PostNumber,
+                                consumerss.LocationId,
+                                location.Street,
+                                location.City,
+                                location.PostNumber,
                                 consumerss.Phone,
                                 consumerss.Type,
                             };
 
+            
             return await consumers.ToListAsync();
         }
 
-        public async Task<ActionResult<ConsumerLocationDTO>> GetConsumer(int id)
+        public async Task<ActionResult<ConsumerDTO>> GetConsumer(int id)
         {
             var consumer = _context.Consumers.Where(x => x.ConsumerId == id).FirstOrDefault();
 
             var location = _context.Locations.Where(x => x.LocationId == consumer.LocationId).FirstOrDefault();
 
-            ConsumerLocationDTO returnConsumer = new ConsumerLocationDTO();
-            returnConsumer.Id = consumer.ConsumerId;
+            ConsumerDTO returnConsumer = new ConsumerDTO();
+            returnConsumer.ConsumerId = consumer.ConsumerId;
             returnConsumer.Name = consumer.Name;
             returnConsumer.Lastname = consumer.Lastname;
             returnConsumer.Phone = consumer.Phone;
@@ -75,6 +69,7 @@ namespace Web2Project_API.Repository
             returnConsumer.Street = location.Street;
             returnConsumer.City = location.City;
             returnConsumer.PostNumber = location.PostNumber.ToString();
+            returnConsumer.LocationId = consumer.LocationId.ToString();
 
             return returnConsumer;
         }
@@ -97,14 +92,8 @@ namespace Web2Project_API.Repository
             consumer.Lastname = consumerparam.Lastname;
             consumer.Phone = consumerparam.Phone;
             consumer.Type = consumerparam.Type;
+            consumer.LocationId = consumerparam.LocationId;
 
-            var location = _context.Locations.Where(x => x.LocationId == consumer.LocationId).FirstOrDefault();
-
-            location.Street = consumerparam.Location.Street;
-            location.City = consumerparam.Location.City;
-            location.PostNumber = consumerparam.Location.PostNumber;
-
-            _context.Entry(location).State = EntityState.Modified;
             _context.Entry(consumer).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 

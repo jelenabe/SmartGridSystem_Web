@@ -4,15 +4,19 @@ import { ActivateProfileComponent } from './activateProfile/activateProfile.comp
 import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
 import { AllCrewsComponent } from './allCrews/allCrews.component';
 import { AllDevicesComponent } from './allDevices/allDevices.component';
+import { BasicInformationWorkOrderComponent } from './basicInformationWorkOrder/basicInformationWorkOrder.component';
 import { ChangePasswordComponent } from './changePassword/changePassword.component';
 import { ConsumersComponent } from './consumers/consumers.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditConsumerComponent } from './edit-consumer/edit-consumer.component';
+import { EquipmentComponent } from './equipment/equipment.component';
 import { FrontPageComponent } from './front-page/front-page.component';
+import { HistoryOfStateChangesComponent } from './historyOfStateChanges/historyOfStateChanges.component';
 import { HomeComponent } from './home/home.component';
 import { IncidentComponent } from './incident/incident.component';
 import { LoginComponent } from './login/login.component';
 import { MapComponent } from './map/map.component';
+import { MultimediaAttachmentsComponent } from './multimediaAttachments/multimediaAttachments.component';
 import { NewCallComponent } from './newCall/newCall.component';
 import { NewConsumerComponent } from './newConsumer/newConsumer.component';
 import { NewCrewComponent } from './newCrew/newCrew.component';
@@ -119,7 +123,25 @@ const routes: Routes = [
   {
     path: 'newWorkOrder',
     component:NewWorkOrderComponent,
-    outlet: "primary"
+    outlet: "primary",
+    children: [
+      {
+        path: 'basicInformation',
+        component: BasicInformationWorkOrderComponent
+      },
+      {
+        path: 'historyOfStateChange',
+        component: HistoryOfStateChangesComponent
+      },
+      {
+        path: 'equipment',
+        component: EquipmentComponent
+      },
+      {
+        path: 'multimediaAttachments',
+        component: MultimediaAttachmentsComponent
+      },
+    ]
   },
   {
     path: 'newPlan',

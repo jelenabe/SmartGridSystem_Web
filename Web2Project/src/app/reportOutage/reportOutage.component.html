@@ -1,65 +1,97 @@
 <h1 style="margin-left: 43%">Report Outage</h1>
 
-<div class="container" style="background-color: white; border-radius:3%; width: 50%;">
+<div
+  class="container"
+  style="background-color: white; border-radius: 3%; width: 50%"
+>
   <form (ngSubmit)="report()" ngNativeValidate>
     <!--Reason-->
-    <mat-form-field class="example-full-width divStyle" >
+    <mat-form-field
+      appearance="fill"
+      class="example-full-width divStyle"
+      style="padding-top: 5%"
+    >
       <mat-label>Reason</mat-label>
-      <input type="text" matInput  [(ngModel)]="model.reason" name="reason" 
-             placeholder="Reason..." required>
+      <mat-select name="Reason" [(ngModel)]="model.reason" required>
+        <mat-option value="no_electricity">No electricity</mat-option>
+        <mat-option value="failure">Failure</mat-option>
+        <mat-option value="flickering_light">Flickering light</mat-option>
+        <mat-option value="electricity_back">Electricity is back on</mat-option>
+        <mat-option value="partially_electricity"
+          >Partially electricity</mat-option
+        >
+        <mat-option value="problems_voltage"
+          >Problems with the voltage</mat-option
+        >
+      </mat-select>
     </mat-form-field>
 
     <!--Comment-->
-    <mat-form-field class="example-full-width divStyle" >
+    <mat-form-field class="example-full-width divStyle">
       <mat-label>Comment</mat-label>
-      <input type="text" matInput [(ngModel)]="model.comment" name="comment" 
-             placeholder="Comment..." >
+      <input
+        type="text"
+        matInput
+        [(ngModel)]="model.comment"
+        name="comment"
+        placeholder="Comment..."
+      />
     </mat-form-field>
 
     <!--Hazard-->
-    <mat-form-field class="example-full-width divStyle" style="padding-top: 3%;" >
+    <mat-form-field class="example-full-width divStyle" style="padding-top: 3%">
       <mat-label>Hazard</mat-label>
-      <input type="text" matInput  [(ngModel)]="model.hazard" name="hazard" 
-             placeholder="Hazard..." required>
-     
+      <input
+        type="text"
+        matInput
+        [(ngModel)]="model.hazard"
+        name="hazard"
+        placeholder="Hazard..."
+        required
+      />
     </mat-form-field>
 
-    <h3 style="padding-top: 3%;">Consumer info:</h3>
+    <h3 style="padding-top: 3%">Consumer info:</h3>
     <!--Anonymous/Consumer-->
-<span>
-  <mat-button-toggle-group>
-    <mat-button-toggle value="all_incidents" id="option1" (click)="buttonClicked(1)" >
-      Anonymous</mat-button-toggle
-    >
-    <mat-button-toggle value="mine_incidents" id="option2"  (click)="openDialog($event)"
-    > Select consumer</mat-button-toggle
-    >
-  </mat-button-toggle-group>
-</span>
-    <!--Street-->
-    <mat-form-field class="example-full-width divStyle" >
-      <mat-label>Street</mat-label>
-      <input type="text" matInput [(ngModel)]="model.street" name="street" 
-             placeholder="Street..." required>
-    </mat-form-field>
+    <span>
+      <mat-button-toggle-group>
+        <mat-button-toggle
+          value="all_incidents"
+          id="option1"
+          (click)="buttonClicked(1)"
+        >
+          Anonymous</mat-button-toggle
+        >
+        <mat-button-toggle
+          value="mine_incidents"
+          id="option2"
+          (click)="openDialog($event)"
+        >
+          Select consumer</mat-button-toggle
+        >
+      </mat-button-toggle-group>
+    </span>
+    <mat-form-field appearance="fill" class="example-full-width divStyle">
+      <mat-label>Select location</mat-label>
 
-    <!--City-->
-    <mat-form-field class="example-full-width divStyle" >
-      <mat-label>City</mat-label>
-      <input type="text" matInput [(ngModel)]="model.city" name="city" 
-             placeholder="City..." required>
-    </mat-form-field>
-
-     <!--PostNumber-->
-     <mat-form-field class="example-full-width divStyle" >
-      <mat-label>Post number</mat-label>
-      <input type="text" matInput  [(ngModel)]="model.postNumber" name="postNumber" 
-             placeholder="Post number..." required>
+      <mat-select name="LocationId" [(ngModel)]="model.locationId" required>
+        <mat-option
+          *ngFor="let location of locations"
+          value="{{ location.locationId }}"
+        >
+          {{ formatLocation(location) }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
     <!--Button Reposrt-->
-    <div class="input-group-prepend" style="padding-bottom: 4%; padding-left: 50%;">
-    <button class="btn btn-primary" type="submit" style="margin-left: 80%;">Report</button>
+    <div
+      class="input-group-prepend"
+      style="padding-bottom: 4%; padding-left: 50%"
+    >
+      <button class="btn btn-primary" type="submit" style="margin-left: 80%">
+        Report
+      </button>
     </div>
   </form>
 </div>

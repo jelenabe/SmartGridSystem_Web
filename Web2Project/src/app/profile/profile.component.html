@@ -12,7 +12,7 @@
   <br />
   <br />
 
-  <form (ngSubmit)="applyChanges()">
+  <form (ngSubmit)="applyChanges()" ngNativeValodate>
     <div class="form-row">
       <div class="form-group col-md-6">
         <div class="input-group mb-3">
@@ -23,17 +23,10 @@
             <input
               name="username"
               matInput
-              [formControl]="userNameFormControl"
-              [errorStateMatcher]="matcher"
               placeholder="Username"
               [(ngModel)]="model.username"
+              required
             />
-            <mat-error *ngIf="userNameFormControl.hasError('required')">
-              Username is <strong>required</strong>
-            </mat-error>
-            <mat-error *ngIf="userNameFormControl.hasError('maxlength')">
-              Max length for username is <strong>15</strong>
-            </mat-error>
           </mat-form-field>
           <br />
         </div>
@@ -49,22 +42,9 @@
               name="email"
               type="email"
               matInput
-              [formControl]="emailFormControl"
-              [errorStateMatcher]="matcher"
               [(ngModel)]="model.email"
-              value="mica.s@gmail.com"
+              required
             />
-            <mat-error
-              *ngIf="
-                emailFormControl.hasError('email') &&
-                !emailFormControl.hasError('required')
-              "
-            >
-              Please enter a valid email address
-            </mat-error>
-            <mat-error *ngIf="emailFormControl.hasError('required')">
-              Email is <strong>required</strong>
-            </mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -80,13 +60,9 @@
             <input
               name="name"
               matInput
-              [formControl]="nameFormControl"
-              [errorStateMatcher]="matcher"
               [(ngModel)]="model.name"
+              required
             />
-            <mat-error *ngIf="nameFormControl.hasError('required')">
-              Name is <strong>required</strong>
-            </mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -100,13 +76,9 @@
             <input
               name="lastname"
               matInput
-              [formControl]="lastNameFormControl"
-              [errorStateMatcher]="matcher"
               [(ngModel)]="model.lastname"
+              required
             />
-            <mat-error *ngIf="lastNameFormControl.hasError('required')">
-              Lastname is <strong>required</strong>
-            </mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -116,20 +88,12 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <div class="input-group mb-3">
-          <mat-form-field appearance="fill">
-            <mat-label>{{ model.birthday }}</mat-label>
-            <input
-              matInput
-              [matDatepicker]="picker"
-              name="birthday"
-              [(ngModel)]="model.birthday"
-            />
-            <mat-datepicker-toggle
-              matSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Birthday</mat-label>
+        <input type="date" matInput  name="birthday" [(ngModel)]="model.birthday" required>
+       
+      </mat-form-field>
+    
         </div>
       </div>
 
@@ -140,12 +104,13 @@
             <mat-label>Role</mat-label>
             <mat-select
               (selectionChange)="SelectionChangedCause($event)"
-              name="role"
-              [(ngModel)]="model.role"
+              name="userType"
+              [(ngModel)]="model.userType"
             >
               <mat-option value="Crew Member">Crew Member</mat-option>
               <mat-option value="Dispatcher">Dispatcher</mat-option>
               <mat-option value="Worker">Worker</mat-option>
+              <mat-option value="Consumer">Consumer</mat-option>
             </mat-select>
           </mat-form-field>
           <!--Crew-->
@@ -166,93 +131,48 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <div class="input-group mb-3">
-     <!--Street-->
-     <mat-form-field class="example-full-width">
-      <mat-label>Street</mat-label>
-      <br />
-      <input
-        name="street"
-        matInput
-        [formControl]="streetFormControl"
-        [errorStateMatcher]="matcher"
-        placeholder="Street"
-        [(ngModel)]="model.street"
-      />
-      <mat-error *ngIf="streetFormControl.hasError('required')">
-        Street is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
+          <div class="input-group mb-3" style="width: 700px">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">Location</label>
+            </div>
+            <select
+              name="LocationId"
+              class="custom-select"
+              id="inputGroupSelect01"
+              [(ngModel)]="model.locationId"
+              required
+            ><option *ngFor="let location of locations" value="{{location.locationId}}">{{formatLocation(location)}}
+            </option>
+            </select>
+          </div>
     <br />
   </div>
 </div>
 
-<!--City-->
-<div class="form-group col-md-6">
-  <div class="input-group mb-3">
-    <mat-form-field class="example-full-width">
-      <mat-label>City</mat-label>
-      <br />
-      <input
-        name="city"
-        type="text"
-        matInput
-        [formControl]="cityFormControl"
-        [errorStateMatcher]="matcher"
-        [(ngModel)]="model.city"
-      />
-      <mat-error *ngIf="cityFormControl.hasError('required')">
-        City is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
-  </div>
 </div>
-</div>
-
-    <!--PostNumber-->
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <div class="input-group mb-3">
-          <mat-form-field class="example-full-width">
-            <mat-label>Post number</mat-label>
-            <br />
-            <input
-              name="postNumber"
-              matInput
-              [formControl]="postNumberFormControl"
-              [errorStateMatcher]="matcher"
-              [(ngModel)]="model.postNumber"
-            />
-            <mat-error *ngIf="postNumberFormControl.hasError('required')">
-              Post number is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-    </div>
 
     <!--Profile picture-->
     <div class="form-group col-md-6">
       <div class="input-group mb-3">
-        <div>
-          <label for="profilePicture"><b>Profile Picture</b></label>
-        </div>
-        <br />
-        <div class="fadeIn first">
+          <mat-label for="profilePicture">Profile Picture</mat-label>
+        
+      <br/>
+        <div class="container">
           <img
             width="300"
             height="300"
-            src="assets/blank-profile.png"
             id="picture"
             alt="picture"
+            src={{image}}
           />
         </div>
 
-        <div>
+        <div class="container">
           <input
             type="file"
-            name="profilePicture"
-            id="profilePicture"
-            [(ngModel)]="model.profilePicture"
+            name="Picture"
+            id="Picture"
+            (change)="onFileSelected($event)"
           />
         </div>
       </div>

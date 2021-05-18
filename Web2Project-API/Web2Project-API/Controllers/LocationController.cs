@@ -24,6 +24,5 @@ namespace Web2Project_API.Controllers
         {
             return Ok(_locationRepo.GetAllLocations());
         }
-
     }
 }

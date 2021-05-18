@@ -57,5 +57,28 @@ namespace Web2Project_API.Repository
 
             return user;
         }
+        public async Task<ActionResult<User>> GetUserById(int id)
+        {
+            var user = _context.Users.Where(x => x.UserId == id).FirstOrDefault();
+
+            return user;
+        }
+        public async Task<User> ChangeProfile(User user, int id)
+        {
+            var userr = _context.Users.Where(x => x.UserId == id).FirstOrDefault();
+
+            userr.Name = user.Name;
+            userr.Lastname = user.Lastname;
+            userr.Username = user.Username;
+            userr.LocationId = user.LocationId;
+            userr.Birthday = user.Birthday;
+            userr.Email = user.Email;
+
+            _context.Entry(userr).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return userr;
+        }
+
     }
 }

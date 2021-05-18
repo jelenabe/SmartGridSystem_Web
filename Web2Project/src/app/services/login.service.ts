@@ -25,9 +25,9 @@ export class LoginService {
           localStorage.setItem('token', user.tokenString);
           this.decodedToken = this.jwtHelper.decodeToken(user.tokenString);
           this.userToken = user.tokenString;
-          localStorage.setItem('type', user.UserType);
-          localStorage.setItem('username', user.Email);
-          localStorage.setItem('id', user.UserId);
+          localStorage.setItem('type', user.userType);
+          localStorage.setItem('email', user.email);
+          localStorage.setItem('id', user.userId);
         }
       })
     );

@@ -71,32 +71,23 @@
        
       </mat-form-field>
     </div>
-<!--Street-->
     <div>
-      <mat-form-field class="example-full-width">
-        <mat-label>Street</mat-label>
-        <input type="text" matInput  name="street" [(ngModel)]="model.Street" placeholder="Street Number" required>
-        
-      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Location</mat-label>
+      <mat-select
+        name="LocationId"
+        [(ngModel)]="model.locationId"
+        required
+      >
+        <mat-option
+          *ngFor="let location of locations"
+          value="{{ location.locationId }}"
+        >
+          {{ formatLocation(location) }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     </div>
-<!--City-->
-    <div>
-      <mat-form-field class="example-full-width">
-        <mat-label>City</mat-label>
-        <input type="text" matInput name="city" [(ngModel)]="model.City" required>
-        
-      </mat-form-field>
-    </div>
-
-    <!--PostNumber-->
-    <div>
-      <mat-form-field class="example-full-width">
-        <mat-label>Post Number</mat-label>
-        <input type="number" name="number" matInput [(ngModel)]="model.PostNumber" required>
-       
-      </mat-form-field>
-    </div>
-
     <div>
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Role</mat-label>

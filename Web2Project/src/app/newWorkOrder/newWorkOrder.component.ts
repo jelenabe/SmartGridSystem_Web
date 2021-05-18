@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-newWorkOrder',
@@ -9,7 +10,7 @@ export class NewWorkOrderComponent implements OnInit {
 
   buttonClicked: any = 1;
 
-  constructor() { }
+  constructor(private _router: Router) { }
 
   ngOnInit() {
   }
@@ -25,6 +26,7 @@ export class NewWorkOrderComponent implements OnInit {
         break;
       case 3:
         this.buttonClicked = 3;
+
         break;
       case 4:
         this.buttonClicked = 4;

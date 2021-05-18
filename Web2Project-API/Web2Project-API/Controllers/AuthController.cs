@@ -29,7 +29,7 @@ namespace Web2Project_API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register([FromBody]UserForRegisterDTO dto)
+        public async Task<IActionResult> Register([FromBody] UserForRegisterDTO dto)
         {
             if (!string.IsNullOrEmpty(dto.Username))
             {
@@ -47,18 +47,15 @@ namespace Web2Project_API.Controllers
             }
 
             var user = new User();
-            user.Location = new Location();
+            user.LocationId =Int32.Parse(dto.LocationId);
 
             user.Name = dto.Name;
             user.Lastname = dto.Lastname;
             user.Username = dto.Username;
             user.Email = dto.Email;
-            user.Location.City = dto.City;
-            user.Location.Street = dto.Street;
-            user.Location.PostNumber = 21000;
             user.Picture = dto.Picture;
-           
-            if(dto.UserType == "Crew Member")
+
+            if (dto.UserType == "Crew Member")
             {
                 user.UserType = UserType.CREW_MEMBER;
                 // user.crewId - treba izmeniti
@@ -81,8 +78,5 @@ namespace Web2Project_API.Controllers
 
             return StatusCode(201);
         }
-
-        
-
     }
 }

@@ -12,6 +12,8 @@ namespace Web2Project_API.Repository
          Task<ActionResult<IEnumerable<object>>> GetInactiveUsers();
          Task<ActionResult<User>> ActivateUser(int id);
          Task<ActionResult<User>> DeleteUser(int id);
+         Task<ActionResult<User>> GetUserById(int id);
+         Task<User> ChangeProfile(User user, int id);
 
     }
 }

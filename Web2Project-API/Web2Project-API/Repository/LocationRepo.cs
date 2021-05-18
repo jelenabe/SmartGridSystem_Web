@@ -28,7 +28,7 @@ namespace Web2Project_API.Repository
 
         public async Task<ActionResult<Location>> GetLocation(int id)
         {
-            var location = _context.Locations.Where(x => x.LocationId == id).FirstOrDefault();
+            var location =  _context.Locations.Where(x => x.LocationId == id).FirstOrDefault();
             return location;
         }
 

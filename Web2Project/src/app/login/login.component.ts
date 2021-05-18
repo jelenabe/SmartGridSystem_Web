@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { LoginService } from '../services/login.service';
-import { SocialAuthService, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
+import { SocialAuthService, GoogleLoginProvider, SocialUser,FacebookLoginProvider } from 'angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
 
   socialUser: SocialUser;
   isLoggedin: boolean;
+  user: SocialUser;
+  loggedIn: boolean;
 
   constructor(private router: Router,
               private loginservice: LoginService,
@@ -25,7 +27,6 @@ export class LoginComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   ngOnInit() {
-
   }
 
   // tslint:disable-next-line: typedef
@@ -52,5 +53,16 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  signInWithFB(): void {
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    this.socialAuthService.authState.subscribe((user) => {
+      if (user != null)
+      {
+        this.router.navigate(['/', 'dashboard']);
+      }
+    });
+  }
+  
+ 
 
 }

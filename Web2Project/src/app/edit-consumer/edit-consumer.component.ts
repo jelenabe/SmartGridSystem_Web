@@ -4,7 +4,9 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MyErrorStateMatcher } from '../newConsumer/newConsumer.component';
+import { LocationService } from '../services/location.service';
 import { NewConsumerService } from '../services/new-consumer.service';
+import { Location } from '../models/location';
 
 @Component({
   selector: 'app-edit-consumer',
@@ -18,33 +20,14 @@ export class EditConsumerComponent implements OnInit {
   paramsTwo:string[];
   location:string[];
   consumerId:number;
-
-  nameFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  lastnameFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  streetFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  cityFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  postNumberFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  phoneNumberFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  typeFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  
-  matcher = new MyErrorStateMatcher();
+  locations: Location[] = [];
 
 
-  constructor(private newConsumerService: NewConsumerService,private _snackBar: MatSnackBar,  private router:Router,private cdref: ChangeDetectorRef) {
+  constructor(private newConsumerService: NewConsumerService,
+    private _snackBar: MatSnackBar,
+      private router:Router,
+      private cdref: ChangeDetectorRef,
+      private locationService: LocationService) {
     
     var url= this.router.url;
     var array= url.toString().split('/');
@@ -58,6 +41,7 @@ export class EditConsumerComponent implements OnInit {
 }
 
   ngOnInit() { 
+    this.getAllLocations();
     
   }
   ngAfterContentChecked() {
@@ -70,13 +54,31 @@ export class EditConsumerComponent implements OnInit {
     this.model.Id= this.consumerId;
     this.newConsumerService.saveChange(this.model).subscribe(()=>{
     console.log("Edit consumer successfull");
-    });
     this.openSnackBar();
+    this.router.navigate(['consumers']);
+    
+    
+    });
   }
   openSnackBar() {
     this._snackBar.open("Edit consumer successfull" ,'OK', {
       duration: 3000
     });
+  }
+  getAllLocations() {
+    this.locationService.getAllLocations().subscribe(
+      data => {
+        this.locations=data;
+        console.log(data);
+        console.log(this.locations)
+      },
+      error => {
+        this.getAllLocations();
+      }
+    )
+  }
+  formatLocation(location: Location) {
+    return `${location.street}, ${location.city}, ${location.postNumber}`;
   }
   
 

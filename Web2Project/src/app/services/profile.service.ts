@@ -5,30 +5,24 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ProfileService {
-  baseUrl = 'https://localhost:44326/api/profile';
+  baseUrl = 'https://localhost:44326/api/user';
 
 constructor(private http: HttpClient) { }
 
 applyChanges(model: any)
 {
-    return this.http.post(this.baseUrl, model);
+    return this.http.put(this.baseUrl, model);
   
 
 }
- getUser(){
-  return this.http.get(this.baseUrl);
- }
-getInactiveProfiles()
-{
-  console.log("getInactiveEvents method form profile service called")
+getUser(Id: number){
+  return this.http.get(this.baseUrl+'/'+Id);
 }
 
-activateProfile(id: any){
-  console.log("activateProfile method form profile service called")
+ getFile(path: string) {
+  const obj: any = {};
+  obj.Path = path;
+  return this.http.post('https://localhost:44326/api/upload/get-image', obj);
 }
 
-deleteProfile(id: any)
-{
-  console.log("DeleteProfile method from Profile serviced called")
-}
 }

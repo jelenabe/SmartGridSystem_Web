@@ -17,7 +17,7 @@ namespace Web2Project_API.Models
         private String phone;
 
         public User User { get; set; }
-        public int LocationId { get; set; }
+        public int? LocationId { get; set; }
         public Location Location { get; set; }
         public ICollection<Call> Calls { get; set; }
 
