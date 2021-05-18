@@ -84,20 +84,21 @@ import { HistorySafetyDocumentComponent } from './history-safety-document/histor
 import { MultimediaSafetyDocumentComponent } from './multimedia-safety-document/multimedia-safety-document.component';
 import { DevicesSafetyDocumentComponent } from './devices-safety-document/devices-safety-document.component';
 import { DeviceDialogSafetyDocumentComponent } from './device-dialog-safety-document/device-dialog-safety-document.component';
-//import { MatFileUploadModule } from 'angular-material-fileupload';
 import {MatTabsModule} from '@angular/material/tabs';
 import { SelectConsumerComponent } from './select-consumer/select-consumer.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { EditConsumerComponent } from './edit-consumer/edit-consumer.component';
 
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
 
 
 @NgModule({
   schemas : [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [		
-    AppComponent,
-    HomeComponent,
+  declarations: [
+      AppComponent,
+      HomeComponent,
       LoginComponent,
       RegisterComponent,
       NavBarComponent,
@@ -183,11 +184,10 @@ import { EditConsumerComponent } from './edit-consumer/edit-consumer.component';
     MatDatepickerModule,
     MatCheckboxModule,
     MatDialogModule,
-    //MatFileUploadModule,
     MatTabsModule,
     MatBadgeModule,
     MatSnackBarModule,
-
+    SocialLoginModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyApcxyVhBRYs-9VqvWcXz0gpPBwmJWAV9o',
       libraries: ['places']
@@ -207,7 +207,22 @@ import { EditConsumerComponent } from './edit-consumer/edit-consumer.component';
   ],
   providers: [MapService,
     GeolocationService,
-    GeocodingService],
+    GeocodingService,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '401457236173-2dtik2sfnj5pg509j0o5h697s5ng6m2m.apps.googleusercontent.com'
+            )
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

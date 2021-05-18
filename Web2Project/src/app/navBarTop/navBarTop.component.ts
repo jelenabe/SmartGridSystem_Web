@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { LoginComponent } from '../login/login.component';
 import { LoginService } from '../services/login.service';
 
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SocialAuthService, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
+
 @Component({
   selector: 'app-navBarTop',
   templateUrl: './navBarTop.component.html',
@@ -9,7 +12,8 @@ import { LoginService } from '../services/login.service';
 })
 export class NavBarTopComponent implements OnInit {
 
-  constructor(private login: LoginService) { }
+  constructor(private login: LoginService,
+              private socialAuthService: SocialAuthService) { }
 
   ngOnInit() {
   }
@@ -20,6 +24,8 @@ export class NavBarTopComponent implements OnInit {
     localStorage.removeItem('id');
     localStorage.removeItem('email');
     localStorage.removeItem('type');
+
+    this.socialAuthService.signOut();
 
     console.log('logged out');
   }

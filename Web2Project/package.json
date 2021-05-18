@@ -24,6 +24,7 @@
     "@angular/router": "~11.2.5",
     "@auth0/angular-jwt": "^5.0.2",
     "@types/googlemaps": "^3.39.12",
+    "angularx-social-login": "^3.5.7",
     "bootstrap": "^4.6.0",
     "chart.js": "^2.9.4",
     "mat-file-upload": "^11.1.2",

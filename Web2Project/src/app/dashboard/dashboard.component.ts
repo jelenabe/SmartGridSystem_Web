@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SocialAuthService, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
 
 @Component({
   selector: 'app-dashboard',
@@ -32,9 +33,17 @@ export class DashboardComponent implements OnInit {
     completed: 1,
   };
 
-  constructor() { }
+  socialUser: SocialUser;
+  isLoggedin: boolean;
+
+  constructor(private socialAuthService: SocialAuthService ) {}
 
   ngOnInit() {
+    this.socialAuthService.authState.subscribe((user) => {
+      this.socialUser = user;
+      this.isLoggedin = (user != null);
+      console.log(this.socialUser);
+    });
   }
 }
 
