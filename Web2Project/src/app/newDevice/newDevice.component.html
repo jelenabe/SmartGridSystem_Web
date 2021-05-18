@@ -1,10 +1,11 @@
 <div class="ml-5 mt-3">
   <h2>New Device:</h2>
-  <div class="form-row mt-4">
-    <div class="col-md-12">
+  <form [formGroup]="newDeviceForm" (ngSubmit)="saveDevice()" >
+    <div class="form-row mt-4">
+      <div class="col-md-12">
 
-      <!-- DA LI TREBA ID ?!?!?!? -->
-      <!--
+        <!-- DA LI TREBA ID ?!?!?!? -->
+        <!--
       <mat-form-field appearance="fill" class="input-style">
         <mat-label>Id</mat-label>
         <input matInput placeholder="Placeholder" value="1234" readonly>
@@ -12,23 +13,33 @@
       </mat-form-field>
       <br>
       -->
-      <mat-form-field appearance="fill"  class="input-style">
-        <mat-label>Type</mat-label>
-        <mat-select>
-          <mat-option value="power_switch">Power switch</mat-option>
-          <mat-option value="fuse">Fuse</mat-option>
-          <mat-option value="transformer">Transformer</mat-option>
-          <mat-option value="disconnector">Disconnector</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <br>
-      <!-- DA LI TREBA ID ?!?!?!? -->
-      <mat-form-field appearance="fill" class="input-style">
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="Placeholder" value="BRE1" disabled>
-        <mat-hint>.</mat-hint>
-      </mat-form-field>
-      <br>
+        <mat-form-field appearance="fill" class="w-50">
+          <mat-label>Type</mat-label>
+          <mat-select required formControlName="typeControl">
+            <mat-option value="POWER_SWITCH">Power switch</mat-option>
+            <mat-option value="FUSE">Fuse</mat-option>
+            <mat-option value="TRANSFORMER">Transformer</mat-option>
+            <mat-option value="DISCONNECTOR">Disconnector</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-error *ngIf="submitted && newDeviceForm.controls.typeControl.invalid" class="error-style">
+          Device type is required
+        </mat-error>
+        <br>
+
+        <mat-form-field appearance="fill" class="w-50">
+          <mat-label>Location</mat-label>
+          <mat-select formControlName="locationControl">
+            <mat-option *ngFor="let location of locations" value="{{location.locationId}}">{{formatLocation(location)}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-error *ngIf="submitted && newDeviceForm.controls.locationControl.invalid" class="error-style" >
+          Location is required
+        </mat-error>
+        
+
+        <!--
       <mat-form-field appearance="fill" class="input-style">
         <mat-label>Address</mat-label>
         <input matInput placeholder="enter address of device">
@@ -40,16 +51,16 @@
         <input matInput placeholder="enter exact coordinates of device">
         <mat-hint>.</mat-hint>
       </mat-form-field>
+      -->
 
-      <!-- DA LI SE ADRESA I KOORDINATE POPUNJAVAJU AUTOMATSKI TAKO STO ON NA MAPI ODREDI MESTO ?!?!?!??!?!? -->
+        <br>
+        <br>
+        <button class="btn btn-outline-primary" type="submit">
+          <mat-icon>save</mat-icon>
+          Save
+        </button>
 
-      <br>
-      <br>
-      <button class="btn btn-outline-primary" type="button">
-        <mat-icon>save</mat-icon>
-        Save
-      </button>
-
+      </div>
     </div>
-  </div>
+  </form>
 </div>
