@@ -22,8 +22,33 @@ namespace Web2Project_API.Repository
 
         public IncidentDto AddIncident(IncidentDto newIncident)
         {
+            if (!Enum.IsDefined(typeof(IncidentType), newIncident.IncidentType))
+                throw new Exception("Undefined incident type!");
 
-            //dodati validacije za polja
+            if (!Enum.IsDefined(typeof(IncidentStatus), newIncident.IncidentStatus))
+                throw new Exception("Undefined incident status!");
+            /*
+            if (newIncident.Description == null || newIncident.Description.Length > 100)
+                throw new Exception($"Description must be at most 100 characters long!");
+            */
+
+            if (newIncident.VoltageLevel <= 0)
+                throw new Exception("Voltage level have to be greater than 0!");
+
+            if (newIncident.OutageTime > newIncident.ETA)
+                throw new Exception($"ETA date cannot be before outage time!");
+
+            if (newIncident.OutageTime > newIncident.ATA)
+                throw new Exception($"ATA date cannot be before outage time!");
+
+            if (newIncident.OutageTime > newIncident.ScheduedTime)
+                throw new Exception($"Sheduled time cannot be before outage time!");
+
+            /*  // da li bi uopste trebalo ?!
+            if (newIncident.ETA > newIncident.ScheduedTime)
+                throw new Exception($"Sheduled time cannot be before ETA!");
+            */
+
 
             Incident incident = _mapper.Map<Incident>(newIncident);
 
@@ -65,8 +90,32 @@ namespace Web2Project_API.Repository
 
         public IncidentDto UpdateIncident(IncidentDto updated)
         {
+            if (!Enum.IsDefined(typeof(IncidentType), updated.IncidentType))
+                throw new Exception("Undefined incident type!");
 
-            //dodati validacije za polja
+            if (!Enum.IsDefined(typeof(IncidentStatus), updated.IncidentStatus))
+                throw new Exception("Undefined incident status!");
+            /*
+            if (updated.Description == null || updated.Description.Length > 100)
+                throw new Exception($"Description must be at most 100 characters long!");
+            */
+
+            if (updated.VoltageLevel <= 0)
+                throw new Exception("Voltage level have to be greater than 0!");
+
+            if (updated.OutageTime > updated.ETA)
+                throw new Exception($"ETA date cannot be before outage time!");
+
+            if (updated.OutageTime > updated.ATA)
+                throw new Exception($"ATA date cannot be before outage time!");
+
+            if (updated.OutageTime > updated.ScheduedTime)
+                throw new Exception($"Sheduled time cannot be before outage time!");
+
+            /*  // da li bi uopste trebalo ?!
+            if (updated.ETA > updated.ScheduedTime)
+                throw new Exception($"Sheduled time cannot be before ETA!");
+            */
 
             Incident oldIncident = _dbContext.Incidents.Find(updated.IncidentId);
 

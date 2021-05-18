@@ -14,6 +14,13 @@ namespace Web2Project_API.Mapping
         {
             CreateMap<Incident, IncidentDto>();
             CreateMap<IncidentDto, Incident>();
+
+            CreateMap<LocationDTO, Location>();
+            CreateMap<Location, LocationDTO>();
+
+            CreateMap<DeviceDTO, Device>();
+            CreateMap<Device, DeviceDTO>();
+
         }
     }
 }
