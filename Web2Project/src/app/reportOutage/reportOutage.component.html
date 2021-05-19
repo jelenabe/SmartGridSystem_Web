@@ -4,7 +4,7 @@
   class="container"
   style="background-color: white; border-radius: 3%; width: 50%"
 >
-  <form (ngSubmit)="report()" ngNativeValidate>
+  <form (ngSubmit)="report()" ngNativeValidate #myForm="ngForm">
     <!--Reason-->
     <mat-form-field
       appearance="fill"
@@ -13,14 +13,14 @@
     >
       <mat-label>Reason</mat-label>
       <mat-select name="Reason" [(ngModel)]="model.reason" required>
-        <mat-option value="no_electricity">No electricity</mat-option>
-        <mat-option value="failure">Failure</mat-option>
-        <mat-option value="flickering_light">Flickering light</mat-option>
-        <mat-option value="electricity_back">Electricity is back on</mat-option>
-        <mat-option value="partially_electricity"
+        <mat-option value="1">No electricity</mat-option>
+        <mat-option value="2">Failure</mat-option>
+        <mat-option value="3">Flickering light</mat-option>
+        <mat-option value="4">Electricity is back on</mat-option>
+        <mat-option value="5"
           >Partially electricity</mat-option
         >
-        <mat-option value="problems_voltage"
+        <mat-option value="6"
           >Problems with the voltage</mat-option
         >
       </mat-select>
@@ -30,9 +30,9 @@
     <mat-form-field class="example-full-width divStyle">
       <mat-label>Comment</mat-label>
       <input
-        type="text"
+       [(ngModel)]="model.comment"
+         type="text"
         matInput
-        [(ngModel)]="model.comment"
         name="comment"
         placeholder="Comment..."
       />
@@ -71,7 +71,8 @@
         >
       </mat-button-toggle-group>
     </span>
-    <mat-form-field appearance="fill" class="example-full-width divStyle">
+  <div *ngIf="anonymous">
+    <mat-form-field appearance="fill" class="example-full-width divStyle" style="padding-top: 5%;">
       <mat-label>Select location</mat-label>
 
       <mat-select name="LocationId" [(ngModel)]="model.locationId" required>
@@ -89,9 +90,65 @@
       class="input-group-prepend"
       style="padding-bottom: 4%; padding-left: 50%"
     >
-      <button class="btn btn-primary" type="submit" style="margin-left: 80%">
+      <button  [disabled]="myForm.invalid" class="btn btn-primary" type="submit" style="margin-left: 80%">
         Report
       </button>
     </div>
+    
+  </div>
+  <div *ngIf="!anonymous">
+    <mat-form-field class="example-full-width divStyle" style="padding-top: 5%;">
+      <mat-label>Name</mat-label>
+      <input
+       [(ngModel)]="modelForShow.name"
+         type="text"
+        matInput
+        name="name"
+        readonly
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width divStyle">
+      <mat-label>Lastname</mat-label>
+      <input
+       [(ngModel)]="modelForShow.lastname"
+         type="text"
+        matInput
+        name="lastname"
+        readonly
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width divStyle">
+      <mat-label>Location</mat-label>
+      <input
+       [(ngModel)]="modelForShow.location"
+         type="text"
+        matInput
+        name="location"
+        readonly
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width divStyle">
+      <mat-label>Phone</mat-label>
+      <input
+       [(ngModel)]="modelForShow.phone"
+         type="text"
+        matInput
+        name="phone"
+        readonly
+      />
+    </mat-form-field>
+
+    <!--Button Reposrt-->
+    <div
+      class="input-group-prepend"
+      style="padding-bottom: 4%; padding-left: 50%"
+    >
+      <button  [disabled]="myForm.invalid" class="btn btn-primary" type="submit" style="margin-left: 80%">
+        Report
+      </button>
+    </div>
+    
+  </div>
+
   </form>
 </div>

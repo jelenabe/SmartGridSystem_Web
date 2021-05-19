@@ -9,6 +9,8 @@ import { ProfileService } from '../services/profile.service';
 import { ReportOutageService } from '../services/reportOutage.service';
 import { Location } from '../models/location';
 import { LocationService } from '../services/location.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reportOutage',
@@ -17,6 +19,7 @@ import { LocationService } from '../services/location.service';
 })
 export class ReportOutageComponent implements OnInit {
   model: any= {};
+  modelForShow:any ={}
   matcher = new MyErrorStateMatcher();
   anonymous:boolean= true;
   
@@ -27,13 +30,23 @@ export class ReportOutageComponent implements OnInit {
 
 
   constructor(private outageService: ReportOutageService, public dialog: MatDialog,
-    private locationService: LocationService) { }
+    private locationService: LocationService,
+    private snackBar: MatSnackBar,
+    private router: Router,) { }
 
   report(){
     console.log(this.model);
     this.outageService.report(this.model).subscribe(()=>{
       console.log("Applay changes successfull");
+      this.openSnackBar();
+      this.router.navigate(['']);
+
     })
+  }
+  openSnackBar() {
+    this.snackBar.open('Report outage successfull' , 'OK', {
+      duration: 3000
+    });
   }
   ngOnInit() {
     this.getAllLocations();
@@ -54,9 +67,12 @@ export class ReportOutageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(event => {
       console.log(event);
-      this.model.street=event.street;
-      this.model.city=event.city;
-      this.model.postNumber=event.postNumber;
+      this.modelForShow.name=event.name;
+      this.modelForShow.lastname=event.lastname;
+      this.modelForShow.phone= event.phone;
+      this.model.locationId=(event.locationId).toString();
+      this.model.consumerId=(event.consumerId).toString();
+      this.modelForShow.location=event.street + ', ' + event.city + ', ' + event.postNumber;
     });
   }
   getAllLocations() {

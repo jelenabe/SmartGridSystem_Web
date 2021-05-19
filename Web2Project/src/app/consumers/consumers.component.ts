@@ -1,6 +1,7 @@
 import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -33,7 +34,8 @@ export class ConsumersComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 
-  constructor(private router: Router, private newConsumerService: NewConsumerService) {
+  constructor(private router: Router, private newConsumerService: NewConsumerService,
+    private snackBar: MatSnackBar,) {
     this.newConsumerService.getConsumers().subscribe((response)=>{
       console.log("Applay changes successfull");
       this.Consumers = response;
@@ -84,6 +86,13 @@ export class ConsumersComponent implements OnInit {
     this.dataSource._updateChangeSubscription();
     this.newConsumerService.deleteConsumer(Id).subscribe((response) => {
       console.log('Delete successed!');
+      this.openSnackBar();
     })
   } 
+  
+  openSnackBar() {
+    this.snackBar.open('Delete successed!' , 'OK', {
+      duration: 3000
+    });
+  }
 }

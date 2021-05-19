@@ -25,23 +25,43 @@ namespace Web2Project_API.Controllers
         [HttpPost]
         public async Task<IActionResult> Report([FromBody] OutageDTO dto)
         {
-            var reportOutage = new ReportOutage();
+            var reportOutage = new Call();
             reportOutage.Comment = dto.Comment;
-            reportOutage.Reason = dto.Reason;
-            reportOutage.Hazard = dto.Hazard;
+            if (dto.Reason=="1")
+            {
+                reportOutage.Reason = CallReasons.NO_ELECTRICITY;
+            }
+            else if (dto.Reason=="2")
+            {
+                reportOutage.Reason = CallReasons.FAILURE;
+            }
+            else if (dto.Reason == "3")
+            {
+                reportOutage.Reason = CallReasons.FLICKERING_LIGHT;
+            }
+            else if (dto.Reason == "4")
+            {
+                reportOutage.Reason = CallReasons.ELECTRICITY_BACK;
+            }
+            else if (dto.Reason == "5")
+            {
+                reportOutage.Reason = CallReasons.PARTIALLY_LIGHT;
+            }
+            else if (dto.Reason == "6")
+            {
+                reportOutage.Reason = CallReasons.PROBLEMS_VOLTAGE;
+            }
+
+            reportOutage.HazardName = dto.Hazard;
+
+            if (dto.ConsumerId != null)
+            {
+                reportOutage.ConsumerId = Int32.Parse(dto.ConsumerId);
+
+            }
+
+            reportOutage.LocationId = Int32.Parse(dto.LocationId);
             
-
-            var location = new Location();
-            location.City = dto.City;
-            location.Street = dto.Street;
-            location.PostNumber = dto.PostNumber;
-
-            var consumer = new Consumer();
-            consumer.Name = dto.Name;
-            consumer.Lastname = dto.Lastname;
-            consumer.Phone = dto.PhoneNumber;
-            consumer.LocationId = location.LocationId;
-            reportOutage.IdConsumer = consumer.ConsumerId;
 
             var createdOutage = await _repo.AddOutage(reportOutage);
 

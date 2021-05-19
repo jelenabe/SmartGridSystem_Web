@@ -8,6 +8,6 @@ namespace Web2Project_API.Repository
 {
     public interface IOutageRepo
     {
-        Task<ReportOutage> AddOutage(ReportOutage outage);
+        Task<Call> AddOutage(Call outage);
     }
 }

@@ -15,31 +15,23 @@ namespace Web2Project_API.Repository
         {
             this._context = context;
         }
-        public async Task<ReportOutage> AddOutage(ReportOutage outage)
+        public async Task<Call> AddOutage(Call outage)
         {
-            ReportOutage reportOutage = new ReportOutage();
+            Call reportOutage = new Call();
             Location location = new Location();
 
             reportOutage.Comment = outage.Comment;
-            reportOutage.Hazard = outage.Hazard;
+            reportOutage.HazardName = outage.HazardName;
             reportOutage.Reason = outage.Reason;
 
-            location.Street = outage.Street;
-            location.City = outage.City;
-            location.PostNumber = outage.PostNumber;
-            //sacuvaj lokaciju u bazu AKO JE ANONIMNI i naglasiti da je to za consumerID NULL
-            //Ako nije anonimni onda na osnovu consumerid nadji njegovu lokaciju
+           
 
-            reportOutage.IdConsumer = outage.IdConsumer;
-            reportOutage.Street = location.Street;
-            reportOutage.City = location.City;
-            reportOutage.PostNumber = location.PostNumber;
-            /*
-             * await _context.Users.AddAsync(registrationUser);
+            reportOutage.ConsumerId = outage.ConsumerId;
+            reportOutage.LocationId = outage.LocationId;
+            
+            await _context.Calls.AddAsync(reportOutage);
             await _context.SaveChangesAsync();
              
-             */
-
             return reportOutage;
         }
     }

@@ -34,7 +34,10 @@ namespace Web2Project_API.Repository
 
             // Name: krece od 1
             int max_count_in_database = 0;
-            max_count_in_database = _dbContext.Devices.Max(c => c.DeviceCounter);
+            if (_dbContext.Devices.Count() != 0)
+            {
+                max_count_in_database = _dbContext.Devices.Max(c => c.DeviceCounter);
+            }
             string name = device.Type.ToString().Substring(0, 3);
             int next_count = max_count_in_database + 1;
             device.Name = name + next_count.ToString();
