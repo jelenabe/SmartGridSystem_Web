@@ -26,8 +26,7 @@ export class DeviceService {
   }
 
   updateDevice(device: Device):Observable<Device>{
-    let url = this.baseUrl.concat(`/${device.deviceId}`);
-    return this.http.put<Device>(url, device);
+    return this.http.put<Device>(this.baseUrl, device);
   }
 
   deleteDevice(id:number):Observable<{}>{

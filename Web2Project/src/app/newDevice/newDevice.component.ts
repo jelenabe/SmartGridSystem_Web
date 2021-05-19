@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Device } from '../models/device';
 import { Location } from '../models/location';
 import { DeviceService } from '../services/device.service';
@@ -17,15 +18,47 @@ export class NewDeviceComponent implements OnInit {
   newDevice: Device = new Device();
   submitted: boolean = false;
 
+  oldDevice: Device = new Device();
+  edit: boolean = false;
+
   newDeviceForm = new FormGroup({
     typeControl: new FormControl('', Validators.required),
-    locationControl: new FormControl(/*'', Validators.required*/)
+    locationControl: new FormControl('', Validators.required)
   });
 
-  constructor(private locationService: LocationService, private deviceService: DeviceService, private router: Router, private validationService: ValidationService) { }
+  constructor(private locationService: LocationService, private deviceService: DeviceService, private router: Router, private validationService: ValidationService, private route: ActivatedRoute, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
+
     this.getAllLocations();
+
+    const deviceId = this.route.snapshot.paramMap.get('id');
+    if (deviceId != null && deviceId != "") {
+      this.edit = true;
+      this.loadOldDevice(+deviceId);
+    }
+
+  }
+
+  loadOldDevice(id: number) {
+    this.deviceService.getDeviceById(id).subscribe(
+      data => {
+
+        this.oldDevice = data;
+        //console.log(this.oldDevice);
+        this.newDeviceForm.setValue({
+          typeControl: this.oldDevice.type.toString(),
+          locationControl: this.oldDevice.location.locationId.toString()
+        });
+
+      },
+      error => {
+
+        this.snackBar.open("Could not load selected device." , "", { duration: 2500});
+        this.router.navigate(['allDevices']);
+
+      }
+    );
   }
 
   getAllLocations() {
@@ -43,6 +76,11 @@ export class NewDeviceComponent implements OnInit {
     return `${location.street}, ${location.city}, ${location.postNumber}`;
   }
 
+
+
+
+
+  /*
   getDeviceTypeNumber(deviceType: string) {
 
     switch (deviceType) {
@@ -57,26 +95,54 @@ export class NewDeviceComponent implements OnInit {
     }
     return 0;
   }
+  */
 
   saveDevice() {
     this.submitted = true;
 
     if (this.newDeviceForm.valid) {
-      this.newDevice.type = this.getDeviceTypeNumber(this.newDeviceForm.value.typeControl);
-      //this.newDevice.locationId = +this.newDeviceForm.value.locationControl;
-      this.newDevice.locationId = 2;
 
-      console.log(this.newDeviceForm.value);
-      this.deviceService.createNewDevice(this.newDevice).subscribe(
-        data => {
-          this.newDevice = data;
-          this.router.navigate(['allDevices']);
-        },
-        error => {
-          //console.error(error.error);
+      if (!this.edit) {
 
-        }
-      );
+        this.newDevice.type = +this.newDeviceForm.value.typeControl;
+        this.newDevice.locationId = +this.newDeviceForm.value.locationControl;
+
+        console.log(this.newDeviceForm.value);
+        this.deviceService.createNewDevice(this.newDevice).subscribe(
+          data => {
+            this.newDevice = data;
+            this.snackBar.open("Device created successfully." , "", { duration: 2500});
+            this.router.navigate(['allDevices']);
+          },
+          error => {
+
+            this.snackBar.open(error.error);
+
+          }
+        );
+      }
+      else{
+
+          this.oldDevice.type = +this.newDeviceForm.value.typeControl;
+          this.oldDevice.locationId = +this.newDeviceForm.value.locationControl;
+
+          this.deviceService.updateDevice(this.oldDevice).subscribe(
+              data => {
+
+                this.oldDevice = data;
+                this.snackBar.open("Device edit successfully." , "", { duration: 2500});
+                this.router.navigate(['allDevices']);
+
+              },
+              error=>{
+                
+                this.snackBar.open(error.error);
+                this.router.navigate(['allDevices']);
+
+              }
+           );
+
+      }
 
     } else {
       this.validationService.validateAll(this.newDeviceForm);

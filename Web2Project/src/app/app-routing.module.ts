@@ -89,6 +89,11 @@ const routes: Routes = [
     component: NewDeviceComponent,
     outlet: "primary"
   },
+  { 
+    path: 'newDevice/:id',
+    component: NewDeviceComponent,
+    outlet: "primary"
+  },
   {
     path:'newCall',
     component: NewCallComponent,

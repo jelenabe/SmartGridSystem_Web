@@ -3,7 +3,7 @@ export class Location {
     street:string;
     city:string;
     postNumber:string;
-    latitude:number;
-    longitude:number;
+    lat:number;
+    lon:number;
     priority:number;
 }

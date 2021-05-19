@@ -1,5 +1,6 @@
 <div class="ml-5 mt-3">
-  <h2>New Device:</h2>
+  <h2 *ngIf="edit == false" >New Device:</h2>
+  <h2 *ngIf="edit == true" >Edit Device:</h2>
   <form [formGroup]="newDeviceForm" (ngSubmit)="saveDevice()" >
     <div class="form-row mt-4">
       <div class="col-md-12">
@@ -13,31 +14,31 @@
       </mat-form-field>
       <br>
       -->
-        <mat-form-field appearance="fill" class="w-50">
+        <mat-form-field appearance="fill" class="w-50 pb-2">
           <mat-label>Type</mat-label>
           <mat-select required formControlName="typeControl">
-            <mat-option value="POWER_SWITCH">Power switch</mat-option>
-            <mat-option value="FUSE">Fuse</mat-option>
-            <mat-option value="TRANSFORMER">Transformer</mat-option>
-            <mat-option value="DISCONNECTOR">Disconnector</mat-option>
+            <mat-option value="0" >Power switch</mat-option>
+            <mat-option value="1">Fuse</mat-option>
+            <mat-option value="2">Transformer</mat-option>
+            <mat-option value="3">Disconnector</mat-option>
           </mat-select>
+          <mat-error *ngIf="submitted && newDeviceForm.controls.typeControl.invalid">
+            Device type is required
+          </mat-error>
         </mat-form-field>
-        <mat-error *ngIf="submitted && newDeviceForm.controls.typeControl.invalid" class="error-style">
-          Device type is required
-        </mat-error>
-        <br>
-
-        <mat-form-field appearance="fill" class="w-50">
+<br>
+        <mat-form-field appearance="fill" class="w-50 pb-2">
           <mat-label>Location</mat-label>
-          <mat-select formControlName="locationControl">
+          <mat-select required formControlName="locationControl">
             <mat-option *ngFor="let location of locations" value="{{location.locationId}}">{{formatLocation(location)}}
             </mat-option>
           </mat-select>
+          <mat-error *ngIf="submitted && newDeviceForm.controls.locationControl.invalid">
+            Location is required
+          </mat-error>
         </mat-form-field>
-        <mat-error *ngIf="submitted && newDeviceForm.controls.locationControl.invalid" class="error-style" >
-          Location is required
-        </mat-error>
-        
+        <br>
+        <br>
 
         <!--
       <mat-form-field appearance="fill" class="input-style">
@@ -53,11 +54,9 @@
       </mat-form-field>
       -->
 
-        <br>
-        <br>
-        <button class="btn btn-outline-primary" type="submit">
-          <mat-icon>save</mat-icon>
-          Save
+        <button class="btn btn-outline-primary icon-text" type="submit">
+            <mat-icon>save</mat-icon>
+            <span class="font-style">&nbsp;&nbsp;Save&nbsp;</span>
         </button>
 
       </div>

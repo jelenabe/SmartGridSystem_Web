@@ -5,3 +5,17 @@
 .input-style{
     min-width: 50%;
 }
+
+.mat-icon {
+    vertical-align: middle;
+}
+
+.icon-text {
+    display: flex;
+    align-items: center;
+}
+
+
+.font-style{
+    font-size: 1.2rem;
+}
