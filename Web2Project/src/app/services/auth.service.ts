@@ -16,4 +16,12 @@ register(model: any)
   return this.http.post(this.baseUrl, model);
 }
 
+changePassword(id: any, odlPassword: any, newPassword: any) {
+  const newModel: any = {};
+  newModel.OldPassword = odlPassword;
+  newModel.NewPassword = newPassword;
+  return this.http.put(this.baseUrl + '/' + id, newModel);
+}
+
+
 }

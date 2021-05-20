@@ -25,4 +25,5 @@ getUser(Id: number){
   return this.http.post('https://localhost:44326/api/upload/get-image', obj);
 }
 
+
 }

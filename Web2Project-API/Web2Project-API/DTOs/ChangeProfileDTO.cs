@@ -14,5 +14,6 @@ namespace Web2Project_API.DTOs
         public string Email { get; set; }
         public DateTime Birthday { get; set; }
         public int LocationId { get; set; }
+        public string Picture { get; set; }
     }
 }

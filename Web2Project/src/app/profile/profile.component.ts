@@ -22,8 +22,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  model: any={}
-  modelForSend: any={}
+  model: any = {};
+  modelForSend: any = {};
 
   showSubcauses: boolean = false;
   subcausCrew: string[] = ['Crew1', 'Crew2', 'Crew3'];
@@ -41,7 +41,7 @@ export class ProfileComponent implements OnInit {
               private locationService: LocationService,
               private router: Router,
               private snackBar: MatSnackBar,
-              private uploadService:UploadFileService ) {
+              private uploadService: UploadFileService ) {
 
   }
   ngOnInit() {
@@ -54,23 +54,20 @@ export class ProfileComponent implements OnInit {
   getUser()
   {
     var param = localStorage.getItem('id');
-    if(param!=null){
+
+    if (param != null){
       this.profileService.getUser(+param).subscribe((response) =>{
       this.model = response;
       const str = this.model.birthday;
       this.model.birthday = str.split('T')[0];
-      
-    this.profileService.getFile(this.model.picture).subscribe((bytes) => {
+      this.profileService.getFile(this.model.picture).subscribe((bytes) => {
       this.image = 'data:image/png;base64,' + bytes;
-
-    });
+      });
     });
   }
   }
   applyChanges(){
-   
-    //this.nameFormControl.setValue(this.a);
-    
+
     console.log(this.model);
 
     this.uploadService.uploadFile(this.selectedImage).subscribe((uploadResponse) => {
@@ -78,23 +75,25 @@ export class ProfileComponent implements OnInit {
       this.model.Picture = this.pathFile.dbPath;
 
       console.log(this.model);
-      this.modelForSend.UserId= this.model.userId;
-      this.modelForSend.Name= this.model.name;
-      this.modelForSend.Lastname= this.model.lastname;
-      this.modelForSend.Email=this.model.email;
-      this.modelForSend.Birthady= this.model.birthday;
-      this.modelForSend.username= this.model.username;
-      this.modelForSend.LocationId= this.model.locationId;
+      this.modelForSend.UserId = this.model.userId;
+      this.modelForSend.Name = this.model.name;
+      this.modelForSend.Lastname = this.model.lastname;
+      this.modelForSend.Email = this.model.email;
+      this.modelForSend.Birthady = this.model.birthday;
+      this.modelForSend.username = this.model.username;
+      this.modelForSend.LocationId = +this.model.locationId;
+      this.modelForSend.Picture = this.pathFile.dbPath;
 
-      
+      console.log(this.modelForSend);
+
       this.profileService.applyChanges(this.modelForSend).subscribe(()=>{
-      console.log("Applay changes successfull")
-        this.openSnackBar();
-        this.router.navigate(['/dashboard']);
+      console.log('Applay changes successfull')
+      this.openSnackBar();
+      this.router.navigate(['/dashboard']);
       });
-    });;
+    });
   }
-  
+
   openSnackBar() {
     this.snackBar.open('Applay changes Succesfull!', 'OK', {
       duration: 3000
@@ -127,7 +126,7 @@ SelectionChangedCause(event: any)
       data => {
         this.locations=data;
         console.log(data);
-        console.log(this.locations)
+        console.log(this.locations);
       },
       error => {
         this.getAllLocations();

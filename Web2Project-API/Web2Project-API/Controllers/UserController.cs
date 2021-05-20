@@ -69,7 +69,7 @@ namespace Web2Project_API.Controllers
             user.Lastname = dto.Lastname;
             user.Username = dto.Username;
             user.Email = dto.Email;
-
+            user.Picture = dto.Picture;
             
             user.Birthday = dto.Birthday;
 
@@ -77,6 +77,6 @@ namespace Web2Project_API.Controllers
 
             return StatusCode(201);
         }
-
+              
     }
 }

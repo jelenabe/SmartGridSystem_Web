@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -111,6 +112,30 @@ namespace Web2Project_API.Repository
                 }
             }
             return true;
+        }
+
+        public async Task<User> ChangePassword(int id, string oldPassword, string newPassword)
+        {
+            var user = _context.Users.Where(x => x.UserId == id).FirstOrDefault();
+
+            bool isCorrect = VerifyPasswordHash(oldPassword, user.PasswordHash, user.PasswordSalt);
+
+            if (isCorrect)
+            {
+                CreatePasswordHash(newPassword, out byte[] PasswordHash, out byte[] PasswordSalt);
+
+                user.PasswordHash = PasswordHash;
+                user.PasswordSalt = PasswordSalt;
+
+
+                _context.Entry(user).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+            }
+            else
+                return null;
+
+            return user;
+            
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -47,7 +48,7 @@ namespace Web2Project_API.Controllers
             }
 
             var user = new User();
-            user.LocationId =Int32.Parse(dto.LocationId);
+            user.LocationId = Int32.Parse(dto.LocationId);
 
             user.Name = dto.Name;
             user.Lastname = dto.Lastname;
@@ -77,6 +78,18 @@ namespace Web2Project_API.Controllers
             var createdUser = await _repo.Register(user, dto.Password);
 
             return StatusCode(201);
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<IActionResult> ChangePassword([FromRoute] int id, [FromBody] ChangePasswordDto changePasswordDto)
+        {
+
+            var user = _repo.ChangePassword(id, changePasswordDto.OldPassword, changePasswordDto.NewPassword);
+
+
+            return StatusCode(StatusCodes.Status200OK);
+
         }
     }
 }

@@ -73,12 +73,12 @@ namespace Web2Project_API.Repository
             userr.LocationId = user.LocationId;
             userr.Birthday = user.Birthday;
             userr.Email = user.Email;
+            userr.Picture = user.Picture;
 
             _context.Entry(userr).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
             return userr;
         }
-
     }
 }
