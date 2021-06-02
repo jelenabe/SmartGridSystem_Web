@@ -66,6 +66,20 @@ namespace Web2Project_API.Controllers
 
         }
 
+        [HttpPost("search")]
+        public IActionResult SearchAllDevices([FromBody] DeviceSearchDTO device_search)
+        {
+            try
+            {
+                return Ok(_deviceRepo.SearchDevices(device_search));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+        }
+
 
         [HttpPut]
         public IActionResult UpdateDevice([FromBody] DeviceDTO device)

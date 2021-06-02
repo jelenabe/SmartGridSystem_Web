@@ -72,6 +72,97 @@ namespace Web2Project_API.Repository
             return _mapper.Map<DeviceDTO>(_dbContext.Devices.Include("Location").FirstOrDefault(x => x.DeviceId == deviceId));
         }
 
+        public IEnumerable<DeviceDTO> SearchDevices(DeviceSearchDTO device_search)
+        {
+            List<Device> search_devices = new List<Device>();
+
+            if(device_search.SearchField.Trim() == "")
+            {
+                search_devices = _dbContext.Devices.Include("Location").Where(d =>
+                        d.Type == (DeviceType)Enum.Parse(typeof(DeviceType), device_search.Type)
+                            ).ToList();
+            }
+            else  // uneo je nesto u search field
+            {
+                if (device_search.Property.ToLower().Equals("name"))
+                {
+                    // name + svi tipovi(4)
+                    if (int.Parse(device_search.Type) == 4)
+                    {
+                        search_devices = _dbContext.Devices.Include("Location").Where(d =>
+                            d.Name.ToLower().Contains(device_search.SearchField.Trim().ToLower())
+                                ).ToList();
+                    }
+                    else
+                    {
+                        // name + odabran tip
+                        search_devices = _dbContext.Devices.Include("Location").Where(d =>
+                            d.Type == (DeviceType)Enum.Parse(typeof(DeviceType), device_search.Type) && d.Name.ToLower().Contains(device_search.SearchField.Trim().ToLower())
+                                ).ToList();
+                    }
+                }
+                else if (device_search.Property.ToLower().Equals("address"))
+                {
+                    // address + svi tipovi(4)
+                    if (int.Parse(device_search.Type) == 4)
+                    {
+                        search_devices = _dbContext.Devices.Include("Location").Where(d =>
+                            d.Location.City.ToLower().Contains(device_search.SearchField.Trim().ToLower()) || d.Location.Street.ToLower().Contains(device_search.SearchField.Trim().ToLower()) || d.Location.PostNumber.ToString().Contains(device_search.SearchField.Trim())
+                                ).ToList();
+                    }
+                    else
+                    {
+                        // address + odabran tip
+                        search_devices = _dbContext.Devices.Include("Location").Where(d =>
+                            d.Type == (DeviceType)Enum.Parse(typeof(DeviceType), device_search.Type) && (d.Location.City.ToLower().Contains(device_search.SearchField.Trim().ToLower()) || d.Location.Street.ToLower().Contains(device_search.SearchField.Trim().ToLower()) || d.Location.PostNumber.ToString().Contains(device_search.SearchField.Trim()))
+                                ).ToList();
+                    }
+
+                }
+                else if (device_search.Property.ToLower().Equals("coordinates"))
+                {
+                    // coordinates + svi tipovi(4)
+                    if (int.Parse(device_search.Type) == 4)
+                    {
+                        search_devices = _dbContext.Devices.Include("Location").Where(d =>
+                            d.Location.Lat.ToLower().Contains(device_search.SearchField.Trim().ToLower()) || d.Location.Lon.ToLower().Contains(device_search.SearchField.Trim().ToLower())
+                                ).ToList();
+                    }
+                    else
+                    {
+                        // coordinates + odabran tip
+                        search_devices = _dbContext.Devices.Include("Location").Where(d =>
+                            d.Type == (DeviceType)Enum.Parse(typeof(DeviceType), device_search.Type) && (d.Location.Lat.ToLower().Contains(device_search.SearchField.Trim().ToLower()) || d.Location.Lon.ToLower().Contains(device_search.SearchField.Trim().ToLower()))
+                                ).ToList();
+                    }
+                }
+                else
+                {
+                    // id + svi tipovi(4)
+                    if (int.Parse(device_search.Type) == 4)
+                    {
+                        search_devices = _dbContext.Devices.Include("Location").Where(d =>
+                            d.DeviceId.ToString().Equals(device_search.SearchField.Trim())
+                                ).ToList();
+                    }
+                    else
+                    {
+                        // id + odabran tip
+                        search_devices = _dbContext.Devices.Include("Location").Where(d =>
+                            d.Type == (DeviceType)Enum.Parse(typeof(DeviceType), device_search.Type) && d.DeviceId.ToString().Equals(device_search.SearchField.Trim())
+                                ).ToList();
+                    }
+                }
+
+
+            }
+            
+
+            List<DeviceDTO> search_devices_ret = new List<DeviceDTO>();
+            search_devices.ForEach(s => search_devices_ret.Add(_mapper.Map<DeviceDTO>(s)));
+            return search_devices_ret;
+        }
+
         public DeviceDTO UpdateDevice(DeviceDTO updated)
         {
             Device updated_device = _mapper.Map<Device>(updated);

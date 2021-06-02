@@ -9,6 +9,7 @@ namespace Web2Project_API.Repository
     public interface IDeviceRepo
     {
         IEnumerable<DeviceDTO> GetAllDevices();
+        IEnumerable<DeviceDTO> SearchDevices(DeviceSearchDTO device_search);
         DeviceDTO AddDevice(DeviceDTO newDevice);
         DeviceDTO GetDeviceById(int deviceId);
         DeviceDTO UpdateDevice(DeviceDTO updated);

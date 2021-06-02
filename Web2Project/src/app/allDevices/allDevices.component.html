@@ -3,34 +3,47 @@
   <div>
     <button type="button" class="btn btn-secondary" [routerLink]="['/newDevice']">&nbsp;New Device&nbsp;</button>
   </div>
-  <mat-form-field appearance="fill" class="select-style mt-3">
-    <mat-label>Property</mat-label>
-    <mat-select>
-      <mat-option value="id">Id</mat-option>
-      <mat-option value="name">Name</mat-option>
-      <mat-option value="address">Address</mat-option>
-      <mat-option value="coordinates">Coordinates</mat-option>
-      <mat-option value="all">All</mat-option>
-    </mat-select>
-  </mat-form-field>
-  &nbsp;
-  <mat-form-field appearance="fill" class="select-style">
-    <mat-label>Type</mat-label>
-    <mat-select>
-      <mat-option value="breaker">Breaker</mat-option>
-      <mat-option value="fuse">Fuse</mat-option>
-      <mat-option value="transformer">Transformer</mat-option>
-      <mat-option value="disconnector">Disconnector</mat-option>
-      <mat-option value="all">All</mat-option>
-    </mat-select>
-  </mat-form-field>
-  &nbsp;
-  <!--Filter-->
+  <form [formGroup]="searchForm">
+    <mat-form-field appearance="fill" class="select-style mt-3">
+      <mat-label>Property</mat-label>
+      <mat-select formControlName="propertyControl" >
+        <mat-option value="id">Id</mat-option>
+        <mat-option value="name">Name</mat-option>
+        <mat-option value="address">Address</mat-option>
+        <mat-option value="coordinates">Coordinates</mat-option>
+      </mat-select>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field appearance="fill" class="select-style">
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="typeControl" >
+        <mat-option value="0" >Power switch</mat-option>
+            <mat-option value="1">Fuse</mat-option>
+            <mat-option value="2">Transformer</mat-option>
+            <mat-option value="3">Disconnector</mat-option>
+        <mat-option value="4">All</mat-option>
+      </mat-select>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field appearance="fill" class="select-style">
+      <mat-label>Search</mat-label>
+      <input matInput placeholder="" formControlName="searchFieldControl" >
+      <mat-hint>.</mat-hint>
+    </mat-form-field>
+    <!--Filter-->
+    <!--
   <span class="example-header select-style">
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
     </mat-form-field>
   </span>
+  -->
+    &nbsp;
+    <button type="button" style="width: 5%;" class="btn btn-outline-secondary mb-3" (click)="searchDevices()" >
+      <mat-icon>search</mat-icon>
+    </button>
+  </form>
+
   <div class="example-container mat-elevation-z8 mt-0">
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
@@ -68,7 +81,7 @@
       <ng-container matColumnDef="buttons" sticky>
         <th mat-header-cell *matHeaderCellDef class="th-button-design"> </th>
         <td mat-cell *matCellDef="let element">
-          <button mat-stroked-button color="primary" [routerLink]="['/newDevice', element.deviceId]" >Edit</button>
+          <button mat-stroked-button color="primary" [routerLink]="['/newDevice', element.deviceId]">Edit</button>
           <button mat-stroked-button color="warn" (click)="deleteDevice(element.deviceId)">Delete</button>
         </td>
       </ng-container>

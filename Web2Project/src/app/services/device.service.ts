@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Device } from '../models/device';
+import { Device, SearchDevices } from '../models/device';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +32,12 @@ export class DeviceService {
   deleteDevice(id:number):Observable<{}>{
     let url = this.baseUrl.concat(`/${id}`);
     return this.http.delete(url);
+  }
+
+  searchAllDevices(searchObject: SearchDevices):Observable<Device[]>{
+    console.log(searchObject);
+    let url = this.baseUrl.concat("/search");
+    return this.http.post<Device[]>(url, searchObject);
   }
 
 }

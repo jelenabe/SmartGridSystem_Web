@@ -7,3 +7,9 @@ export class Device{
     locationId:number=0;
     location:Location;
 }
+
+export class SearchDevices{
+    type:string="";
+    property:string="";
+    searchField:string="";
+}

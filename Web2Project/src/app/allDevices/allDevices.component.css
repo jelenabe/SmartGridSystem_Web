@@ -1,7 +1,11 @@
 .select-style{
   min-width: 15%;
-  max-height: 10px;
 }
+
+.mat-icon {
+  vertical-align: middle;
+}
+
 
 /*da bi buttoni bili postavljeni jedan pored drugog i kada se pojavi vertikalan scrool*/
 th.mat-header-cell:last-of-type{  
