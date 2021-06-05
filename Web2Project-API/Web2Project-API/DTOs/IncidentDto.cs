@@ -17,7 +17,7 @@ namespace Web2Project_API.DTOs
         public DateTime? ATA { get; set; }
         public DateTime ETR { get; set; }
         public DateTime? OutageTime { get; set; }
-        public DateTime ScheduedTime { get; set; }
+        public DateTime ScheduledTime { get; set; }
         public double? VoltageLevel { get; set; }
        
         public bool? Assigned { get; set; }  // mozda i ne mora
