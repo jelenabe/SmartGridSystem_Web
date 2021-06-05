@@ -38,7 +38,8 @@ export class ReportOutageComponent implements OnInit {
   constructor(private outageService: ReportOutageService, public dialog: MatDialog,
     private locationService: LocationService,
     private snackBar: MatSnackBar,
-    private router: Router, private adminService:AdminService) {
+    private router: Router,
+    private adminService:AdminService) {
     
      }
 
@@ -103,6 +104,7 @@ export class ReportOutageComponent implements OnInit {
       }
     )
   }
+  
   formatLocation(location: Location) {
     return `${location.street}, ${location.city}, ${location.postNumber}`;
   }

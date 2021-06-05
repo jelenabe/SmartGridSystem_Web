@@ -1,26 +1,50 @@
-.example-container {
-  display: flex;
-  flex-direction: column;
-  min-width: 300px;
-}
 
-.example-header {
-  min-height: 64px;
-  padding: 8px 24px 0;
-}
-
-.mat-form-field {
-  font-size: 14px;
-  width: 100%;
-}
-
-.mat-table {
-  overflow: auto;
-  width: 100%;
-  max-height: 500px;
-}
-
-.mat-cell{
-  overflow: auto;
-  width: 25%;
-}
+  .mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+  
+  .mat-button-toggle-group {
+    margin-left: 12px;
+  }
+  
+  th.mat-sort-header-sorted {
+    color: black;
+  }
+  td.mat-column-star {
+    width: 20px;
+    padding-right: 8px;
+  }
+  
+  th.mat-column-position, td.mat-column-position {
+    padding-left: 8px;
+  }
+  
+  .mat-table-sticky-border-elem-right {
+    border-left: 1px solid #e0e0e0;
+  }
+  
+  .mat-table-sticky-border-elem-left {
+    border-right: 1px solid #e0e0e0;
+  }
+    .example-container {
+      max-height: 485px;
+      width: 100%;
+      max-width: 100%;
+      overflow: auto;
+    }
+    
+  .mat-table {
+    overflow: auto;
+    width: 100%;
+    max-height: 500px;
+  }
+  
+  .mat-cell{
+    overflow: auto;
+    width: 5%;
+  }
+  th, td{
+    font-size: large;
+  }
+  
+  

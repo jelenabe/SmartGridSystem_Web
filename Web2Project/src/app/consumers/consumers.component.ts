@@ -63,7 +63,7 @@ export class ConsumersComponent implements OnInit {
   getConsumers(){
   
     this.newConsumerService.getConsumers().subscribe((response)=>{
-      console.log("Applay changes successfull");
+      console.log("Get consumers successfull");
       this.Consumers = response;
       console.log(this.Consumers);
       this.Consumers.forEach((element: { consumerId: number; name: string; location: string; phone:string; type:string  })=> {

@@ -2,29 +2,8 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-
-
-export interface WorkOrder {
-  id: number;
-  startDate: Date;
-  phone: number;
-  status: string;
-  address: string;
-}
-
-const ELEMENT_DATA: WorkOrder[] = [
-  {id: 1, startDate: new Date('11/12/2010'), phone: 8585747, status: 'Status1', address: 'Addres1'},
-  {id: 2, startDate: new Date('10/12/2010'), phone: 8585747, status: 'Status2', address: 'Addres2'},
-  {id: 3, startDate: new Date('9/12/2010'), phone: 8585747, status: 'Status3', address: 'Addres3'},
-  {id: 4, startDate: new Date('8/12/2010'), phone: 8585747, status: 'Status1', address: 'Addres4'},
-  {id: 5, startDate: new Date('7/12/2010'), phone: 8585747, status: 'Status2', address: 'Addres5'},
-  {id: 6, startDate: new Date('6/12/2010'), phone: 8585747, status: 'Status3', address: 'Addres6'},
-  {id: 7, startDate: new Date('5/12/2010'), phone: 8585747, status: 'Status1', address: 'Addres7'},
-  {id: 8, startDate: new Date('4/12/2010'), phone: 8585747, status: 'Status2', address: 'Addres8'},
-  {id: 9, startDate: new Date('3/12/2010'), phone: 8585747, status: 'Status3', address: 'Addres9'},
-  {id: 10, startDate: new Date('2/12/2010'), phone: 8585747, status: 'Status1', address: 'Addres10'},
-];
-
+import { WorkRequest } from '../models/work-request';
+import { WorkRequestService } from '../services/work-request.service';
 
 @Component({
   selector: 'app-workOrders',
@@ -32,28 +11,74 @@ const ELEMENT_DATA: WorkOrder[] = [
   styleUrls: ['./workOrders.component.css']
 })
 export class WorkOrdersComponent implements OnInit, AfterViewInit {
+  ELEMENT_DATA: any[] = [];
   displayedColumns: string[] = ['id', 'startDate', 'phone', 'status', 'address'];
-  dataSource: MatTableDataSource<WorkOrder>;
+  dataSource: MatTableDataSource<WorkRequest>;
+
+  model: any = {};
+
+  workRequests: WorkRequest[] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 
-  constructor() {
-    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+  constructor(private requestService: WorkRequestService) {
+   
   }
-  ngOnInit(): void{
-
+  ngOnInit(){
+    this.getAllRequest();
   }
 
-  ngAfterViewInit(): void {
+  ngAfterViewInit(){
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
- applyFilter(event: Event): void {
+ applyFilter(event: Event){
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+  getAllRequest(){
+    this.ELEMENT_DATA = [];
+    this.requestService.getAllRequests().subscribe(response => {
+      this.workRequests=response;
+    });
+
+    console.log(this.workRequests);
+
+      this.workRequests.forEach(element=> {
+        
+        this.ELEMENT_DATA.push(element)
+      });
+
+    this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  getMineRequest(){
+    this.ELEMENT_DATA = [];
+    var param = localStorage.getItem('id');
+
+    if (param != null){
+    this.requestService.getMineRequest(+param).subscribe(response => {
+      this.workRequests=response;
+    });
+  }
+
+    console.log(this.workRequests);
+
+      this.workRequests.forEach(element=> {
+        
+        this.ELEMENT_DATA.push(element)
+      });
+
+    this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
 
  
 

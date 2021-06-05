@@ -96,36 +96,6 @@
     
         </div>
       </div>
-
-      <!--Role-->
-      <div class="form-group col-md-6">
-        <div class="input-group mb-5">
-          <mat-form-field appearance="fill">
-            <mat-label>Role</mat-label>
-            <mat-select
-              (selectionChange)="SelectionChangedCause($event)"
-              name="userType"
-              [(ngModel)]="model.userType"
-            >
-              <mat-option value="Crew Member">Crew Member</mat-option>
-              <mat-option value="Dispatcher">Dispatcher</mat-option>
-              <mat-option value="Worker">Worker</mat-option>
-              <mat-option value="Consumer">Consumer</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <!--Crew-->
-          <div *ngIf="showSubcauses" style="margin-left: 5%">
-            <mat-form-field appearance="fill">
-              <mat-label>Crews</mat-label>
-              <mat-select name="crew" [(ngModel)]="model.crew">
-                <mat-option *ngFor="let value of subcauses" value="value">{{
-                  value
-                }}</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="form-row">

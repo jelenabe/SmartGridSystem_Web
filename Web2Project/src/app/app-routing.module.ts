@@ -5,6 +5,7 @@ import { AdminSettingsComponent } from './admin-settings/admin-settings.componen
 import { AllCrewsComponent } from './allCrews/allCrews.component';
 import { AllDevicesComponent } from './allDevices/allDevices.component';
 import { BasicInformationIncidentsComponent } from './basic-information-incidents/basic-information-incidents.component';
+import { BasicInformationComponent } from './basicInformation/basicInformation.component';
 import { BasicInformationWorkOrderComponent } from './basicInformationWorkOrder/basicInformationWorkOrder.component';
 import { CallsComponent } from './calls/calls.component';
 import { ChangePasswordComponent } from './changePassword/changePassword.component';
@@ -36,6 +37,7 @@ import { RegisterComponent } from './register/register.component';
 import { ReportOutageComponent } from './reportOutage/reportOutage.component';
 import { ResolutionComponent } from './resolution/resolution.component';
 import { SafetyDocsComponent } from './safetyDocs/safetyDocs.component';
+import { SwitchingInstructionsComponent } from './switchingInstructions/switchingInstructions.component';
 import { WorkOrdersComponent } from './workOrders/workOrders.component';
 import { WorkPlansComponent } from './workPlans/workPlans.component';
 
@@ -190,6 +192,12 @@ const routes: Routes = [
   },
   {
     path: 'newWorkOrder',
+    redirectTo: '/newWorkOrder/basicInformation',
+    pathMatch: 'full',
+    outlet: "primary"
+  },
+  {
+    path: 'newWorkOrder',
     component:NewWorkOrderComponent,
     outlet: "primary",
     children: [
@@ -213,8 +221,36 @@ const routes: Routes = [
   },
   {
     path: 'newPlan',
-    component:NewPlanComponent,
+    redirectTo: '/newPlan/basicInformation',
+    pathMatch: 'full',
     outlet: "primary"
+  },
+  {
+    path: 'newPlan',
+    component:NewPlanComponent,
+    outlet: "primary",
+    children: [
+      {
+        path: 'basicInformation',
+        component: BasicInformationComponent
+      },
+      {
+        path: 'historyOfStateChange',
+        component: HistoryOfStateChangesComponent
+      },
+      {
+        path: 'equipment',
+        component: EquipmentComponent
+      },
+      {
+        path: 'multimediaAttachments',
+        component: MultimediaAttachmentsComponent
+      },
+      {
+        path: 'switchingInstruction',
+        component: SwitchingInstructionsComponent
+      }
+    ]
   },
   {
     path: 'newSafetyDoc',

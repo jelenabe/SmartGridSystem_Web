@@ -14,10 +14,10 @@
 <!--All/Mine-->
 <span>
   <mat-button-toggle-group>
-    <mat-button-toggle value="all_incidents" id="option1"
+    <mat-button-toggle value="all_incidents" id="option1" (click)="getAllPlans()"
       >All</mat-button-toggle
     >
-    <mat-button-toggle value="mine_incidents" id="option2"
+    <mat-button-toggle value="mine_incidents" id="option2" (click)="getMinePlans()"
       >Mine</mat-button-toggle
     >
   </mat-button-toggle-group>

@@ -28,6 +28,7 @@ namespace Web2Project_API.DbConfigurations
         public DbSet<AdminNotification> AdminNotifications { get; set; }
         public DbSet<AdminFieldsSettings> FieldSettings { get; set; }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasOne<Location>(x => x.Location).WithMany(x => x.Users).HasForeignKey(x => x.LocationId).OnDelete(DeleteBehavior.Restrict);

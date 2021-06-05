@@ -1,222 +1,259 @@
 <div class="container">
   <h2>Basic Information</h2>
-  <form >
 
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <label class="input-group-text" for="inputGroupSelect01">Type</label>
-        </div>
-        <select class="custom-select" id="inputGroupSelect01">
-          <option selected>Choose...</option>
-          <option value="1">Type1</option>
-          <option value="2">Type2</option>
-          <option value="3">Type3</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="form-group col-md-6">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <div class="input-group-text">
-            <input type="checkbox" aria-label="Emergency" />
+  <form (ngSubmit)="nextBasic()" ngNativeValidate #myForm="ngForm">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01"
+              >Type</label
+            >
           </div>
+          <select
+            class="custom-select"
+            id="inputGroupSelect01"
+            name="type"
+            [(ngModel)]="basicInfoModel.type"
+            required
+          >
+            <option value="0">PLANNED WORK</option>
+            <option value="1">UNPLANNED WORK</option>
+          </select>
         </div>
-        <input
-          type="text"
-          class="form-control"
-          aria-label="Text input with checkbox"
-          placeholder="Emergency"
-          readonly
-        />
       </div>
-    </div>
-  </div>
 
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-default"
-            >Status</span
-          >
+      <div class="form-group col-md-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <input
+                type="checkbox"
+                aria-label="Emergency"
+                name="emergency"
+                [(ngModel)]="basicInfoModel.emergency"
+              />
+            </div>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Text input with checkbox"
+            placeholder="Emergency"
+            readonly
+          />
         </div>
-        <input
-          type="text"
-          class="form-control"
-          aria-label="Default"
-          aria-describedby="inputGroup-sizing-default"
-          value="Draft"
-          readonly
-        />
       </div>
     </div>
-    <div class="form-group col-md-6">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-default"
-            >Company</span
-          >
-        </div>
-        <input
-          type="text"
-          class="form-control"
-          aria-label="Default"
-          aria-describedby="inputGroup-sizing-default"
-        />
-      </div>
-    </div>
-  </div>
 
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-default"
-            >Incident</span
-          >
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default"
+              >Status</span
+            >
+          </div>
+          <input
+            name="status"
+            [(ngModel)]="basicInfoModel.status"
+            type="text"
+            class="form-control"
+            aria-label="Default"
+            aria-describedby="inputGroup-sizing-default"
+            readonly
+          />
         </div>
-        <input
-          type="text"
-          class="form-control"
-          aria-label="Default"
-          aria-describedby="inputGroup-sizing-default"
-          value="Incident1"
-          readonly
-        />
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button">
-            Open Incident
-          </button>
+      </div>
+      <div class="form-group col-md-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default"
+              >Company</span
+            >
+          </div>
+          <input
+            type="text"
+            name="company"
+            [(ngModel)]="basicInfoModel.company"
+            class="form-control"
+            aria-label="Default"
+            aria-describedby="inputGroup-sizing-default"
+            required
+          />
         </div>
       </div>
     </div>
-    <div class="form-group col-md-6">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-default"
-            >Phone Number</span
-          >
-        </div>
-        <input
-          type="text"
-          class="form-control"
-          aria-label="Default"
-          aria-describedby="inputGroup-sizing-default"
-        />
-      </div>
-    </div>
-  </div>
 
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-default"
-            >Street</span
-          >
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <div class="input-group mb-3">
+          <mat-form-field appearance="fill" class="select-style mb-2">
+            <mat-label>Incident</mat-label>
+            <mat-select
+              name="IncidentId"
+              [(ngModel)]="basicInfoModel.incidentId"
+              required
+            >
+            <mat-option value="0">1</mat-option>
+             <!-- <mat-option
+                *ngFor="let incident of incidents"
+                value="{{ incident.incidentId }}"
+              >
+                {{ formatIncident(incident) }}</mat-option
+              >-->
+            </mat-select>
+          </mat-form-field>
         </div>
-        <input
-          type="text"
-          class="form-control"
-          aria-label="Default"
-          aria-describedby="inputGroup-sizing-default"
-          placeholder="Enter Street..."
-        />
+      </div>
+      <div class="form-group col-md-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default"
+              >Phone Number</span
+            >
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Default"
+            aria-describedby="inputGroup-sizing-default"
+            name="phone"
+            [(ngModel)]="basicInfoModel.phone"
+            required
+          />
+        </div>
       </div>
     </div>
-    <div class="form-group col-md-6">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-default"
-            >Document created on</span
-          >
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <div class="input-group mb-3">
+          <mat-form-field appearance="fill" class="select-style mb-2">
+            <mat-label>Location</mat-label>
+            <mat-select
+              name="LocationId"
+              [(ngModel)]="basicInfoModel.locationId"
+              required
+            >
+            <mat-option value="0">1</mat-option>
+              <!--<mat-option
+                *ngFor="let location of locations"
+                value="{{ location.locationId }}"
+              >
+                {{ formatLocation(location) }}</mat-option
+              >-->
+            </mat-select>
+          </mat-form-field>
         </div>
-        <input
-          type="date"
-          class="form-control"
-          aria-label="Default"
-          aria-describedby="inputGroup-sizing-default"
-        />
+      </div>
+      <div class="form-group col-md-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default"
+              >Created on</span
+            >
+          </div>
+          <input
+            name="createdOn"
+            [(ngModel)]="basicInfoModel.createdOn"
+            type="date"
+            class="form-control"
+            aria-label="Default"
+            aria-describedby="inputGroup-sizing-default"
+            required
+          />
+        </div>
       </div>
     </div>
-  </div>
-<div class="form-row">
-  <div class="form-group col-md-6">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default"
+              >Start Date</span
+            >
+          </div>
+          <input
+            name="startDate"
+            [(ngModel)]="basicInfoModel.startDate"
+            type="date"
+            class="form-control"
+            aria-label="Default"
+            aria-describedby="inputGroup-sizing-default"
+            required
+          />
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default"
+              >End Date</span
+            >
+          </div>
+          <input
+            name="endDate"
+            [(ngModel)]="basicInfoModel.endDate"
+            type="date"
+            class="form-control"
+            aria-label="Default"
+            aria-describedby="inputGroup-sizing-default"
+            required
+          />
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default"
+              >Created by</span
+            >
+          </div>
+          <input
+            name="createdBy"
+            [(ngModel)]="basicInfoModel.createdBy"
+            type="text"
+            class="form-control"
+            aria-label="Default"
+            aria-describedby="inputGroup-sizing-default"
+            readonly
+          />
+        </div>
+      </div>
+    </div>
+
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-default"
-          >Start Date</span
+          >Purpose</span
         >
       </div>
       <input
-        type="date"
-        class="form-control"
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
-      />
-    </div>
-  </div>
-</div>
-<div class="form-row">
-  <div class="form-group col-md-6">
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default"
-          >End Date</span
-        >
-      </div>
-      <input
-        type="date"
-        class="form-control"
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
-      />
-    </div>
-  </div>
-</div>
-<div class="form-row">
-  <div class="form-group col-md-6">
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default"
-          >Created by</span
-        >
-      </div>
-      <input
+        name="purpose"
+        [(ngModel)]="basicInfoModel.purpose"
         type="text"
         class="form-control"
         aria-label="Default"
         aria-describedby="inputGroup-sizing-default"
-        value="Milan Momcilovic"
-        readonly
       />
     </div>
-  </div>
-</div>
 
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="inputGroup-sizing-default">Purpose</span>
-  </div>
-  <input
-    type="text"
-    class="form-control"
-    aria-label="Default"
-    aria-describedby="inputGroup-sizing-default"
-  />
-</div>
-
-<div class="input-group">
-  <div class="input-group-prepend">
-    <span class="input-group-text">Notes</span>
-  </div>
-  <textarea class="form-control" aria-label="With textarea"></textarea>
-</div>
-<br />
-
-<button class="btn btn-outline-primary" type="button">Save</button>
-</form>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Notes</span>
+      </div>
+      <textarea
+        name="notes"
+        [(ngModel)]="basicInfoModel.notes"
+        class="form-control"
+        aria-label="With textarea"
+      ></textarea>
+    </div>
+    <br />
+  </form>
 </div>

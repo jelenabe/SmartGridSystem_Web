@@ -6,64 +6,49 @@
         <button
           type="button"
           class="list-group-item list-group-item-action"
-          (click)="changeView(1)"
+          [routerLink]="['basicInformation']"
         >
           Basic Information
         </button>
         <button
           type="button"
           class="list-group-item list-group-item-action"
-          (click)="changeView(2)"
+          [routerLink]="['historyOfStateChange']"
+          [disabled]="newPlan"
         >
           History of state changes
         </button>
         <button
           type="button"
           class="list-group-item list-group-item-action"
-          (click)="changeView(3)"
+          [routerLink]="['multimediaAttachments']"
+          [disabled]="newPlan"
         >
           Multimedia attachments
         </button>
         <button
           type="button"
           class="list-group-item list-group-item-action"
-          (click)="changeView(4)"
+          [routerLink]="['equipment']"
+          [disabled]="newPlan"
         >
           Equipment
         </button>
         <button
           type="button"
           class="list-group-item list-group-item-action"
-          (click)="changeView(5)"
+          [routerLink]="['switchingInstruction']"
+          [disabled]="newPlan"
         >
           Switching instruction
         </button>
       </div>
     </div>
   </div>
-
-  <!--Show when button is clicked-->
   <div class="form-group col-md-8">
     <div class="input-group mb-3">
-      <div [ngSwitch]="this.buttonClicked">
-        <div *ngSwitchCase="1">
-          <app-basicInformation></app-basicInformation>
-        </div>
-        <div *ngSwitchCase="2">
-          <app-historyOfStateChanges></app-historyOfStateChanges>
-        </div>
-        <div *ngSwitchCase="3">
-          <app-multimediaAttachments></app-multimediaAttachments>
-        </div>
-        <div *ngSwitchCase="4">
-          <app-equipment></app-equipment>
-        </div>
-        <div *ngSwitchCase="5">
-          <app-switchingInstructions></app-switchingInstructions>
-        </div>
-      </div>
+      <router-outlet name="primary"></router-outlet>
     </div>
-
     <!--Save and Cancel-->
     <div class="form-group col-md-8">
       <div class="input-group mb-3">

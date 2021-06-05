@@ -1,49 +1,57 @@
 <h2>Work Requests</h2>
-
-<div class="btn-group btn-group-toggle" data-toggle="buttons">
-  
-  <label class="btn btn-secondary active">
-    <input type="radio" name="options" id="option1" autocomplete="off" checked> All
-  </label>
-
-  <label class="btn btn-secondary">
-    <input type="radio" name="options" id="option2" autocomplete="off"> Mine
-  </label>
+<!--New Work Request-->
+<div>
+  <button type="button" class="btn btn-primary" [routerLink]="['/newWorkOrder']">New Work Request</button>
 </div>
 
+<!--Filter-->
+<span class="example-header">
 <mat-form-field>
-<mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. search" #input>
-</mat-form-field>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Filer" #input />
+</mat-form-field> </span
+>&nbsp;&nbsp;&nbsp;&nbsp;
 
-<div class="example-container mat-elevation-z8 ">
+<!--All/Mine-->
+<span>
+<mat-button-toggle-group>
+  <mat-button-toggle value="all_incidents" id="option1" (click)="getAllRequest()"
+    >All</mat-button-toggle
+  >
+  <mat-button-toggle value="mine_incidents" id="option2" (click)="getMineRequest()"
+    >Mine</mat-button-toggle
+  >
+</mat-button-toggle-group>
+</span>
 
-  <mat-table matSort [dataSource]="dataSource" >
-
-    <!-- Position Column -->
+<!--Table-->
+<div class="example-container mat-elevation-z8 mt-0">
+  <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8" >
+   
+    <!-- id Column -->
     <ng-container matColumnDef="id" >
       <th mat-header-cell *matHeaderCellDef mat-sort-header > Id. </th>
       <td mat-cell *matCellDef="let element" class="mat-cell"> {{element.id}} </td>
     </ng-container>
 
-    <!-- Name Column -->
+    <!-- Start date Column -->
     <ng-container matColumnDef="startDate">
       <th mat-header-cell *matHeaderCellDef mat-sort-header > Start Date </th>
       <td mat-cell *matCellDef="let element" class="mat-cell"> {{element.startDate | date}} </td>
     </ng-container>
 
-    <!-- Weight Column -->
+    <!-- Phone Column -->
     <ng-container matColumnDef="phone">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone </th>
       <td mat-cell *matCellDef="let element" class="mat-cell"> {{element.phone}} </td>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- Status Column -->
     <ng-container matColumnDef="status">
       <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col"> Status </th>
       <td mat-cell *matCellDef="let element" class="mat-cell"> {{element.status}} </td>
     </ng-container>
 
+   <!-- Address Column -->
     <ng-container matColumnDef="address">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
       <td mat-cell *matCellDef="let element" class="mat-cell"> {{element.address}} </td>
@@ -57,15 +65,10 @@
     <tr class="mat-row" *matNoDataRow>
       <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
     </tr>
-  </mat-table>
-
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-
+  </table>
 </div>
-<br>
-<div>
- <a href="/newWorkOrder">
-  <button type="button" class="btn btn-primary">New Work Request</button>
- </a>
-</div>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+
+
  

@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Incident } from '../models/incident';
+import { IncidentService } from '../services/incident.service';
+import { LocationService } from '../services/location.service';
+import { WorkRequestService } from '../services/work-request.service';
+import { Location } from '../models/location';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-basicInformationWorkOrder',
@@ -7,11 +13,56 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BasicInformationWorkOrderComponent implements OnInit {
 
-  model: any = {};
+  newRequestBasic: boolean= true;
 
-  constructor() { }
+  @Output() newItemEvent = new EventEmitter<any>()
+
+  basicInfoModel: any= {}
+  incidents: Incident[] = [];
+  locations: Location[] = [];
+
+  constructor(private incidentService: IncidentService,
+    private locationService: LocationService,
+    private router: Router) {
+
+      this.getAllIncidents();
+      this.getAllLocations();
+     }
 
   ngOnInit() {
+    
+  }
+
+  getAllIncidents() {
+    this.incidentService.getAllIncidents().subscribe(
+      data => {
+        this.incidents=data;
+        console.log(data);
+        console.log(this.incidents)
+      }
+    )
+  }
+  
+  formatIncident(incident: Incident) {
+    return `${incident.incidentId}, ${incident.incidentType}, ${incident.incidentStatus}`;
+  }
+  getAllLocations() {
+    this.locationService.getAllLocations().subscribe(
+      data => {
+        this.locations=data;
+        console.log(data);
+        console.log(this.locations)
+      }
+    )
+  }
+  
+  formatLocation(location: Location) {
+    return `${location.street}, ${location.city}, ${location.postNumber}`;
+  }
+
+  nextBasic(){
+    this.newItemEvent.emit(this.basicInfoModel);
+    this.router.navigate(['/', 'historyOfStateChange']);
   }
 
 }

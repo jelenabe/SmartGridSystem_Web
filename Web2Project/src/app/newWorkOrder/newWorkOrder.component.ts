@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { BasicInformationWorkOrderComponent } from '../basicInformationWorkOrder/basicInformationWorkOrder.component';
+import { EquipmentComponent } from '../equipment/equipment.component';
+import { HistoryOfStateChangesComponent } from '../historyOfStateChanges/historyOfStateChanges.component';
+import { MultimediaAttachmentsComponent } from '../multimediaAttachments/multimediaAttachments.component';
 
 @Component({
   selector: 'app-newWorkOrder',
@@ -8,31 +13,33 @@ import { Router } from '@angular/router';
 })
 export class NewWorkOrderComponent implements OnInit {
 
-  buttonClicked: any = 1;
+  model: any = {};
 
-  constructor(private _router: Router) { }
+  @ViewChild(BasicInformationWorkOrderComponent) childBasicInformation: BasicInformationWorkOrderComponent;
+  @ViewChild(HistoryOfStateChangesComponent) childHistoryOfStateChange: HistoryOfStateChangesComponent;
+  @ViewChild(MultimediaAttachmentsComponent) childMultimediaAttachmentsComponent: MultimediaAttachmentsComponent;
+  @ViewChild(EquipmentComponent) childEquipmentComponent: EquipmentComponent;
+
+  constructor(private _router: Router,
+    private snackBar: MatSnackBar,) { }
 
   ngOnInit() {
   }
 
-  changeView(num: number){
+  save(){
 
-    switch (num){
-      case 1:
-        this.buttonClicked = 1;
-        break;
-      case 2:
-        this.buttonClicked = 2;
-        break;
-      case 3:
-        this.buttonClicked = 3;
+  }
 
-        break;
-      case 4:
-        this.buttonClicked = 4;
-        break;
-      default:
-        this.buttonClicked = 1;
+  checkBasicInfo(basicModel: any){
+    if(this.childBasicInformation.basicInfoModel.type == null){
+      this.openSnackBar();
     }
   }
+
+  openSnackBar() {
+    this.snackBar.open('Fileds must be fild!', 'OK', {
+      duration: 3000
+    });
+  }
+  
 }
