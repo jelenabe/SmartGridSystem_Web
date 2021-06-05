@@ -11,6 +11,9 @@ import { Location } from '../models/location';
 import { LocationService } from '../services/location.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { AdminService } from '../services/admin.service';
+import { Field } from '../models/field';
+import { FieldsDialogComponent } from '../fields-dialog/fields-dialog.component';
 
 @Component({
   selector: 'app-reportOutage',
@@ -22,6 +25,9 @@ export class ReportOutageComponent implements OnInit {
   modelForShow:any ={}
   matcher = new MyErrorStateMatcher();
   anonymous:boolean= true;
+  res: Field;
+
+  display: boolean=true;
   
   location:string[];
   locations: Location[] = [];
@@ -32,7 +38,9 @@ export class ReportOutageComponent implements OnInit {
   constructor(private outageService: ReportOutageService, public dialog: MatDialog,
     private locationService: LocationService,
     private snackBar: MatSnackBar,
-    private router: Router,) { }
+    private router: Router, private adminService:AdminService) {
+    
+     }
 
   report(){
     console.log(this.model);
@@ -50,6 +58,14 @@ export class ReportOutageComponent implements OnInit {
   }
   ngOnInit() {
     this.getAllLocations();
+    this.getFieldSettings();
+  }
+
+  getFieldSettings(){
+    this.adminService.getFileds().subscribe(response => {
+      this.res=response;
+      
+    });
   }
 
   buttonClicked(options: number){

@@ -1,7 +1,57 @@
 <h2 style="text-align: center;">Select which notification will be displayed</h2>
-  <div class="container">
+
+<div>
+  <label style="margin-left: 40%;">ERROR</label>
+  &nbsp; &nbsp;&nbsp;&nbsp;
+  <button [disabled]="isDispalyEroor" class="btn btn-primary" type="submit" (click)="showRow('error')" >
+    Show
+  </button>
+  &nbsp;&nbsp;
+  <button  [disabled]="!isDispalyEroor" class="btn btn-primary" type="submit" (click)="hideRow('error')">
+    Hide
+  </button>
+</div>
+<br/>
+<div>
+  <label style="margin-left: 40%;">SUCCESS</label>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <button [disabled]="isDispalySucces" class="btn btn-primary" type="submit" (click)="showRow('success')" >
+    Show
+  </button>
+  &nbsp;&nbsp;
+  <button  [disabled]="!isDispalySucces" class="btn btn-primary" type="submit" (click)="hideRow('success')">
+    Hide
+  </button>
+</div>
+<br/>
+<div>
+  <label style="margin-left: 40%;">WARNING</label>
+  &nbsp;&nbsp;
+  <button  [disabled]="isDispalyWarning" class="btn btn-primary" type="submit" (click)="showRow('warning')" >
+    Show
+  </button>
+  &nbsp;&nbsp;
+  <button  [disabled]="!isDispalyWarning" class="btn btn-primary" type="submit" (click)="hideRow('warning')">
+    Hide
+  </button>
+</div>
+<br/>
+<div>
+  <label style="margin-left: 40%;">INFO</label>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button  [disabled]="isDispalyInfo" class="btn btn-primary" type="submit" (click)="showRow('info')" >
+    Show
+  </button>
+  &nbsp;&nbsp;
+  <button  [disabled]="!isDispalyInfo" class="btn btn-primary" type="submit" (click)="hideRow('info')">
+    Hide
+  </button>
+</div>
+
+  <!--<div class="container">
   <mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="margin-left: 40%;">
-    <!-- Checkbox Column -->
+   
+
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef>
         <mat-checkbox
@@ -23,12 +73,12 @@
       </td>
     </ng-container>
 
-    <!-- Position Column -->
+   
     <ng-container matColumnDef="position">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element"style="padding-right: 10px;">{{ element.position }}</td>
     </ng-container>
-    <!-- Name Column -->
+   
     <ng-container matColumnDef="name" >
       <th mat-header-cell *matHeaderCellDef style="padding-top: 10%;">Notifications</th>
       <td mat-cell *matCellDef="let element">{{ element.name }}</td>
@@ -39,3 +89,4 @@
   </tr>
   </mat-table>
 </div>
+-->

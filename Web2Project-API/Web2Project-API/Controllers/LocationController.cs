@@ -14,6 +14,7 @@ namespace Web2Project_API.Controllers
     {
         private readonly ILocationRepo _locationRepo;
 
+
         public LocationController(ILocationRepo locationRepo)
         {
             _locationRepo = locationRepo;

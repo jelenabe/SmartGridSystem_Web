@@ -13,28 +13,30 @@ namespace Web2Project_API.DbConfigurations
             : base(options)
         {
         }
-        public DbSet<User> Users { get; set; } 
-        public DbSet<Crew> Crews { get; set; } 
-        public DbSet<Location> Locations { get; set; } 
-        public DbSet<Call> Calls { get; set; } 
-        public DbSet<Consumer> Consumers { get; set; } 
-        public DbSet<Device> Devices { get; set; } 
-        public DbSet<Notification> Notifications { get; set; } 
-        public DbSet<Incident> Incidents { get; set; } 
-        public DbSet<WorkPlan> WorkPlans { get; set; } 
-        public DbSet<WorkRequest> WorkRequests { get; set; } 
-        public DbSet<SafetyDocument> SafetyDocs { get; set; } 
+        public DbSet<User> Users { get; set; }
+        public DbSet<Crew> Crews { get; set; }
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<Call> Calls { get; set; }
+        public DbSet<Consumer> Consumers { get; set; }
+        public DbSet<Device> Devices { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<Incident> Incidents { get; set; }
+        public DbSet<WorkPlan> WorkPlans { get; set; }
+        public DbSet<WorkRequest> WorkRequests { get; set; }
+        public DbSet<SafetyDocument> SafetyDocs { get; set; }
 
+        public DbSet<AdminNotification> AdminNotifications { get; set; }
+        public DbSet<AdminFieldsSettings> FieldSettings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasOne<Location>(x => x.Location).WithMany(x=>x.Users).HasForeignKey(x => x.LocationId).OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<User>().HasOne<Crew>(x => x.Crew).WithMany(x=>x.Users).HasForeignKey(x => x.CrewId);
+            modelBuilder.Entity<User>().HasOne<Location>(x => x.Location).WithMany(x => x.Users).HasForeignKey(x => x.LocationId).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<User>().HasOne<Crew>(x => x.Crew).WithMany(x => x.Users).HasForeignKey(x => x.CrewId);
             modelBuilder.Entity<Consumer>().HasOne<Location>(x => x.Location).WithMany(x => x.Consumers).HasForeignKey(x => x.LocationId);
-            modelBuilder.Entity<Call>().HasOne<Consumer>(x => x.Consumer).WithMany(x=> x.Calls).HasForeignKey(x => x.ConsumerId);
-            modelBuilder.Entity<Device>().HasOne<Location>(x => x.Location).WithMany(x=> x.Devices).HasForeignKey(x => x.LocationId);
+            modelBuilder.Entity<Call>().HasOne<Consumer>(x => x.Consumer).WithMany(x => x.Calls).HasForeignKey(x => x.ConsumerId);
+            modelBuilder.Entity<Device>().HasOne<Location>(x => x.Location).WithMany(x => x.Devices).HasForeignKey(x => x.LocationId);
             modelBuilder.Entity<Device>().HasOne<SafetyDocument>(x => x.SafetyDocument).WithMany(x => x.Devices).HasForeignKey(x => x.SafetyDocumentId);
-            modelBuilder.Entity<Incident>().HasOne<Crew>(x => x.Crew).WithMany(x=> x.Incidents).HasForeignKey(x => x.CrewId);
+            modelBuilder.Entity<Incident>().HasOne<Crew>(x => x.Crew).WithMany(x => x.Incidents).HasForeignKey(x => x.CrewId);
             modelBuilder.Entity<Call>().HasOne<Incident>(x => x.Incident).WithMany(x => x.Calls).HasForeignKey(x => x.IncidentId);
             modelBuilder.Entity<Call>().HasOne<Location>(x => x.Location).WithMany(x => x.Calls).HasForeignKey(x => x.LocationId);
 
@@ -77,7 +79,7 @@ namespace Web2Project_API.DbConfigurations
                     LocationId = null,
                     Birthday = new DateTime(1998, 6, 17),
                     UserType = UserType.ADMIN
-                    
+
                 },
                 new User
                 {
@@ -105,7 +107,7 @@ namespace Web2Project_API.DbConfigurations
                     Birthday = new DateTime(1998, 6, 17),
                     UserType = UserType.ADMIN
                 }
-            ) ;
+            );
 
             modelBuilder.Entity<Location>().HasData(
                 new Location
@@ -137,6 +139,47 @@ namespace Web2Project_API.DbConfigurations
                     Lon = "20.486268",
                     PostNumber = 11118,
                     Priority = 3
+                }
+            );
+
+            modelBuilder.Entity<AdminNotification>().HasData(
+               new AdminNotification
+               {
+                   NotificationId = 1,
+                   Type = "ERROR",
+                   Display = true
+
+               },
+               new AdminNotification
+               {
+                   NotificationId = 2,
+                   Type = "SUCCES",
+                   Display = true
+
+               },
+               new AdminNotification
+               {
+                   NotificationId = 3,
+                   Type = "INFO",
+                   Display = true
+
+               },
+               new AdminNotification
+               {
+                   NotificationId = 4,
+                   Type = "WARNING",
+                   Display = true
+
+               }
+               );
+
+            modelBuilder.Entity<AdminFieldsSettings>().HasData(
+                new AdminFieldsSettings
+                {
+                    FieldId = 1,
+                    Name = "Comment",
+                    Display = true
+
                 }
             );
 

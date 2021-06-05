@@ -27,7 +27,8 @@
     </mat-form-field>
 
     <!--Comment-->
-    <mat-form-field class="example-full-width divStyle">
+    <div *ngIf="res.display == true">
+    <mat-form-field class="example-full-width divStyle" >
       <mat-label>Comment</mat-label>
       <input
        [(ngModel)]="model.comment"
@@ -37,6 +38,7 @@
         placeholder="Comment..."
       />
     </mat-form-field>
+  </div>
 
     <!--Hazard-->
     <mat-form-field class="example-full-width divStyle" style="padding-top: 3%">

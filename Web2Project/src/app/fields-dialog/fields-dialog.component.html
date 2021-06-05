@@ -1,1 +1,13 @@
-Field
+<h2 style="text-align: center;"> Set optional fields</h2>
+<div style="margin-left: 42%;">
+<button [disabled]="state=='SHOWN'" class="btn btn-primary" (click)="showClick()">
+    Show optional fileds
+  </button>
+  <p></p>
+  <button [disabled]="state=='HIDDEN'" class="btn btn-primary" (click)="hideClick()">
+    Hide optional fields
+  </button>
+</div>
+<div class="container">
+  Current state of optional fields: {{state}}
+</div>

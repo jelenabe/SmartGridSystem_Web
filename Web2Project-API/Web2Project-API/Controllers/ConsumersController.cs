@@ -15,12 +15,10 @@ namespace Web2Project_API.Controllers
     public class ConsumersController : Controller
     {
         private readonly IConsumerRepo _repo;
-        private readonly IConfiguration _config;
 
-        public ConsumersController(IConsumerRepo repo, IConfiguration confing)
+        public ConsumersController(IConsumerRepo repo)
         {
             this._repo = repo;
-            this._config = confing;
         }
 
         [HttpPost]

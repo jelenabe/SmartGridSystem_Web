@@ -7,6 +7,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Timestamp } from 'rxjs';
+import { AdminService } from '../services/admin.service';
 
 export interface Notification {
   type: string;
@@ -29,8 +30,9 @@ export class NotificationsComponent implements OnInit {
   dataSource: any=[];
   fillterDataSource: any[];
   selectedType: string= "";
+  ruleForNotification:any = {}
 
-  constructor() {
+  constructor(private adminService:AdminService) {
     this.dataSource =[
       {
         "type": "error",
@@ -68,8 +70,15 @@ export class NotificationsComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.getNotificationSettings();
   }
 
+  getNotificationSettings(){
+    this.adminService.getNotif().subscribe(response=>{
+      this.ruleForNotification=response;
+    });
+    
+  }
   clickedNotification(id:string){
 
   }

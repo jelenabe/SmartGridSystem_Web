@@ -8,6 +8,20 @@ namespace Web2Project_API.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "AdminNotifications",
+                columns: table => new
+                {
+                    NotificationId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Display = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AdminNotifications", x => x.NotificationId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Crews",
                 columns: table => new
                 {
@@ -18,6 +32,20 @@ namespace Web2Project_API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Crews", x => x.CrewId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FieldSettings",
+                columns: table => new
+                {
+                    FieldId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Display = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FieldSettings", x => x.FieldId);
                 });
 
             migrationBuilder.CreateTable(
@@ -60,7 +88,7 @@ namespace Web2Project_API.Migrations
                 {
                     ConsumerId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    LocationId = table.Column<int>(type: "int", nullable: false),
+                    LocationId = table.Column<int>(type: "int", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Lastname = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Type = table.Column<int>(type: "int", nullable: false),
@@ -75,7 +103,7 @@ namespace Web2Project_API.Migrations
                         column: x => x.LocationId,
                         principalTable: "Locations",
                         principalColumn: "LocationId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -470,6 +498,22 @@ namespace Web2Project_API.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AdminNotifications",
+                columns: new[] { "NotificationId", "Display", "Type" },
+                values: new object[,]
+                {
+                    { 1, false, "ERROR" },
+                    { 2, false, "SUCCES" },
+                    { 3, false, "INFO" },
+                    { 4, false, "WARNING" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "FieldSettings",
+                columns: new[] { "FieldId", "Display", "Name" },
+                values: new object[] { 1, true, "Comment" });
+
+            migrationBuilder.InsertData(
                 table: "Locations",
                 columns: new[] { "LocationId", "City", "Lat", "Lon", "PostNumber", "Priority", "Street" },
                 values: new object[,]
@@ -484,9 +528,9 @@ namespace Web2Project_API.Migrations
                 columns: new[] { "UserId", "Approved", "Birthday", "ConsumerId", "CrewId", "Email", "Lastname", "LocationId", "Name", "PasswordHash", "PasswordSalt", "Picture", "UserType", "Username" },
                 values: new object[,]
                 {
-                    { 1, false, new DateTime(1998, 6, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "milan.momcilovic582@gmail.com", "Momcilovic", null, "Milan", new byte[] { 34, 88, 25, 69, 237, 58, 221, 248, 71, 223, 31, 229, 77, 168, 46, 170, 225, 189, 223, 161, 36, 125, 255, 101, 91, 121, 234, 143, 163, 39, 196, 172, 197, 36, 151, 62, 42, 209, 85, 139, 141, 253, 137, 75, 81, 183, 185, 203, 126, 135, 176, 94, 75, 182, 202, 121, 80, 155, 117, 241, 54, 47, 229, 34 }, new byte[] { 221, 39, 44, 166, 150, 55, 252, 162, 197, 213, 152, 27, 209, 31, 49, 230, 171, 237, 50, 94, 53, 130, 224, 223, 144, 208, 90, 191, 8, 217, 1, 89, 133, 6, 255, 203, 173, 232, 123, 73, 13, 55, 20, 72, 48, 247, 20, 123, 60, 217, 106, 208, 56, 78, 255, 188, 230, 139, 173, 247, 203, 85, 201, 28, 221, 108, 173, 147, 123, 186, 118, 184, 74, 81, 53, 248, 236, 158, 147, 124, 13, 157, 214, 0, 172, 145, 209, 213, 35, 80, 171, 73, 95, 5, 97, 106, 102, 130, 79, 95, 138, 48, 219, 248, 132, 82, 182, 14, 69, 12, 121, 214, 145, 85, 50, 40, 147, 79, 162, 80, 46, 196, 26, 65, 73, 199, 127, 155 }, null, 3, "Admin1" },
-                    { 2, false, new DateTime(1997, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "milica.simeunovic97@gmail.com", "Simeunovic", null, "Milica", new byte[] { 34, 88, 25, 69, 237, 58, 221, 248, 71, 223, 31, 229, 77, 168, 46, 170, 225, 189, 223, 161, 36, 125, 255, 101, 91, 121, 234, 143, 163, 39, 196, 172, 197, 36, 151, 62, 42, 209, 85, 139, 141, 253, 137, 75, 81, 183, 185, 203, 126, 135, 176, 94, 75, 182, 202, 121, 80, 155, 117, 241, 54, 47, 229, 34 }, new byte[] { 221, 39, 44, 166, 150, 55, 252, 162, 197, 213, 152, 27, 209, 31, 49, 230, 171, 237, 50, 94, 53, 130, 224, 223, 144, 208, 90, 191, 8, 217, 1, 89, 133, 6, 255, 203, 173, 232, 123, 73, 13, 55, 20, 72, 48, 247, 20, 123, 60, 217, 106, 208, 56, 78, 255, 188, 230, 139, 173, 247, 203, 85, 201, 28, 221, 108, 173, 147, 123, 186, 118, 184, 74, 81, 53, 248, 236, 158, 147, 124, 13, 157, 214, 0, 172, 145, 209, 213, 35, 80, 171, 73, 95, 5, 97, 106, 102, 130, 79, 95, 138, 48, 219, 248, 132, 82, 182, 14, 69, 12, 121, 214, 145, 85, 50, 40, 147, 79, 162, 80, 46, 196, 26, 65, 73, 199, 127, 155 }, null, 3, "Admin1" },
-                    { 3, false, new DateTime(1998, 6, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "jelena.beader@gmail.com", "Beader", null, "Jelena", new byte[] { 34, 88, 25, 69, 237, 58, 221, 248, 71, 223, 31, 229, 77, 168, 46, 170, 225, 189, 223, 161, 36, 125, 255, 101, 91, 121, 234, 143, 163, 39, 196, 172, 197, 36, 151, 62, 42, 209, 85, 139, 141, 253, 137, 75, 81, 183, 185, 203, 126, 135, 176, 94, 75, 182, 202, 121, 80, 155, 117, 241, 54, 47, 229, 34 }, new byte[] { 221, 39, 44, 166, 150, 55, 252, 162, 197, 213, 152, 27, 209, 31, 49, 230, 171, 237, 50, 94, 53, 130, 224, 223, 144, 208, 90, 191, 8, 217, 1, 89, 133, 6, 255, 203, 173, 232, 123, 73, 13, 55, 20, 72, 48, 247, 20, 123, 60, 217, 106, 208, 56, 78, 255, 188, 230, 139, 173, 247, 203, 85, 201, 28, 221, 108, 173, 147, 123, 186, 118, 184, 74, 81, 53, 248, 236, 158, 147, 124, 13, 157, 214, 0, 172, 145, 209, 213, 35, 80, 171, 73, 95, 5, 97, 106, 102, 130, 79, 95, 138, 48, 219, 248, 132, 82, 182, 14, 69, 12, 121, 214, 145, 85, 50, 40, 147, 79, 162, 80, 46, 196, 26, 65, 73, 199, 127, 155 }, null, 3, "Admin1" }
+                    { 1, false, new DateTime(1998, 6, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "milan.momcilovic582@gmail.com", "Momcilovic", null, "Milan", new byte[] { 219, 5, 226, 179, 8, 8, 13, 3, 111, 150, 38, 66, 42, 95, 10, 220, 211, 204, 58, 226, 29, 146, 38, 68, 38, 40, 147, 185, 109, 187, 101, 154, 210, 206, 123, 154, 151, 198, 244, 141, 253, 76, 87, 57, 111, 223, 3, 106, 242, 21, 238, 205, 45, 168, 19, 188, 182, 246, 23, 46, 57, 28, 57, 39 }, new byte[] { 159, 186, 126, 168, 85, 113, 164, 110, 233, 122, 221, 114, 9, 171, 79, 47, 191, 149, 214, 217, 103, 19, 224, 86, 38, 124, 138, 23, 205, 88, 189, 146, 72, 0, 65, 81, 83, 46, 98, 252, 36, 61, 214, 245, 20, 103, 57, 51, 179, 250, 225, 242, 3, 50, 207, 52, 212, 51, 103, 156, 18, 209, 84, 68, 232, 58, 184, 47, 11, 209, 58, 111, 150, 208, 0, 31, 190, 178, 5, 53, 132, 133, 158, 215, 71, 85, 197, 230, 187, 152, 112, 101, 124, 92, 46, 72, 37, 46, 1, 186, 0, 146, 28, 26, 94, 136, 56, 116, 15, 209, 130, 52, 121, 86, 255, 93, 29, 52, 239, 239, 7, 148, 28, 160, 194, 148, 50, 244 }, null, 3, "Admin1" },
+                    { 2, false, new DateTime(1997, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "milica.simeunovic97@gmail.com", "Simeunovic", null, "Milica", new byte[] { 219, 5, 226, 179, 8, 8, 13, 3, 111, 150, 38, 66, 42, 95, 10, 220, 211, 204, 58, 226, 29, 146, 38, 68, 38, 40, 147, 185, 109, 187, 101, 154, 210, 206, 123, 154, 151, 198, 244, 141, 253, 76, 87, 57, 111, 223, 3, 106, 242, 21, 238, 205, 45, 168, 19, 188, 182, 246, 23, 46, 57, 28, 57, 39 }, new byte[] { 159, 186, 126, 168, 85, 113, 164, 110, 233, 122, 221, 114, 9, 171, 79, 47, 191, 149, 214, 217, 103, 19, 224, 86, 38, 124, 138, 23, 205, 88, 189, 146, 72, 0, 65, 81, 83, 46, 98, 252, 36, 61, 214, 245, 20, 103, 57, 51, 179, 250, 225, 242, 3, 50, 207, 52, 212, 51, 103, 156, 18, 209, 84, 68, 232, 58, 184, 47, 11, 209, 58, 111, 150, 208, 0, 31, 190, 178, 5, 53, 132, 133, 158, 215, 71, 85, 197, 230, 187, 152, 112, 101, 124, 92, 46, 72, 37, 46, 1, 186, 0, 146, 28, 26, 94, 136, 56, 116, 15, 209, 130, 52, 121, 86, 255, 93, 29, 52, 239, 239, 7, 148, 28, 160, 194, 148, 50, 244 }, null, 3, "Admin1" },
+                    { 3, false, new DateTime(1998, 6, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "jelena.beader@gmail.com", "Beader", null, "Jelena", new byte[] { 219, 5, 226, 179, 8, 8, 13, 3, 111, 150, 38, 66, 42, 95, 10, 220, 211, 204, 58, 226, 29, 146, 38, 68, 38, 40, 147, 185, 109, 187, 101, 154, 210, 206, 123, 154, 151, 198, 244, 141, 253, 76, 87, 57, 111, 223, 3, 106, 242, 21, 238, 205, 45, 168, 19, 188, 182, 246, 23, 46, 57, 28, 57, 39 }, new byte[] { 159, 186, 126, 168, 85, 113, 164, 110, 233, 122, 221, 114, 9, 171, 79, 47, 191, 149, 214, 217, 103, 19, 224, 86, 38, 124, 138, 23, 205, 88, 189, 146, 72, 0, 65, 81, 83, 46, 98, 252, 36, 61, 214, 245, 20, 103, 57, 51, 179, 250, 225, 242, 3, 50, 207, 52, 212, 51, 103, 156, 18, 209, 84, 68, 232, 58, 184, 47, 11, 209, 58, 111, 150, 208, 0, 31, 190, 178, 5, 53, 132, 133, 158, 215, 71, 85, 197, 230, 187, 152, 112, 101, 124, 92, 46, 72, 37, 46, 1, 186, 0, 146, 28, 26, 94, 136, 56, 116, 15, 209, 130, 52, 121, 86, 255, 93, 29, 52, 239, 239, 7, 148, 28, 160, 194, 148, 50, 244 }, null, 3, "Admin1" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -647,10 +691,16 @@ namespace Web2Project_API.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AdminNotifications");
+
+            migrationBuilder.DropTable(
                 name: "Calls");
 
             migrationBuilder.DropTable(
                 name: "Devices");
+
+            migrationBuilder.DropTable(
+                name: "FieldSettings");
 
             migrationBuilder.DropTable(
                 name: "HistoryOfStateChanges");

@@ -1,18 +1,11 @@
+import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
+import { AdminService } from '../services/admin.service';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-}
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'ERROR'},
-  {position: 2, name: 'INFO'},
-  {position: 3, name: 'SUCCESS'},
-  {position: 4, name: 'WARNING'},
-];
 
 @Component({
   selector: 'app-notification-dialog',
@@ -20,36 +13,98 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./notification-dialog.component.css']
 })
 export class NotificationDialogComponent implements OnInit {
+ 
+  isDispalyEroor:boolean =true;
+  isDispalySucces:boolean =true;
+  isDispalyWarning:boolean=true;
+  isDispalyInfo:boolean=true;
+ 
+  model:any={}
+  id:number;
 
-  constructor() { }
+  constructor(private adminService: AdminService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
   
-  displayedColumns: string[] = ['select', 'position', 'name'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  selection = new SelectionModel<PeriodicElement>(true, []);
-
-  /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
-
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
-  }
-
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: PeriodicElement): string {
-    if (!row) {
-      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+  showRow(type: string){
+    switch(type){
+      case 'error':
+        this.isDispalyEroor=true;
+        this.model.notificationId=1;
+        this.model.type="error"
+        break;
+      case 'success':
+        this.isDispalySucces=true;
+        this.model.notificationId=2;
+        this.model.type="success"
+        break;
+      case 'info':
+        this.isDispalyInfo=true;
+        this.model.notificationId=3;
+        this.model.type="info"
+        break;
+      case 'warning':
+        this.isDispalyWarning=true;
+        this.model.notificationId=4;
+        this.model.type="warning"
+        break;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+    this.model.display=true;
+    
+    this.adminService.notificationSettings(this.model.notificationId, this.model).subscribe(()=>{
+      console.log("Show called successfull");
+      this.openShowBar();
+    })
+    
   }
+
+  hideRow(type: string)
+  { 
+    switch(type){
+    case 'error':
+      this.model.notificationId=1;
+        this.model.type="error"
+      this.isDispalyEroor=false;
+      break;
+    case 'success':
+      this.isDispalySucces=false;
+      this.model.notificationId=2;
+        this.model.type="success"
+      break;
+    case 'info':
+      this.isDispalyInfo=false;
+      this.model.notificationId=3;
+        this.model.type="info"
+      break;
+    case 'warning': 
+      this.model.notificationId=4;
+      this.model.type="warning"
+      this.isDispalyWarning=false;
+      break;
+     
+    }
+
+    this.model.display=false;
+    this.adminService.notificationSettings(this.model.notificationId, this.model).subscribe(()=>{
+    console.log(" Hide called successfull");
+    this.openHideBar();
+  })
+  
+  }
+
+  openShowBar(){
+    this.snackBar.open('Show successed!' , 'OK', {
+      duration: 3000
+    });
+  }
+
+  openHideBar(){
+    this.snackBar.open('Hide successed!' , 'OK', {
+      duration: 3000
+    });
+  }
+
 
 }
