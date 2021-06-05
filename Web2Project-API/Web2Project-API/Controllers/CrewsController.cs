@@ -30,6 +30,14 @@ namespace Web2Project_API.Controllers
             return CrewMembers;
         }
 
+        [HttpGet("AllCrews")]
+        public async Task<ActionResult<IEnumerable<object>>> GetAllCrews()
+        {
+            var AllCrews = await _repo.GetAllCrews();
+
+            return AllCrews;
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddCrew([FromBody] CrewDto model)
         {

@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { CrewService } from '../services/crew.service';
 
 export interface Crew {
   id: number;
@@ -11,18 +12,9 @@ export interface Crew {
   crewMembers: string;
 }
 
-const ELEMENT_DATA: Crew[] = [
-  {id: 1, name: 'Ekipa1', crewMembers: 'Mika, Pera, Laza'},
-  {id: 2, name: 'Ekipa2', crewMembers: 'Zika, Avelj, Baja'},
-  {id: 3, name: 'Ekipa3', crewMembers: 'Boriša, Vladoje, Vlaislav'},
-  {id: 4, name: 'Ekipa4', crewMembers: 'Dobrivoje, Jasmin, Ljubisav'},
-  {id: 5, name: 'Ekipa5', crewMembers: 'Milidrag, Pera, Milivoj'},
-  {id: 6, name: 'Ekipa6', crewMembers: 'Perunko, Pera, Laza'},
-  {id: 7, name: 'Ekipa7', crewMembers: 'Mika, Radovan, Radun'},
-  {id: 8, name: 'Ekipa8', crewMembers: 'Sekula, Srdan, Uteša'},
-  {id: 9, name: 'Ekipa9', crewMembers: 'Hranislav, Šćepan, Cvetašin'},
-  {id: 10, name: 'Ekipa10', crewMembers: 'Radovan, Pejak, Ranislav'},
-];
+const ELEMENT_DATA: Crew[] = [];
+
+
 
 @Component({
   selector: 'app-allCrews',
@@ -31,15 +23,17 @@ const ELEMENT_DATA: Crew[] = [
 })
 
 export class AllCrewsComponent implements OnInit {
+  AllCrews: any = [];
+  DataSource: any[] = [];
 
-  displayedColumns: string[] = ['id', 'name', 'crewMembers','Buttons'];
+  displayedColumns: string[] = ['crewId', 'name', 'Buttons'];
   dataSource: MatTableDataSource<Crew>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 
-  constructor(private router: Router) {
-    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+  constructor(private router: Router, private crewService: CrewService) {
+    this.getAllCrews();
    }
 
   ngOnInit() {
@@ -62,6 +56,18 @@ export class AllCrewsComponent implements OnInit {
   deleteRow(index: number){
     this.dataSource.data.splice(index,1);
     this.dataSource._updateChangeSubscription();
+  }
+
+  getAllCrews()
+  {
+    this.crewService.getAllCrews().subscribe((response) =>{
+
+      this.AllCrews = response;
+      this.AllCrews.forEach((element:{crewId:number, name:string}) => {
+        this.DataSource.push(element);
+      });
+      this.dataSource = new MatTableDataSource(this.DataSource);
+    })
   }
 
 

@@ -98,17 +98,8 @@
           <mat-option value="Consumer">Consumer</mat-option>
         </mat-select>
       </mat-form-field>
-
-      <div *ngIf="showSubcauses">
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Crews</mat-label>
-          <mat-select name="crews">
-            <mat-option *ngFor="let value of subcauses" value="value">{{value}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
     </div>
-
+    
     <div>
       <input
         type="checkbox"

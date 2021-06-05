@@ -19,4 +19,9 @@ constructor(private http: HttpClient) { }
     return this.http.post(this.baseUrl, model);
   }
 
+  getAllCrews()
+  {
+    return this.http.get(this.baseUrl+'/AllCrews');
+  }
+
 }

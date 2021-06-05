@@ -56,6 +56,14 @@ namespace Web2Project_API.Repository
 
             return await users.ToListAsync();
         }
+
+        public async Task<ActionResult<IEnumerable<object>>> GetAllCrews()
+        {
+
+            var crews = _context.Crews.ToListAsync();
+
+            return await crews;
+        }
     }
 
 }

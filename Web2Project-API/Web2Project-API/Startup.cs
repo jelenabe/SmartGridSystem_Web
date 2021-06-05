@@ -53,6 +53,9 @@ namespace Web2Project_API
             services.AddScoped<IDeviceRepo, DeviceRepo>();
             services.AddScoped<ILocationRepo, LocationRepo>();
             services.AddScoped<IAdminRepo, AdminRepo>();
+            services.AddScoped<IWorkRequest, WorkRequestRepo>();
+            services.AddScoped<IWorkPlanRepo, WorkPlanRepo>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
