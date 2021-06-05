@@ -36,7 +36,7 @@ namespace Web2Project_API.Controllers
                 workPlan.LocationId = dto.LocationId;
                 workPlan.Company = dto.Company;
                 workPlan.CreatedOn = dto.CreatedOn;
-                workPlan.DateOfTheChange = dto.DateOfTheChange;
+                workPlan.DateOfTheChange = DateTime.Today;
                 workPlan.Details = dto.Details;
                 workPlan.Equipmet = dto.Equipmet;
                 workPlan.EndDate = dto.EndDate;
@@ -58,7 +58,80 @@ namespace Web2Project_API.Controllers
             {
                 return BadRequest(e.Message);
             }
+        }
 
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<object>>> GetAllWorkPlans()
+        {
+            var workplans = await _repo.GetAllWorkPlans();
+
+            return workplans;
+        }
+
+        [HttpGet("minePlans")]
+        [Route("{id}")]
+        public async Task<ActionResult<IEnumerable<object>>> GetAllWorkPlansById([FromRoute] int id)
+        {
+            var plans = await _repo.GetAllWorkPlansById(id);
+
+            return plans;
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult<object>> GetWorkPlanById([FromRoute] int id)
+        {
+            var plan = await _repo.GetWorkPlanById(id);
+
+            return plan;
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult UpdateWorkPlan([FromBody] WorkPlanDTO dto, [FromRoute] int id)
+        {
+            WorkPlan workPlan = new WorkPlan();
+            workPlan.ChangedByUserId = dto.ChangedByUserId;
+            workPlan.Company = dto.Company;
+            workPlan.StartDate = dto.StartDate;
+            workPlan.EndDate = dto.EndDate;
+            workPlan.CreatedOn = dto.CreatedOn;
+            workPlan.Details = dto.Details;
+            workPlan.Equipmet = dto.Equipmet;
+            workPlan.HistroyType = dto.HistroyType;
+            workPlan.Instructions = dto.Instructions;
+            workPlan.Notes = dto.Notes;
+            workPlan.Phone = dto.Phone;
+            workPlan.Pictures = dto.Pictures;
+            workPlan.Purpose = dto.Purpose;
+            workPlan.Status = dto.Status;
+            workPlan.Type = dto.Type;
+
+            try
+            {
+                var plan = _repo.ModyfieWorkPlan(workPlan, id);
+                return Ok(plan);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public IActionResult DeleteWorkPlan(int id)
+        {
+            try
+            {
+                _repo.DeleteWorkPlan(id);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }

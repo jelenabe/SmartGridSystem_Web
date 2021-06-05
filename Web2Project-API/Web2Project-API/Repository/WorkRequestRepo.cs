@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,24 +31,65 @@ namespace Web2Project_API.Repository
             return workRequest;
         }
 
-        public void DeleteIncident(int workRequestId)
+        public async Task<ActionResult<object>> GetWorkRequestById(int id)
         {
-            throw new NotImplementedException();
+            var request = _context.WorkRequests.FirstOrDefault(x => x.WorkRequestId == id);
+           
+            return request;
         }
 
-        public IEnumerable<WorkRequestDTO> GetAllWorkRequests()
+        public async Task<ActionResult<IEnumerable<object>>> GetAllWorkRequests()
         {
-            throw new NotImplementedException();
+            var requests = _context.WorkRequests.ToList();
+
+            return requests;
         }
 
-        public WorkRequestDTO GetWorkRequestById(int workRequestId)
+        public async Task<ActionResult<IEnumerable<object>>> GetAllWorkRequestsById(int id)
         {
-            throw new NotImplementedException();
+            var requests = _context.WorkRequests.Where(x=> x.CreatedByUserId == id).ToList();
+
+            return requests;
         }
 
-        public WorkRequestDTO UpdateWorkRequest(WorkRequestDTO workRequestDTO)
+        public async Task<ActionResult<object>> ModyfieWorkRequest(WorkRequest workRequest, int id)
         {
-            throw new NotImplementedException();
+            var request = _context.WorkRequests.FirstOrDefault(x => x.WorkRequestId == id);
+
+            request.ChangedByUserId = workRequest.ChangedByUserId;
+            request.Company = workRequest.Company;
+            request.StartDate = workRequest.StartDate;
+            request.EndDate = workRequest.EndDate;
+            request.CreatedOn = workRequest.CreatedOn;
+            request.DateOfTheChange = DateTime.Today;
+            request.Equipment = workRequest.Equipment;
+            request.HistoryType = workRequest.HistoryType;
+            request.Notes = workRequest.Notes;
+            request.Phone = workRequest.Phone;
+            request.Pictures = workRequest.Pictures;
+            request.Purpose = workRequest.Phone;
+            request.Status = workRequest.Status;
+            request.Type = workRequest.Type;
+            request.Emergency = workRequest.Emergency;
+
+            _context.Entry(request).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return request;
+        }
+
+        public void DeleteWorkRequest(int Id)
+        {
+            var workRequest = _context.WorkRequests.FirstOrDefault(x => x.WorkRequestId == Id);
+
+            if (workRequest == null)
+            {
+                throw new Exception($"WorkRequest with id = {Id} dos not exist.");
+            }
+
+            _context.WorkRequests.Remove(workRequest);
+            _context.SaveChanges();
+
         }
     }
 }

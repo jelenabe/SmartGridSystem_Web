@@ -56,7 +56,80 @@ namespace Web2Project_API.Controllers
             {
                 return BadRequest(e.Message);
             }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<object>>> GetAllWorkRequests()
+        {
+            var WorkRequests = await _repo.GetAllWorkRequests();
+
+            return WorkRequests;
+        }
+
+        [HttpGet("mineRequests")]
+        [Route("{id}")]
+        public async Task<ActionResult<IEnumerable<object>>> GetAllWorkRequestsById([FromRoute]int id)
+        {
+            var WorkRequests = await _repo.GetAllWorkRequestsById(id);
+
+            return WorkRequests;
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult<object>> GetWorkRequestById([FromRoute] int id)
+        {
+            var WorkRequest = await _repo.GetWorkRequestById(id);
+
+            return WorkRequest;
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult UpdateWorkRequest([FromBody] WorkRequestDTO dto, [FromRoute] int id)
+        {
+            WorkRequest workRequest = new WorkRequest();
+            workRequest.ChangedByUserId = dto.ChangedByUserId;
+            workRequest.Company = dto.Company;
+            workRequest.StartDate = dto.StartDate;
+            workRequest.EndDate = dto.EndDate;
+            workRequest.CreatedOn = dto.CreatedOn;
+            workRequest.Equipment = dto.Equipment;
+            workRequest.HistoryType = dto.HistoryType;
+            workRequest.Notes = dto.Notes;
+            workRequest.Phone = dto.Phone;
+            workRequest.Pictures = dto.Pictures;
+            workRequest.Purpose = dto.Purpose;
+            workRequest.Status = dto.Status;
+            workRequest.Type = dto.Type;
+            workRequest.Emergency = dto.Emergency;
+
+            try
+            {
+                var result = _repo.ModyfieWorkRequest(workRequest, id);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
 
         }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public IActionResult DeleteWorkRequest(int id)
+        {
+            try
+            {
+                _repo.DeleteWorkRequest(id);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
     }
 }

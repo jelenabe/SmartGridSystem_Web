@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,10 +10,11 @@ namespace Web2Project_API.Repository
 {
     public interface IWorkRequest
     {
-        IEnumerable<WorkRequestDTO> GetAllWorkRequests();
+        Task<ActionResult<IEnumerable<object>>> GetAllWorkRequests();
+        Task<ActionResult<IEnumerable<object>>> GetAllWorkRequestsById(int id);
+        Task<ActionResult<object>> GetWorkRequestById(int id);
         WorkRequest AddWorkRequest(WorkRequest workRequest);
-        WorkRequestDTO GetWorkRequestById(int workRequestId);
-        WorkRequestDTO UpdateWorkRequest(WorkRequestDTO workRequestDTO);
-        void DeleteIncident(int workRequestId);
+        Task<ActionResult<object>> ModyfieWorkRequest(WorkRequest workRequest, int id);
+        void DeleteWorkRequest(int Id);
     }
 }
