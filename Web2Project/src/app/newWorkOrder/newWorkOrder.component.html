@@ -6,6 +6,7 @@
             type="button"
             class="list-group-item list-group-item-action"
             [routerLink]="['basicInformation']"
+            (click)="changeView(1)"
           >
             Basic Information
           </button>
@@ -13,6 +14,7 @@
             type="button"
             class="list-group-item list-group-item-action"
             [routerLink]="['historyOfStateChange']"
+            (click)="changeView(2)"
             
           >
             History of state changes
@@ -21,6 +23,7 @@
             type="button"
             class="list-group-item list-group-item-action"
             [routerLink]="['multimediaAttachments']"
+            (click)="changeView(3)"
           >
             Multimedia attachments
           </button>
@@ -28,6 +31,7 @@
             type="button"
             class="list-group-item list-group-item-action"
             [routerLink]="['equipment']"
+            (click)="changeView(4)"
           >
             Equipment
           </button>
@@ -37,7 +41,22 @@
 
     <div class="form-group col-md-8">
       <div class="input-group mb-3">
-        <router-outlet name="primary" (newItemEvent)="checkBasicInfo($event)"></router-outlet>
+        
+        <div [ngSwitch]="this.buttonClicked">
+          <div *ngSwitchCase="1">
+            <app-basicInformationWorkOrder [basicInfoModel]=basicInfoModelParent name="primary" (newItemEvent)="checkBasicInfo($event)"></app-basicInformationWorkOrder>
+          </div>
+          <div *ngSwitchCase="2">
+            <app-historyOfStateChanges></app-historyOfStateChanges>
+          </div>
+          <div *ngSwitchCase="3">
+            <app-multimediaAttachments></app-multimediaAttachments>
+          </div>
+          <div *ngSwitchCase="4">
+            <app-equipment></app-equipment>
+          </div>
+        </div>
+        
       </div>
       <!--Save and Cancel-->
     <div class="form-group col-md-8">

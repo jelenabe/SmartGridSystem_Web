@@ -25,6 +25,9 @@ export class BasicInformationWorkOrderComponent implements OnInit {
     private locationService: LocationService,
     private router: Router) {
 
+      this.basicInfoModel.createdByUserId = localStorage.getItem('id');
+      this.basicInfoModel.status = 'DRAFT';
+
       this.getAllIncidents();
       this.getAllLocations();
      }
@@ -62,7 +65,7 @@ export class BasicInformationWorkOrderComponent implements OnInit {
 
   nextBasic(){
     this.newItemEvent.emit(this.basicInfoModel);
-    this.router.navigate(['/', 'historyOfStateChange']);
+    this.router.navigateByUrl('/newWorkOrder/historyOfStateChange');
   }
 
 }

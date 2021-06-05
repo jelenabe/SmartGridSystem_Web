@@ -14,6 +14,8 @@ import { MultimediaAttachmentsComponent } from '../multimediaAttachments/multime
 export class NewWorkOrderComponent implements OnInit {
 
   model: any = {};
+  basicInfoModelParent: any = {};
+  buttonClicked: number = 1;
 
   @ViewChild(BasicInformationWorkOrderComponent) childBasicInformation: BasicInformationWorkOrderComponent;
   @ViewChild(HistoryOfStateChangesComponent) childHistoryOfStateChange: HistoryOfStateChangesComponent;
@@ -26,14 +28,31 @@ export class NewWorkOrderComponent implements OnInit {
   ngOnInit() {
   }
 
-  save(){
-
+  save(event: any){
+    
   }
 
   checkBasicInfo(basicModel: any){
     if(this.childBasicInformation.basicInfoModel.type == null){
       this.openSnackBar();
     }
+    this.model.status = this.basicInfoModelParent.status;
+    this.model.createdByUserId = this.basicInfoModelParent.createdByUserId;
+    //this.model.incidentId = this.basicInfoModelParent.incidentId;
+    this.model.locationId = this.basicInfoModelParent.locationId;
+    //this.model.workPlanId = this.basicInfoModelParent.workPlanId
+    this.model.company = this.basicInfoModelParent.company;
+    this.model.createdOn = this.basicInfoModelParent.createdOn;
+    this.model.emergensy = this.basicInfoModelParent.emergensy;
+    this.model.endDate = this.basicInfoModelParent.endDate;
+    this.model.notes = this.basicInfoModelParent.notes;
+    this.model.phone = this.basicInfoModelParent.phone;
+    this.model.purpose = this.basicInfoModelParent.purpose;
+    this.model.startDate = this.basicInfoModelParent.startDate;
+    this.model.type = this.basicInfoModelParent.type;
+
+
+
   }
 
   openSnackBar() {
@@ -41,5 +60,11 @@ export class NewWorkOrderComponent implements OnInit {
       duration: 3000
     });
   }
+
+  changeView(i: number){
+    this.buttonClicked = i; 
+  }
+
+
   
 }

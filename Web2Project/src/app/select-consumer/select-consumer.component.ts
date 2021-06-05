@@ -28,6 +28,7 @@ export class SelectConsumerComponent implements OnInit {
   ELEMENT_DATA: any[] = [];
   Consumers: any = [];
   model: any= {};
+  
   @Output() newItemEvent = new EventEmitter<any>();
   
   displayedColumns = [ 'id', 'name', 'lastname', 'phoneNumber', 'address', 'type','buttons'];

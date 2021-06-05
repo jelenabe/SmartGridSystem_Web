@@ -1,7 +1,7 @@
 <div class="container">
   <h2>Basic Information</h2>
 
-  <form (ngSubmit)="nextBasic()" ngNativeValidate #myForm="ngForm">
+  <form  (ngSubmit)="nextBasic()" #myForm="ngForm">
     <div class="form-row">
       <div class="form-group col-md-6">
         <div class="input-group mb-3">
@@ -93,15 +93,13 @@
             <mat-select
               name="IncidentId"
               [(ngModel)]="basicInfoModel.incidentId"
-              required
             >
-            <mat-option value="0">1</mat-option>
-             <!-- <mat-option
+             <mat-option
                 *ngFor="let incident of incidents"
                 value="{{ incident.incidentId }}"
               >
                 {{ formatIncident(incident) }}</mat-option
-              >-->
+              >
             </mat-select>
           </mat-form-field>
         </div>
@@ -136,13 +134,12 @@
               [(ngModel)]="basicInfoModel.locationId"
               required
             >
-            <mat-option value="0">1</mat-option>
-              <!--<mat-option
+              <mat-option
                 *ngFor="let location of locations"
                 value="{{ location.locationId }}"
               >
                 {{ formatLocation(location) }}</mat-option
-              >-->
+              >
             </mat-select>
           </mat-form-field>
         </div>
@@ -216,7 +213,7 @@
           </div>
           <input
             name="createdBy"
-            [(ngModel)]="basicInfoModel.createdBy"
+            [(ngModel)]="basicInfoModel.createdByUserId"
             type="text"
             class="form-control"
             aria-label="Default"
@@ -255,5 +252,6 @@
       ></textarea>
     </div>
     <br />
+    <button type="submit" class="btn btn-primary">Next</button>
   </form>
 </div>
