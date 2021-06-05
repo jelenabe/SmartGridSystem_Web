@@ -37,18 +37,35 @@ namespace Web2Project_API.Repository
             if (newIncident.OutageTime > newIncident.ATA)
                 throw new Exception($"ATA date can not be before outage time!");
 
-            if (newIncident.OutageTime > newIncident.ScheduedTime)
-                throw new Exception($"Sheduled time can not be before outage time!");
+            if (newIncident.OutageTime > newIncident.ScheduledTime)
+                throw new Exception($"ScheduledTime time can not be before outage time!");
 
-            /*  // da li bi uopste trebalo ?!
-            if (newIncident.ETA > newIncident.ScheduedTime)
-                throw new Exception($"Sheduled time cannot be before ETA!");
-            */
 
             Incident incident = _mapper.Map<Incident>(newIncident);
 
             incident.IncidentId = 0;
-            incident.Priority = 0;
+            incident.Priority = 0;  // videti...
+
+            if (incident.ETR != null)
+            {
+                incident.ETR = incident.ETR.AddHours(2);
+            }
+            if (incident.ATA != null)
+            {
+                incident.ATA = incident.ATA.Value.AddHours(2);
+            }
+            if (incident.ETA != null)
+            {
+                incident.ETA = incident.ETA.AddHours(2);
+            }
+            if (incident.OutageTime != null)
+            {
+                incident.OutageTime = incident.OutageTime.Value.AddHours(2);
+            }
+            if (incident.ScheduledTime != null)
+            {
+                incident.ScheduledTime = incident.ScheduledTime.AddHours(2);
+            }
 
 
             _dbContext.Incidents.Add(incident);
@@ -90,11 +107,7 @@ namespace Web2Project_API.Repository
 
             if (!Enum.IsDefined(typeof(IncidentStatus), updated.IncidentStatus))
                 throw new Exception("Undefined incident status!");
-            /*
-            if (updated.Description == null || updated.Description.Length > 100)
-                throw new Exception($"Description must be at most 100 characters long!");
-            */
-
+            
             if (updated.VoltageLevel <= 0)
                 throw new Exception("Voltage level have to be greater than 0!");
 
@@ -104,13 +117,9 @@ namespace Web2Project_API.Repository
             if (updated.OutageTime > updated.ATA)
                 throw new Exception($"ATA date cannot be before outage time!");
 
-            if (updated.OutageTime > updated.ScheduedTime)
-                throw new Exception($"Sheduled time cannot be before outage time!");
+            if (updated.OutageTime > updated.ScheduledTime)
+                throw new Exception($"ScheduledTime time cannot be before outage time!");
 
-            /*  // da li bi uopste trebalo ?!
-            if (updated.ETA > updated.ScheduedTime)
-                throw new Exception($"Sheduled time cannot be before ETA!");
-            */
 
             Incident oldIncident = _dbContext.Incidents.Find(updated.IncidentId);
 
@@ -124,7 +133,7 @@ namespace Web2Project_API.Repository
             oldIncident.ATA = updated.ATA;
             oldIncident.ETR = updated.ETR;
             oldIncident.OutageTime = updated.OutageTime;
-            oldIncident.ScheduedTime = updated.ScheduedTime;
+            oldIncident.ScheduledTime = updated.ScheduledTime;
             oldIncident.IncidentType = updated.IncidentType;
             oldIncident.IncidentStatus = updated.IncidentStatus;      
             oldIncident.VoltageLevel = updated.VoltageLevel;
@@ -133,7 +142,26 @@ namespace Web2Project_API.Repository
             oldIncident.ResolutionConstructionTypes = updated.ResolutionConstructionTypes;
             oldIncident.ResolutionMaterials = updated.ResolutionMaterials;
 
-           
+            if (oldIncident.ETR != null)
+            {
+                oldIncident.ETR = oldIncident.ETR.AddHours(2);
+            }
+            if (oldIncident.ATA != null)
+            {
+                oldIncident.ATA = oldIncident.ATA.Value.AddHours(2);
+            }
+            if (oldIncident.ETA != null)
+            {
+                oldIncident.ETA = oldIncident.ETA.AddHours(2);
+            }
+            if (oldIncident.OutageTime != null)
+            {
+                oldIncident.OutageTime = oldIncident.OutageTime.Value.AddHours(2);
+            }
+            if (oldIncident.ScheduledTime != null)
+            {
+                oldIncident.ScheduledTime = oldIncident.ScheduledTime.AddHours(2);
+            }
 
             _dbContext.SaveChanges();
 

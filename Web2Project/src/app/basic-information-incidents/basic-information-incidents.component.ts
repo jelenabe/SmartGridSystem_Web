@@ -78,7 +78,7 @@ export class BasicInformationIncidentsComponent implements OnInit {
         //this.incident.userId = null;  // bice null na back-u
       }
       else {
-        this.incident.userId = 4;  // treba izvuci trenutnog usera
+        this.incident.userId = 3;  // treba izvuci trenutnog usera
       }
 
       this.incident.incidentStatus = 0;

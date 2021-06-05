@@ -41,14 +41,7 @@
                 <br>
                 <mat-form-field appearance="fill" class="example-form-field select-style mb-2">
                     <mat-label>ETA</mat-label>
-                    <input matInput [matDatepicker]="datepicker1" formControlName="eta">
-                    <mat-datepicker-toggle matSuffix [for]="datepicker1"></mat-datepicker-toggle>
-                    <mat-datepicker #datepicker1 disabled="false">
-                        <mat-datepicker-actions>
-                            <button mat-button matDatepickerCancel>Cancel</button>
-                            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
-                        </mat-datepicker-actions>
-                    </mat-datepicker>
+                    <input matInput type="datetime-local" formControlName="eta">
                     <mat-error *ngIf="incidentForm.hasError('invalidDates', 'eta')">
                         ETA is required and can not be before Outage Time
                     </mat-error>
@@ -56,14 +49,7 @@
                 <br>
                 <mat-form-field appearance="fill" class="example-form-field select-style mb-2">
                     <mat-label>ATA</mat-label>
-                    <input matInput [matDatepicker]="datepicker2" formControlName="ata">
-                    <mat-datepicker-toggle matSuffix [for]="datepicker2"></mat-datepicker-toggle>
-                    <mat-datepicker #datepicker2 disabled="false">
-                        <mat-datepicker-actions>
-                            <button mat-button matDatepickerCancel>Cancel</button>
-                            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
-                        </mat-datepicker-actions>
-                    </mat-datepicker>
+                    <input matInput type="datetime-local" formControlName="ata">
                     <mat-error *ngIf="incidentForm.hasError('invalidDates', 'ata')">
                         ATA is required and can not be before Outage Time
                     </mat-error>
@@ -103,14 +89,7 @@
                 <br>
                 <mat-form-field appearance="fill" class="example-form-field select-style mb-1">
                     <mat-label>Outage Time</mat-label>
-                    <input matInput [matDatepicker]="datepicker4" formControlName="outageTime">
-                    <mat-datepicker-toggle matSuffix [for]="datepicker4"></mat-datepicker-toggle>
-                    <mat-datepicker #datepicker4 disabled="false">
-                        <mat-datepicker-actions>
-                            <button mat-button matDatepickerCancel>Cancel</button>
-                            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
-                        </mat-datepicker-actions>
-                    </mat-datepicker>
+                    <input matInput type="datetime-local"formControlName="outageTime">
                     <mat-error *ngIf="incidentForm.hasError('invalidDates', 'outageTime')">
                         Outage Time is required
                     </mat-error>
@@ -118,14 +97,7 @@
                 <br>
                 <mat-form-field appearance="fill" class="example-form-field select-style mb-3">
                     <mat-label>Scheduled Time</mat-label>
-                    <input matInput [matDatepicker]="datepicker5" formControlName="scheduledTime">
-                    <mat-datepicker-toggle matSuffix [for]="datepicker5"></mat-datepicker-toggle>
-                    <mat-datepicker #datepicker5 disabled="false">
-                        <mat-datepicker-actions>
-                            <button mat-button matDatepickerCancel>Cancel</button>
-                            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
-                        </mat-datepicker-actions>
-                    </mat-datepicker>
+                    <input matInput type="datetime-local" formControlName="scheduledTime">
                     <mat-error *ngIf="incidentForm.hasError('invalidDates', 'ata')">
                         Scheduled Time is required and can not be before Outage Time
                     </mat-error>

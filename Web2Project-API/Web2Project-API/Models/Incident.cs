@@ -18,7 +18,7 @@ namespace Web2Project_API.Models
         public DateTime? ATA { get; set; }
         public DateTime ETR { get; set; }
         public DateTime? OutageTime { get; set; }
-        public DateTime ScheduedTime { get; set; }
+        public DateTime ScheduledTime { get; set; }
         public double? VoltageLevel { get; set; }
         public int? CallNumber { get; set; }  // moze se izvaditi iz liste poziva: Calls.Count
         public int? AffectedCustomers { get; set; }  // moze se izvaditi iz liste uredjaja-lokacije-potrosaci...
