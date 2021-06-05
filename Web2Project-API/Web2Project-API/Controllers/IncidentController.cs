@@ -49,7 +49,6 @@ namespace Web2Project_API.Controllers
             try
             {
                 IncidentDto newIncident = _incidentRepo.AddIncident(incident);
-
                 return Created("InsertIncident", newIncident);
             }
             catch (Exception e)
@@ -68,7 +67,6 @@ namespace Web2Project_API.Controllers
             try
             {
                 IncidentDto modified = _incidentRepo.UpdateIncident(incident);
-
                 return Ok(modified);
 
             }
@@ -86,7 +84,6 @@ namespace Web2Project_API.Controllers
             try
             {
                 _incidentRepo.DeleteIncident(id);
-
                 return Ok();
             }
             catch (Exception e)

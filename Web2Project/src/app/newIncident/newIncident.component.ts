@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { EnableButtonService } from '../services/enable-button.service';
 
 @Component({
   selector: 'app-newIncident',
@@ -6,14 +8,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./newIncident.component.css']
 })
 export class NewIncidentComponent implements OnInit {
+  newIncident:boolean = true;
 
-  buttonClicked: any = 1;
+  tabMessagingSubscription!:Subscription;  // koristi se samo za prijavu(subscribe) i odjavu(unsubscribe)
 
-  constructor() { }
+  constructor(private tabMessaging:EnableButtonService) { }
 
-  ngOnInit() {
+  ngOnDestroy(): void {  // ovde pisemo nesto sto treba da se dogodi kada je instanca unistena
+    this.tabMessagingSubscription.unsubscribe();
   }
 
+  ngOnInit() {
+
+    this.tabMessagingSubscription = this.tabMessaging.getMessage().subscribe( message => {  // subscribe-ovala sam se, tj. postajem posmatrac nad subjektom
+      if(this.newIncident)  // AKO VEC NISI NA EDITU, PREBACI SE NA EDIT:
+        this.newIncident = false;  // PREBACI NA EDIT; message JE ID INCIDENTA
+    });
+
+  }
+
+
+  /*
   changeView(num: number) {
 
     switch (num) {
@@ -39,6 +54,7 @@ export class NewIncidentComponent implements OnInit {
         this.buttonClicked = 1;
     }
   }
+  */
 
 
 }

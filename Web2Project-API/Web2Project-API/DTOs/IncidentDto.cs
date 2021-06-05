@@ -21,14 +21,14 @@ namespace Web2Project_API.DTOs
         public double? VoltageLevel { get; set; }
        
         public bool? Assigned { get; set; }  // mozda i ne mora
-        public CausesType ResolutionCauses { get; set; }
-        public SubcausesType ResolutionSubcauses { get; set; }
-        public ConstructionTypes ResolutionConstructionTypes { get; set; }
-        public MaterialType ResolutionMaterials { get; set; }
+        public CausesType? ResolutionCauses { get; set; }
+        public SubcausesType? ResolutionSubcauses { get; set; }
+        public ConstructionTypes? ResolutionConstructionTypes { get; set; }
+        public MaterialType? ResolutionMaterials { get; set; }
 
         public int? UserId { get; set; }  // user koji ga je uzeo na resavanje
        // public User User { get; set; }
-        public int CrewId { get; set; }
+        public int? CrewId { get; set; }
       //  public Crew Crew { get; set; }
        
     }

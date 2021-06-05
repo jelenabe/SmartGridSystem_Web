@@ -1,26 +1,29 @@
 <div class="form-row mt-2">
 
   <div class="list-group list-design">
-    <button type="button" class="list-group-item list-group-item-action" (click)="changeView(1)">
+    <button type="button" class="list-group-item list-group-item-action" [routerLink]="['basic-information']">
       Basic Information
     </button>
-    <button type="button" class="list-group-item list-group-item-action" (click)="changeView(2)">
+    <button type="button" class="list-group-item list-group-item-action" [routerLink]="['devices']" [disabled]="newIncident" >
       Devices
     </button>
-    <button type="button" class="list-group-item list-group-item-action" (click)="changeView(3)">
+    <button type="button" class="list-group-item list-group-item-action" [routerLink]="['resolution']" [disabled]="newIncident" >
       Resolution
     </button>
-    <button type="button" class="list-group-item list-group-item-action" (click)="changeView(4)">
+    <button type="button" class="list-group-item list-group-item-action" [routerLink]="['calls']" [disabled]="newIncident" >
       Calls
     </button>
-    <button type="button" class="list-group-item list-group-item-action" (click)="changeView(5)">
+    <button type="button" class="list-group-item list-group-item-action" [routerLink]="['crews']" [disabled]="newIncident" >
       Crew
     </button>
-    <button type="button" class="list-group-item list-group-item-action" (click)="changeView(6)">
+    <button type="button" class="list-group-item list-group-item-action" [routerLink]="['multimedia']" [disabled]="newIncident" >
       Multimedia Attachments
     </button>
   </div>
 
+  <router-outlet name="primary"></router-outlet>
+  
+  <!--
   <div [ngSwitch]="this.buttonClicked">
     <div *ngSwitchCase="1">
       <app-basic-information-incidents></app-basic-information-incidents>
@@ -41,7 +44,6 @@
       <app-multimedia-attachments-incidents></app-multimedia-attachments-incidents>
     </div>
   </div>
-
-
+-->
 
 </div>

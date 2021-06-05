@@ -10,30 +10,6 @@ import { Device, SearchDevices } from '../models/device';
 import { Location } from '../models/location';
 import { DeviceService } from '../services/device.service';
 
-/*
-export interface DeviceColumns {
-  id: string;
-  name: string;
-  type: string;
-  coordinates: string;
-  address: string;
-}
-
-const ELEMENT_DATA: DeviceColumns[] = [
-  {id: '1', name: 'BRE_15413', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Masarikova 2'},
-  {id: '2', name: 'BRE_15413', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Mileve Maric 14'},
-  {id: '3', name: 'BRE_15413', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Mileve Maric 14'},
-  {id: '4', name: 'BRE_15413', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Masarikova 2'},
-  {id: '5', name: 'DIS_641561', type: 'Disonnector', coordinates: '465d1cs56ac1', address: 'Masarikova 2'},
-  {id: '6', name: 'BRE_15413', type: 'Disonnector', coordinates: '465d1cs56ac1', address: 'Masarikova 2'},
-  {id: '7', name: 'BRE_15413', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Masarikova 2'},
-  {id: '8', name: 'BRE_15413', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Mileve Maric 14'},
-  {id: '9', name: 'DIS_641561', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Masarikova 2'},
-  {id: '10', name: 'BRE_15413', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Masarikova 2'},
-  {id: '11', name: 'BRE_15413', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Masarikova 2'},
-];
-*/
-
 @Component({
   selector: 'app-allDevices',
   templateUrl: './allDevices.component.html',
@@ -41,7 +17,7 @@ const ELEMENT_DATA: DeviceColumns[] = [
 })
 export class AllDevicesComponent implements OnInit {
 
-  displayedColumns = ['id', 'name', 'type', 'coordinates', 'address', 'buttons'];
+  displayedColumns = ['deviceId', 'name', 'type', 'coordinates', 'address', 'buttons'];
   dataSource: MatTableDataSource<Device>;
 
   allDevices: Device[] = [];
@@ -88,6 +64,8 @@ export class AllDevicesComponent implements OnInit {
 
         this.allDevices = data;
         this.dataSource = new MatTableDataSource(data);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
 
       },
       error => {
@@ -130,8 +108,8 @@ export class AllDevicesComponent implements OnInit {
   searchDevices() {
 
     if((this.searchForm.value.searchFieldControl == null || this.searchForm.value.searchFieldControl == "") && ((this.searchForm.value.typeControl == null) || (this.searchForm.value.typeControl == "4") || (this.searchForm.value.typeControl == ""))){
-      //return;
       this.getDevices();
+      return;
     }
 
     if(this.searchForm.value.typeControl == null || this.searchForm.value.typeControl == ""){
@@ -158,6 +136,8 @@ export class AllDevicesComponent implements OnInit {
 
         this.allDevices = data;
         this.dataSource = new MatTableDataSource(data);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
 
       },
       error => {

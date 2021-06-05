@@ -4,10 +4,14 @@ import { ActivateProfileComponent } from './activateProfile/activateProfile.comp
 import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
 import { AllCrewsComponent } from './allCrews/allCrews.component';
 import { AllDevicesComponent } from './allDevices/allDevices.component';
+import { BasicInformationIncidentsComponent } from './basic-information-incidents/basic-information-incidents.component';
 import { BasicInformationWorkOrderComponent } from './basicInformationWorkOrder/basicInformationWorkOrder.component';
+import { CallsComponent } from './calls/calls.component';
 import { ChangePasswordComponent } from './changePassword/changePassword.component';
 import { ConsumersComponent } from './consumers/consumers.component';
+import { CrewComponent } from './crew/crew.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DevicesComponent } from './devices/devices.component';
 import { EditConsumerComponent } from './edit-consumer/edit-consumer.component';
 import { EquipmentComponent } from './equipment/equipment.component';
 import { FrontPageComponent } from './front-page/front-page.component';
@@ -16,6 +20,7 @@ import { HomeComponent } from './home/home.component';
 import { IncidentComponent } from './incident/incident.component';
 import { LoginComponent } from './login/login.component';
 import { MapComponent } from './map/map.component';
+import { MultimediaAttachmentsIncidentsComponent } from './multimedia-attachments-incidents/multimedia-attachments-incidents.component';
 import { MultimediaAttachmentsComponent } from './multimediaAttachments/multimediaAttachments.component';
 import { NewCallComponent } from './newCall/newCall.component';
 import { NewConsumerComponent } from './newConsumer/newConsumer.component';
@@ -29,6 +34,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { ReportOutageComponent } from './reportOutage/reportOutage.component';
+import { ResolutionComponent } from './resolution/resolution.component';
 import { SafetyDocsComponent } from './safetyDocs/safetyDocs.component';
 import { WorkOrdersComponent } from './workOrders/workOrders.component';
 import { WorkPlansComponent } from './workPlans/workPlans.component';
@@ -81,8 +87,65 @@ const routes: Routes = [
   },
   {
     path: 'newIncident',
-    component: NewIncidentComponent,
+    redirectTo: '/newIncident/basic-information',
+    pathMatch: 'full',
     outlet: "primary"
+  },
+  {
+    path: 'newIncident',
+    component: NewIncidentComponent,
+    outlet: "primary",
+    children:
+    [
+      {
+        path: 'basic-information',
+        component: BasicInformationIncidentsComponent
+      },
+      {
+        path: 'basic-information/:id',
+        component: BasicInformationIncidentsComponent
+      },
+      {
+        path: 'devices/:id',
+        component: DevicesComponent
+      },
+      {
+        path: 'devices',
+        component: DevicesComponent
+      },
+      {
+        path: 'resolution/:id',
+        component: ResolutionComponent
+      },
+      {
+        path: 'resolution',
+        component: ResolutionComponent
+      },
+      {
+        path: 'calls/:id',
+        component: CallsComponent
+      },
+      {
+        path: 'calls',
+        component: CallsComponent
+      },
+      {
+        path: 'crews/:id',
+        component: CrewComponent
+      },
+      {
+        path: 'crews',
+        component: CrewComponent
+      },
+      {
+        path: 'multimedia/:id',
+        component: MultimediaAttachmentsIncidentsComponent
+      },
+      {
+        path: 'multimedia',
+        component: MultimediaAttachmentsIncidentsComponent
+      }
+    ]
   },
   {
     path: 'newDevice',

@@ -23,14 +23,14 @@ namespace Web2Project_API.Models
         public int? CallNumber { get; set; }  // moze se izvaditi iz liste poziva: Calls.Count
         public int? AffectedCustomers { get; set; }  // moze se izvaditi iz liste uredjaja-lokacije-potrosaci...
         public bool? Assigned { get; set; }  // mozda i ne mora
-        public CausesType ResolutionCauses { get; set; }
-        public SubcausesType ResolutionSubcauses { get; set; }
-        public ConstructionTypes ResolutionConstructionTypes { get; set; }
-        public MaterialType ResolutionMaterials { get; set; }
+        public CausesType? ResolutionCauses { get; set; }
+        public SubcausesType? ResolutionSubcauses { get; set; }
+        public ConstructionTypes? ResolutionConstructionTypes { get; set; }
+        public MaterialType? ResolutionMaterials { get; set; }
 
         public int? UserId { get; set; }  // user koji ga je uzeo na resavanje
         public User User { get; set; }
-        public int CrewId { get; set; }
+        public int? CrewId { get; set; }
         public Crew Crew { get; set; }
         public List<Device> Devices { get; set; }
         public List<Call> Calls { get; set; }
@@ -41,11 +41,6 @@ namespace Web2Project_API.Models
         public int? WorkPlanId { get; set; }
         public WorkPlan WorkPlan { get; set; }
         
-
-        /*
-        public int? MultimediaAnchorID { get; set; }
-        public MultimediaAnchor MultimediaAnchor { get; set; }
-        */
 
     }
 }

@@ -1,3 +1,33 @@
+.error-style{
+  font-size: 14px;
+}
+
+.icon-text {
+  display: flex;
+  align-items: center;
+}
+
+.font-style{
+  font-size: 1.2rem;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+  width: 22px;
+  height: 22px;
+}
+
+.without_ampm::-webkit-datetime-edit-ampm-field {
+  display: none;
+}
+input[type="time"]::-webkit-clear-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  margin: -10px;
+}
+
 .example-section {
     margin: 10px 0;
   }

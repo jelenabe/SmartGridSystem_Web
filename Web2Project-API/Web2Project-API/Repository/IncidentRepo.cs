@@ -27,28 +27,23 @@ namespace Web2Project_API.Repository
 
             if (!Enum.IsDefined(typeof(IncidentStatus), newIncident.IncidentStatus))
                 throw new Exception("Undefined incident status!");
-            /*
-            if (newIncident.Description == null || newIncident.Description.Length > 100)
-                throw new Exception($"Description must be at most 100 characters long!");
-            */
 
             if (newIncident.VoltageLevel <= 0)
                 throw new Exception("Voltage level have to be greater than 0!");
 
             if (newIncident.OutageTime > newIncident.ETA)
-                throw new Exception($"ETA date cannot be before outage time!");
+                throw new Exception($"ETA date can not be before outage time!");
 
             if (newIncident.OutageTime > newIncident.ATA)
-                throw new Exception($"ATA date cannot be before outage time!");
+                throw new Exception($"ATA date can not be before outage time!");
 
             if (newIncident.OutageTime > newIncident.ScheduedTime)
-                throw new Exception($"Sheduled time cannot be before outage time!");
+                throw new Exception($"Sheduled time can not be before outage time!");
 
             /*  // da li bi uopste trebalo ?!
             if (newIncident.ETA > newIncident.ScheduedTime)
                 throw new Exception($"Sheduled time cannot be before ETA!");
             */
-
 
             Incident incident = _mapper.Map<Incident>(newIncident);
 
