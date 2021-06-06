@@ -31,9 +31,12 @@ namespace Web2Project_API.Repository
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
 
-            if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
-            {
-                return null;
+            if (user!=null){
+
+                if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+                {
+                    return null;
+                }
             }
 
             return user;
@@ -117,6 +120,7 @@ namespace Web2Project_API.Repository
         public async Task<User> ChangePassword(int id, string oldPassword, string newPassword)
         {
             var user = _context.Users.Where(x => x.UserId == id).FirstOrDefault();
+           
 
             bool isCorrect = VerifyPasswordHash(oldPassword, user.PasswordHash, user.PasswordSalt);
 
@@ -129,12 +133,16 @@ namespace Web2Project_API.Repository
 
 
                 _context.Entry(user).State = EntityState.Modified;
-                await _context.SaveChangesAsync();
+                _context.SaveChangesAsync();
+                return user;
+
             }
             else
+            {
                 return null;
+            }
 
-            return user;
+           
             
         }
     }

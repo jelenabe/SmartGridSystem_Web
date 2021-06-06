@@ -11,6 +11,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class ChangePasswordComponent implements OnInit {
 
+  user: any = {}
   constructor(private authService: AuthService,private snackBar: MatSnackBar,private router: Router) { }
 
   ngOnInit() {
@@ -21,8 +22,13 @@ export class ChangePasswordComponent implements OnInit {
     if (pass.NewPassword === pass.RepeatPassword) {
       this.authService.changePassword(localStorage.getItem('id'), pass.OldPassword, pass.NewPassword).subscribe((response) => {
         console.log(response);
+        this.user=response;
+        if(response==null){
+          alert('Old password is not correct');
+        }else{
         this.openSnackBar();
         this.router.navigate(['/dashboard']);
+        }
       });
     } else {
         alert('passwords does not match');

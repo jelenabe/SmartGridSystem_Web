@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Crew } from '../allCrews/allCrews.component';
 import { Incident } from '../models/incident';
@@ -30,17 +31,20 @@ export class BasicInformationComponent implements OnInit {
   crews: any = [];
   requests: WorkRequest[] = [];
 
- 
-
   constructor(private incidentService: IncidentService,
     private locationService: LocationService,
     private router: Router,
     private crewService: CrewService,
-    private requestService: WorkRequestService) {
+    private requestService: WorkRequestService,
+    private snackBar:MatSnackBar) {
 
       this.basicInfoModel.createdByUserId = localStorage.getItem('id');
       this.basicInfoModel.status = 'DRAFT';
-      this.basicInfoModel.documentCreatedOn = "07/06/2021"
+      this.basicInfoModel.documentCreatedOn = new Date().toString();
+      this.basicInfoModel.locationId=null;
+      this.basicInfoModel.workRequestId=null;
+      this.basicInfoModel.incidentId=null;
+      this.basicInfoModel.crewId=null;
 
       this.getAllIncidents();
       this.getAllLocations();
@@ -109,9 +113,18 @@ export class BasicInformationComponent implements OnInit {
 
   }
   nextBasic(){
+    if(this.basicInfoModel.locationId==null ||this.basicInfoModel.workRequestId==null||
+      this.basicInfoModel.incidentId==null||
+      this.basicInfoModel.crewId==null)
+    {
+      this.openSnackBar();
+    }
+    else
+    {
     this.basicInfoModel.view = 2;
     this.newItemEvent.emit(this.basicInfoModel)
     this.router.navigateByUrl('/newPlan/historyOfStateChange');
+    }
   }
   openIncidentDialog(){
   }
@@ -121,5 +134,9 @@ export class BasicInformationComponent implements OnInit {
   openCrewDialog(){
 
   }
-
+  openSnackBar() {
+    this.snackBar.open('Location, Incident, Work request and Crew must be filed' , 'OK', {
+      duration: 3000
+    });
+  }
 }

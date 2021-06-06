@@ -86,9 +86,17 @@ namespace Web2Project_API.Controllers
         {
 
             var user = _repo.ChangePassword(id, changePasswordDto.OldPassword, changePasswordDto.NewPassword);
+            if (user.Result == null)
+            {
+                return StatusCode(StatusCodes.Status200OK);
+            }
+            else
+            {
+                return StatusCode(StatusCodes.Status200OK, user);
 
+            }
 
-            return StatusCode(StatusCodes.Status200OK);
+           
 
         }
     }

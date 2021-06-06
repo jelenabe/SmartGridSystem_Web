@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ register(model: any)
   return this.http.post(this.baseUrl, model);
 }
 
-changePassword(id: any, odlPassword: any, newPassword: any) {
+changePassword(id: any, odlPassword: any, newPassword: any){
   const newModel: any = {};
   newModel.OldPassword = odlPassword;
   newModel.NewPassword = newPassword;

@@ -64,7 +64,7 @@ export class NewWorkOrderComponent implements OnInit {
     {
       this.model.status = basicModel.status;
       this.model.createdByUserId = basicModel.createdByUserId;
-      //this.model.incidentId = basicModel.incidentId;
+      this.model.incidentId = basicModel.incidentId;
       this.model.locationId = basicModel.locationId;
       //this.model.workPlanId = basicModel.workPlanId
       this.model.company = basicModel.company;

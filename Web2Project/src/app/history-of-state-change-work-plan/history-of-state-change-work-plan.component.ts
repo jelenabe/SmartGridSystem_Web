@@ -14,7 +14,7 @@ export class HistoryOfStateChangeWorkPlanComponent implements OnInit {
 
   constructor(private router: Router) { 
     this.historyModel.changedBy= localStorage.getItem('id');
-    this.historyModel.dateOfChange = "2012-04-21T18:25:43-05:00";
+    this.historyModel.dateOfChange = new Date().toString();
   }
 
   ngOnInit() {

@@ -77,9 +77,10 @@ namespace Web2Project_API.DbConfigurations
                     Name = "Milan",
                     Lastname = "Momcilovic",
                     Email = "milan.momcilovic582@gmail.com",
-                    LocationId = null,
+                    LocationId = 2,
                     Birthday = new DateTime(1998, 6, 17),
-                    UserType = UserType.ADMIN
+                    UserType = UserType.ADMIN,
+                    Approved = true
 
                 },
                 new User
@@ -91,9 +92,10 @@ namespace Web2Project_API.DbConfigurations
                     Name = "Milica",
                     Lastname = "Simeunovic",
                     Email = "milica.simeunovic97@gmail.com",
-                    LocationId = null,
+                    LocationId = 2,
                     Birthday = new DateTime(1997, 12, 10),
-                    UserType = UserType.ADMIN
+                    UserType = UserType.ADMIN,
+                    Approved = true
                 },
                 new User
                 {
@@ -104,9 +106,10 @@ namespace Web2Project_API.DbConfigurations
                     Name = "Jelena",
                     Lastname = "Beader",
                     Email = "jelena.beader@gmail.com",
-                    LocationId = null,
+                    LocationId = 3,
                     Birthday = new DateTime(1998, 6, 17),
-                    UserType = UserType.ADMIN
+                    UserType = UserType.ADMIN,
+                    Approved = true
                 }
             );
 
@@ -204,29 +207,6 @@ namespace Web2Project_API.DbConfigurations
                 }
             );
 
-            modelBuilder.Entity<Incident>().HasData(
-                new Incident
-                {
-                   IncidentId = 1,
-                   Priority = 1,
-                   IncidentType = IncidentType.PLANNED,
-                   Confirmed = true,
-                   IncidentStatus = IncidentStatus.DISPATCHED,
-                   ETA = DateTime.Today,
-                   ATA = DateTime.Today,
-                   ETR = DateTime.Today,
-                   OutageTime = DateTime.Today,
-                   ScheduledTime = DateTime.Today,
-                   VoltageLevel = 300,
-                   Assigned = true,
-                   ResolutionCauses = CausesType.FAILURE,
-                   ResolutionSubcauses = SubcausesType.BAD_INSTALL,
-                   ResolutionConstructionTypes = ConstructionTypes.OVERGROUND,
-                   ResolutionMaterials = MaterialType.CERAMICS,
-                   UserId = 1,
-                   CrewId = 1
-                }
-            );
 
 
         }

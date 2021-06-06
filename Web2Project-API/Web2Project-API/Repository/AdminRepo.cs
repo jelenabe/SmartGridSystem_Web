@@ -111,7 +111,17 @@ namespace Web2Project_API.Repository
                 
             }
             await _context.SaveChangesAsync();
-            //za ulice
+
+            var priorities = _context.Locations;
+            foreach (var p in priorities)
+            {
+                p.Priority = 1;
+                _context.Entry(p).State = EntityState.Modified;
+
+
+            }
+            await _context.SaveChangesAsync();
+           
             return notifications;
         }
     }

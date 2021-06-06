@@ -15,7 +15,9 @@ export class EquipmentWPComponent implements OnInit {
   selectedEquipments: any = [];
   
 
-  equipmentModel: any = [];
+  equipmentModel: any = {
+    EquipmentIds: []
+  };
 
    @Output() newItemEvent = new EventEmitter<any>();
 
@@ -34,11 +36,10 @@ export class EquipmentWPComponent implements OnInit {
   }
  
   addEquipments(){
-    this.equipmentModel.view = 5;
     this.selectedEquipments.forEach((element: { deviceId: number; }) => {
-      this.equipmentModel.push(element.deviceId);
+      this.equipmentModel.EquipmentIds.push(element.deviceId);
     });
-    if (this.equipmentModel.length === 0){
+    if (this.equipmentModel.EquipmentIds.length === 0){
       this.openSnackBar();
     }else
     {

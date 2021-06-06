@@ -10,14 +10,14 @@
           >
         </div>
         <input
-          type="date"
+          type="text"
           name="dateOfChange"
           class="form-control"
           aria-label="Default"
           aria-describedby="inputGroup-sizing-default"
           readonly
-          value="2012-04-21T18:25:43-05:00"
-        />
+          [(ngModel)]="historyModel.dateOfChange"
+          />
       </div>
     </div>
     <div class="input-group mb-3">

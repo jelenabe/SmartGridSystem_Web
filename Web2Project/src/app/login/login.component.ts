@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { LoginService } from '../services/login.service';
 import { SocialAuthService, GoogleLoginProvider, SocialUser,FacebookLoginProvider } from 'angularx-social-login';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router,
               private loginservice: LoginService,
-              private socialAuthService: SocialAuthService
+              private socialAuthService: SocialAuthService,
+              private snackBar: MatSnackBar
       )
       { }
 
@@ -33,12 +35,25 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.loginservice.login(this.model).subscribe(data => {
+      this.openLoginBar();
       this.usertype = localStorage.getItem('usertype');
       console.log('logged in successfully');
       this.router.navigate(['/', 'dashboard']);
     },
     error => {
+      this.openSnackBar();
      console.log('failed to login');
+    });
+  }
+  openLoginBar(){
+    this.snackBar.open('Login succeffuly!', 'OK', {
+      duration: 3000
+    });
+  }
+  openSnackBar() {
+    
+    this.snackBar.open('Faild to login!', 'OK', {
+      duration: 3000
     });
   }
 

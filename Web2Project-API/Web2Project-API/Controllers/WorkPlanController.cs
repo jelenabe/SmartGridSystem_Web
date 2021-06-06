@@ -39,7 +39,7 @@ namespace Web2Project_API.Controllers
                 workPlan.DateOfTheChange = DateTime.Today;
                 workPlan.Details = dto.Details;
 
-                foreach (var item in dto.Equipmet)
+                foreach (var item in dto.Equipment)
                 {
                     eqipment += item.ToString();
                 }
@@ -104,7 +104,7 @@ namespace Web2Project_API.Controllers
             workPlan.EndDate = dto.EndDate;
             workPlan.CreatedOn = dto.CreatedOn;
             workPlan.Details = dto.Details;
-            foreach (var item in dto.Equipmet)
+            foreach (var item in dto.Equipment)
             {
                 equipment += item.ToString();
             }

@@ -91,6 +91,7 @@
           <mat-select
             name="IncidentId"
             [(ngModel)]="basicInfoModel.incidentId"
+            required
           >
            <mat-option
               *ngFor="let incident of incidents"

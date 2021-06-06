@@ -69,10 +69,10 @@ export class NewPlanComponent implements OnInit {
     {
       this.model.status = basicModel.status;
       this.model.createdByUserId = basicModel.createdByUserId;
-      //this.model.incidentId = basicModel.incidentId;
+      this.model.incidentId = basicModel.incidentId;
       this.model.locationId = basicModel.locationId;
-      //this.model.workRequestId = basicModel.workRequestId
-      //this.model.crewId = basicModel.crewtId
+      this.model.workRequestId = basicModel.workRequestId
+      this.model.crewId = basicModel.crewtId
       this.model.company = basicModel.company;
       this.model.createdOn = basicModel.createdOn;
       this.model.endDate = basicModel.endDate;
@@ -119,8 +119,8 @@ export class NewPlanComponent implements OnInit {
   }
 
   checkEquipment(event: any){
-    this.changeView(event.view);
-    event.equipmentModel.forEach((element: { deviceId: number; }) => {
+    this.changeView(5);
+    event.EquipmentIds.forEach((element: { deviceId: number; }) => {
       this.model.equipment.push(element);
     });
     console.log(this.model);
