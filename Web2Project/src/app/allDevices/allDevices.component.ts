@@ -101,8 +101,14 @@ export class AllDevicesComponent implements OnInit {
     this.deviceService.deleteDevice(deviceId).subscribe(x => {
       this.snackBar.open("Device successfully deleted.", "", { duration: 2500 });
       this.getDevices();
+    },
+    error => {
 
-    });
+      this.snackBar.open(error.error, "",  { duration: 4000});
+      this.getDevices();
+    }
+    );
+
   }
 
   searchDevices() {

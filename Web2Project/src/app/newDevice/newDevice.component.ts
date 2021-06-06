@@ -141,7 +141,7 @@ export class NewDeviceComponent implements OnInit {
               },
               error=>{
                 
-                this.snackBar.open(error.error);
+                this.snackBar.open(error.error, "", { duration: 4000});
                 this.router.navigate(['allDevices']);
 
               }

@@ -56,7 +56,7 @@ namespace Web2Project_API.Repository
             Device device = _dbContext.Devices.FirstOrDefault(x => x.DeviceId.Equals(deviceId));
 
             if (device == null)
-                throw new Exception($"Device with Id = {deviceId} does not exists!");
+                throw new Exception($"Device with Id = {deviceId} does not exists because it has already been deleted!");
 
             _dbContext.Devices.Remove(device);
             _dbContext.SaveChanges();
@@ -191,6 +191,7 @@ namespace Web2Project_API.Repository
             old_device.Name = updated_device.Name;
             old_device.LocationId = updated_device.LocationId;
             old_device.IncidentId = updated_device.IncidentId;
+            old_device.Timestamp = DateTime.Now;
 
             _dbContext.SaveChanges();
             return _mapper.Map<DeviceDTO>(old_device);
