@@ -53,9 +53,13 @@ export class AllCrewsComponent implements OnInit {
   {
     this.router.navigate(['/', 'newCrew', index]);
   }
-  deleteRow(index: number){
-    this.dataSource.data.splice(index,1);
-    this.dataSource._updateChangeSubscription();
+  deleteRow(index: any){
+    this.crewService.deleteCrews(index.crewId).subscribe((response)=>
+    {
+      console.log(response);
+      this.dataSource.data.splice(index, 1);
+      this.dataSource._updateChangeSubscription();
+    })
   }
 
   getAllCrews()

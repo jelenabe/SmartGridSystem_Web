@@ -43,7 +43,16 @@ namespace Web2Project_API.Controllers
         {
             var createdCrew = await _repo.AddCrew(model.Name, model.UserIds);
 
-            return StatusCode(201);
+            return StatusCode(201,createdCrew);
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> DeleteCrew(int id)
+        {
+            var deletedCrew = await _repo.DeleteCrew(id);
+
+            return StatusCode(201,deletedCrew);
         }
 
     }

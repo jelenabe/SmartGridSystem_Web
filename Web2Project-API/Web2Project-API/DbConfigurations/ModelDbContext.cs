@@ -140,6 +140,26 @@ namespace Web2Project_API.DbConfigurations
                     Lon = "20.486268",
                     PostNumber = 11118,
                     Priority = 3
+                },
+                new Location
+                {
+                    LocationId = 5,
+                    City = "Novi Sad",
+                    Street = "Dalmatinska 4",
+                    Lat = "44.796319",
+                    Lon = "20.486268",
+                    PostNumber = 21000,
+                    Priority = 4
+                },
+                new Location
+                {
+                    LocationId = 6,
+                    City = "Novi Sad",
+                    Street = "Bulevar Evrope",
+                    Lat = "44.796319",
+                    Lon = "20.486268",
+                    PostNumber = 21000,
+                    Priority = 1
                 }
             );
 

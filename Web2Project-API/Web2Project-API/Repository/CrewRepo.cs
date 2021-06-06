@@ -50,8 +50,19 @@ namespace Web2Project_API.Repository
                 throw new Exception($"Crew with id = {id} dos not exist.");
             }
 
+            var users = await _context.Users.Where(x => x.CrewId == crew.CrewId).ToListAsync();
+
+            foreach (var item in users)
+            {
+                item.CrewId = null;
+
+                _context.Entry(item).State = EntityState.Modified;
+            }
+
             _context.Crews.Remove(crew);
             _context.SaveChanges();
+
+
 
             return crew;
         }
@@ -61,7 +72,7 @@ namespace Web2Project_API.Repository
             //var list = _context.Users.Where(x => x.UserType == UserType.CREW_MEMBER && x.Approved == true).ToListAsync();
 
             var users = from userss in _context.Users
-                        where userss.UserType == UserType.CREW_MEMBER && userss.Approved == true
+                        where userss.UserType == UserType.CREW_MEMBER && userss.Approved == true && userss.CrewId == null
                         select new
                         {
                             userss.UserId,

@@ -24,4 +24,9 @@ constructor(private http: HttpClient) { }
     return this.http.get(this.baseUrl+'/AllCrews');
   }
 
+  deleteCrews(i: number)
+  {
+    return this.http.delete(this.baseUrl + '/' + i);
+  }
+
 }
