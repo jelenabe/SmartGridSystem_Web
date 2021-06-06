@@ -43,7 +43,7 @@ export class NewPlanComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  
   save(): void{
     if(this.model.equipment.length==0){
       this.openSnackBar();

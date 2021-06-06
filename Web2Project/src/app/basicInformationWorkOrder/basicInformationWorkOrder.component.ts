@@ -30,7 +30,7 @@ export class BasicInformationWorkOrderComponent implements OnInit {
       this.basicInfoModel.incidentId=null;
       this.basicInfoModel.createdByUserId = localStorage.getItem('id');
       this.basicInfoModel.status = 'DRAFT';
-      this.basicInfoModel.createdOn = new Date().toString();
+      this.basicInfoModel.createdOn = '07/06/2021';
 
       this.getAllIncidents();
       this.getAllLocations();

@@ -74,6 +74,7 @@ namespace Web2Project_API.Controllers
                 user.UserType = UserType.CONSUMER;
             }
             user.Birthday = dto.BirthDay;
+            user.Approved = false;
 
             var createdUser = await _repo.Register(user, dto.Password);
 

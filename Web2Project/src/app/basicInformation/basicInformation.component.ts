@@ -38,9 +38,9 @@ export class BasicInformationComponent implements OnInit {
     private requestService: WorkRequestService,
     private snackBar:MatSnackBar) {
 
-      this.basicInfoModel.createdByUserId = localStorage.getItem('id');
       this.basicInfoModel.status = 'DRAFT';
-      this.basicInfoModel.documentCreatedOn = new Date().toString();
+      this.basicInfoModel.createdByUserId = localStorage.getItem('id');
+      this.basicInfoModel.documentCreatedOn = "07/06/2021"
       this.basicInfoModel.locationId=null;
       this.basicInfoModel.workRequestId=null;
       this.basicInfoModel.incidentId=null;

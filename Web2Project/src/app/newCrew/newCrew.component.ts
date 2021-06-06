@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { CrewService } from '../services/crew.service';
 
 @Component({
@@ -24,7 +26,9 @@ export class NewCrewComponent implements OnInit {
     Validators.required,
   ]);
 
-  constructor(private crewService: CrewService) {
+  constructor(private crewService: CrewService,
+    private snackBar:MatSnackBar,
+    private router: Router) {
     this.getUsers();
   }
 
@@ -48,8 +52,26 @@ export class NewCrewComponent implements OnInit {
 
     this.crewService.addCrew(this.model).subscribe((response) =>
     {
+      if(this.model.Name!=null){
+      this.openSnakBar();
       console.log('Crew added!');
+      this.router.navigate(['allCrews']);
+      }else{
+        this.openSnakBarError();
+      }
     });
   }
+  openSnakBar(){
+      this.snackBar.open('Crew success added' , 'OK', {
+        duration: 3000
+      });
+    
+  }
+  openSnakBarError(){
+    this.snackBar.open('Faild to add' , 'OK', {
+      duration: 3000
+    });
+  
+}
 
 }

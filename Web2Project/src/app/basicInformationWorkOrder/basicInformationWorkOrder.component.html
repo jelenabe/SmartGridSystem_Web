@@ -99,6 +99,7 @@
             <mat-select
               name="IncidentId"
               [(ngModel)]="basicInfoModel.incidentId"
+              required
             >
              <mat-option
                 *ngFor="let incident of incidents"
@@ -159,8 +160,8 @@
           </div>
           <input
             name="createdOn"
+            type="date"
             [(ngModel)]="basicInfoModel.createdOn"
-            type="text"
             class="form-control"
             aria-label="Default"
             aria-describedby="inputGroup-sizing-default"

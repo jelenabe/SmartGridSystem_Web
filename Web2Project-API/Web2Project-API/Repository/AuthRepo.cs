@@ -31,9 +31,15 @@ namespace Web2Project_API.Repository
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
 
-            if (user!=null){
-
-                if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+            if (user != null) {
+                if (user.Approved != false)
+                {
+                    if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+                    {
+                        return null;
+                    }
+                }
+                else
                 {
                     return null;
                 }
