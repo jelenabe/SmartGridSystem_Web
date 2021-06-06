@@ -21,25 +21,45 @@ namespace Web2Project_API.Repository
             _context = context;
             _mapper = mapper;
         }
-        public async Task<ActionResult<IEnumerable<object>>> ApplayPriority(string priorities)
+        public async Task<ActionResult<IEnumerable<object>>> ApplayPriority(StreetDTO dto)
         {
-            var locations = _context.Locations;
-            List<Location> loc = new List<Location>();
-            foreach(var location in locations)
+            var locations = _context.Locations.ToList();
+
+            if(dto.Priority1 != null)
             {
-                loc.Add(location);
+                var location = _context.Locations.FirstOrDefault(x => x.LocationId == 2);
+                location.Priority = Int32.Parse(dto.Priority1);
+                _context.Entry(location).State = EntityState.Modified;
+            }
+            if (dto.Priority2 != null)
+            {
+                var location = _context.Locations.FirstOrDefault(x => x.LocationId == 3);
+                location.Priority = Int32.Parse(dto.Priority2);
+                _context.Entry(location).State = EntityState.Modified;
+            }
+            if (dto.Priority3 != null)
+            {
+                var location = _context.Locations.FirstOrDefault(x => x.LocationId == 4);
+                location.Priority = Int32.Parse(dto.Priority3);
+                _context.Entry(location).State = EntityState.Modified;
+            }
+            if (dto.Priority4 != null)
+            {
+                var location = _context.Locations.FirstOrDefault(x => x.LocationId == 5);
+                location.Priority = Int32.Parse(dto.Priority4);
+                _context.Entry(location).State = EntityState.Modified;
+            }
+            if (dto.Priority5 != null)
+            {
+                var location = _context.Locations.FirstOrDefault(x => x.LocationId == 6);
+                location.Priority = Int32.Parse(dto.Priority5);
+                _context.Entry(location).State = EntityState.Modified;
             }
 
-            string[] pr = priorities.Split(',');
 
-            for(int i=0; i < locations.Count(); i++)
-            {
-                loc[i].Priority = Int32.Parse(pr[i]);
-                _context.Entry(loc).State = EntityState.Modified;
-            }
             await _context.SaveChangesAsync();
 
-            return await locations.ToListAsync();
+            return locations;
         }
 
         public async Task<ActionResult<object>> FieldSetting(bool display)

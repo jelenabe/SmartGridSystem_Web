@@ -28,7 +28,7 @@ export class ConsumersComponent implements OnInit {
   Consumers: any = [];
   displayedColumns: string[] = ['id', 'name', 'location', 'phoneNumber', 'type', 'Buttons'];
   dataSource: MatTableDataSource<Consumer>;
-
+  visible: boolean = true;
   model: any = {};
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -36,25 +36,33 @@ export class ConsumersComponent implements OnInit {
 
   constructor(private router: Router, private newConsumerService: NewConsumerService,
     private snackBar: MatSnackBar,) {
-    this.newConsumerService.getConsumers().subscribe((response)=>{
-      console.log("Applay changes successfull");
-      this.Consumers = response;
-      console.log(this.Consumers);
 
-      this.Consumers.forEach((element: { consumerId: number; name: string; street: string; city:string; phone:string; type:string  })=> {
-        if(element.type=='2'){
-          element.type='Comercial';
-        }else{
+      if (localStorage.getItem('type') === '3'){
+        this.visible = true;
+      }
+      else{
+        this.visible = false;
+      }
 
-          element.type='Residential';
-        }
-        this.ELEMENT_DATA.push(element)
-      });
+      this.newConsumerService.getConsumers().subscribe((response)=>{
+        console.log("Applay changes successfull");
+        this.Consumers = response;
+        console.log(this.Consumers);
 
-    this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-    })
+        this.Consumers.forEach((element: { consumerId: number; name: string; street: string; city:string; phone:string; type:string  })=> {
+          if(element.type=='2'){
+            element.type='Comercial';
+          }else{
+
+            element.type='Residential';
+          }
+          this.ELEMENT_DATA.push(element)
+        });
+
+      this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      })
    }
 
   ngOnInit() {

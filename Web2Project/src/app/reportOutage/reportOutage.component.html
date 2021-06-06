@@ -73,6 +73,7 @@
         >
       </mat-button-toggle-group>
     </span>
+
   <div *ngIf="anonymous">
     <mat-form-field appearance="fill" class="example-full-width divStyle" style="padding-top: 5%;">
       <mat-label>Select location</mat-label>
@@ -82,8 +83,7 @@
           *ngFor="let location of locations"
           value="{{ location.locationId }}"
         >
-        svasta
-          <!--{{ formatLocation(location) }}-->
+          {{ formatLocation(location) }}
         </mat-option>
       </mat-select>
     </mat-form-field>

@@ -1,7 +1,7 @@
 <!-- Statistics Section-->
 <section class="statistics" style="padding-top: 5%">
   <div class="container-fluid">
-    <div class="row d-flex">
+    <div *ngIf="visible" class="row d-flex">
       <div class="col-lg-3">
         <div class="card data-usage">
           <h2 class="display h4">
@@ -62,8 +62,6 @@
           <p>{{ modelSafetyDoc.completed }} Completed</p>
         </div>
       </div>
-     
-      
     </div>
     <br/>
     <div class="row d-flex">

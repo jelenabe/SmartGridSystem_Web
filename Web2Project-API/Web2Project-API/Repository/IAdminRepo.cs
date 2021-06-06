@@ -10,7 +10,7 @@ namespace Web2Project_API.Repository
 {
     public interface IAdminRepo
     {
-        Task<ActionResult<IEnumerable<object>>> ApplayPriority(string priorities);
+        Task<ActionResult<IEnumerable<object>>> ApplayPriority(StreetDTO dto);
         Task<ActionResult<object>> NotificationSetting(int id, bool display);
         Task<ActionResult<object>> FieldSetting(bool display);
         Task<ActionResult<object>> ResetAllSetting();

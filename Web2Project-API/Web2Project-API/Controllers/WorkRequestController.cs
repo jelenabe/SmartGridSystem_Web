@@ -102,7 +102,7 @@ namespace Web2Project_API.Controllers
             workRequest.Company = dto.Company;
             workRequest.StartDate = dto.StartDate;
             workRequest.EndDate = dto.EndDate;
-            workRequest.CreatedOn = dto.CreatedOn;
+            workRequest.CreatedOn = DateTime.Today;
             foreach (var item in dto.Equipment)
             {
                 equipment += item.ToString();

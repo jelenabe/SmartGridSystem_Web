@@ -1,6 +1,6 @@
 <h2 style="padding-top: 3%;">All Consumers</h2>
   <!--New Consumer-->
-<div>
+<div *ngIf="visible">
   <button type="button" class="btn btn-primary" [routerLink]="['/newConsumer']">Add Consumer</button>
 </div>
 
@@ -50,8 +50,8 @@
       <ng-container matColumnDef="Buttons">
         <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
         <td mat-cell *matCellDef="let element; let i=index" class="mat-cell"> 
-          <a  mat-stroked-button color="primary" href="edit-consumer/{{element.consumerId}}">Edit</a>
-          <button mat-stroked-button color="warn" (click)="deleteRow(element.consumerId,i)">Remove</button>  
+          <a  *ngIf="visible" mat-stroked-button color="primary" href="edit-consumer/{{element.consumerId}}">Edit</a>
+          <button *ngIf="visible" mat-stroked-button color="warn" (click)="deleteRow(element.consumerId,i)">Remove</button>  
         </td>
       </ng-container>
 

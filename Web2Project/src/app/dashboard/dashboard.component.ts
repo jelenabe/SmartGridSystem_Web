@@ -35,8 +35,18 @@ export class DashboardComponent implements OnInit {
 
   socialUser: SocialUser;
   isLoggedin: boolean;
+  visible: boolean = true;
 
-  constructor(private socialAuthService: SocialAuthService ) {}
+  constructor(private socialAuthService: SocialAuthService ) {
+
+    if (localStorage.getItem('type') === null || localStorage.getItem('type') === '4'){
+      this.visible = false;
+    }
+    else{
+      this.visible = true;
+    }
+
+  }
 
   ngOnInit() {
     this.socialAuthService.authState.subscribe((user) => {

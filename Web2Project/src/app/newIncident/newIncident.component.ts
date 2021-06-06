@@ -45,9 +45,4 @@ export class NewIncidentComponent implements OnInit {
     });
 
   }
-
-
-  
-
-
 }

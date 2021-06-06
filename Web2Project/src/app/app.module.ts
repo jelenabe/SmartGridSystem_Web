@@ -95,6 +95,13 @@ import { GoogleLoginProvider } from 'angularx-social-login';
 import { HistoryOfStateChangeWorkPlanComponent } from './history-of-state-change-work-plan/history-of-state-change-work-plan.component';
 import { MultimediaAttachmentsWPComponent } from './multimedia-attachmentsWP/multimedia-attachmentsWP.component';
 import { EquipmentWPComponent } from './equipmentWP/equipmentWP.component';
+import { AdminGuard } from './guard/admin.guard';
+import { WorkerGuard } from './guard/worker.guard';
+import { CrewMemberGuard } from './guard/crew-member.guard';
+import { ConsumerGuard } from './guard/consumer.guard';
+import { GoogleGuard } from './guard/google.guard';
+import { WorkPlansGuard } from './guard/WorkPlans.guard';
+import { NewCAllGuard } from './guard/newCall.guard';
 
 
 
@@ -233,7 +240,14 @@ import { EquipmentWPComponent } from './equipmentWP/equipmentWP.component';
           }
         ]
       } as SocialAuthServiceConfig,
-    }
+    },
+    AdminGuard,
+    WorkerGuard,
+    CrewMemberGuard,
+    ConsumerGuard,
+    GoogleGuard,
+    WorkPlansGuard,
+    NewCAllGuard
   ],
   bootstrap: [AppComponent]
 })

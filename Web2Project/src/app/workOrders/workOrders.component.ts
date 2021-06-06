@@ -19,12 +19,20 @@ export class WorkOrdersComponent implements OnInit, AfterViewInit {
 
   workRequests: WorkRequest[] = [];
 
+  visible: boolean = true;
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 
   constructor(private requestService: WorkRequestService) {
 
-   
+    if (localStorage.getItem('type') === '3' || localStorage.getItem('type') === '1'){
+      this.visible = true;
+    }
+    else{
+      this.visible = false;
+    }
+
   }
   ngOnInit(){
     this.getAllRequest();

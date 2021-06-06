@@ -25,11 +25,19 @@ export class WorkPlansComponent implements OnInit, AfterViewInit {
 
   workPlans: WorkPlan[] = [];
 
+  visible: boolean = true;
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 
   constructor(private planService: WorkPlanService,
     private locationService:LocationService) {
+      if (localStorage.getItem('type') === '3' || localStorage.getItem('type') === '1'){
+        this.visible = true;
+      }
+      else{
+        this.visible = false;
+      }
    }
 
   ngOnInit() {

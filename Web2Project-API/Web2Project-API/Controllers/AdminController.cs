@@ -20,13 +20,12 @@ namespace Web2Project_API.Controllers
             this._repo = repo;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> ApplayPriority([FromBody] PriorityDto priorityDto)
+        [HttpPut("street")]
+        public async Task<IActionResult> ApplayPriority([FromBody] StreetDTO dto)
         {
-            var locations = await _repo.ApplayPriority(priorityDto.Priorities);
+            var locations = await _repo.ApplayPriority(dto);
 
             return StatusCode(200);
-
         }
 
         [HttpPut]

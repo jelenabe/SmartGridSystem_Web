@@ -35,7 +35,7 @@ namespace Web2Project_API.Controllers
                 workPlan.CreatedByUserId = dto.CreatedByUserId;
                 workPlan.LocationId = dto.LocationId;
                 workPlan.Company = dto.Company;
-                workPlan.CreatedOn = dto.CreatedOn;
+                workPlan.CreatedOn = DateTime.Today;
                 workPlan.DateOfTheChange = DateTime.Today;
                 workPlan.Details = dto.Details;
 

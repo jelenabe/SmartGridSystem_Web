@@ -25,6 +25,7 @@ const ELEMENT_DATA: Crew[] = [];
 export class AllCrewsComponent implements OnInit {
   AllCrews: any = [];
   DataSource: any[] = [];
+  visible: boolean = true;
 
   displayedColumns: string[] = ['crewId', 'name', 'Buttons'];
   dataSource: MatTableDataSource<Crew>;
@@ -34,6 +35,13 @@ export class AllCrewsComponent implements OnInit {
 
   constructor(private router: Router, private crewService: CrewService) {
     this.getAllCrews();
+
+    if (localStorage.getItem('type') === '3'){
+      this.visible = true;
+    }
+    else{
+      this.visible = false;
+    }
    }
 
   ngOnInit() {

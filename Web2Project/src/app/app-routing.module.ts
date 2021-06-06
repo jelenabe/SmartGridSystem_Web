@@ -17,6 +17,13 @@ import { EditConsumerComponent } from './edit-consumer/edit-consumer.component';
 import { EquipmentComponent } from './equipment/equipment.component';
 import { EquipmentWPComponent } from './equipmentWP/equipmentWP.component';
 import { FrontPageComponent } from './front-page/front-page.component';
+import { AdminGuard } from './guard/admin.guard';
+import { CrewMemberGuard } from './guard/crew-member.guard';
+import { DispacherGuard } from './guard/dispatcher.guard';
+import { GoogleGuard } from './guard/google.guard';
+import { NewCAllGuard } from './guard/newCall.guard';
+import { WorkerGuard } from './guard/worker.guard';
+import { WorkPlansGuard } from './guard/WorkPlans.guard';
 import { HistoryOfStateChangeWorkPlanComponent } from './history-of-state-change-work-plan/history-of-state-change-work-plan.component';
 import { HistoryOfStateChangesComponent } from './historyOfStateChanges/historyOfStateChanges.component';
 import { HomeComponent } from './home/home.component';
@@ -44,21 +51,20 @@ import { SwitchingInstructionsComponent } from './switchingInstructions/switchin
 import { WorkOrdersComponent } from './workOrders/workOrders.component';
 import { WorkPlansComponent } from './workPlans/workPlans.component';
 
-
 const routes: Routes = [
   { path: '',
-    component: FrontPageComponent, 
-    outlet: "front"
+    component: FrontPageComponent,
+    outlet: 'front',
   },
   {
     path: 'home',
     component: HomeComponent,
-    outlet: "primary",
+    outlet: 'primary',
   },
   {
     path: 'register',
     component: RegisterComponent,
-    outlet: "front"
+    outlet: 'front'
   },
   {
     path: 'login',
@@ -73,7 +79,8 @@ const routes: Routes = [
   {
     path: 'workPlans',
     component: WorkPlansComponent,
-    outlet: "primary"
+    outlet: "primary",
+    canActivate: [WorkPlansGuard]
   },
   {
     path: 'safetyDocs',
@@ -83,7 +90,8 @@ const routes: Routes = [
   {
     path: 'workOrders',
     component: WorkOrdersComponent,
-    outlet: "primary"
+    outlet: "primary",
+    canActivate: [WorkPlansGuard]
   },
   {
     path: 'incidents',
@@ -155,17 +163,19 @@ const routes: Routes = [
   {
     path: 'newDevice',
     component: NewDeviceComponent,
-    outlet: "primary"
+    outlet: "primary",
   },
   { 
     path: 'newDevice/:id',
     component: NewDeviceComponent,
-    outlet: "primary"
+    outlet: "primary",
+    
   },
   {
     path:'newCall',
     component: NewCallComponent,
-    outlet: "primary"
+    outlet: "primary",
+    canActivate: [NewCAllGuard]
   },
   {
     path:'reportOutage',
@@ -197,7 +207,7 @@ const routes: Routes = [
     path: 'newWorkOrder',
     redirectTo: '/newWorkOrder/basicInformation',
     pathMatch: 'full',
-    outlet: "primary"
+    outlet: "primary",
   },
   {
     path: 'newWorkOrder',
@@ -220,13 +230,14 @@ const routes: Routes = [
         path: 'multimediaAttachments',
         component: MultimediaAttachmentsComponent
       },
-    ]
+    ],
+    canActivate: [NewCAllGuard]
   },
   {
     path: 'newPlan',
     redirectTo: '/newPlan/basicInformation',
     pathMatch: 'full',
-    outlet: "primary"
+    outlet: "primary",
   },
   {
     path: 'newPlan',
@@ -253,7 +264,8 @@ const routes: Routes = [
         path: 'switchingInstruction',
         component: SwitchingInstructionsComponent
       }
-    ]
+    ],
+    canActivate: [NewCAllGuard]
   },
   {
     path: 'newSafetyDoc',
@@ -268,37 +280,44 @@ const routes: Routes = [
   {
     path: 'allCrews',
     component:AllCrewsComponent,
-    outlet: "primary"
+    outlet: "primary",
+    canActivate: [WorkPlansGuard]
   },
   {
     path: 'newCrew',
     component:NewCrewComponent,
-    outlet: "primary"
+    outlet: "primary",
+    canActivate: [NewCAllGuard]
   },
   {
     path: 'consumers',
     component:ConsumersComponent,
-    outlet: "primary"
+    outlet: "primary",
+    canActivate: [WorkPlansGuard]
   },
   {
     path: 'newConsumer',
     component:NewConsumerComponent,
-    outlet: "primary"
+    outlet: "primary",
+    canActivate: [AdminGuard]
   },
   {
     path: 'activateProfile',
     component:ActivateProfileComponent,
-    outlet: "primary"
+    outlet: "primary",
+    canActivate: [AdminGuard]
   },
   {
     path: 'adminSettings',
     component:AdminSettingsComponent,
-    outlet: "primary"
+    outlet: "primary",
+    canActivate: [AdminGuard]
   },
   {
     path: 'edit-consumer/:id',
     component:EditConsumerComponent,
-    outlet: "primary"
+    outlet: "primary",
+    canActivate: [AdminGuard]
   }
 
 ]

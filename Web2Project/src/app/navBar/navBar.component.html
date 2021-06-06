@@ -46,24 +46,17 @@
     </a>
   </li>
 
-  <!--Nesto-->
-  <!--
-  <li class="nav-item">
-    <a class="nav-link icon-height" [routerLink]="['/#']" routerLinkActive="active"
-      ><mat-icon class="icon-design">library_books</mat-icon>
-      <p>Nesto </p></a
-    >
-  </li>
-  -->
-
   <!--Crews-->
+  <div *ngIf="visible">
   <li class="nav-item">
     <a class="nav-link icon-height" [routerLink]="['/allCrews']" routerLinkActive="active">
       <mat-icon class="icon-design">group_add</mat-icon>
       <p>Crews</p>
     </a>
   </li>
-  <div *ngIf="admin">
+  </div>
+
+  <div *ngIf="visible">
     <!--Consumers-->
     <li class="nav-item">
       <a class="nav-link icon-height" [routerLink]="['/consumers']" routerLinkActive="active">
@@ -74,10 +67,12 @@
   </div>
 
   <!--Devices-->
+  <div *ngIf="visible">
   <li class="nav-item">
     <a class="nav-link icon-height" [routerLink]="['/allDevices']" routerLinkActive="active">
       <mat-icon class="icon-design">add_to_queue</mat-icon>
       <p>Devices</p>
     </a>
   </li>
+  </div>
 </ul>
