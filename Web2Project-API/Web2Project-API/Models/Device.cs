@@ -13,6 +13,7 @@ namespace Web2Project_API.Models
         public string Name { get; set; }
         public DeviceType Type { get; set; }
         public int DeviceCounter { get; set; }  // treba mi za name
+        public DateTime Timestamp { get; set; }
 
         public int LocationId { get; set; }
         public Location Location { get; set; }

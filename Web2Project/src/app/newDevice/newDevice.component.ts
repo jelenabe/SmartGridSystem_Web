@@ -21,6 +21,8 @@ export class NewDeviceComponent implements OnInit {
   oldDevice: Device = new Device();
   edit: boolean = false;
 
+  timestamp: Date;
+
   newDeviceForm = new FormGroup({
     typeControl: new FormControl('', Validators.required),
     locationControl: new FormControl('', Validators.required)
@@ -45,6 +47,7 @@ export class NewDeviceComponent implements OnInit {
       data => {
 
         this.oldDevice = data;
+        this.timestamp = this.oldDevice.timestamp;
         //console.log(this.oldDevice);
         this.newDeviceForm.setValue({
           typeControl: this.oldDevice.type.toString(),
@@ -106,6 +109,7 @@ export class NewDeviceComponent implements OnInit {
 
         this.newDevice.type = +this.newDeviceForm.value.typeControl;
         this.newDevice.locationId = +this.newDeviceForm.value.locationControl;
+        this.newDevice.timestamp = this.timestamp;
 
         console.log(this.newDeviceForm.value);
         this.deviceService.createNewDevice(this.newDevice).subscribe(
@@ -125,6 +129,7 @@ export class NewDeviceComponent implements OnInit {
 
           this.oldDevice.type = +this.newDeviceForm.value.typeControl;
           this.oldDevice.locationId = +this.newDeviceForm.value.locationControl;
+          this.oldDevice.timestamp = this.timestamp;
 
           this.deviceService.updateDevice(this.oldDevice).subscribe(
               data => {

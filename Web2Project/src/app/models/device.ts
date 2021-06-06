@@ -6,6 +6,7 @@ export class Device{
     type:number=0;
     locationId:number=0;
     location:Location;
+    timestamp: Date;
 }
 
 export class SearchDevices{

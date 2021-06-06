@@ -207,8 +207,6 @@ namespace Web2Project_API.DbConfigurations
                 }
             );
 
-
-
         }
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)

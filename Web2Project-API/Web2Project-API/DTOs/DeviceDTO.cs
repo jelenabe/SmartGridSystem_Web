@@ -11,6 +11,7 @@ namespace Web2Project_API.DTOs
         public int DeviceId { get; set; }
         public string Name { get; set; }
         public DeviceType Type { get; set; }
+        public DateTime Timestamp { get; set; }
         public int LocationId { get; set; }
         public LocationDTO Location { get; set; }
         public int? IncidentId { get; set; }

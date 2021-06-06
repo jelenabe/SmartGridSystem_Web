@@ -31,6 +31,7 @@ namespace Web2Project_API.Repository
 
             Device device = _mapper.Map<Device>(newDevice);
             device.DeviceId = 0;
+            device.Timestamp = DateTime.Now;
 
             // Name: krece od 1
             int max_count_in_database = 0;
@@ -170,6 +171,9 @@ namespace Web2Project_API.Repository
 
             if (old_device == null)
                 throw new Exception($"Device with Id = {updated_device.DeviceId} does not exists!");
+
+            if (updated_device.Timestamp < old_device.Timestamp)
+                throw new Exception("You have tried to modify outdated device. Please try again.");
 
             if (!Enum.IsDefined(typeof(DeviceType), updated_device.Type))
                 throw new Exception("Undefined device type!");
