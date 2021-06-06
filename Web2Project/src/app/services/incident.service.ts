@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Device } from '../models/device';
 import { Incident } from '../models/incident';
 
 @Injectable({
@@ -42,5 +43,25 @@ export class IncidentService {
   }
 */
 
-  
+getIncidentDevices(incidentId: number):Observable<Device[]>{
+  let url = this.baseUrl.concat(`/${incidentId}/devices`);
+  return this.http.get<Device[]>(url);
+}
+
+addOneDeviceToIncident(incidentId: number, deviceId: number):Observable<Incident>{
+  let incident: Incident = new Incident();
+  let url = this.baseUrl.concat(`/${incidentId}/device/${deviceId}`);
+  return this.http.post<Incident>(url, incident);  // ?!
+}
+
+getAllUnconnectedDevices(incidentId: number):Observable<Device[]>{
+  let url = this.baseUrl.concat(`/${incidentId}/unconnectedDevices`);
+  return this.http.get<Device[]>(url);
+}  
+
+removeOneDeviceFromIncident(incidentId: number, deviceId: number):Observable<Incident>{
+  let url = this.baseUrl.concat(`/${incidentId}/removeDevice/${deviceId}`);
+  return this.http.put<Incident>(url, "");  //  ?!
+}
+
 }

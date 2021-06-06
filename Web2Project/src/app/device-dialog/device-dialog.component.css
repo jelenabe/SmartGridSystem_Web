@@ -1,3 +1,10 @@
+.pointer {cursor: pointer;}
+
+.icon-design{
+    font-size: 27px;
+    color: green;
+}
+
 /*da bi buttoni bili postavljeni jedan pored drugog i kada se pojavi vertikalan scrool*/
 th.mat-header-cell:last-of-type{  
     padding-right: 0px;

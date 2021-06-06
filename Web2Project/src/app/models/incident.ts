@@ -1,6 +1,6 @@
 export class Incident{
     incidentId:number = 0;
-    priority:number = 0;
+    priority:number;
     confirmed:boolean;
     assigned:boolean;
     eta:Date;
@@ -17,4 +17,6 @@ export class Incident{
     ResolutionSubcauses:number;
     ResolutionConstructionTypes:number;
     ResolutionMaterials:number;
+    callNumber:number;
+    affectedCustomers:number;
 }

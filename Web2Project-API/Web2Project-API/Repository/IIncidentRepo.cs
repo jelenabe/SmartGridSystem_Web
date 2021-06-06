@@ -14,5 +14,11 @@ namespace Web2Project_API.Repository
         IncidentDto GetIncidentById(int incidentId);
         IncidentDto UpdateIncident(IncidentDto updated);
         void DeleteIncident(int incidentId);
+
+        IEnumerable<DeviceDTO> GetIncidentDevices(int incidentId);
+        void AddDeviceToIncident(int incidentId, int deviceId);
+        List<DeviceDTO> GetUnconnectedDevices(int incidentId);
+        void RemoveDeviceFromIncindet(int incidentId, int deviceId);
+
     }
 }

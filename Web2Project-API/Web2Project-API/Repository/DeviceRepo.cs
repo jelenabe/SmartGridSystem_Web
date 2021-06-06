@@ -186,6 +186,7 @@ namespace Web2Project_API.Repository
             old_device.Type = updated_device.Type;
             old_device.Name = updated_device.Name;
             old_device.LocationId = updated_device.LocationId;
+            old_device.IncidentId = updated_device.IncidentId;
 
             _dbContext.SaveChanges();
             return _mapper.Map<DeviceDTO>(old_device);

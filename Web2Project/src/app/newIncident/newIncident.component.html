@@ -1,22 +1,22 @@
 <div class="form-row mt-2">
 
   <div class="list-group list-design">
-    <button type="button" class="list-group-item list-group-item-action" [routerLink]="['basic-information']">
+    <button type="button" class="list-group-item list-group-item-action" [routerLink]="navPaths[0]">
       Basic Information
     </button>
-    <button type="button" class="list-group-item list-group-item-action" [routerLink]="['devices']" [disabled]="newIncident" >
+    <button type="button" class="list-group-item list-group-item-action" [routerLink]="navPaths[1]" [disabled]="newIncident" >
       Devices
     </button>
-    <button type="button" class="list-group-item list-group-item-action" [routerLink]="['resolution']" [disabled]="newIncident" >
+    <button type="button" class="list-group-item list-group-item-action" [routerLink]="navPaths[2]" [disabled]="newIncident" >
       Resolution
     </button>
-    <button type="button" class="list-group-item list-group-item-action" [routerLink]="['calls']" [disabled]="newIncident" >
+    <button type="button" class="list-group-item list-group-item-action" [routerLink]="navPaths[3]" [disabled]="newIncident" >
       Calls
     </button>
-    <button type="button" class="list-group-item list-group-item-action" [routerLink]="['crews']" [disabled]="newIncident" >
+    <button type="button" class="list-group-item list-group-item-action" [routerLink]="navPaths[4]" [disabled]="newIncident" >
       Crew
     </button>
-    <button type="button" class="list-group-item list-group-item-action" [routerLink]="['multimedia']" [disabled]="newIncident" >
+    <button type="button" class="list-group-item list-group-item-action" [routerLink]="navPaths[5]" [disabled]="newIncident" >
       Multimedia Attachments
     </button>
   </div>

@@ -54,12 +54,23 @@ export class BasicInformationIncidentsComponent implements OnInit {
     private validation: ValidationService, private incidentService: IncidentService, private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+
+    const incidentId = this.route.snapshot.paramMap.get('id');
+    if(incidentId && incidentId != "")
+    {
+      this.tabMessaging.showEdit(+incidentId);  // poziva metodu servisa...koja salje id incidenta svim posmatracima
+      this.newIncident = false;
+      this.incidentId = +incidentId;
+      //this.loadIncident(this.incidentId);
+      //this.getNumberOfAffectedConsumers(this.incidentId);
+      //this.getNumberOfIncidentCalls(this.incidentId);
+    }
+
   }
 
 
   save() {
-    //this.tabMessaging.showEdit(1);  // poziva metodu servisa...koja salje id incidenta svim posmatracima
-
+    
     if (this.incidentForm.valid) {
 
       this.incident.confirmed = this.incidentForm.controls['confirmed'].value;
@@ -72,16 +83,20 @@ export class BasicInformationIncidentsComponent implements OnInit {
       this.incident.voltageLevel = +this.incidentForm.controls['voltageLevel'].value;
       this.incident.incidentType = +this.incidentForm.controls['incidentType'].value;
 
-      this.incident.assigned = this.incidentForm.controls['assigned'].value;
       if (this.incidentForm.controls['assigned'].value == "" || this.incidentForm.controls['assigned'].value == null) {
         this.incident.assigned = false;
         //this.incident.userId = null;  // bice null na back-u
       }
       else {
+        this.incident.assigned = this.incidentForm.controls['assigned'].value;
         this.incident.userId = 3;  // treba izvuci trenutnog usera
       }
 
+      // ne setuje se sada:
+      this.incident.priority = 0;
       this.incident.incidentStatus = 0;
+      this.incident.callNumber = 0;
+      this.incident.affectedCustomers = 0;
 
 
       this.isLoading = true;
@@ -92,7 +107,9 @@ export class BasicInformationIncidentsComponent implements OnInit {
           data => {
             console.log(data);
             this.snackBar.open("Incident created successfully." , "", { duration: 2500});
-            this.router.navigate(['incident/basic-information', data.incidentId])  // OVDE SE PROMENI LINK NA EDIT, TJ. DODA SE ID => POSLE: INDIKATOR DA SE PRESLO NA EDIT
+            //this.tabMessaging.showEdit(data.incidentId);
+            this.router.navigate(['newIncident/basic-information', data.incidentId])  // OVDE SE PROMENI LINK NA EDIT, TJ. DODA SE ID => POSLE: INDIKATOR DA SE PRESLO NA EDIT
+            
           },
           error => {
             this.isLoading = false;

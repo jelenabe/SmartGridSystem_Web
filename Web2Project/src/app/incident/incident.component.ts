@@ -3,46 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { FormControl } from '@angular/forms';
-
-export interface PeriodicElement {
-  id: string;
-  type: string;
-  priority: string;
-  confirm: string;
-  status: string;
-  ETA: string;
-  ATA: string;
-  outage_time: string;
-  ETR: string;
-  affected_consumers: string;
-  calls: string;
-  voltage_level: string;
-  scheduled_time: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {id: '1', type: 'Hydrogen', priority: 'Beryllium', confirm: 'Hydrogen', status: 'Hydrogen', ETA: 'Hydrogen', ATA: 'Hydrogen', outage_time: 'Hydrogen', ETR: 'Hydrogen', affected_consumers: 'Hydrogen', calls: 'Hydrogen', voltage_level: 'Hydrogen', scheduled_time: 'Hydrogen'},
-  {id: '2', type: 'Lithium', priority: 'Hydrogen', confirm: 'Hydrogen', status: 'Beryllium', ETA: 'Hydrogen', ATA: 'Hydrogen', outage_time: 'Hydrogen', ETR: 'Hydrogen', affected_consumers: 'Hydrogen', calls: 'Hydrogen', voltage_level: 'Hydrogen', scheduled_time: 'Hydrogen'},
-  {id: '3', type: 'Hydrogen', priority: 'Hydrogen', confirm: 'Hydrogen', status: 'Lithium', ETA: 'Hydrogen', ATA: 'Hydrogen', outage_time: 'Hydrogen', ETR: 'Hydrogen', affected_consumers: 'Hydrogen', calls: 'Hydrogen', voltage_level: 'Hydrogen', scheduled_time: 'Hydrogen'},
-  {id: '4', type: 'Hydrogen', priority: 'Beryllium', confirm: 'Hydrogen', status: 'Hydrogen', ETA: 'Hydrogen', ATA: 'Lithium', outage_time: 'Lithium', ETR: 'Hydrogen', affected_consumers: 'Hydrogen', calls: 'Hydrogen', voltage_level: 'Hydrogen', scheduled_time: 'Hydrogen'},
-  {id: '5', type: 'Hydrogen', priority: 'Hydrogen', confirm: 'Hydrogen', status: 'Hydrogen', ETA: 'Hydrogen', ATA: 'Hydrogen', outage_time: 'Hydrogen', ETR: 'Hydrogen', affected_consumers: 'Hydrogen', calls: 'Hydrogen', voltage_level: 'Hydrogen', scheduled_time: 'Hydrogen'},
-  {id: '6', type: 'Hydrogen', priority: 'Lithium', confirm: 'Hydrogen', status: 'Hydrogen', ETA: 'Hydrogen', ATA: 'Hydrogen', outage_time: 'Beryllium', ETR: 'Lithium', affected_consumers: 'Hydrogen', calls: 'Hydrogen', voltage_level: 'Hydrogen', scheduled_time: 'Hydrogen'},
-  {id: '7', type: 'Lithium', priority: 'Hydrogen', confirm: 'Hydrogen', status: 'Hydrogen', ETA: 'Lithium', ATA: 'Hydrogen', outage_time: 'Hydrogen', ETR: 'Hydrogen', affected_consumers: 'Hydrogen', calls: 'Hydrogen', voltage_level: 'Hydrogen', scheduled_time: 'Hydrogen'},
-  {id: '8', type: 'Hydrogen', priority: 'Hydrogen', confirm: 'Hydrogen', status: 'Hydrogen', ETA: 'Hydrogen', ATA: 'Hydrogen', outage_time: 'Hydrogen', ETR: 'Hydrogen', affected_consumers: 'Hydrogen', calls: 'Hydrogen', voltage_level: 'Hydrogen', scheduled_time: 'Hydrogen'},
-  {id: '9', type: 'Hydrogen', priority: 'Hydrogen', confirm: 'Hydrogen', status: 'Hydrogen', ETA: 'Hydrogen', ATA: 'Hydrogen', outage_time: 'Hydrogen', ETR: 'Hydrogen', affected_consumers: 'Hydrogen', calls: 'Hydrogen', voltage_level: 'Hydrogen', scheduled_time: 'Hydrogen'},
-  {id: '10', type: 'Hydrogen', priority: 'Hydrogen', confirm: 'Hydrogen', status: 'Hydrogen', ETA: 'Beryllium', ATA: 'Hydrogen', outage_time: 'Hydrogen', ETR: 'Hydrogen', affected_consumers: 'Hydrogen', calls: 'Hydrogen', voltage_level: 'Hydrogen', scheduled_time: 'Hydrogen'},
-  {id: '11', type: 'Hydrogen', priority: 'Beryllium', confirm: 'Hydrogen', status: 'Hydrogen', ETA: 'Hydrogen', ATA: 'Hydrogen', outage_time: 'Hydrogen', ETR: 'Hydrogen', affected_consumers: 'Hydrogen', calls: 'Hydrogen', voltage_level: 'Hydrogen', scheduled_time: 'Hydrogen'},
-  {id: '12', type: 'Lithium', priority: 'Hydrogen', confirm: 'Hydrogen', status: 'Beryllium', ETA: 'Hydrogen', ATA: 'Hydrogen', outage_time: 'Hydrogen', ETR: 'Hydrogen', affected_consumers: 'Hydrogen', calls: 'Hydrogen', voltage_level: 'Hydrogen', scheduled_time: 'Hydrogen'},
-  {id: '13', type: 'Hydrogen', priority: 'Hydrogen', confirm: 'Hydrogen', status: 'Lithium', ETA: 'Hydrogen', ATA: 'Hydrogen', outage_time: 'Hydrogen', ETR: 'Hydrogen', affected_consumers: 'Hydrogen', calls: 'Hydrogen', voltage_level: 'Hydrogen', scheduled_time: 'Hydrogen'},
-  {id: '14', type: 'Hydrogen', priority: 'Beryllium', confirm: 'Hydrogen', status: 'Hydrogen', ETA: 'Hydrogen', ATA: 'Lithium', outage_time: 'Lithium', ETR: 'Hydrogen', affected_consumers: 'Hydrogen', calls: 'Hydrogen', voltage_level: 'Hydrogen', scheduled_time: 'Hydrogen'},
-  {id: '15', type: 'Hydrogen', priority: 'Hydrogen', confirm: 'Hydrogen', status: 'Hydrogen', ETA: 'Hydrogen', ATA: 'Hydrogen', outage_time: 'Hydrogen', ETR: 'Hydrogen', affected_consumers: 'Hydrogen', calls: 'Hydrogen', voltage_level: 'Hydrogen', scheduled_time: 'Hydrogen'},
-  {id: '16', type: 'Hydrogen', priority: 'Lithium', confirm: 'Hydrogen', status: 'Hydrogen', ETA: 'Hydrogen', ATA: 'Hydrogen', outage_time: 'Beryllium', ETR: 'Lithium', affected_consumers: 'Hydrogen', calls: 'Hydrogen', voltage_level: 'Hydrogen', scheduled_time: 'Hydrogen'},
-  {id: '17', type: 'Lithium', priority: 'Hydrogen', confirm: 'Hydrogen', status: 'Hydrogen', ETA: 'Lithium', ATA: 'Hydrogen', outage_time: 'Hydrogen', ETR: 'Hydrogen', affected_consumers: 'Hydrogen', calls: 'Hydrogen', voltage_level: 'Hydrogen', scheduled_time: 'Hydrogen'},
-  {id: '18', type: 'Hydrogen', priority: 'Hydrogen', confirm: 'Hydrogen', status: 'Hydrogen', ETA: 'Hydrogen', ATA: 'Hydrogen', outage_time: 'Hydrogen', ETR: 'Hydrogen', affected_consumers: 'Hydrogen', calls: 'Hydrogen', voltage_level: 'Hydrogen', scheduled_time: 'Hydrogen'},
-  {id: '19', type: 'Hydrogen', priority: 'Hydrogen', confirm: 'Hydrogen', status: 'Hydrogen', ETA: 'Hydrogen', ATA: 'Hydrogen', outage_time: 'Hydrogen', ETR: 'Hydrogen', affected_consumers: 'Hydrogen', calls: 'Hydrogen', voltage_level: 'Hydrogen', scheduled_time: 'Hydrogen'},
-  {id: '20', type: 'Hydrogen', priority: 'Hydrogen', confirm: 'Hydrogen', status: 'Hydrogen', ETA: 'Beryllium', ATA: 'Hydrogen', outage_time: 'Hydrogen', ETR: 'Hydrogen', affected_consumers: 'Hydrogen', calls: 'Hydrogen', voltage_level: 'Hydrogen', scheduled_time: 'Hydrogen'},
-];
-
+import { Incident } from '../models/incident';
+import { IncidentService } from '../services/incident.service';
 
 @Component({
   selector: 'app-incident',
@@ -50,19 +12,19 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./incident.component.css']
 })
 export class IncidentComponent implements OnInit, AfterViewInit{
+  incidents:Incident[] = [];
 
-  constructor() { }
+  displayedColumns = ['incidentId', 'incidentType', 'priority', 'confirmed', 'incidentStatus', 'eta', 'ata', 'outageTime', 'etr', 'affectedCustomers', 'callNumber', 'voltageLevel', 'scheduledTime'];
+  dataSource: MatTableDataSource<Incident>;
 
-  
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  constructor(private incidentService:IncidentService) { }
 
   ngOnInit() {
+    this.getIncidents();
   }
-
-  displayedColumns = ['id', 'type', 'priority', 'confirm', 'status', 'ETA', 'ATA', 'outage_time', 'ETR', 'affected_consumers', 'calls', 'voltage_level', 'scheduled_time'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -74,6 +36,41 @@ export class IncidentComponent implements OnInit, AfterViewInit{
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  getIncidents()
+  {
+    this.incidentService.getAllIncidents().subscribe(
+      data =>{
 
+        this.incidents = data;
+        this.dataSource = new MatTableDataSource(data);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+       
+      },
+      error =>{
+
+        this.getIncidents();
+
+      }
+    )
+  }
+
+  getTypeString(type: number) {
+    switch (type) {
+      case 0:
+        return "PLANNED";
+      case 1:
+        return "UNPLANNED";
+    }
+    return "UNKNOWN";
+  }
+
+  getStatusString(type: number) {
+    switch (type) {
+      case 0:
+        return "DISPATCHED";
+    }
+    return "UNKNOWN";
+  }
 
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,69 @@ namespace Web2Project_API.Repository
     {
         private readonly ModelDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly IOutageRepo _callRepo;
+        private readonly IDeviceRepo _deviceRepo;
 
-        public IncidentRepo(ModelDbContext dbContext, IMapper mapper)
+        public IncidentRepo(ModelDbContext dbContext, IMapper mapper, IOutageRepo callRepo, IDeviceRepo deviceRepo)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _callRepo = callRepo;
+            _deviceRepo = deviceRepo;
+        }
+
+        public void AddDeviceToIncident(int incidentId, int deviceId)
+        {
+            Incident incident = _dbContext.Incidents.Include(x => x.Devices)
+                                                    .ThenInclude(o => o.Location)
+                                                    .FirstOrDefault(x => x.IncidentId == incidentId);
+            if (incident == null)
+            {
+                throw new Exception($"Incident with id {incidentId} does not exist.");
+            }
+
+            Device device = _dbContext.Devices.Include(x => x.Location).FirstOrDefault(x => x.DeviceId == deviceId);
+            if (device == null)
+            {
+                throw new Exception($"Device with id = { deviceId} does not exists!");
+            }
+
+            // svaki sledeci device mora biti na istoj lokaciji kao prethodni device-ovi:
+            foreach (Device d in incident.Devices)
+            {
+                if ((d.Location.PostNumber == device.Location.PostNumber) && 
+                    (d.Location.Street.Equals(device.Location.Street)) &&
+                        (d.Location.City.Equals(device.Location.City)))
+                {
+                    throw new Exception($"Device has to be on {d.Location.Street}, {d.Location.City}, {d.Location.PostNumber}!");
+                }
+                    
+            }
+
+            // pozivi vezani za odabrane uredjaje, preko adrese:
+            // pozivi koji nisu ni u jednom incidentu do sada, a kojima je lokacija ista kao odabranim device-ovima, vezujemo za dati incident:
+            List<Call> callWithoutIncident = _dbContext.Calls.Include("Location").Where(x => x.IncidentId == null).ToList();
+            foreach (Call c in callWithoutIncident)
+            {
+                if ((c.Location.PostNumber == device.Location.PostNumber) &&
+                    (c.Location.Street.Equals(device.Location.Street)) &&
+                        (c.Location.City.Equals(device.Location.City)))
+                {
+                    c.IncidentId = incidentId;
+                    _callRepo.UpdateCall(c);
+                }
+
+            }
+
+            
+            if (incident.Devices.Find(x => x.DeviceId == deviceId) != null)
+                throw new Exception($"Device with id = {deviceId} is already added to incident!");
+
+            device.IncidentId = incidentId;
+            _deviceRepo.UpdateDevice(_mapper.Map<DeviceDTO>(device));
+
+            _dbContext.SaveChanges();
+            
         }
 
         public IncidentDto AddIncident(IncidentDto newIncident)
@@ -44,7 +103,7 @@ namespace Web2Project_API.Repository
             Incident incident = _mapper.Map<Incident>(newIncident);
 
             incident.IncidentId = 0;
-            incident.Priority = 0;  // videti...
+            incident.Priority = 0;
 
             if (incident.ETR != null)
             {
@@ -77,7 +136,7 @@ namespace Web2Project_API.Repository
         public void DeleteIncident(int incidentId)
         {
             Incident incident = _dbContext.Incidents.FirstOrDefault(x => x.IncidentId == incidentId); // dodati logiku za kaskadno brisanje
-            
+
             if (incident == null)
                 throw new Exception($"Incident with id = {incidentId} dos not exist.");
 
@@ -100,6 +159,74 @@ namespace Web2Project_API.Repository
             return _mapper.Map<IncidentDto>(incident);
         }
 
+        public IEnumerable<DeviceDTO> GetIncidentDevices(int incidentId)
+        {
+            Incident incident = _dbContext.Incidents.Include(x => x.Devices)
+                                                   .ThenInclude(o => o.Location)
+                                                   .FirstOrDefault(x => x.IncidentId == incidentId);
+            if (incident == null)
+            {
+                throw new Exception($"Incident with id {incidentId} does not exist!");
+            }
+
+            List<Device> incidentDevices = new List<Device>();
+
+            foreach (Device d in incident.Devices)
+            {
+                incidentDevices.Add(d);
+            }
+
+            return _mapper.Map<IEnumerable<DeviceDTO>>(incidentDevices);
+
+        }
+
+        public List<DeviceDTO> GetUnconnectedDevices(int incidentId)
+        {
+            Incident incident = _dbContext.Incidents.Include(x => x.Devices)
+                                                  .ThenInclude(o => o.Location)
+                                                  .FirstOrDefault(x => x.IncidentId == incidentId);
+            if (incident == null)
+                throw new Exception($"Incident with id {incidentId} does not exist.");
+
+            List<Device> allDevices = _dbContext.Devices.Include("Location").ToList();
+            List<Device> unconnectedDevices = new List<Device>();
+
+            foreach(Device d in allDevices)
+            {
+                if(d.IncidentId != incidentId)
+                {
+                    unconnectedDevices.Add(d);
+                }
+            }
+
+            return _mapper.Map<List<DeviceDTO>>(unconnectedDevices);
+
+        }
+
+        public void RemoveDeviceFromIncindet(int incidentId, int deviceId)
+        {
+            Incident incident = _dbContext.Incidents.Include(x => x.Devices)
+                                                   .ThenInclude(o => o.Location)
+                                                   .FirstOrDefault(x => x.IncidentId == incidentId);
+            if (incident == null)
+                throw new Exception($"Incident with id {incidentId} does not exist.");
+
+            Device device = _dbContext.Devices.Find(deviceId);
+
+            if (device == null)
+                throw new Exception($"Device with id = { deviceId} does not exists!");
+
+            Device device_for_remove = incident.Devices.Find(x => x.DeviceId == deviceId);
+
+            if (device_for_remove == null)
+                throw new Exception($"Device with id = {deviceId} is not connected with incident with id = {incidentId}");
+
+            incident.Devices.Remove(device_for_remove);
+            UpdateIncident(_mapper.Map<IncidentDto>(incident));
+
+            _dbContext.SaveChanges();
+        }
+
         public IncidentDto UpdateIncident(IncidentDto updated)
         {
             if (!Enum.IsDefined(typeof(IncidentType), updated.IncidentType))
@@ -107,7 +234,7 @@ namespace Web2Project_API.Repository
 
             if (!Enum.IsDefined(typeof(IncidentStatus), updated.IncidentStatus))
                 throw new Exception("Undefined incident status!");
-            
+
             if (updated.VoltageLevel <= 0)
                 throw new Exception("Voltage level have to be greater than 0!");
 
@@ -135,7 +262,7 @@ namespace Web2Project_API.Repository
             oldIncident.OutageTime = updated.OutageTime;
             oldIncident.ScheduledTime = updated.ScheduledTime;
             oldIncident.IncidentType = updated.IncidentType;
-            oldIncident.IncidentStatus = updated.IncidentStatus;      
+            oldIncident.IncidentStatus = updated.IncidentStatus;
             oldIncident.VoltageLevel = updated.VoltageLevel;
             oldIncident.ResolutionCauses = updated.ResolutionCauses;
             oldIncident.ResolutionSubcauses = updated.ResolutionSubcauses;

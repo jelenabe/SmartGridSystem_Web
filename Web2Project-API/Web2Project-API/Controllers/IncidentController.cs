@@ -93,6 +93,63 @@ namespace Web2Project_API.Controllers
         }
 
 
+        [HttpGet("{incidentId}/devices")]
+        public IActionResult GetIncidentDevices(int incidentId)
+        {
+            try
+            {
+                return Ok(_incidentRepo.GetIncidentDevices(incidentId));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+
+        [HttpPost("{incidentId}/device/{deviceId}")]
+        public IActionResult AddDeviceToIncident(int incidentId, int deviceId)
+        {
+            try
+            {
+                _incidentRepo.AddDeviceToIncident(incidentId, deviceId);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+
+        [HttpGet("{incidentId}/unconnectedDevices")]
+        public IActionResult GetUnconnectedDevices(int incidentId)
+        {
+            try
+            {
+                return Ok(_incidentRepo.GetUnconnectedDevices(incidentId));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPut("{incidentId}/removeDevice/{deviceId}")]
+        public IActionResult RemoveDeviceFromIncindet(int incidentId, int deviceId)
+        {
+            try
+            {
+                _incidentRepo.RemoveDeviceFromIncindet(incidentId, deviceId);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+        }
+
 
     }
 }

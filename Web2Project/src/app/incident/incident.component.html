@@ -23,15 +23,15 @@
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
       <!-- Name Column -->
-      <ng-container matColumnDef="id" sticky>
+      <ng-container matColumnDef="incidentId" sticky>
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.incidentId}} </td>
       </ng-container>
 
       <!-- Position Column -->
-      <ng-container matColumnDef="type" sticky>
+      <ng-container matColumnDef="incidentType" sticky>
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
-        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+        <td mat-cell *matCellDef="let element"> {{getTypeString(element.incidentType)}} </td>
       </ng-container>
 
       <!-- Weight Column -->
@@ -41,63 +41,63 @@
       </ng-container>
 
       <!-- Symbol Column -->
-      <ng-container matColumnDef="confirm">
+      <ng-container matColumnDef="confirmed">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Confirm </th>
-        <td mat-cell *matCellDef="let element"> {{element.confirm}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.confirmed}} </td>
       </ng-container>
 
       <!-- Star Column -->
-      <ng-container matColumnDef="status">
+      <ng-container matColumnDef="incidentStatus">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+        <td mat-cell *matCellDef="let element"> {{getStatusString(element.incidentStatus)}} </td>
       </ng-container>
 
       <!-- Star Column -->
-      <ng-container matColumnDef="ETA">
+      <ng-container matColumnDef="eta">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> ETA </th>
-        <td mat-cell *matCellDef="let element"> {{element.ETA}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.eta}} </td>
       </ng-container>
 
       <!-- Star Column -->
-      <ng-container matColumnDef="ATA">
+      <ng-container matColumnDef="ata">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> ATA </th>
-        <td mat-cell *matCellDef="let element"> {{element.ATA}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.ata}} </td>
       </ng-container>
 
       <!-- Star Column -->
-      <ng-container matColumnDef="outage_time">
+      <ng-container matColumnDef="outageTime">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Outage time </th>
-        <td mat-cell *matCellDef="let element"> {{element.outage_time}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.outageTime}} </td>
       </ng-container>
 
       <!-- Star Column -->
-      <ng-container matColumnDef="ETR">
+      <ng-container matColumnDef="etr">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> ETR </th>
-        <td mat-cell *matCellDef="let element"> {{element.ETR}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.etr}} </td>
       </ng-container>
 
       <!-- Star Column -->
-      <ng-container matColumnDef="affected_consumers">
+      <ng-container matColumnDef="affectedCustomers">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Affected consumers </th>
-        <td mat-cell *matCellDef="let element"> {{element.affected_consumers}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.affectedCustomers}} </td>
       </ng-container>
 
       <!-- Star Column -->
-      <ng-container matColumnDef="calls">
+      <ng-container matColumnDef="callNumber">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Calls </th>
-        <td mat-cell *matCellDef="let element"> {{element.calls}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.callNumber}} </td>
       </ng-container>
 
       <!-- Star Column -->
-      <ng-container matColumnDef="voltage_level">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Voltage level </th>
-        <td mat-cell *matCellDef="let element"> {{element.voltage_level}} </td>
+      <ng-container matColumnDef="voltageLevel">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Voltage level [kW]</th>
+        <td mat-cell *matCellDef="let element"> {{element.voltageLevel}} </td>
       </ng-container>
 
       <!-- Star Column -->
-      <ng-container matColumnDef="scheduled_time">
+      <ng-container matColumnDef="scheduledTime">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Scheduled time </th>
-        <td mat-cell *matCellDef="let element"> {{element.scheduled_time}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.scheduledTime}} </td>
       </ng-container>
 
       <!-- DA LI TREBA I Description ???!?!?!?!?! -->
