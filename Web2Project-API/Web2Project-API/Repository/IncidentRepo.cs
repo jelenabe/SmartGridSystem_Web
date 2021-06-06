@@ -133,6 +133,53 @@ namespace Web2Project_API.Repository
             return _mapper.Map<IncidentDto>(incident);
         }
 
+        public void AddResolution(int incidentId, ResolutionDTO resolution)
+        {
+            if (!Enum.IsDefined(typeof(CausesType), resolution.ResolutionCauses))
+                throw new Exception("Undefined resolution cause!");
+
+            if (!Enum.IsDefined(typeof(ConstructionTypes), resolution.ResolutionConstructionTypes))
+                throw new Exception("Undefined resolution construction type!");
+
+            if (!Enum.IsDefined(typeof(MaterialType), resolution.ResolutionMaterials))
+                throw new Exception("Undefined resolution material!");
+
+            if (!Enum.IsDefined(typeof(SubcausesType), resolution.ResolutionSubcauses))
+                throw new Exception("Undefined resolution subcase!");
+
+
+            if (resolution.ResolutionCauses.ToString().Equals("FAILURE"))
+            {
+                if (!resolution.ResolutionSubcauses.ToString().Equals("BURNED_OUT") && !resolution.ResolutionSubcauses.ToString().Equals("SHORT_CIRCUIT") && !(resolution.ResolutionSubcauses.ToString().Equals("MECHANICAL_FAILURE")))
+                    throw new Exception($"{resolution.ResolutionSubcauses} is not subcase of Failure!");
+            }
+            else if (resolution.ResolutionCauses.ToString().Equals("WEATHER"))
+            {
+                if (!resolution.ResolutionSubcauses.ToString().Equals("STORM") && !resolution.ResolutionSubcauses.ToString().Equals("RAIN") && !resolution.ResolutionSubcauses.ToString().Equals("WIND") && !resolution.ResolutionSubcauses.ToString().Equals("SNOW") && !resolution.ResolutionSubcauses.ToString().Equals("LIGHTING") && !resolution.ResolutionSubcauses.ToString().Equals("HURRICANE") && !resolution.ResolutionSubcauses.ToString().Equals("HAIL"))
+                    throw new Exception($"{resolution.ResolutionSubcauses} is not subcase of Weather!");
+            }else
+            {
+                if (!resolution.ResolutionSubcauses.ToString().Equals("BAD_INSTALL") && !resolution.ResolutionSubcauses.ToString().Equals("NO_SUPERVISION"))
+                    throw new Exception($"{resolution.ResolutionSubcauses} is not subcase of Human error!");
+            }
+
+            if (_dbContext.Incidents.Any(x => x.IncidentId == incidentId) == false)
+                throw new Exception($"Incident with id = {incidentId} does not exists!");
+
+
+            Incident incident = _dbContext.Incidents.Include(x => x.Devices)
+                                                    .ThenInclude(o => o.Location)
+                                                    .FirstOrDefault(x => x.IncidentId == incidentId);
+
+            incident.ResolutionCauses = (CausesType)Enum.Parse(typeof(CausesType), resolution.ResolutionCauses);
+            incident.ResolutionSubcauses = (SubcausesType)Enum.Parse(typeof(SubcausesType), resolution.ResolutionSubcauses);
+            incident.ResolutionMaterials = (MaterialType)Enum.Parse(typeof(MaterialType), resolution.ResolutionMaterials);
+            incident.ResolutionConstructionTypes = (ConstructionTypes)Enum.Parse(typeof(ConstructionTypes), resolution.ResolutionConstructionTypes);
+
+            _dbContext.SaveChanges();
+
+        }
+
         public void DeleteIncident(int incidentId)
         {
             Incident incident = _dbContext.Incidents.FirstOrDefault(x => x.IncidentId == incidentId); // dodati logiku za kaskadno brisanje
@@ -180,6 +227,26 @@ namespace Web2Project_API.Repository
 
         }
 
+        public ResolutionDTO GetResolutionOfIncidentById(int incidentId)
+        {
+            Incident incident = _dbContext.Incidents.Include(x => x.Devices)
+                                                  .ThenInclude(o => o.Location)
+                                                  .FirstOrDefault(x => x.IncidentId == incidentId);
+
+            if(incident.ResolutionCauses == null || incident.ResolutionSubcauses == null || incident.ResolutionMaterials == null || incident.ResolutionConstructionTypes == null)
+            {
+                return null;
+            }
+
+            ResolutionDTO resolution = new ResolutionDTO();
+            resolution.ResolutionCauses = ((CausesType)Enum.Parse(typeof(CausesType), incident.ResolutionCauses.ToString())).ToString();
+            resolution.ResolutionSubcauses = ((SubcausesType)Enum.Parse(typeof(SubcausesType), incident.ResolutionSubcauses.ToString())).ToString();
+            resolution.ResolutionConstructionTypes = ((ConstructionTypes)Enum.Parse(typeof(ConstructionTypes), incident.ResolutionConstructionTypes.ToString())).ToString();
+            resolution.ResolutionMaterials = ((MaterialType)Enum.Parse(typeof(MaterialType), incident.ResolutionMaterials.ToString())).ToString();
+
+            return resolution;
+        }
+
         public List<DeviceDTO> GetUnconnectedDevices(int incidentId)
         {
             Incident incident = _dbContext.Incidents.Include(x => x.Devices)
@@ -222,7 +289,7 @@ namespace Web2Project_API.Repository
                 throw new Exception($"Device with id = {deviceId} is not connected with incident with id = {incidentId}");
 
             incident.Devices.Remove(device_for_remove);
-            UpdateIncident(_mapper.Map<IncidentDto>(incident));
+            UpdateIncident(_mapper.Map<IncidentDto>(incident));  // probati bez ove linije  !!!!!!!!!!!!!!!!!!!!!!
 
             _dbContext.SaveChanges();
         }

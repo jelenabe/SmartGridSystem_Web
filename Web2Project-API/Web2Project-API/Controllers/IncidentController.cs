@@ -151,5 +151,42 @@ namespace Web2Project_API.Controllers
         }
 
 
+        [HttpPut("{incidentId}/addResolution")]
+        public IActionResult AddResolutionToIncident(int incidentId, [FromBody] ResolutionDTO resolution)
+        {
+            try
+            {
+                _incidentRepo.AddResolution(incidentId, resolution);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+        }
+
+        [HttpGet("{incidentId}/getResolution")]
+        public IActionResult GetResolutionFromIncidentById(int incidentId)
+        {
+            try
+            {
+                ResolutionDTO resolution = _incidentRepo.GetResolutionOfIncidentById(incidentId);
+                if (resolution == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(resolution);
+
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+            
+        }
+
+
     }
 }

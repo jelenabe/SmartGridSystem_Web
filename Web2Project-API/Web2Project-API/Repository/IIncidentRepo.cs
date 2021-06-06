@@ -19,6 +19,8 @@ namespace Web2Project_API.Repository
         void AddDeviceToIncident(int incidentId, int deviceId);
         List<DeviceDTO> GetUnconnectedDevices(int incidentId);
         void RemoveDeviceFromIncindet(int incidentId, int deviceId);
+        void AddResolution(int incidentId, ResolutionDTO resolution);
+        ResolutionDTO GetResolutionOfIncidentById(int incidentId);
 
     }
 }

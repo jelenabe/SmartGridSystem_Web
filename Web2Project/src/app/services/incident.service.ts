@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Device } from '../models/device';
 import { Incident } from '../models/incident';
+import { Resolution } from '../models/resolution';
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +63,16 @@ getAllUnconnectedDevices(incidentId: number):Observable<Device[]>{
 removeOneDeviceFromIncident(incidentId: number, deviceId: number):Observable<Incident>{
   let url = this.baseUrl.concat(`/${incidentId}/removeDevice/${deviceId}`);
   return this.http.put<Incident>(url, "");  //  ?!
+}
+
+newResolutionForIncident(incidentId: number, resolution: Resolution):Observable<Incident>{
+  let url = this.baseUrl.concat(`/${incidentId}/addResolution`);
+  return this.http.put<Incident>(url, resolution);
+}
+
+getResolutionFromIncidentById(incidentId:number):Observable<Resolution>{
+  let url = this.baseUrl.concat(`/${incidentId}/getResolution`);
+  return this.http.get<Resolution>(url);
 }
 
 }
