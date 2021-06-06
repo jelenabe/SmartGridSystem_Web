@@ -33,9 +33,6 @@
     <ng-container matColumnDef="Buttons">
       <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
       <td mat-cell *matCellDef="let element; let i" class="mat-cell">
-        <button mat-stroked-button color="primary" (click)="openEditCrew(i)">
-          Edit
-        </button>
         <button mat-stroked-button color="warn" (click)="deleteRow(i)">
           Remove
         </button>

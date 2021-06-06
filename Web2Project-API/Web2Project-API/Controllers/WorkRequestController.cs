@@ -24,6 +24,7 @@ namespace Web2Project_API.Controllers
         [HttpPost]
         public IActionResult InsertIncident([FromBody] WorkRequestDTO dto)
         {
+            string equipment = "";
             try
             {
                 WorkRequest workRequest = new WorkRequest();
@@ -38,7 +39,13 @@ namespace Web2Project_API.Controllers
                 workRequest.CreatedOn = dto.CreatedOn;
                 workRequest.DateOfTheChange = dto.DateOfTheChange;
                 workRequest.Emergency = dto.Emergency;
-                workRequest.Equipment = dto.Equipment;
+
+                foreach (var item in dto.Equipment)
+                {
+                    equipment += item.ToString();
+                }
+                workRequest.Equipment = equipment;
+
                 workRequest.EndDate = dto.EndDate;
                 workRequest.HistoryType = dto.HistoryType;
                 workRequest.Notes = dto.Notes;
@@ -88,13 +95,19 @@ namespace Web2Project_API.Controllers
         [Route("{id}")]
         public IActionResult UpdateWorkRequest([FromBody] WorkRequestDTO dto, [FromRoute] int id)
         {
+            string equipment = "";
+
             WorkRequest workRequest = new WorkRequest();
             workRequest.ChangedByUserId = dto.ChangedByUserId;
             workRequest.Company = dto.Company;
             workRequest.StartDate = dto.StartDate;
             workRequest.EndDate = dto.EndDate;
             workRequest.CreatedOn = dto.CreatedOn;
-            workRequest.Equipment = dto.Equipment;
+            foreach (var item in dto.Equipment)
+            {
+                equipment += item.ToString();
+            }
+            workRequest.Equipment = equipment;
             workRequest.HistoryType = dto.HistoryType;
             workRequest.Notes = dto.Notes;
             workRequest.Phone = dto.Phone;

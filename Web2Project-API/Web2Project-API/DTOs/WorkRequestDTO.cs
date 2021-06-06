@@ -19,7 +19,7 @@ namespace Web2Project_API.DTOs
         public DateTime DateOfTheChange { get; set; }
         public bool Emergency  { get; set; }
         public DateTime EndDate  { get; set; }
-        public String Equipment { get; set; }
+        public List<int> Equipment { get; set; }
         public HistoryType HistoryType { get; set; }
         public String Notes { get; set; }
         public String Phone { get; set; }

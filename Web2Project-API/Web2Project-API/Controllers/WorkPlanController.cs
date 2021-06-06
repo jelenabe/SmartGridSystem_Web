@@ -24,7 +24,7 @@ namespace Web2Project_API.Controllers
         [HttpPost]
         public IActionResult InsertIncident([FromBody] WorkPlanDTO dto)
         {
-
+            string eqipment = "";
             try
             {
                 WorkPlan workPlan = new WorkPlan();
@@ -38,7 +38,11 @@ namespace Web2Project_API.Controllers
                 workPlan.CreatedOn = dto.CreatedOn;
                 workPlan.DateOfTheChange = DateTime.Today;
                 workPlan.Details = dto.Details;
-                workPlan.Equipmet = dto.Equipmet;
+                foreach (var item in dto.Equipmet)
+                {
+                    eqipment += item.ToString();
+                }
+                workPlan.Equipmet = eqipment;
                 workPlan.EndDate = dto.EndDate;
                 workPlan.Notes = dto.Notes;
                 workPlan.Phone = dto.Phone;
@@ -48,7 +52,6 @@ namespace Web2Project_API.Controllers
                 workPlan.Type = dto.Type;
                 workPlan.HistroyType = dto.HistroyType;
                 workPlan.Instructions = dto.Instructions;
-                workPlan.Equipmet = dto.Equipmet;
 
                 WorkPlan newWorkPlan = _repo.AddWorkPlan(workPlan);
 
@@ -90,6 +93,8 @@ namespace Web2Project_API.Controllers
         [Route("{id}")]
         public IActionResult UpdateWorkPlan([FromBody] WorkPlanDTO dto, [FromRoute] int id)
         {
+            string equipment = "";
+
             WorkPlan workPlan = new WorkPlan();
             workPlan.ChangedByUserId = dto.ChangedByUserId;
             workPlan.Company = dto.Company;
@@ -97,7 +102,11 @@ namespace Web2Project_API.Controllers
             workPlan.EndDate = dto.EndDate;
             workPlan.CreatedOn = dto.CreatedOn;
             workPlan.Details = dto.Details;
-            workPlan.Equipmet = dto.Equipmet;
+            foreach (var item in dto.Equipmet)
+            {
+                equipment += item.ToString();
+            }
+            workPlan.Equipmet = equipment;
             workPlan.HistroyType = dto.HistroyType;
             workPlan.Instructions = dto.Instructions;
             workPlan.Notes = dto.Notes;

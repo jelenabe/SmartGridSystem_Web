@@ -42,6 +42,20 @@ namespace Web2Project_API.Repository
             return crew;
         }
 
+        public async Task<Crew> DeleteCrew(int id)
+        {
+            var crew = _context.Crews.FirstOrDefault(x => x.CrewId == id);
+            if(crew == null)
+            {
+                throw new Exception($"Crew with id = {id} dos not exist.");
+            }
+
+            _context.Crews.Remove(crew);
+            _context.SaveChanges();
+
+            return crew;
+        }
+
         public async Task<ActionResult<IEnumerable<object>>> GetAllCrewMembers()
         {
             //var list = _context.Users.Where(x => x.UserType == UserType.CREW_MEMBER && x.Approved == true).ToListAsync();
