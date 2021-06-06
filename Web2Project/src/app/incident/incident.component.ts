@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { FormControl } from '@angular/forms';
 import { Incident } from '../models/incident';
 import { IncidentService } from '../services/incident.service';
@@ -11,8 +11,9 @@ import { IncidentService } from '../services/incident.service';
   templateUrl: './incident.component.html',
   styleUrls: ['./incident.component.css']
 })
-export class IncidentComponent implements OnInit, AfterViewInit{
-  incidents:Incident[] = [];
+export class IncidentComponent implements OnInit, AfterViewInit {
+  incidents: Incident[] = [];
+  logUser: any;
 
   displayedColumns = ['incidentId', 'incidentType', 'priority', 'confirmed', 'incidentStatus', 'eta', 'ata', 'outageTime', 'etr', 'affectedCustomers', 'callNumber', 'voltageLevel', 'scheduledTime'];
   dataSource: MatTableDataSource<Incident>;
@@ -20,7 +21,7 @@ export class IncidentComponent implements OnInit, AfterViewInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private incidentService:IncidentService) { }
+  constructor(private incidentService: IncidentService) { }
 
   ngOnInit() {
     this.getIncidents();
@@ -36,18 +37,17 @@ export class IncidentComponent implements OnInit, AfterViewInit{
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  getIncidents()
-  {
+  getIncidents() {
     this.incidentService.getAllIncidents().subscribe(
-      data =>{
+      data => {
 
         this.incidents = data;
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-       
+
       },
-      error =>{
+      error => {
 
         this.getIncidents();
 
@@ -71,6 +71,37 @@ export class IncidentComponent implements OnInit, AfterViewInit{
         return "DISPATCHED";
     }
     return "UNKNOWN";
+  }
+
+  getAMineIncidentsButton() {
+    this.logUser = localStorage.getItem('id');
+    if(this.logUser != null){
+      this.logUser = +this.logUser;
+
+      this.incidentService.getMineIncidents(this.logUser).subscribe(
+        data => {
+  
+          this.incidents = data;
+          this.dataSource = new MatTableDataSource(data);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+  
+        },
+        error => {
+  
+          this.getAMineIncidentsButton();
+  
+        }
+      )
+
+    }
+    
+  }
+
+  getAllIncidentsButton() {
+
+    this.getIncidents();
+
   }
 
 }

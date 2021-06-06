@@ -122,12 +122,12 @@ namespace Web2Project_API.Controllers
         }
 
 
-        [HttpGet("{incidentId}/unconnectedDevices")]
-        public IActionResult GetUnconnectedDevices(int incidentId)
+        [HttpGet("unconnectedDevices")]
+        public IActionResult GetUnconnectedDevices()
         {
             try
             {
-                return Ok(_incidentRepo.GetUnconnectedDevices(incidentId));
+                return Ok(_incidentRepo.GetUnconnectedDevices());
             }
             catch (Exception e)
             {
@@ -185,6 +185,12 @@ namespace Web2Project_API.Controllers
                 return BadRequest(e.Message);
             }
             
+        }
+
+        [HttpGet("{logUserId}/getMineIncidents")]
+        public IActionResult GetMineIncidentsByLogUserId(string logUserId)
+        {
+            return Ok(_incidentRepo.GetMineIncidents(logUserId));
         }
 
 

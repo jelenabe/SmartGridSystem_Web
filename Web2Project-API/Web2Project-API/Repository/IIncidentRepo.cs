@@ -17,10 +17,11 @@ namespace Web2Project_API.Repository
 
         IEnumerable<DeviceDTO> GetIncidentDevices(int incidentId);
         void AddDeviceToIncident(int incidentId, int deviceId);
-        List<DeviceDTO> GetUnconnectedDevices(int incidentId);
+        List<DeviceDTO> GetUnconnectedDevices();
         void RemoveDeviceFromIncindet(int incidentId, int deviceId);
         void AddResolution(int incidentId, ResolutionDTO resolution);
         ResolutionDTO GetResolutionOfIncidentById(int incidentId);
+        IEnumerable<IncidentDto> GetMineIncidents(string logUserId);
 
     }
 }

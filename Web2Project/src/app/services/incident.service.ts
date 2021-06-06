@@ -55,8 +55,8 @@ addOneDeviceToIncident(incidentId: number, deviceId: number):Observable<Incident
   return this.http.post<Incident>(url, incident);  // ?!
 }
 
-getAllUnconnectedDevices(incidentId: number):Observable<Device[]>{
-  let url = this.baseUrl.concat(`/${incidentId}/unconnectedDevices`);
+getAllUnconnectedDevices():Observable<Device[]>{
+  let url = this.baseUrl.concat(`/unconnectedDevices`);
   return this.http.get<Device[]>(url);
 }  
 
@@ -74,5 +74,11 @@ getResolutionFromIncidentById(incidentId:number):Observable<Resolution>{
   let url = this.baseUrl.concat(`/${incidentId}/getResolution`);
   return this.http.get<Resolution>(url);
 }
+
+getMineIncidents(logUserId:number):Observable<Incident[]>{
+  let url = this.baseUrl.concat(`/${logUserId}/getMineIncidents`);
+  return this.http.get<Incident[]>(url);
+}
+
 
 }

@@ -227,6 +227,11 @@ namespace Web2Project_API.Repository
 
         }
 
+        public IEnumerable<IncidentDto> GetMineIncidents(string logUserId)
+        {
+            return _mapper.Map<List<IncidentDto>>(_dbContext.Incidents.Where(x => x.UserId.ToString() == logUserId).ToList());
+        }
+
         public ResolutionDTO GetResolutionOfIncidentById(int incidentId)
         {
             Incident incident = _dbContext.Incidents.Include(x => x.Devices)
@@ -247,25 +252,10 @@ namespace Web2Project_API.Repository
             return resolution;
         }
 
-        public List<DeviceDTO> GetUnconnectedDevices(int incidentId)
+        public List<DeviceDTO> GetUnconnectedDevices()
         {
-            Incident incident = _dbContext.Incidents.Include(x => x.Devices)
-                                                  .ThenInclude(o => o.Location)
-                                                  .FirstOrDefault(x => x.IncidentId == incidentId);
-            if (incident == null)
-                throw new Exception($"Incident with id {incidentId} does not exist.");
-
-            List<Device> allDevices = _dbContext.Devices.Include("Location").ToList();
-            List<Device> unconnectedDevices = new List<Device>();
-
-            foreach(Device d in allDevices)
-            {
-                if(d.IncidentId != incidentId)
-                {
-                    unconnectedDevices.Add(d);
-                }
-            }
-
+            List<Device> unconnectedDevices = _dbContext.Devices.Include("Location").Where(x => x.IncidentId == null).ToList();
+            
             return _mapper.Map<List<DeviceDTO>>(unconnectedDevices);
 
         }

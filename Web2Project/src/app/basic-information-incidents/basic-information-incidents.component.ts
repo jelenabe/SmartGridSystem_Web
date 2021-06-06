@@ -50,14 +50,15 @@ export class BasicInformationIncidentsComponent implements OnInit {
   numberOfCalls: number = 0;
   priority: number = 0;
 
+  logUser: any;
+
   constructor(private tabMessaging: EnableButtonService, private route: ActivatedRoute,
     private validation: ValidationService, private incidentService: IncidentService, private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
 
     const incidentId = this.route.snapshot.paramMap.get('id');
-    if(incidentId && incidentId != "")
-    {
+    if (incidentId && incidentId != "") {
       this.tabMessaging.showEdit(+incidentId);  // poziva metodu servisa...koja salje id incidenta svim posmatracima
       this.newIncident = false;
       this.incidentId = +incidentId;
@@ -70,7 +71,7 @@ export class BasicInformationIncidentsComponent implements OnInit {
 
 
   save() {
-    
+
     if (this.incidentForm.valid) {
 
       this.incident.confirmed = this.incidentForm.controls['confirmed'].value;
@@ -89,7 +90,10 @@ export class BasicInformationIncidentsComponent implements OnInit {
       }
       else {
         this.incident.assigned = this.incidentForm.controls['assigned'].value;
-        this.incident.userId = 3;  // treba izvuci trenutnog usera
+        this.logUser = localStorage.getItem('id');
+        if (this.logUser != null) {
+          this.incident.userId = this.logUser;
+        }
       }
 
       // ne setuje se sada:
@@ -106,15 +110,15 @@ export class BasicInformationIncidentsComponent implements OnInit {
         this.incidentService.createNewIncident(this.incident).subscribe(
           data => {
             console.log(data);
-            this.snackBar.open("Incident created successfully." , "", { duration: 2500});
+            this.snackBar.open("Incident created successfully.", "", { duration: 2500 });
             //this.tabMessaging.showEdit(data.incidentId);
             this.router.navigate(['newIncident/basic-information', data.incidentId])  // OVDE SE PROMENI LINK NA EDIT, TJ. DODA SE ID => POSLE: INDIKATOR DA SE PRESLO NA EDIT
-            
+
           },
           error => {
             this.isLoading = false;
             if (error.error instanceof ProgressEvent) {
-              this.snackBar.open("Server is unreachable!" , "", { duration: 2500});
+              this.snackBar.open("Server is unreachable!", "", { duration: 2500 });
             } else {
 
               console.log(error.error);
@@ -128,7 +132,7 @@ export class BasicInformationIncidentsComponent implements OnInit {
 
         this.incidentService.updateIncident(this.incident).subscribe(
           data => {
-            this.snackBar.open("Incident updated successfully" , "", { duration: 2500});
+            this.snackBar.open("Incident updated successfully", "", { duration: 2500 });
             this.incident = data;
             this.isLoading = false;
 
@@ -137,7 +141,7 @@ export class BasicInformationIncidentsComponent implements OnInit {
             this.isLoading = false;
             if (error.error instanceof ProgressEvent) {
 
-              this.snackBar.open("Server is unreachable!" , "", { duration: 2500});
+              this.snackBar.open("Server is unreachable!", "", { duration: 2500 });
             } else {
 
               this.snackBar.open(error.error);

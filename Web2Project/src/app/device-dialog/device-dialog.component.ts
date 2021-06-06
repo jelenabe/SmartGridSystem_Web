@@ -11,40 +11,6 @@ import { Device } from '../models/device';
 import { Location } from '../models/location';
 import { DeviceService } from '../services/device.service';
 import { IncidentService } from '../services/incident.service';
-/*
-export interface DeviceColumns {
-  id: string;
-  name: string;
-  type: string;
-  coordinates: string;
-  address: string;
-}
-
-const ELEMENT_DATA: DeviceColumns[] = [
-  {id: '1', name: 'BRE_15413', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Masarikova 2'},
-  {id: '2', name: 'BRE_15413', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Mileve Maric 14'},
-  {id: '3', name: 'BRE_15413', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Mileve Maric 14'},
-  {id: '4', name: 'BRE_15413', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Masarikova 2'},
-  {id: '5', name: 'DIS_641561', type: 'Disonnector', coordinates: '465d1cs56ac1', address: 'Masarikova 2'},
-  {id: '6', name: 'BRE_15413', type: 'Disonnector', coordinates: '465d1cs56ac1', address: 'Masarikova 2'},
-  {id: '7', name: 'BRE_15413', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Masarikova 2'},
-  {id: '8', name: 'BRE_15413', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Mileve Maric 14'},
-  {id: '9', name: 'DIS_641561', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Masarikova 2'},
-  {id: '10', name: 'BRE_15413', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Masarikova 2'},
-  {id: '11', name: 'BRE_15413', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Masarikova 2'},
-  {id: '1', name: 'BRE_15413', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Masarikova 2'},
-  {id: '2', name: 'BRE_15413', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Mileve Maric 14'},
-  {id: '3', name: 'BRE_15413', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Mileve Maric 14'},
-  {id: '4', name: 'BRE_15413', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Masarikova 2'},
-  {id: '5', name: 'DIS_641561', type: 'Disonnector', coordinates: '465d1cs56ac1', address: 'Masarikova 2'},
-  {id: '6', name: 'BRE_15413', type: 'Disonnector', coordinates: '465d1cs56ac1', address: 'Masarikova 2'},
-  {id: '7', name: 'BRE_15413', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Masarikova 2'},
-  {id: '8', name: 'BRE_15413', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Mileve Maric 14'},
-  {id: '9', name: 'DIS_641561', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Masarikova 2'},
-  {id: '10', name: 'BRE_15413', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Masarikova 2'},
-  {id: '11', name: 'BRE_15413', type: 'Breaker', coordinates: '465d1cs56ac1', address: 'Masarikova 2'},
-];
-*/
 
 @Component({
   selector: 'app-device-dialog',
@@ -54,7 +20,6 @@ const ELEMENT_DATA: DeviceColumns[] = [
 export class DeviceDialogComponent implements OnInit {
 
   displayedColumns = ['deviceId', 'name', 'type', 'coordinates', 'address', "icon_add"];
-  //selection = new SelectionModel<DeviceColumns>(true, []);  // checkbox
   dataSource: MatTableDataSource<Device>;
 
   incidentId: number;
@@ -91,35 +56,6 @@ export class DeviceDialogComponent implements OnInit {
   }
 
 
-// checkbox:
-/** Whether the number of selected elements matches the total number of rows. */
-/*
-isAllSelected() {
-  const numSelected = this.selection.selected.length;
-  const numRows = this.dataSource.data.length;
-  return numSelected === numRows;
-}
-*/
-
-/** Selects all rows if they are not all selected; otherwise clear selection. */
-/*
-masterToggle() {
-  this.isAllSelected() ?
-      this.selection.clear() :
-      this.dataSource.data.forEach(row => this.selection.select(row));
-}
-*/
-
- /** The label for the checkbox on the passed row */
- /*
- checkboxLabel(row?: DeviceColumns): string {
-  if (!row) {
-    return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-  }
-  return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
-}
-*/
-
 addDeviceToIncident(deviceId: number)
   {
 
@@ -151,7 +87,7 @@ addDeviceToIncident(deviceId: number)
 
   getUnconnectedDevices()
   {
-    this.incidentService.getAllUnconnectedDevices(this.incidentId).subscribe(
+    this.incidentService.getAllUnconnectedDevices().subscribe(
       data =>{
 
         console.log(data);
