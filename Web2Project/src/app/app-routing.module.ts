@@ -15,13 +15,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DevicesComponent } from './devices/devices.component';
 import { EditConsumerComponent } from './edit-consumer/edit-consumer.component';
 import { EquipmentComponent } from './equipment/equipment.component';
+import { EquipmentWPComponent } from './equipmentWP/equipmentWP.component';
 import { FrontPageComponent } from './front-page/front-page.component';
+import { HistoryOfStateChangeWorkPlanComponent } from './history-of-state-change-work-plan/history-of-state-change-work-plan.component';
 import { HistoryOfStateChangesComponent } from './historyOfStateChanges/historyOfStateChanges.component';
 import { HomeComponent } from './home/home.component';
 import { IncidentComponent } from './incident/incident.component';
 import { LoginComponent } from './login/login.component';
 import { MapComponent } from './map/map.component';
 import { MultimediaAttachmentsIncidentsComponent } from './multimedia-attachments-incidents/multimedia-attachments-incidents.component';
+import { MultimediaAttachmentsWPComponent } from './multimedia-attachmentsWP/multimedia-attachmentsWP.component';
 import { MultimediaAttachmentsComponent } from './multimediaAttachments/multimediaAttachments.component';
 import { NewCallComponent } from './newCall/newCall.component';
 import { NewConsumerComponent } from './newConsumer/newConsumer.component';
@@ -236,15 +239,15 @@ const routes: Routes = [
       },
       {
         path: 'historyOfStateChange',
-        component: HistoryOfStateChangesComponent
+        component: HistoryOfStateChangeWorkPlanComponent
       },
       {
         path: 'equipment',
-        component: EquipmentComponent
+        component: EquipmentWPComponent
       },
       {
         path: 'multimediaAttachments',
-        component: MultimediaAttachmentsComponent
+        component: MultimediaAttachmentsWPComponent
       },
       {
         path: 'switchingInstruction',

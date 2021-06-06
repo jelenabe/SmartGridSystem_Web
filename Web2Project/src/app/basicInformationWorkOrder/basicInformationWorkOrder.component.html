@@ -1,7 +1,9 @@
 <div class="container">
   <h2>Basic Information</h2>
 
-  <form  (ngSubmit)="nextBasic()" #myForm="ngForm">
+  <form  (ngSubmit)="nextBasic()" ngNativeValidate  #myForm="ngForm">
+    
+    <!--Type-->
     <div class="form-row">
       <div class="form-group col-md-6">
         <div class="input-group mb-3">
@@ -23,6 +25,7 @@
         </div>
       </div>
 
+      <!--Emergency-->
       <div class="form-group col-md-6">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
@@ -46,6 +49,7 @@
       </div>
     </div>
 
+    <!--Status-->
     <div class="form-row">
       <div class="form-group col-md-6">
         <div class="input-group mb-3">
@@ -65,6 +69,8 @@
           />
         </div>
       </div>
+
+      <!--Company-->
       <div class="form-group col-md-6">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
@@ -154,11 +160,11 @@
           <input
             name="createdOn"
             [(ngModel)]="basicInfoModel.createdOn"
-            type="date"
+            type="text"
             class="form-control"
             aria-label="Default"
             aria-describedby="inputGroup-sizing-default"
-            required
+            readonly
           />
         </div>
       </div>
@@ -237,6 +243,7 @@
         class="form-control"
         aria-label="Default"
         aria-describedby="inputGroup-sizing-default"
+        required
       />
     </div>
 

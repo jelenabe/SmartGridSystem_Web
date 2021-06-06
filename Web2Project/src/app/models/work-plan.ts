@@ -8,9 +8,8 @@ export class WorkPlan{
     startDate: Date;
     endDate: Date;
     createdOn: Date;
-    dateOfTheChange: Date;
-    details: string;
-    Equipment: string;
+    dateOfChange: Date;
+    equipment: [];
     histroyType: number;
     instructions: string;
     notes: string;

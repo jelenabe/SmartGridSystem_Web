@@ -1,0 +1,54 @@
+<div class="container" style="width: 100%; padding-top: 20px;">
+  <h2>History of state Changes</h2>
+  <form (ngSubmit)="nextHistory()" ngNativeValidate  #myForm="ngForm">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default"
+            >Date of the change</span
+          >
+        </div>
+        <input
+          type="date"
+          name="dateOfChange"
+          class="form-control"
+          aria-label="Default"
+          aria-describedby="inputGroup-sizing-default"
+          readonly
+          value="2012-04-21T18:25:43-05:00"
+        />
+      </div>
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default"
+          >Documet state changed by</span
+        >
+      </div>
+      <input
+        type="text"
+        name="changedBy"
+        class="form-control"
+        aria-label="Default"
+        aria-describedby="inputGroup-sizing-default"
+        readonly
+        [(ngModel)]="historyModel.changedBy"
+      />
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">Type</label>
+      </div>
+      <select class="custom-select" id="inputGroupSelect01" name="historyType" 
+        [(ngModel)]="historyModel.historyType" required>
+        <option value="1">Aprove</option>
+        <option value="2">Deny</option>
+        <option value="3">Cancel</option>
+      </select>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Next</button>
+</form>
+</div>

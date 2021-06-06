@@ -12,11 +12,11 @@ export class WorkRequest{
     dateOfTheChange: Date;
     emergensy: boolean;
     endDate: Date;
-    equipment: string;
+    equipment: [];
     historyType: number;
     notes: string;
     phone: string;
-    picture: string;
+    pictures: string;
     purpose: string;
     startDate: Date;
     type: number;

@@ -1,5 +1,29 @@
 mat-table {
-    height: 70%;
+    height: 65%;
     width: 30%;
     overflow: auto;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  
+  .row {
+    display: flex;
+  }
+  
+  mat-select{
+    width: 15%;
+  }
+  
+  /* Create two equal columns that sits next to each other */
+  .column {
+    flex: 30%;
+    padding: 10px;
+    height: 10%;
+    padding-top: 6%;
+  }
+  .column1 {
+    flex: 70%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
   }

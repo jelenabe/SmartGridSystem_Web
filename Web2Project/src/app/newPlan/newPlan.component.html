@@ -7,6 +7,7 @@
           type="button"
           class="list-group-item list-group-item-action"
           [routerLink]="['basicInformation']"
+          (click)="changeView(1)"
         >
           Basic Information
         </button>
@@ -14,7 +15,7 @@
           type="button"
           class="list-group-item list-group-item-action"
           [routerLink]="['historyOfStateChange']"
-          [disabled]="newPlan"
+          (click)="changeView(2)"
         >
           History of state changes
         </button>
@@ -22,7 +23,7 @@
           type="button"
           class="list-group-item list-group-item-action"
           [routerLink]="['multimediaAttachments']"
-          [disabled]="newPlan"
+          (click)="changeView(3)"
         >
           Multimedia attachments
         </button>
@@ -30,7 +31,7 @@
           type="button"
           class="list-group-item list-group-item-action"
           [routerLink]="['equipment']"
-          [disabled]="newPlan"
+          (click)="changeView(4)"
         >
           Equipment
         </button>
@@ -38,7 +39,7 @@
           type="button"
           class="list-group-item list-group-item-action"
           [routerLink]="['switchingInstruction']"
-          [disabled]="newPlan"
+          (click)="changeView(5)"
         >
           Switching instruction
         </button>
@@ -47,18 +48,34 @@
   </div>
   <div class="form-group col-md-8">
     <div class="input-group mb-3">
-      <router-outlet name="primary"></router-outlet>
+      <div [ngSwitch]="this.buttonClicked">
+        <div *ngSwitchCase="1">
+          <app-basicInformation [basicInfoModel]=basicInfoModelParent name="primary" (newItemEvent)="checkBasicInfo($event)"></app-basicInformation>
+        </div>
+        <div *ngSwitchCase="2">
+          <app-history-of-state-change-work-plan [historyModel]=historyModelParent name="primary" (newItemEvent)="checkHistory($event)"></app-history-of-state-change-work-plan>
+        </div>
+        <div *ngSwitchCase="3">
+          <app-multimedia-attachmentsWP [multimediaModel]=multimediaModelParent name="primary" (newItemEvent)="checkMultimedia($event)"></app-multimedia-attachmentsWP>
+        </div>
+        <div *ngSwitchCase="4">
+          <app-equipmentWP [equipmentModel]=equipmentModelParent name="primary" (newItemEvent)="checkEquipment($event)"></app-equipmentWP>
+        </div>
+        <div *ngSwitchCase="5">
+          <app-switchingInstructions [instructionModel]=instructionModelParent name="primary" (newItemEvent)="checkInstruction($event)"></app-switchingInstructions>
+        </div>
+      </div>
     </div>
     <!--Save and Cancel-->
     <div class="form-group col-md-8">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <button class="btn btn-outline-primary" type="button">
+          <button class="btn btn-outline-primary" type="button" (click)="save()">
             <mat-icon>save</mat-icon>
             Save
           </button>
         </div>
-        <button class="btn btn-outline-primary" type="button">
+        <button class="btn btn-outline-primary" type="button" (click)="cancle()">
           <mat-icon>cancel</mat-icon>
           Cancel
         </button>

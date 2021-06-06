@@ -27,6 +27,7 @@ export class BasicInformationWorkOrderComponent implements OnInit {
 
       this.basicInfoModel.createdByUserId = localStorage.getItem('id');
       this.basicInfoModel.status = 'DRAFT';
+      this.basicInfoModel.createdOn = '07/06/2021';
 
       this.getAllIncidents();
       this.getAllLocations();
@@ -64,7 +65,8 @@ export class BasicInformationWorkOrderComponent implements OnInit {
   }
 
   nextBasic(){
-    this.newItemEvent.emit(this.basicInfoModel);
+    this.basicInfoModel.view=2;
+    this.newItemEvent.emit(this.basicInfoModel)
     this.router.navigateByUrl('/newWorkOrder/historyOfStateChange');
   }
 

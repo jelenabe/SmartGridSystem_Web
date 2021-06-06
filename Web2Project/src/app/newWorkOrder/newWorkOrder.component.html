@@ -47,13 +47,13 @@
             <app-basicInformationWorkOrder [basicInfoModel]=basicInfoModelParent name="primary" (newItemEvent)="checkBasicInfo($event)"></app-basicInformationWorkOrder>
           </div>
           <div *ngSwitchCase="2">
-            <app-historyOfStateChanges></app-historyOfStateChanges>
+            <app-historyOfStateChanges [historyModel]=historyModelParent name="primary" (newItemEvent)="checkHistory($event)"></app-historyOfStateChanges>
           </div>
           <div *ngSwitchCase="3">
-            <app-multimediaAttachments></app-multimediaAttachments>
+            <app-multimediaAttachments [multimediaModel]=multimediaModelParent name="primary" (newItemEvent)="checkMultimedia($event)"></app-multimediaAttachments>
           </div>
           <div *ngSwitchCase="4">
-            <app-equipment></app-equipment>
+            <app-equipment [equipmentModel]=equipmentModelParent name="primary" (newItemEvent)="checkEquipment($event)"></app-equipment>
           </div>
         </div>
         
@@ -62,12 +62,12 @@
     <div class="form-group col-md-8">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <button class="btn btn-outline-primary" type="button">
+          <button class="btn btn-outline-primary" type="button" (click)="save()">
             <mat-icon>save</mat-icon>
             Save
           </button>
         </div>
-        <button class="btn btn-outline-primary" type="button">
+        <button class="btn btn-outline-primary" type="button" (click)="cancle()">
           <mat-icon>cancel</mat-icon>
           Cancel
         </button>

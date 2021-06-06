@@ -14,7 +14,7 @@ export class WorkRequestService {
 
   getMineRequest(userId: number):Observable<WorkRequest[]>{
     let url = this.baseUrl.concat(`/mineRequests/${userId}`);
-    return this.http.get<WorkRequest[]>(this.baseUrl);
+    return this.http.get<WorkRequest[]>(url);
   }
 
   getAllRequests():Observable<WorkRequest[]>{

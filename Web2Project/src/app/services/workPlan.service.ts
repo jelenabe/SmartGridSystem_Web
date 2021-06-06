@@ -14,7 +14,7 @@ constructor(private http: HttpClient) { }
 
 getMineRequest(userId: number):Observable<WorkPlan[]>{
   let url = this.baseUrl.concat(`/minePlans/${userId}`);
-  return this.http.get<WorkPlan[]>(this.baseUrl);
+  return this.http.get<WorkPlan[]>(url);
 }
 
 getAllPlans():Observable<WorkPlan[]>{

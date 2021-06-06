@@ -1,13 +1,26 @@
 <div class="container" style="width: 400%; padding-top: 20px;">
   <h2>Equipment</h2>
- 
-  <mat-selection-list #shoes>
-   <mat-list-option *ngFor="let shoe of typesOfShoes">
-     {{shoe}}
-   </mat-list-option>
- </mat-selection-list>
- 
- <p>
-   Options selected: {{shoes.selectedOptions.selected.length}}
- </p>
-</div>
+  <form (ngSubmit)="addEquipments()" ngNativeValidate  #myForm="ngForm">
+   
+  
+    <div style="width: 50%;">
+      <mat-selection-list #Equips [(ngModel)]="selectedEquipments" name="selectedEquipments" required >
+        <mat-list-option *ngFor="let equipment of equipments" [value]="equipment">
+          {{equipment.name}}
+        </mat-list-option>
+      </mat-selection-list>
+    </div>
+  
+    <p>
+      Options selected: {{Equips.selectedOptions.selected.length}}
+    </p>
+  
+   
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <button class="btn btn-outline-primary" type="submit">
+            Add
+          </button>
+        </div>
+      </div>
+    </form>

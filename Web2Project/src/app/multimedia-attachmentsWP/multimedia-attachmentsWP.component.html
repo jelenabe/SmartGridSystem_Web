@@ -1,0 +1,18 @@
+<div class="container" style="width: 150%; padding-top: 20px">
+  <h2>Multimedia Attachments</h2>
+<form (ngSubmit)="upload()">
+  <div>
+    <input
+      type="file"
+      name="Picture"
+      id="Picture"
+      (change)="onFileSelected($event)"
+      style="margin-left: 15%;"
+    />
+  </div>
+  <br/>
+  <div class="input-group-append">
+    <button class="btn btn-outline-primary" type="submit">Next</button>
+  </div>
+</form>
+</div>

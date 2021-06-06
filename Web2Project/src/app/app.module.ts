@@ -92,12 +92,15 @@ import { EditConsumerComponent } from './edit-consumer/edit-consumer.component';
 
 import { SocialLoginModule,  SocialAuthServiceConfig, FacebookLoginProvider} from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
+import { HistoryOfStateChangeWorkPlanComponent } from './history-of-state-change-work-plan/history-of-state-change-work-plan.component';
+import { MultimediaAttachmentsWPComponent } from './multimedia-attachmentsWP/multimedia-attachmentsWP.component';
+import { EquipmentWPComponent } from './equipmentWP/equipmentWP.component';
 
 
 
 @NgModule({
   schemas : [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [
+  declarations: [			
       AppComponent,
       HomeComponent,
       LoginComponent,
@@ -156,7 +159,10 @@ import { GoogleLoginProvider } from 'angularx-social-login';
       DevicesSafetyDocumentComponent,
       DeviceDialogSafetyDocumentComponent,
       SelectConsumerComponent,
-      EditConsumerComponent
+      EditConsumerComponent,
+      HistoryOfStateChangeWorkPlanComponent,
+      MultimediaAttachmentsWPComponent,
+      EquipmentWPComponent
    ],
   imports: [
     BrowserModule,

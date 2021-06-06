@@ -65,10 +65,10 @@ export class StreetDialogComponent implements OnInit {
     return `${location.street}, ${location.city}, ${location.postNumber}`;
   }
 
-  apply(locationId:number,i:number){
+  apply(){
     
     // servis za dodjelu prioriteta ulicama
-    this.adminService.applyPriority(locationId,this.model).subscribe((response) =>
+    this.adminService.applyPriority(this.model).subscribe((response) =>
     {
       console.log('Appaly street priority!');
     });

@@ -14,7 +14,7 @@ export class AdminService {
 
   constructor(private http: HttpClient) { }
 
-applyPriority(id:any, model: any)
+applyPriority(model: any)
 {
   return this.http.put(this.baseUrl + '/'+'street', model);
 }

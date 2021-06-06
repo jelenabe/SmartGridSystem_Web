@@ -12,7 +12,7 @@ import { WorkRequestService } from '../services/work-request.service';
 })
 export class WorkOrdersComponent implements OnInit, AfterViewInit {
   ELEMENT_DATA: any[] = [];
-  displayedColumns: string[] = ['id', 'startDate', 'phone', 'status', 'address'];
+  displayedColumns: string[] = ['id', 'startDate', 'phone', 'status', 'location'];
   dataSource: MatTableDataSource<WorkRequest>;
 
   model: any = {};
@@ -23,6 +23,7 @@ export class WorkOrdersComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 
   constructor(private requestService: WorkRequestService) {
+
    
   }
   ngOnInit(){
@@ -34,27 +35,29 @@ export class WorkOrdersComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
- applyFilter(event: Event){
+  applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   getAllRequest(){
     this.ELEMENT_DATA = [];
-    this.requestService.getAllRequests().subscribe(response => {
+    this.requestService.getAllRequests().subscribe((response) => {
       this.workRequests=response;
-    });
 
-    console.log(this.workRequests);
+      console.log(this.workRequests);
 
       this.workRequests.forEach(element=> {
-        
+
         this.ELEMENT_DATA.push(element)
       });
 
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    });
+
+    
   }
 
   getMineRequest(){
@@ -64,10 +67,8 @@ export class WorkOrdersComponent implements OnInit, AfterViewInit {
     if (param != null){
     this.requestService.getMineRequest(+param).subscribe(response => {
       this.workRequests=response;
-    });
-  }
 
-    console.log(this.workRequests);
+      console.log(this.workRequests);
 
       this.workRequests.forEach(element=> {
         
@@ -77,6 +78,8 @@ export class WorkOrdersComponent implements OnInit, AfterViewInit {
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    });
+  }
   }
 
 

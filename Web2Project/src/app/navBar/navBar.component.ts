@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
   admin:boolean=true;
-  constructor() { }
+  badgeContent: number;
+
+  constructor() {
+    this.badgeContent = 15;
+   }
 
   ngOnInit() {
   }

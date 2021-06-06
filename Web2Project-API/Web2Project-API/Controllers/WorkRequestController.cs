@@ -73,8 +73,8 @@ namespace Web2Project_API.Controllers
             return WorkRequests;
         }
 
-        [HttpGet("mineRequests")]
-        [Route("{id}")]
+        [HttpGet]
+        [Route("mineRequests/{id}")]
         public async Task<ActionResult<IEnumerable<object>>> GetAllWorkRequestsById([FromRoute]int id)
         {
             var WorkRequests = await _repo.GetAllWorkRequestsById(id);

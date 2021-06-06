@@ -11,7 +11,7 @@
   <!--Notifications-->
   <li class="nav-item" style="padding-top: 4%;">
     <a class="nav-link icon-height" [routerLink]="['/notifications']" routerLinkActive="active">
-      <mat-icon class="icon-design" matBadge="15" matBadgeColor="warn">notifications</mat-icon>
+      <mat-icon class="icon-design"[matBadge]="badgeContent" matBadgeColor="warn" matBadgePosition="above after">notifications</mat-icon>
       <p>Notifications</p>
     </a>
     <!-- Include text description of the icon's meaning for screen-readers -->

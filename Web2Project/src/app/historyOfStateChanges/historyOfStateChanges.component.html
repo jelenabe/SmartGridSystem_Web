@@ -1,5 +1,6 @@
 <div class="container" style="width: 100%; padding-top: 20px;">
   <h2>History of state Changes</h2>
+  <form (ngSubmit)="nextHistory()" ngNativeValidate  #myForm="ngForm">
   <div class="form-row">
     <div class="form-group col-md-6">
       <div class="input-group mb-3">
@@ -15,7 +16,7 @@
           aria-label="Default"
           aria-describedby="inputGroup-sizing-default"
           readonly
-          [(ngModel)]="model.name"
+          value="2012-04-21T18:25:43-05:00"
         />
       </div>
     </div>
@@ -32,9 +33,7 @@
         aria-label="Default"
         aria-describedby="inputGroup-sizing-default"
         readonly
-        value="Milan Momcilovic"
-        
-        [(ngModel)]="model.changedBy"
+        [(ngModel)]="historyModel.changedBy"
       />
     </div>
 
@@ -43,11 +42,13 @@
         <label class="input-group-text" for="inputGroupSelect01">Type</label>
       </div>
       <select class="custom-select" id="inputGroupSelect01" name="historyType" 
-      [(ngModel)]="model.historyType">
+        [(ngModel)]="historyModel.historyType" required>
         <option value="1">Aprove</option>
         <option value="2">Deny</option>
         <option value="3">Cancel</option>
       </select>
     </div>
   </div>
+  <button type="submit" class="btn btn-primary">Next</button>
+</form>
 </div>

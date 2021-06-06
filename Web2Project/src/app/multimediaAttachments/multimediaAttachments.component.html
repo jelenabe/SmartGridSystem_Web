@@ -1,13 +1,18 @@
 <div class="container" style="width: 150%; padding-top: 20px">
   <h2>Multimedia Attachments</h2>
-<form>
-  <div class="custom-file">
-    <input type="file" class="custom-file-input" id="inputGroupFile04" />
-    <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+<form (ngSubmit)="upload()">
+  <div>
+    <input
+      type="file"
+      name="Picture"
+      id="Picture"
+      (change)="onFileSelected($event)"
+      style="margin-left: 15%;"
+    />
   </div>
   <br/>
   <div class="input-group-append">
-    <button class="btn btn-outline-primary" type="button">Upload</button>
+    <button class="btn btn-outline-primary" type="submit">Next</button>
   </div>
 </form>
 </div>
