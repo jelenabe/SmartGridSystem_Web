@@ -15,13 +15,10 @@ export class EquipmentWPComponent implements OnInit {
   selectedEquipments: any = [];
   
 
-  equipmentModel: any = 
-    {
-      EquipmentIds: []
-    }
-  
+  equipmentModel: any = [];
+
    @Output() newItemEvent = new EventEmitter<any>();
-  
+
   constructor(private deviceService: DeviceService,
     private snackBar: MatSnackBar,
     private router: Router) { 
@@ -39,9 +36,9 @@ export class EquipmentWPComponent implements OnInit {
   addEquipments(){
     this.equipmentModel.view = 5;
     this.selectedEquipments.forEach((element: { deviceId: number; }) => {
-      this.equipmentModel.EquipmentIds.push(element.deviceId);
+      this.equipmentModel.push(element.deviceId);
     });
-    if(this.equipmentModel.EquipmentIds.length==0){
+    if (this.equipmentModel.length === 0){
       this.openSnackBar();
     }else
     {

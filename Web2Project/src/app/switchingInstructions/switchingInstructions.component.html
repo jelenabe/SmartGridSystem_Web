@@ -1,32 +1,16 @@
 <div class="container" style="width: 200%; padding-top: 20px;">
 
   <h2>Switching Instructions</h2>
+   
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" 
+        >Instructions</span>
+      </div>
+      <textarea class="form-control" aria-label="With textarea"        
+       name="switchingInstructions"
+      [(ngModel)]="switchingInstructionModel.instructions"></textarea>
+    </div>
 
-  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-    <table class="table table-bordered" formArrayName="quantities">
-      <tr>
-        <th colspan="2">Add Multiple Instructions:</th>
-        <th width="150px"><button type="button" (click)="addQuantity()" class="btn btn-primary">Add More</button></th>
-      </tr>
-      <tr *ngFor="let quantity of quantities().controls; let i=index" [formGroupName]="i" >
-        <td>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <input type="checkbox" aria-label="Checkbox for following text input">
-              </div>
-            </div>
-            <input type="text" class="form-control" aria-label="Text input with checkbox" name="instruction"+i >
-          </div>
-          <br>
-        </td>
-        <td>
-          <button (click)="removeQuantity(i)" class="btn btn-danger">Remove</button>
-        </td>
-      </tr>
-    </table>
-
-    <button type="submit" class="btn btn-primary">Add Instructions</button>
-
-  </form>
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Add Instructions</button>
 </div>

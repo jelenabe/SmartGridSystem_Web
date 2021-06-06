@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-switchingInstructions',
@@ -9,40 +10,38 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 export class SwitchingInstructionsComponent implements OnInit {
 
   name = 'Angular';
-  
+  switchingInstructionModel: any = {};
+
+  @Output() newItemEvent = new EventEmitter<any>();
+
   productForm!: FormGroup;
+  constructor(private fb: FormBuilder, private snackBar: MatSnackBar) {
 
-  constructor(private fb: FormBuilder) {
-
-    this.productForm = this.fb.group({
-      name: '',
-      quantities: this.fb.array([]) ,
-    });
   }
   ngOnInit() {
   }
 
-  quantities() : FormArray {
-    return this.productForm.get("quantities") as FormArray
+  onSubmit(){
+
+    if (this.switchingInstructionModel.instructions == null){
+      this.openSnackBar();
+    }else
+    {
+      this.newItemEvent.emit(this.switchingInstructionModel);
+      this.openSnackBarSucces();
+    }
   }
-   
-  newQuantity(): FormGroup {
-    return this.fb.group({
-      qty: '',
-      price: '',
-    })
+
+  openSnackBar() {
+    this.snackBar.open('Fileds must be filed!', 'OK', {
+      duration: 3000
+    });
   }
-   
-  addQuantity() {
-    this.quantities().push(this.newQuantity());
-  }
-   
-  removeQuantity(i:number) {
-    this.quantities().removeAt(i);
-  }
-   
-  onSubmit() {
-    console.log(this.productForm.value);
+
+  openSnackBarSucces(){
+    this.snackBar.open('Instructions successfully added!', 'OK', {
+      duration: 3000
+    });
   }
 
 }

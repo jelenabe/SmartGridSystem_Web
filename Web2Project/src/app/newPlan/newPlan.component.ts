@@ -36,14 +36,15 @@ export class NewPlanComponent implements OnInit {
   @ViewChild(SwitchingInstructionsComponent) childInstructionComponent: SwitchingInstructionsComponent;
 
   constructor(private router: Router,
-    private snackBar: MatSnackBar,
-    private planService: WorkPlanService) {
-      this. model.equipment = [];
+              private snackBar: MatSnackBar,
+              private planService: WorkPlanService) {
+              this.model.equipment = [];
      }
 
   ngOnInit() {
   }
-  save(){
+
+  save(): void{
     if(this.model.equipment.length==0){
       this.openSnackBar();
     }else{
@@ -86,16 +87,16 @@ export class NewPlanComponent implements OnInit {
   }
 
   checkInstruction(event: any){
-    this.changeView(event.view);
-    if(event.instructions.length!=0){
-      this.model.instructions=event.instructions
+
+    if(event.instructions != null){
+      this.model.instructions = event.instructions;
     }
     console.log(this.model);
   }
 
   checkHistory(event: any){
     this.changeView(event.view);
-    if(this.childHistoryOfStateChange.historyModel.historyType == null){
+    if (this.childHistoryOfStateChange.historyModel.historyType == null){
       this.openSnackBar();
     }
     else{
@@ -119,7 +120,7 @@ export class NewPlanComponent implements OnInit {
 
   checkEquipment(event: any){
     this.changeView(event.view);
-    event.EquipmentIds.forEach((element: { deviceId: number; }) => {
+    event.equipmentModel.forEach((element: { deviceId: number; }) => {
       this.model.equipment.push(element);
     });
     console.log(this.model);

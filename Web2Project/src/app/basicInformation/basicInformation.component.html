@@ -158,9 +158,9 @@
           >
             <mat-option
               *ngFor="let crew of crews"
-              value="{{ crew.locationId }}"
+              value="{{ crew.crewName }}"
             >
-              {{ formatLocation(crew) }}</mat-option
+              {{ formatCrew(crew) }}</mat-option
             >
           </mat-select>
         </mat-form-field>

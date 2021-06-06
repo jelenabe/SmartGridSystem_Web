@@ -62,7 +62,7 @@
           <app-equipmentWP [equipmentModel]=equipmentModelParent name="primary" (newItemEvent)="checkEquipment($event)"></app-equipmentWP>
         </div>
         <div *ngSwitchCase="5">
-          <app-switchingInstructions [instructionModel]=instructionModelParent name="primary" (newItemEvent)="checkInstruction($event)"></app-switchingInstructions>
+          <app-switchingInstructions [switchingInstructionModel]=instructionModelParent name="primary" (newItemEvent)="checkInstruction($event)"></app-switchingInstructions>
         </div>
       </div>
     </div>

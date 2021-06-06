@@ -38,10 +38,12 @@ namespace Web2Project_API.Controllers
                 workPlan.CreatedOn = dto.CreatedOn;
                 workPlan.DateOfTheChange = DateTime.Today;
                 workPlan.Details = dto.Details;
+
                 foreach (var item in dto.Equipmet)
                 {
                     eqipment += item.ToString();
                 }
+
                 workPlan.Equipmet = eqipment;
                 workPlan.EndDate = dto.EndDate;
                 workPlan.Notes = dto.Notes;

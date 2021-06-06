@@ -103,6 +103,11 @@ export class BasicInformationComponent implements OnInit {
   formatRequest(request: WorkRequest) {
     return `${request.workRequestId}, ${request.type}`;
   }
+
+  formatCrew(crew: any){
+    return `${crew.name}`;
+
+  }
   nextBasic(){
     this.basicInfoModel.view = 2;
     this.newItemEvent.emit(this.basicInfoModel)
