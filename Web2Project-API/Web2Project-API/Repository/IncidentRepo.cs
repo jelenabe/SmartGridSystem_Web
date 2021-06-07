@@ -75,7 +75,7 @@ namespace Web2Project_API.Repository
                 throw new Exception($"Device with id = {deviceId} is already added to incident!");
 
             incident.Priority = device.Location.Priority;
-            incident.CallNumber = _callRepo.GetAllCalls().Where(x => x.IncidentId == incidentId).Count();
+            incident.CallNumber = _callRepo.GetAllCalls(incidentId).Count();
             List<Consumer> consumersFromLocation = new List<Consumer>();
             consumersFromLocation = _consumerRepo.GetAllConsumersFromLocation(device.LocationId);
             incident.AffectedCustomers = consumersFromLocation.Count();

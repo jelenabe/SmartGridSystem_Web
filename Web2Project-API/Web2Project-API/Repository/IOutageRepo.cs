@@ -13,6 +13,6 @@ namespace Web2Project_API.Repository
 
         void UpdateCall(Call updatedCall);
 
-        IEnumerable<CallDTO> GetAllCalls();
+        IEnumerable<CallDTO> GetAllCalls(int incidentId);
     }
 }

@@ -40,11 +40,17 @@ namespace Web2Project_API.Repository
             return reportOutage;
         }
 
-        public IEnumerable<CallDTO> GetAllCalls()
+        public IEnumerable<CallDTO> GetAllCalls(int incidentId)
         {
-            return _mapper.Map<List<CallDTO>>(_context.Calls.Include(x => x.Incident).Include(x => x.Location)
-                                                              .ThenInclude(x => x.Consumers)
-                                                              .ToList());
+            List<Call> calls = new List<Call>();
+            calls = _context.Calls.Where(x => x.IncidentId == incidentId).ToList();
+            List<CallDTO> calls_dto = new List<CallDTO>();
+            foreach (Call c in calls)
+            {
+                calls_dto.Add(_mapper.Map<CallDTO>(c));
+            }
+
+            return calls_dto;
         }
 
         public void UpdateCall(Call updatedCall)
