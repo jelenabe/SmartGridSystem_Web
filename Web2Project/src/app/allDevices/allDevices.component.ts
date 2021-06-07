@@ -24,6 +24,8 @@ export class AllDevicesComponent implements OnInit {
 
   searchObject: SearchDevices = new SearchDevices();
 
+  logUserType: any;
+
   constructor(private deviceService: DeviceService, private snackBar: MatSnackBar) { }
 
   searchForm = new FormGroup({
@@ -35,7 +37,13 @@ export class AllDevicesComponent implements OnInit {
   ngOnInit() {
 
     this.getDevices();
-
+    /*
+    if(this.logUserType = localStorage.getItem('type')!= null){
+      this.logUserType = +this.logUserType;
+    }
+    */
+    this.logUserType = localStorage.getItem('type');
+    
   }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

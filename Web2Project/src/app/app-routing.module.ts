@@ -19,9 +19,16 @@ import { EquipmentWPComponent } from './equipmentWP/equipmentWP.component';
 import { FrontPageComponent } from './front-page/front-page.component';
 import { AdminGuard } from './guard/admin.guard';
 import { CrewMemberGuard } from './guard/crew-member.guard';
+import { DeviceGuard } from './guard/device.guard';
 import { DispacherGuard } from './guard/dispatcher.guard';
+import { EditDeviceGuard } from './guard/edit-device.guard';
 import { GoogleGuard } from './guard/google.guard';
+import { IncidentsGuard } from './guard/incidents.guard';
+import { NewDeviceGuard } from './guard/new-device.guard';
+import { NewIncidentGuard } from './guard/new-incident.guard';
+import { NewSafetyDocumentGuard } from './guard/new-safety-document.guard';
 import { NewCAllGuard } from './guard/newCall.guard';
+import { SafetyDocumentsGuard } from './guard/safety-documents.guard';
 import { WorkerGuard } from './guard/worker.guard';
 import { WorkPlansGuard } from './guard/WorkPlans.guard';
 import { HistoryOfStateChangeWorkPlanComponent } from './history-of-state-change-work-plan/history-of-state-change-work-plan.component';
@@ -85,7 +92,8 @@ const routes: Routes = [
   {
     path: 'safetyDocs',
     component: SafetyDocsComponent,
-    outlet: "primary"
+    outlet: "primary",
+    canActivate: [SafetyDocumentsGuard]
   },
   {
     path: 'workOrders',
@@ -96,7 +104,8 @@ const routes: Routes = [
   {
     path: 'incidents',
     component: IncidentComponent,
-    outlet: "primary"
+    outlet: "primary",
+    canActivate: [IncidentsGuard]
   },
   {
     path: 'newIncident',
@@ -112,51 +121,63 @@ const routes: Routes = [
     [
       {
         path: 'basic-information',
-        component: BasicInformationIncidentsComponent
+        component: BasicInformationIncidentsComponent,
+        canActivate: [NewIncidentGuard]
       },
       {
         path: 'basic-information/:id',
-        component: BasicInformationIncidentsComponent
+        component: BasicInformationIncidentsComponent,
+        canActivate: [NewIncidentGuard]
       },
       {
         path: 'devices/:id',
-        component: DevicesComponent
+        component: DevicesComponent,
+        canActivate: [NewIncidentGuard]
       },
       {
         path: 'devices',
-        component: DevicesComponent
+        component: DevicesComponent,
+        canActivate: [NewIncidentGuard]
       },
       {
         path: 'resolution/:id',
-        component: ResolutionComponent
+        component: ResolutionComponent,
+        canActivate: [NewIncidentGuard]
       },
       {
         path: 'resolution',
-        component: ResolutionComponent
+        component: ResolutionComponent,
+        canActivate: [NewIncidentGuard]
       },
       {
         path: 'calls/:id',
-        component: CallsComponent
+        component: CallsComponent,
+        canActivate: [NewIncidentGuard]
       },
       {
         path: 'calls',
-        component: CallsComponent
+        component: CallsComponent,
+        canActivate: [NewIncidentGuard]
       },
       {
         path: 'crews/:id',
-        component: CrewComponent
+        component: CrewComponent,
+        canActivate: [NewIncidentGuard]
       },
       {
         path: 'crews',
-        component: CrewComponent
+        component: CrewComponent,
+        canActivate: [NewIncidentGuard]
       },
       {
         path: 'multimedia/:id',
-        component: MultimediaAttachmentsIncidentsComponent
+        component: MultimediaAttachmentsIncidentsComponent,
+        canActivate: [NewIncidentGuard]
       },
       {
         path: 'multimedia',
-        component: MultimediaAttachmentsIncidentsComponent
+        component: MultimediaAttachmentsIncidentsComponent,
+        canActivate: [NewIncidentGuard]
       }
     ]
   },
@@ -164,11 +185,13 @@ const routes: Routes = [
     path: 'newDevice',
     component: NewDeviceComponent,
     outlet: "primary",
+    canActivate: [NewDeviceGuard]
   },
   { 
     path: 'newDevice/:id',
     component: NewDeviceComponent,
     outlet: "primary",
+    canActivate: [EditDeviceGuard]
     
   },
   {
@@ -270,12 +293,14 @@ const routes: Routes = [
   {
     path: 'newSafetyDoc',
     component:NewSafetyDocComponent,
-    outlet: "primary"
+    outlet: "primary",
+    canActivate: [NewSafetyDocumentGuard]
   },
   {
     path: 'allDevices',
     component:AllDevicesComponent,
-    outlet: "primary"
+    outlet: "primary",
+    canActivate: [DeviceGuard]
   },
   {
     path: 'allCrews',
