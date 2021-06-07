@@ -15,5 +15,6 @@ namespace Web2Project_API.Repository
         Task<ActionResult<ConsumerDTO>> GetConsumer(int id);
         Task<Consumer> SaveEditConsumer(Consumer consumer,int id);
         Task<ActionResult<Consumer>> RemoveConsumer(int id);
+        List<Consumer> GetAllConsumersFromLocation(int locationId);
     }
 }

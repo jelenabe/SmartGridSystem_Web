@@ -17,7 +17,7 @@ namespace Web2Project_API.DTOs
         public int IncidentId { get; set; }
         public LocationDTO Location { get; set; }
         public ConsumerDTO Consumer { get; set; }
-        //public IncidentDto Incident { get; set; }
+        public IncidentDto Incident { get; set; }
 
     }
 }

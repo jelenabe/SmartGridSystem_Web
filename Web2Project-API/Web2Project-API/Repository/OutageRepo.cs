@@ -1,8 +1,11 @@
-﻿using System;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Web2Project_API.DbConfigurations;
+using Web2Project_API.DTOs;
 using Web2Project_API.Models;
 
 namespace Web2Project_API.Repository
@@ -10,10 +13,12 @@ namespace Web2Project_API.Repository
     public class OutageRepo : IOutageRepo
     {
         private readonly ModelDbContext _context;
+        private readonly IMapper _mapper;
 
-        public OutageRepo(ModelDbContext context)
+        public OutageRepo(ModelDbContext context, IMapper mapper)
         {
             this._context = context;
+            _mapper = mapper;
         }
         public async Task<Call> AddOutage(Call outage)
         {
@@ -35,11 +40,18 @@ namespace Web2Project_API.Repository
             return reportOutage;
         }
 
+        public IEnumerable<CallDTO> GetAllCalls()
+        {
+            return _mapper.Map<List<CallDTO>>(_context.Calls.Include(x => x.Incident).Include(x => x.Location)
+                                                              .ThenInclude(x => x.Consumers)
+                                                              .ToList());
+        }
+
         public void UpdateCall(Call updatedCall)
         {
             Call oldCall = _context.Calls.FirstOrDefault(x => x.CallId.Equals(updatedCall.CallId));
 
-            updatedCall.Location = null;
+            //updatedCall.Location = null;
 
             if (oldCall == null)
                 throw new Exception($"Call with Id = {updatedCall.CallId} does not exists!");

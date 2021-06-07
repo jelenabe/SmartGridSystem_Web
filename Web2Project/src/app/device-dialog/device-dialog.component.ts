@@ -27,7 +27,7 @@ export class DeviceDialogComponent implements OnInit {
   allDevices:Device[] = [];
 
   constructor(public dialogRef: MatDialogRef<DeviceDialogComponent>, private deviceService:DeviceService,private incidentService: IncidentService,  private snackbar: MatSnackBar,
-    private route:ActivatedRoute, private router:Router) {}
+    private route:ActivatedRoute, private router:Router, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.getUnconnectedDevices();
@@ -74,9 +74,7 @@ addDeviceToIncident(deviceId: number)
 
         }else
         {
-          //this.toastr.error(error.error,"", {positionClass: 'toast-bottom-left'})
-     
-          //this.router.navigate(['incidents']);
+          this.snackBar.open(error.error, "", { duration: 3000 });
           this.dialogRef.close();
 
         }
@@ -98,6 +96,7 @@ addDeviceToIncident(deviceId: number)
       },
       error =>{
 
+        this.snackBar.open(error.error, "", { duration: 3000 });
         this.getUnconnectedDevices();
 
       }

@@ -21,6 +21,9 @@ namespace Web2Project_API.Mapping
             CreateMap<DeviceDTO, Device>();
             CreateMap<Device, DeviceDTO>();
 
+            CreateMap<CallDTO, Call>();
+            CreateMap<Call, CallDTO>();
+
         }
     }
 }

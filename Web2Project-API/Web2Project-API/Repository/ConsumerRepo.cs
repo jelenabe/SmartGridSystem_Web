@@ -54,6 +54,11 @@ namespace Web2Project_API.Repository
             return await consumers.ToListAsync();
         }
 
+        public List<Consumer> GetAllConsumersFromLocation(int locationId)
+        {
+            return _context.Consumers.Include("Location").Where(x => x.LocationId == locationId).ToList();
+        }
+
         public async Task<ActionResult<ConsumerDTO>> GetConsumer(int id)
         {
             var consumer = _context.Consumers.Where(x => x.ConsumerId == id).FirstOrDefault();

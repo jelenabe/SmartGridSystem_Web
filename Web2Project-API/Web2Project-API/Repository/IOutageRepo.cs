@@ -12,5 +12,7 @@ namespace Web2Project_API.Repository
         Task<Call> AddOutage(Call outage);
 
         void UpdateCall(Call updatedCall);
+
+        IEnumerable<CallDTO> GetAllCalls();
     }
 }

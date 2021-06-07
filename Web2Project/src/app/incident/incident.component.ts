@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { FormControl } from '@angular/forms';
 import { Incident } from '../models/incident';
 import { IncidentService } from '../services/incident.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-incident',
@@ -103,5 +104,6 @@ export class IncidentComponent implements OnInit, AfterViewInit {
     this.getIncidents();
 
   }
+
 
 }

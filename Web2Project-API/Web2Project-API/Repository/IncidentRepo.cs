@@ -16,13 +16,15 @@ namespace Web2Project_API.Repository
         private readonly IMapper _mapper;
         private readonly IOutageRepo _callRepo;
         private readonly IDeviceRepo _deviceRepo;
+        private readonly IConsumerRepo _consumerRepo;
 
-        public IncidentRepo(ModelDbContext dbContext, IMapper mapper, IOutageRepo callRepo, IDeviceRepo deviceRepo)
+        public IncidentRepo(ModelDbContext dbContext, IMapper mapper, IOutageRepo callRepo, IDeviceRepo deviceRepo, IConsumerRepo consumerRepo)
         {
             _dbContext = dbContext;
             _mapper = mapper;
             _callRepo = callRepo;
             _deviceRepo = deviceRepo;
+            _consumerRepo = consumerRepo;
         }
 
         public void AddDeviceToIncident(int incidentId, int deviceId)
@@ -72,6 +74,11 @@ namespace Web2Project_API.Repository
             if (incident.Devices.Find(x => x.DeviceId == deviceId) != null)
                 throw new Exception($"Device with id = {deviceId} is already added to incident!");
 
+            incident.Priority = device.Location.Priority;
+            incident.CallNumber = _callRepo.GetAllCalls().Where(x => x.IncidentId == incidentId).Count();
+            List<Consumer> consumersFromLocation = new List<Consumer>();
+            consumersFromLocation = _consumerRepo.GetAllConsumersFromLocation(device.LocationId);
+            incident.AffectedCustomers = consumersFromLocation.Count();
             device.IncidentId = incidentId;
             _deviceRepo.UpdateDevice(_mapper.Map<DeviceDTO>(device));
 
@@ -279,7 +286,7 @@ namespace Web2Project_API.Repository
                 throw new Exception($"Device with id = {deviceId} is not connected with incident with id = {incidentId}");
 
             incident.Devices.Remove(device_for_remove);
-            UpdateIncident(_mapper.Map<IncidentDto>(incident));  // probati bez ove linije  !!!!!!!!!!!!!!!!!!!!!!
+            //UpdateIncident(_mapper.Map<IncidentDto>(incident));  // probati bez ove linije  !!!!!!!!!!!!!!!!!!!!!!
 
             _dbContext.SaveChanges();
         }
