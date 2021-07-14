@@ -102,12 +102,16 @@ import { ConsumerGuard } from './guard/consumer.guard';
 import { GoogleGuard } from './guard/google.guard';
 import { WorkPlansGuard } from './guard/WorkPlans.guard';
 import { NewCAllGuard } from './guard/newCall.guard';
+import { HeroComponent } from './hero/hero.component';
+import { ReactBidirectionalRendererComponent } from './react-bidirectional-renderer/react-bidirectional-renderer.component';
+import { PaypalComponent } from './paypal/paypal.component';
+import { PaypalFormComponent } from './paypal-form/paypal-form.component';
 
 
 
 @NgModule({
   schemas : [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [			
+  declarations: [								
       AppComponent,
       HomeComponent,
       LoginComponent,
@@ -169,7 +173,11 @@ import { NewCAllGuard } from './guard/newCall.guard';
       EditConsumerComponent,
       HistoryOfStateChangeWorkPlanComponent,
       MultimediaAttachmentsWPComponent,
-      EquipmentWPComponent
+      EquipmentWPComponent,
+      HeroComponent,
+      ReactBidirectionalRendererComponent,
+      PaypalComponent,
+      PaypalFormComponent
    ],
   imports: [
     BrowserModule,

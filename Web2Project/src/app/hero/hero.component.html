@@ -1,0 +1,6 @@
+<div>
+  <span>ng-hero works!</span><br/>
+  <span *ngFor="let hero of heroes; let i = index;">{{hero.name}} - {{hero.age}} - <button (click)="addAge(i)">Add {{hero.name}} age</button><br/></span>
+  <br/>
+  <button (click)="addHero()">ADD AFRODITA</button>
+</div>

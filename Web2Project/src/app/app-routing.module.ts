@@ -18,6 +18,7 @@ import { EquipmentComponent } from './equipment/equipment.component';
 import { EquipmentWPComponent } from './equipmentWP/equipmentWP.component';
 import { FrontPageComponent } from './front-page/front-page.component';
 import { AdminGuard } from './guard/admin.guard';
+import { ConsumerGuard } from './guard/consumer.guard';
 import { CrewMemberGuard } from './guard/crew-member.guard';
 import { DeviceGuard } from './guard/device.guard';
 import { DispacherGuard } from './guard/dispatcher.guard';
@@ -49,6 +50,7 @@ import { NewPlanComponent } from './newPlan/newPlan.component';
 import { NewSafetyDocComponent } from './newSafetyDoc/newSafetyDoc.component';
 import { NewWorkOrderComponent } from './newWorkOrder/newWorkOrder.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { PaypalComponent } from './paypal/paypal.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { ReportOutageComponent } from './reportOutage/reportOutage.component';
@@ -343,6 +345,12 @@ const routes: Routes = [
     component:EditConsumerComponent,
     outlet: "primary",
     canActivate: [AdminGuard]
+  },
+  {
+    path: 'paypal',
+    component:PaypalComponent,
+    outlet: "primary",
+    canActivate: [ConsumerGuard]
   }
 
 ]

@@ -27,7 +27,7 @@ export class NavBarComponent implements OnInit {
     else{
       this.visible = true;
     }
-
+    
    }
 
   ngOnInit() {

@@ -1,0 +1,99 @@
+<div style="margin-left: 25%">
+  <form (ngSubmit)="next()" >
+    <!--Label Name and input Enter name-->
+    
+    <div class="input-group mb-3" style="width: 700px">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default"
+          >Name</span
+        >
+      </div>
+      <input
+        name="Name"
+        type="text"
+        class="form-control"
+        aria-label="Default"
+        aria-describedby="inputGroup-sizing-default"
+        [(ngModel)]="consumers.name"
+        readonly
+      />
+      
+    </div>
+    <!--Label Lastname and input Enter Lastname-->
+    
+    <div class="input-group mb-3" style="width: 700px">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default"
+          >Lastname</span
+        >
+      </div>
+      <input
+        name="Lastname"
+        type="text"
+        class="form-control"
+        aria-label="Default"
+        aria-describedby="inputGroup-sizing-default"
+        [(ngModel)]="consumers.lastname"
+        readonly
+      />
+    </div>
+
+    <!--Label Location and select choose-->
+   
+    <div class="input-group mb-3" style="width: 700px">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">Location</label>
+      </div>
+      <select
+        name="LocationId"
+        class="custom-select"
+        id="inputGroupSelect01"
+        [(ngModel)]="consumers.locationId"
+        required
+        >
+        <option *ngFor="let location of locations" value="{{location.locationId}}">{{formatLocation(location)}}
+        </option>
+    </select>
+    </div>
+    <!--Label Price and input Enter price-->
+    
+    <div class="input-group mb-3" style="width: 700px">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default"
+          >Price</span
+        >
+      </div>
+      <input
+        name="Price"
+        type="text"
+        class="form-control"
+        aria-label="Default"
+        aria-describedby="inputGroup-sizing-default"
+        [(ngModel)]="consumers.price"
+        readonly
+      />
+    </div>
+    <!--Label date and input Enter date-->
+    
+    <div class="input-group mb-3" style="width: 700px">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default"
+          >Date</span
+        >
+      </div>
+      <input
+        name="Date"
+        type="text"
+        class="form-control"
+        aria-label="Default"
+        aria-describedby="inputGroup-sizing-default"
+        [(ngModel)]="consumers.date"
+        readonly
+      />
+    </div>
+ <!--Button Reposrt-->
+ <div class="input-group-prepend">
+  <button class="btn btn-primary" type="submit" mat-stroked-button>Next</button>
+</div>
+</form>
+</div>

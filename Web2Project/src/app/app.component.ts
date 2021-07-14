@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+import { IHero } from './model/hero';
+import { HeroService } from './services/Hero.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +15,7 @@ export class AppComponent {
   constructor(private _router: Router) {
     
    } 
-
+   
   get isFrontPage():boolean{
     return (this._router.url ==="/" || this._router.url ==="/register" || this._router.url ==="/login");
   }
